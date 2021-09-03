@@ -1,42 +1,47 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Toolbar myToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Toolbar myToolbar = (Toolbar) findViewById(R.id.myToolbar);
+        myToolbar = findViewById(R.id.myToolbar);
+        setSupportActionBar(myToolbar);
 
-
-        //Buttons for login and register
-        Button loginbutton = findViewById(R.id.button1);
-        TextView registerbutton = findViewById(R.id.textView5);
-
-        //open new activity when clicked
-        loginbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openActivity(DashActivity.class);
-            }
-        });
-        registerbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openActivity(RegisterActivity.class);
-            }
-        });
     }
 
-    public void openActivity(Class _act){
-        Intent intent = new Intent(this, _act);
-        startActivity(intent);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_login) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else {
+            return true;
+        }
     }
 }
