@@ -2,4 +2,19 @@
     <string name="app_name">Covid tracker</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="text4">Login/Register</string>
+    <string name="text5">Dashboard</string>
+    <string name="text6">Name</string>
+    <string name="text7">Email</string>
+    <string name="text8">Password</string>
+    <string name="text9">Phone Number</string>
+    <string name="text10">Date of birth(YYYYMMDD)</string>
+    <string name="text11">Street Address</string>
+    <string name="text12">City</string>
+    <string name="text13">County</string>
+    <string name="text14">Don\'t have an account?</string>
+    <string name="text15">Register here!</string>
+
+
+
 </resources>
