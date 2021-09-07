@@ -44,8 +44,6 @@ public class LoginActivity extends MenuActivity {
             @Override
             public void onClick(View view) {
                 validate(userEmail.getText().toString(), userPassword.getText().toString());
-                openActivity(MainActivity.class);
-
             }
         });
         registerbutton.setOnClickListener(new View.OnClickListener() {
