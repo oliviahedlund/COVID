@@ -34,7 +34,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text7" />
+                android:text="@string/Email" />
 
             <EditText
                 android:id="@+id/editTextTextEmailAddress3"
@@ -47,7 +47,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text8" />
+                android:text="@string/Password" />
 
             <EditText
                 android:id="@+id/editTextTextPassword2"
@@ -75,14 +75,14 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text14" />
+                android:text="@string/NoAccount" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text15"
-                android:textColor="#3F51B5"
+                android:text="@string/RegHere"
+                android:textColor="@color/purple_700"
                 android:textStyle="bold" />
 
         </LinearLayout>

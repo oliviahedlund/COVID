@@ -34,7 +34,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text6" />
+                    android:text="@string/Name" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName3"
@@ -49,7 +49,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text7" />
+                    android:text="@string/Email" />
 
                 <EditText
                     android:id="@+id/editTextTextEmailAddress3"
@@ -64,7 +64,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text8" />
+                    android:text="@string/Password" />
 
                 <EditText
                     android:id="@+id/editTextTextPassword"
@@ -79,7 +79,7 @@
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text18" />
+                    android:text="@string/RepeatPassword" />
 
                 <EditText
                     android:id="@+id/editTextTextPassword2"
@@ -94,7 +94,7 @@
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text9" />
+                    android:text="@string/PhoneNumber" />
 
                 <EditText
                     android:id="@+id/editTextPhone"
@@ -109,7 +109,7 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text10" />
+                    android:text="@string/DOB" />
 
                 <EditText
                     android:id="@+id/editTextDate"
@@ -124,7 +124,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text11" />
+                    android:text="@string/StreetAddress" />
 
                 <EditText
                     android:id="@+id/editTextTextPostalAddress"
@@ -139,7 +139,7 @@
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text12" />
+                    android:text="@string/City" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName"
@@ -154,7 +154,7 @@
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text13" />
+                    android:text="@string/County" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName2"

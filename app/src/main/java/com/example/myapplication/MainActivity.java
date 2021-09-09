@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             TextView incorrectLogin = findViewById(R.id.errorText1);
-            incorrectLogin.setText(R.string.text17);
+            incorrectLogin.setText(R.string.IncorrectEmailPassw);
         }
 
     }
