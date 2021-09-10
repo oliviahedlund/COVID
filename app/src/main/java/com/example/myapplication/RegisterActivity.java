@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         if(mat.matches()){
             System.out.println("Valid email address");
             openActivity(MainActivity.class);
+            finish(); //clears register activity from history
         }else{
             System.out.println("Not a valid email address");
             email.setTextColor(getResources().getColor(R.color.red));

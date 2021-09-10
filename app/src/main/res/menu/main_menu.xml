@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
     <item
         android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dashboard"
         android:title="@string/dashboard" />
     <item
         android:id="@+id/nav_covidpassport"
-        android:title="Covidpass" />
+        android:icon="@drawable/ic_covid_passport"
+        android:title="Covid Passport" />
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
 
 </menu>

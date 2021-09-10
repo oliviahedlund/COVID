@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -68,10 +69,19 @@ public class GeneralActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, passFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
+                    case R.id.menu_logout:
+                        openActivity(MainActivity.class);
+                        finish();
+                        //logout process?
+                        break;
                 }
                 return true;
             }
         });
+    }
+    public void openActivity(Class _act){
+        Intent intent = new Intent(this, _act);
+        startActivity(intent);
     }
 
 }
