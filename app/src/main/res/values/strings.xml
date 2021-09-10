@@ -17,6 +17,7 @@
     <string name="StreetAddress">Street Address</string>
     <string name="City">City</string>
     <string name="County">County</string>
+    <string name="ZipCode">Zip Code</string>
 
     //LoginActivity
     <string name="NoAccount">Don\'t have an account?</string>
