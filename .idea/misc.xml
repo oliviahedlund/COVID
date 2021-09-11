@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_background.xml" value="0.2609375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/drawable/ic_virus.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/activity_dash.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2387416668269345" />
@@ -11,6 +13,7 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_covid_passport.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3260416666666667" />

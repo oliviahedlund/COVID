@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private Button loginButton;
+    private TextView registerButton;
+    private EditText userEmail;
+    private EditText userPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,22 +20,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Edit Text for user email and password
-        EditText userEmail = findViewById(R.id.editTextTextEmailAddress3);
-        EditText userPassword = findViewById(R.id.editTextTextPassword2);
+        userEmail = findViewById(R.id.editTextTextEmailAddress3);
+        userPassword = findViewById(R.id.editTextTextPassword2);
 
-        //Buttons for login and register
-        Button loginbutton = findViewById(R.id.button1);
-        TextView registerbutton = findViewById(R.id.textView5);
+        setupButtons();
 
+    }
 
-        //open new activity when clicked
-        loginbutton.setOnClickListener(new View.OnClickListener() {
+    private void setupButtons(){
+        loginButton = findViewById(R.id.button1);
+        registerButton = findViewById(R.id.textView5);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validate(userEmail.getText().toString(), userPassword.getText().toString());
             }
         });
-        registerbutton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openActivity(RegisterActivity.class);

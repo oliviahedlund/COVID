@@ -5,7 +5,13 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="logout">Logout</string>
-    <string name="dashboard">Dashboard</string>
+    <string name="dashboard">Covid Tracking</string>
+    <string name="passport">Digital Health Passport</string>
+    <string name="userInfo">Profile</string>
+    <string name="messages">Messages</string>
+    <string name="handleAppoint">Book/Cancel Appointment</string>
+    <string name="faq">FAQ</string>
+    <string name="settings">Settings</string>
 
     //registerActivity
     <string name="Name">Name</string>
