@@ -75,15 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
         EditText userCity = findViewById(R.id.editTextTextPersonName);
         EditText userCounty = findViewById(R.id.editTextTextPersonName2);
 
-        Pattern namePattern = Pattern.compile("");
+        Pattern namePattern = Pattern.compile/*("[A-Za-z_]*");*/("Jesper");
         Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Pattern passwordPattern = Pattern.compile("");
-        Pattern phonePattern = Pattern.compile("");
-        Pattern datePattern = Pattern.compile("");
-        Pattern streetPattern = Pattern.compile("");
-        Pattern zipPattern = Pattern.compile("");
-        Pattern cityPattern = Pattern.compile("");
-        Pattern countyPattern = Pattern.compile("");
+        Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{5,20}"); //all ascii - 5-20 symbols
+        Pattern phonePattern = Pattern.compile("[+]{0,1}+[-][0,1]+[0-9]{9,12}");
+        Pattern datePattern = Pattern.compile("[0-9]{6,8}");
+        Pattern streetPattern = Pattern.compile /*("\s*[\p{L}][\p{L}_0-9]*\s");*/ ("[A-Za-z0-9_]{4,30}"); //åäö?
+        Pattern zipPattern = Pattern.compile("[0-9]{5}");
+        Pattern cityPattern = Pattern.compile("[A-Za-z]{2,15}");
+        Pattern countyPattern = Pattern.compile("[A-Za-z]*"); //åäö?
 
 
         if(validate(name, userName, namePattern, "userName") &&
