@@ -44,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        EditText userEmail = findViewById(R.id.editTextTextEmailAddress3);
 
         Button registerbutton = findViewById(R.id.button2);
 
@@ -69,29 +68,40 @@ public class RegisterActivity extends AppCompatActivity {
                     registerUser(registerRequest);
 
                 }
+               
+                else{
+                    System.out.println("onClick error");
+                }
 
             }
         });
-
     }
 
-    /*public void validate_registration(String userEmail){
-        TextView email = findViewById(R.id.textView3);
-
-        Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Matcher mat = pattern.matcher(userEmail);
+    private boolean validate(TextView text, EditText input, Pattern pattern, String id){
+        Matcher mat = pattern.matcher(input.getText().toString());
         if(mat.matches()){
-            System.out.println("Valid email address");
-            openActivity(MainActivity.class);
-
-        }else{
-            System.out.println("Not a valid email address");
-            email.setTextColor(Color.parseColor("#ff0000"));
-
-            finish(); //clears register activity from history
+            text.setTextColor(getResources().getColor(R.color.black));
+            return true;
         }
+        else{
+            if(id.equals("email")) System.out.println("Not a valid email address");
+            else if (id.equals("userName")) System.out.println("Not a valid name");
+            else if (id.equals("userPassword")) System.out.println("Not a valid password");
+            else if (id.equals("userPhone")) System.out.println("Not a valid phone number");
+            else if (id.equals("userDate")) System.out.println("Not a valid date");
+            else if (id.equals("userStreet")) System.out.println("Not a valid street address");
+            else if (id.equals("userZip")) System.out.println("Not a valid zip code");
+            else if (id.equals("userCity")) System.out.println("Not a valid city");
+            else if (id.equals("userCounty")) System.out.println("Not a valid county");
+            text.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+    }
 
-    }*/
+
+   
+
+   
 
     private boolean validate(TextView text, EditText input, Pattern pattern, String id){
         Matcher mat = pattern.matcher(input.getText().toString());
@@ -154,6 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
             System.out.println("validate error");
             return false;
         }
+
     }
 
     public void openActivity(Class _act){
