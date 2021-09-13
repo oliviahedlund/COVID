@@ -75,15 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
         EditText userCity = findViewById(R.id.editTextTextPersonName);
         EditText userCounty = findViewById(R.id.editTextTextPersonName2);
 
-        Pattern namePattern = Pattern.compile("");
+        Pattern namePattern = Pattern.compile("[A-Za-z]{1,40}");
         Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Pattern passwordPattern = Pattern.compile("");
-        Pattern phonePattern = Pattern.compile("");
-        Pattern datePattern = Pattern.compile("");
-        Pattern streetPattern = Pattern.compile("");
-        Pattern zipPattern = Pattern.compile("");
-        Pattern cityPattern = Pattern.compile("");
-        Pattern countyPattern = Pattern.compile("");
+        Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{5,20}"); //all ascii
+        Pattern phonePattern = Pattern.compile("[0-9]*");
+        Pattern datePattern = Pattern.compile("[0-9]*");
+        Pattern streetPattern = Pattern.compile("[A-Za-z0-9]*");
+        Pattern zipPattern = Pattern.compile("[0-9]*");
+        Pattern cityPattern = Pattern.compile("[A-Za-z]*");
+        Pattern countyPattern = Pattern.compile("[A-Za-z]*");
 
 
         if(validate(name, userName, namePattern, "userName") &&

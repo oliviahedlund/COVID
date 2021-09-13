@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void validate(String userEmail, String userPassword){
+
         if((userEmail.equals("test@gmail.com")) && (userPassword.equals("123"))){
             openActivity(GeneralActivity.class);
             finish(); //clears login activity from history
