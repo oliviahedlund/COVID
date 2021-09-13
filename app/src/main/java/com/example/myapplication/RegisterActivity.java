@@ -33,21 +33,21 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validate(TextView text, EditText input, Pattern pattern, String id){
-        Matcher mat = pattern.matcher(input.toString());
+        Matcher mat = pattern.matcher(input.getText().toString());
         if(mat.matches()){
             text.setTextColor(getResources().getColor(R.color.black));
             return true;
         }
         else{
-            if(id == "email") System.out.println("Not a valid email address");
-            else if (id == "userName") System.out.println("Not a valid name");
-            else if (id == "userPassword") System.out.println("Not a valid password");
-            else if (id == "userPhone") System.out.println("Not a valid phone number");
-            else if (id == "userDate") System.out.println("Not a valid date");
-            else if (id == "userStreet") System.out.println("Not a valid street address");
-            else if (id == "userZip") System.out.println("Not a valid zip code");
-            else if (id == "userCity") System.out.println("Not a valid city");
-            else if (id == "userCounty") System.out.println("Not a valid county");
+            if(id.equals("email")) System.out.println("Not a valid email address");
+            else if (id.equals("userName")) System.out.println("Not a valid name");
+            else if (id.equals("userPassword")) System.out.println("Not a valid password");
+            else if (id.equals("userPhone")) System.out.println("Not a valid phone number");
+            else if (id.equals("userDate")) System.out.println("Not a valid date");
+            else if (id.equals("userStreet")) System.out.println("Not a valid street address");
+            else if (id.equals("userZip")) System.out.println("Not a valid zip code");
+            else if (id.equals("userCity")) System.out.println("Not a valid city");
+            else if (id.equals("userCounty")) System.out.println("Not a valid county");
             text.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
