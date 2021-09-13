@@ -4,6 +4,7 @@ public class RegisterResponse {
 
 
     private String token;
+    private String refreshToken;
 
     public String getToken() {
         return token;
@@ -13,6 +14,13 @@ public class RegisterResponse {
         this.token = token;
     }
 
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 
 
 }
