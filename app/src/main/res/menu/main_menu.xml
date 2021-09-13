@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menu_dash"
-        android:title="@string/text5" />
-    <item
-        android:id="@+id/menu_login"
-        android:title="@string/text4" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/dashboard" />
+        <item
+            android:icon="@drawable/ic_messages"
+            android:title="@string/messages" />
+
+        <item
+            android:icon="@drawable/ic_clock"
+            android:title="@string/handleAppoint" />
+        <item
+            android:id="@+id/nav_covidpassport"
+            android:icon="@drawable/ic_covid_passport"
+            android:title="@string/passport" />
+        <item
+            android:icon="@drawable/ic_faq"
+            android:title="@string/faq" />
+    </group>
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_user"
+            android:title="@string/userInfo" />
+        <item
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings" />
+
+    </group>
+
+
 </menu>

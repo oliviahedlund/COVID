@@ -2,19 +2,32 @@
     <string name="app_name">Covid tracker</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="text4">Login/Register</string>
-    <string name="text5">Dashboard</string>
-    <string name="text6">Name</string>
-    <string name="text7">Email</string>
-    <string name="text8">Password</string>
-    <string name="text9">Phone Number</string>
-    <string name="text10">Date of birth(YYYYMMDD)</string>
-    <string name="text11">Street Address</string>
-    <string name="text12">City</string>
-    <string name="text13">County</string>
-    <string name="text14">Don\'t have an account?</string>
-    <string name="text15">Register here!</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="logout">Logout</string>
+    <string name="dashboard">Covid Tracking</string>
+    <string name="passport">Digital Health Passport</string>
+    <string name="userInfo">Profile</string>
+    <string name="messages">Messages</string>
+    <string name="handleAppoint">Book/Cancel Appointment</string>
+    <string name="faq">FAQ</string>
+    <string name="settings">Settings</string>
 
+    //registerActivity
+    <string name="Name">Name</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="RepeatPassword">Repeat password</string>
+    <string name="PhoneNumber">Phone Number</string>
+    <string name="DOB">Date of birth (YYYYMMDD)</string>
+    <string name="StreetAddress">Street Address</string>
+    <string name="City">City</string>
+    <string name="County">County</string>
+    <string name="ZipCode">Zip Code</string>
 
+    //LoginActivity
+    <string name="NoAccount">Don\'t have an account?</string>
+    <string name="RegHere">Register here!</string>
+    <string name="IncorrectEmailPassw">Incorrect email or password</string>
 
 </resources>
