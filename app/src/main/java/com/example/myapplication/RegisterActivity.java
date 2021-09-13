@@ -14,6 +14,7 @@ import java.util.*;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    final int AGE_REQUIRMENT = 180000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +73,8 @@ public class RegisterActivity extends AppCompatActivity {
         Matcher mat = pattern.matcher(date.getText().toString());
         Date todaysDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
-        //String strTodaysDate  = sdf.format(todaysDate);
         int intTodaysDate = Integer.parseInt(String.valueOf(sdf.format(todaysDate)));
-        if(mat.matches() && (intTodaysDate-birthDate)>180000){
+        if(mat.matches() && (intTodaysDate-birthDate)>=AGE_REQUIRMENT){
 
             text.setTextColor(getResources().getColor(R.color.black));
             return true;
