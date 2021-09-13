@@ -8,7 +8,7 @@ public class LoginRequest {
         return email;
     }
 
-    public void setUsername(String username) {
+    public void setUserEmail(String email) {
         this.email = email;
     }
 
