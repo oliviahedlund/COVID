@@ -14,7 +14,8 @@
     <string name="settings">Settings</string>
 
     //registerActivity
-    <string name="Name">Name</string>
+    <string name="Firstname">First name</string>
+    <string name="Lastname">Last name</string>
     <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="RepeatPassword">Repeat password</string>

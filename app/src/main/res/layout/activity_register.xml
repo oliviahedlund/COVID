@@ -34,10 +34,25 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Name" />
+                    android:text="@string/Firstname" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Lastname" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
