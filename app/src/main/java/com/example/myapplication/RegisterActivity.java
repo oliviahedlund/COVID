@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,7 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
             else if (id == "userName") System.out.println("Not a valid name");
             else if (id == "userPassword") System.out.println("Not a valid password");
             else if (id == "userPhone") System.out.println("Not a valid phone number");
-            else if (id == "userDate") System.out.println("Not a valid date");
             else if (id == "userStreet") System.out.println("Not a valid street address");
             else if (id == "userZip") System.out.println("Not a valid zip code");
             else if (id == "userCity") System.out.println("Not a valid city");
@@ -65,14 +66,27 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validate_date(){
-        if(true){
-            System.out.println(System.currentTimeMillis());
+    public boolean validate_date(TextView text, EditText date, Pattern pattern){
+        int birthDate = Integer.parseInt(String.valueOf(date.getText()));
+        Matcher mat = pattern.matcher(date.getText().toString());
+        Date todaysDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
+        int intTodaysDate = Integer.parseInt(String.valueOf(sdf.format(todaysDate)));
+        if(mat.matches() && (intTodaysDate-birthDate)>AGE_REQUIREMENT){
+            text.setTextColor(getResources().getColor(R.color.black));
             return true;
         }
-        else{
+        else if(!mat.matches()){
+            System.out.println("Not a valid date");
+            text.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
+        else{
+            System.out.println("User must be 18+ years old");
+            text.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+
     }
 
     public boolean validate_registration(){
@@ -112,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                 validate(password, userPassword, passwordPattern, "userPassword") &&
                 repeat_password(userRepeatPassword.getText().toString(), userPassword.getText().toString(), repeatPassword) &&
                 validate(phone, userPhone, phonePattern, "userPhone") &&
-                validate(date, userDate, datePattern, "userDate") &&
+                validate_date(date, userDate, datePattern) &&
                 validate(street, userStreet, streetPattern, "userStreet") &&
                 validate(zip, userZip, zipPattern, "userZip") &&
                 validate(city, userCity, cityCountyPattern, "userCity") &&
