@@ -31,4 +31,42 @@
     <string name="RegHere">Register here!</string>
     <string name="IncorrectEmailPassw">Incorrect email or password</string>
 
+    // covid tracking dashboard
+    <string name="location">Location</string>
+    <string name="ageGroup">Age Group</string>
+    <string name="product">Product</string>
+    <string name="dose">Dose</string>
+
+    <string name="totalCases">Total cases: </string>
+    <string name="totalDeaths">Total deaths: </string>
+    <string name="totalDistri">Total distributed doses: </string>
+    <string name="totalAdmini">Total administered doses: </string>
+    <string name="vs">Dose 1 vs Dose 2: </string>
+
+
+    <string-array name="location">
+        <item>None</item>
+        <item>Sweden</item>
+        <item>Stockholm</item>
+        <item>Uppsala</item>
+    </string-array>
+
+    <string-array name="ageGroup">
+        <item>None</item>
+        <item>Child</item>
+        <item>Adult</item>
+        <item>Elder</item>
+    </string-array>
+
+    <string-array name="product">
+        <item>None</item>
+        <item>Pfizer</item>
+    </string-array>
+
+    <string-array name="dose">
+        <item>None</item>
+        <item>Dose 1</item>
+        <item>Dose 2</item>
+    </string-array>
+
 </resources>

@@ -68,41 +68,42 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void login(){
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUserEmail(userEmail.getText().toString());
-        loginRequest.setPassword(userPassword.getText().toString());
-
-        Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
-                if(response.isSuccessful()){
-                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
-                    LoginResponse loginResponse = response.body();
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            openActivity(GeneralActivity.class);
-
-                        }
-                    },700);
-
-                }else{
-                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
-
+        openActivity(GeneralActivity.class);
+//        LoginRequest loginRequest = new LoginRequest();
+//        loginRequest.setUserEmail(userEmail.getText().toString());
+//        loginRequest.setPassword(userPassword.getText().toString());
+//
+//        Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
+//        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+//            @Override
+//            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+//
+//                if(response.isSuccessful()){
+//                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
+//                    LoginResponse loginResponse = response.body();
+//
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            openActivity(GeneralActivity.class);
+//
+//                        }
+//                    },700);
+//
+//                }else{
+//                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_LONG).show();
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginResponse> call, Throwable t) {
+//                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
+//
 
     }
 
