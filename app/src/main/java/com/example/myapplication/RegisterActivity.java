@@ -22,13 +22,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
-    //EditText userName = findViewById(R.id.editTextTextPersonName3);
+    EditText userFirstName = findViewById(R.id.editTextTextPersonName3);
+    EditText userLastName = findViewById(R.id.editTextTextPersonName4);
     EditText userEmail = findViewById(R.id.editTextTextEmailAddress3);
     EditText userPassword = findViewById(R.id.editTextTextPassword);
     //Repeat password?
@@ -53,7 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(validate_registration()) {
                     RegisterRequest registerRequest = new RegisterRequest();
-                    //registerRequest.setUsername(username.getText().toString());
                     registerRequest.setEmail(userEmail.getText().toString());
                     registerRequest.setPassword(userPassword.getText().toString());
                     registerRequest.setAddress(userStreet.getText().toString());
@@ -61,8 +59,8 @@ public class RegisterActivity extends AppCompatActivity {
                     registerRequest.setBirthDate(userDate.getText().toString());
                     registerRequest.setCity(userCity.getText().toString());
                     registerRequest.setDistrict(userCounty.getText().toString());
-                    registerRequest.setFirstName("namn1");
-                    registerRequest.setLastName("namn2");
+                    registerRequest.setFirstName(userFirstName.getText().toString());
+                    registerRequest.setLastName(userLastName.getText().toString());
                     registerRequest.setPhoneNumber(userPhone.getText().toString());
                     registerRequest.setPostalCode(userZip.getText().toString());
                     registerUser(registerRequest);
@@ -85,7 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else{
             if(id.equals("email")) System.out.println("Not a valid email address");
-            else if (id.equals("userName")) System.out.println("Not a valid name");
+            else if (id.equals("userFirstName")) System.out.println("Not a valid first name");
+            else if (id.equals("userLastName")) System.out.println("Not a valid last name");
             else if (id.equals("userPassword")) System.out.println("Not a valid password");
             else if (id.equals("userPhone")) System.out.println("Not a valid phone number");
             else if (id.equals("userDate")) System.out.println("Not a valid date");
@@ -102,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
    
 
    
-
+/*
     private boolean validate(TextView text, EditText input, Pattern pattern, String id){
         Matcher mat = pattern.matcher(input.getText().toString());
         if(mat.matches()){
@@ -123,9 +122,10 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
     }
-
+*/
     public boolean validate_registration(){
-        TextView name = findViewById(R.id.textView2);
+        TextView firstName = findViewById(R.id.textView2);
+        TextView lastName = findViewById(R.id.textView13);
         TextView email = findViewById(R.id.textView3);
         TextView password = findViewById(R.id.textView4);
         TextView phone = findViewById(R.id.textView8);
@@ -147,6 +147,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if(
+                validate(firstName, userFirstName, namePattern, "userFirstName") &&
+                validate(lastName, userLastName, namePattern, "userLastName") &&
                 validate(email, userEmail, emailPattern, "email") &&
                 validate(password, userPassword, passwordPattern, "UserPassword") &&
                 validate(phone, userPhone, phonePattern, "userPhone") &&
