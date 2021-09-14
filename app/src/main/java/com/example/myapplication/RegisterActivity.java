@@ -121,9 +121,18 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validate_date(TextView text, EditText date, Pattern pattern){
-        int birthDate = Integer.parseInt(String.valueOf(date.getText()));
-        Matcher mat = pattern.matcher(date.getText().toString());
+    public boolean validate_date(TextView text, EditText input, Pattern pattern){
+        int birthDate;
+        try {
+            birthDate = Integer.parseInt(input.getText().toString());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            System.out.println("Not valid integer date-input");
+            text.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+
+        Matcher mat = pattern.matcher(input.getText().toString());
         Date todaysDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
         int intTodaysDate = Integer.parseInt(String.valueOf(sdf.format(todaysDate)));
