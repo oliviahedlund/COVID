@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import android.widget.Toast;
 
+import java.io.Console;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,23 +29,24 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    //EditText userName = findViewById(R.id.editTextTextPersonName3);
-    EditText userEmail = findViewById(R.id.editTextTextEmailAddress3);
-    EditText userPassword = findViewById(R.id.editTextTextPassword);
-    //Repeat password?
-    EditText userPhone = findViewById(R.id.editTextPhone);
-    EditText userDate = findViewById(R.id.editTextDate);
-    EditText userStreet = findViewById(R.id.editTextTextPostalAddress);
-    EditText userZip = findViewById(R.id.editTextNumber);
-    EditText userCity = findViewById(R.id.editTextTextPersonName);
-    EditText userCounty = findViewById(R.id.editTextTextPersonName2);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("hej");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-
+        //EditText userName = findViewById(R.id.editTextTextPersonName3);
+        EditText userEmail = findViewById(R.id.editTextTextEmailAddress3);
+        EditText userPassword = findViewById(R.id.editTextTextPassword);
+        //Repeat password?
+        EditText userPhone = findViewById(R.id.editTextPhone);
+        EditText userDate = findViewById(R.id.editTextDate);
+        EditText userStreet = findViewById(R.id.editTextTextPostalAddress);
+        EditText userZip = findViewById(R.id.editTextNumber);
+        EditText userCity = findViewById(R.id.editTextTextPersonName);
+        EditText userCounty = findViewById(R.id.editTextTextPersonName2);
         Button registerbutton = findViewById(R.id.button2);
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
@@ -77,31 +79,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private boolean validate(TextView text, EditText input, Pattern pattern, String id){
-        Matcher mat = pattern.matcher(input.getText().toString());
-        if(mat.matches()){
-            text.setTextColor(getResources().getColor(R.color.black));
-            return true;
-        }
-        else{
-            if(id.equals("email")) System.out.println("Not a valid email address");
-            else if (id.equals("userName")) System.out.println("Not a valid name");
-            else if (id.equals("userPassword")) System.out.println("Not a valid password");
-            else if (id.equals("userPhone")) System.out.println("Not a valid phone number");
-            else if (id.equals("userDate")) System.out.println("Not a valid date");
-            else if (id.equals("userStreet")) System.out.println("Not a valid street address");
-            else if (id.equals("userZip")) System.out.println("Not a valid zip code");
-            else if (id.equals("userCity")) System.out.println("Not a valid city");
-            else if (id.equals("userCounty")) System.out.println("Not a valid county");
-            text.setTextColor(getResources().getColor(R.color.red));
-            return false;
-        }
-    }
-
-
-   
-
-   
 
     private boolean validate(TextView text, EditText input, Pattern pattern, String id){
         Matcher mat = pattern.matcher(input.getText().toString());
@@ -124,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validate_registration(){
+    private boolean validate_registration(){
         TextView name = findViewById(R.id.textView2);
         TextView email = findViewById(R.id.textView3);
         TextView password = findViewById(R.id.textView4);
@@ -134,6 +111,17 @@ public class RegisterActivity extends AppCompatActivity {
         TextView zip = findViewById(R.id.textView7);
         TextView city = findViewById(R.id.textView11);
         TextView county = findViewById(R.id.textView12);
+
+        //EditText userName = findViewById(R.id.editTextTextPersonName3);
+        EditText userEmail = findViewById(R.id.editTextTextEmailAddress3);
+        EditText userPassword = findViewById(R.id.editTextTextPassword);
+        //Repeat password?
+        EditText userPhone = findViewById(R.id.editTextPhone);
+        EditText userDate = findViewById(R.id.editTextDate);
+        EditText userStreet = findViewById(R.id.editTextTextPostalAddress);
+        EditText userZip = findViewById(R.id.editTextNumber);
+        EditText userCity = findViewById(R.id.editTextTextPersonName);
+        EditText userCounty = findViewById(R.id.editTextTextPersonName2);
 
         Pattern namePattern = Pattern.compile("[A-Za-z]{1,40}");
         Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
