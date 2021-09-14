@@ -1,10 +1,10 @@
 package com.example.myapplication;
 
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.text.*;
@@ -22,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
-    final int AGE_REQUIRMENT = 180000;
+    final int AGE_REQUIREMENT = 18000;
 
     EditText userFirstName;
     EditText userLastName;
@@ -87,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean validate(TextView text, EditText input, Pattern pattern, String id){
         Matcher mat = pattern.matcher(input.getText().toString());
+        System.out.println("Input: " + input);
         if(mat.matches()){
             text.setTextColor(getResources().getColor(R.color.black));
             return true;
@@ -97,7 +100,6 @@ public class RegisterActivity extends AppCompatActivity {
             else if (id.equals("userLastName")) System.out.println("Not a valid last name");
             else if (id.equals("userPassword")) System.out.println("Not a valid password");
             else if (id.equals("userPhone")) System.out.println("Not a valid phone number");
-            else if (id.equals("userDate")) System.out.println("Not a valid date");
             else if (id.equals("userStreet")) System.out.println("Not a valid street address");
             else if (id.equals("userZip")) System.out.println("Not a valid zip code");
             else if (id.equals("userCity")) System.out.println("Not a valid city");
@@ -107,36 +109,41 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validate_repeatpassword(TextView text, EditText password, EditText repeatPassword){
-
-        if(password.getText().toString().equals(repeatPassword.getText().toString())){
+    private boolean repeat_password(String repeatPassword, String password, TextView text){
+        if(repeatPassword.equals(password)){
             text.setTextColor(getResources().getColor(R.color.black));
             return true;
         }
-        System.out.println("password did not match");
-        text.setTextColor(getResources().getColor(R.color.red));
-        return false;
+        else{
+            System.out.println("Passwords do not match");
+            text.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
     }
 
-
-    public boolean validate_age(TextView text, EditText date, Pattern pattern){
+    public boolean validate_date(TextView text, EditText date, Pattern pattern){
         int birthDate = Integer.parseInt(String.valueOf(date.getText()));
         Matcher mat = pattern.matcher(date.getText().toString());
         Date todaysDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
         int intTodaysDate = Integer.parseInt(String.valueOf(sdf.format(todaysDate)));
-        if(mat.matches() && (intTodaysDate-birthDate)>=AGE_REQUIRMENT){
-
+        if(mat.matches() && (intTodaysDate-birthDate)>AGE_REQUIREMENT){
             text.setTextColor(getResources().getColor(R.color.black));
             return true;
         }
+        else if(!mat.matches()){
+            System.out.println("Not a valid date");
+            text.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
         else{
-            System.out.println("not old enough");
+            System.out.println("User must be 18+ years old");
             text.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
 
     }
+
     public boolean validate_registration(){
         TextView firstName = findViewById(R.id.textView2);
         TextView lastName = findViewById(R.id.textView13);
@@ -150,29 +157,27 @@ public class RegisterActivity extends AppCompatActivity {
         TextView city = findViewById(R.id.textView11);
         TextView county = findViewById(R.id.textView12);
 
-        Pattern namePattern = Pattern.compile("[A-Za-z]{1,40}");
+        Pattern namePattern = Pattern.compile("[A-Za-z_ ]{1,30}");
         Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{5,20}"); //all US-ascii 5-20 characters
-        Pattern phonePattern = Pattern.compile("[0-9]{8,12}");
+        Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{8,20}"); //all ascii - 8-20 symbols - stor bokstav & siffra
+        Pattern phonePattern = Pattern.compile("[0-9]{10,11}");
         Pattern datePattern = Pattern.compile("[0-9]{8}");
-        Pattern streetPattern = Pattern.compile("[A-Za-z0-9_ ]{5,40}");
+        Pattern streetPattern = Pattern.compile("[A-Za-z0-9_ ]{4,30}");
         Pattern zipPattern = Pattern.compile("[0-9]{5}");
-        Pattern cityPattern = Pattern.compile("[A-Za-z]{5,40}");
-        Pattern countyPattern = Pattern.compile("[A-Za-z_ ]{1,30}");
-
+        Pattern cityCountyPattern = Pattern.compile("[A-Za-z]{2,15}");
 
         if(
                 validate(firstName, userFirstName, namePattern, "userFirstName") &&
                 validate(lastName, userLastName, namePattern, "userLastName") &&
                 validate(email, userEmail, emailPattern, "email") &&
-                validate(password, userPassword, passwordPattern, "UserPassword") &&
-                validate_repeatpassword(repeatPassword,userPassword,userRepeatPassword) &&
+                validate(password, userPassword, passwordPattern, "userPassword") &&
+                repeat_password(userRepeatPassword.getText().toString(), userPassword.getText().toString(), repeatPassword) &&
                 validate(phone, userPhone, phonePattern, "userPhone") &&
-                validate_age(date, userDate, datePattern) &&
+                validate_date(date, userDate, datePattern) &&
                 validate(street, userStreet, streetPattern, "userStreet") &&
                 validate(zip, userZip, zipPattern, "userZip") &&
-                validate(city, userCity, cityPattern, "userCity") &&
-                validate(county, userCounty, countyPattern, "userCounty")
+                validate(city, userCity, cityCountyPattern, "userCity") &&
+                validate(county, userCounty, cityCountyPattern, "userCounty")
 
         ){
             openActivity(MainActivity.class);
