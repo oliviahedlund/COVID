@@ -180,7 +180,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         Pattern namePattern = Pattern.compile("[A-Za-z_ ]{1,30}");
         Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{8,20}"); //all ascii - 8-20 symbols - stor bokstav & siffra
+        Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$"); //one digit+lower+upper
+        //Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{8,20}"); //all ascii - 8-20 symbols - stor bokstav & siffra
         Pattern phonePattern = Pattern.compile("[0-9]{10,11}");
         Pattern datePattern = Pattern.compile("[0-9]{8}");
         Pattern streetPattern = Pattern.compile("[A-Za-z0-9_ ]{4,30}");
