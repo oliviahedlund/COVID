@@ -52,7 +52,7 @@ public class GeneralActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        dashboardFragment dashFragment = new dashboardFragment();
+        Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
     }
 
@@ -80,7 +80,7 @@ public class GeneralActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        dashboardFragment dashFragment = new dashboardFragment();
+                        Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, dashFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
