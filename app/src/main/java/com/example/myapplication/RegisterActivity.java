@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                     registerRequest.setPassword(userPassword.getText().toString());
                     registerRequest.setAddress(userStreet.getText().toString());
                     //registerRequest.setAddress2("adress2test");
-                    registerRequest.setBirthDate(userDate.getText().toString());
+                    registerRequest.setBirthDate(changeDate(userDate.getText().toString()));
                     registerRequest.setCity(userCity.getText().toString());
                     registerRequest.setDistrict(userCounty.getText().toString());
                     registerRequest.setFirstName(userFirstName.getText().toString());
@@ -85,6 +85,18 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //changes date-string from YYYYMMDD to YYYY-MM-DD
+    private String changeDate(String _date){
+        String newString = new String();
+        for(int i=0; i<8; i++){
+            if(i==4||i==6){
+                newString += "-";
+            }
+            newString += _date.charAt(i);
+        }
+        return newString;
     }
 
     private boolean validate(TextView text, EditText input, Pattern pattern, String id){
