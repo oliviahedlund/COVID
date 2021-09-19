@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                     registerRequest.setPassword(userPassword.getText().toString());
                     registerRequest.setAddress(userStreet.getText().toString());
                     //registerRequest.setAddress2("adress2test");
-                    registerRequest.setBirthDate(userDate.getText().toString());
+                    registerRequest.setBirthDate(changeDate(userDate.getText().toString()));
                     registerRequest.setCity(userCity.getText().toString());
                     registerRequest.setDistrict(userCounty.getText().toString());
                     registerRequest.setFirstName(userFirstName.getText().toString());
@@ -85,6 +85,18 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //changes date-string from YYYYMMDD to YYYY-MM-DD
+    private String changeDate(String _date){
+        String newString = new String();
+        for(int i=0; i<8; i++){
+            if(i==4||i==6){
+                newString += "-";
+            }
+            newString += _date.charAt(i);
+        }
+        return newString;
     }
 
     private boolean validate(TextView text, EditText input, Pattern pattern, String id){
@@ -121,9 +133,18 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validate_date(TextView text, EditText date, Pattern pattern){
-        int birthDate = Integer.parseInt(String.valueOf(date.getText()));
-        Matcher mat = pattern.matcher(date.getText().toString());
+    public boolean validate_date(TextView text, EditText input, Pattern pattern){
+        int birthDate;
+        try {
+            birthDate = Integer.parseInt(input.getText().toString());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            System.out.println("Not valid integer date-input");
+            text.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+
+        Matcher mat = pattern.matcher(input.getText().toString());
         Date todaysDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
         int intTodaysDate = Integer.parseInt(String.valueOf(sdf.format(todaysDate)));
@@ -159,7 +180,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         Pattern namePattern = Pattern.compile("[A-Za-z_ ]{1,30}");
         Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{8,20}"); //all ascii - 8-20 symbols - stor bokstav & siffra
+        Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$"); //one digit+lower+upper
+        //Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{8,20}"); //all ascii - 8-20 symbols - stor bokstav & siffra
         Pattern phonePattern = Pattern.compile("[0-9]{10,11}");
         Pattern datePattern = Pattern.compile("[0-9]{8}");
         Pattern streetPattern = Pattern.compile("[A-Za-z0-9_ ]{4,30}");
