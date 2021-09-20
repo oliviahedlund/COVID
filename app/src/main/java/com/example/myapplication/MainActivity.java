@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             LanguageHelper.setLocale(this,"sv");
         }
+        //updates view
         this.recreate();
     }
 

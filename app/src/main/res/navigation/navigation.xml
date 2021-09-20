@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_covid_passport" />
     <fragment
         android:id="@+id/nav_settingsFragment"
-        android:name="com.example.myapplication.LanguageFragment"
+        android:name="com.example.myapplication.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_language" />
 </navigation>

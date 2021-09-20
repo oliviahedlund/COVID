@@ -16,15 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class LanguageFragment extends Fragment{
+public class SettingsFragment extends Fragment{
     Fragment thisFragment = this;
+    View view;
 
-
-    public LanguageFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
-    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,10 +56,10 @@ public class LanguageFragment extends Fragment{
 
     private void setLanguage(LayoutInflater inflater, String language){
         //update only if language is not already set
-        if(language != LanguageHelper.getLanguage(inflater.getContext())) {
-            System.out.println(LanguageHelper.getLanguage(inflater.getContext()));
-
+        if(! language.equals(LanguageHelper.getLanguage(inflater.getContext()))) {
+            //set language
             LanguageHelper.setLocale(inflater.getContext(), language);
+            //update view
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             getActivity().recreate();
         }

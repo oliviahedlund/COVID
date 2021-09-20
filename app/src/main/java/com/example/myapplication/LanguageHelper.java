@@ -32,10 +32,12 @@ public class LanguageHelper {
         setLocale(context, lang);
     }
 */
+    //returns current language
     public static String getLanguage(Context context) {
         return getPersistedData(context, Locale.getDefault().getLanguage());
     }
 
+    //sets language to parameter "language", e.g. "sv" or "en"
     public static void setLocale(Context context, String language) {
         persist(context, language);
         updateResources(context, language);

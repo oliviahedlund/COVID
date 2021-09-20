@@ -96,7 +96,7 @@ public class GeneralActivity extends AppCompatActivity {
                         mDrawerLayout.closeDrawers();
                         break;
                     case R.id.nav_settingsFragment:
-                        LanguageFragment settFragment = new LanguageFragment();
+                        SettingsFragment settFragment = new SettingsFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, settFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
