@@ -2,15 +2,19 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Console;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,25 +25,30 @@ public class MainActivity extends AppCompatActivity {
     private TextView registerButton;
     private EditText userEmail;
     private EditText userPassword;
+    private ImageButton languageButton1;
+    private TextView languageButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         setupButtons();
 
     }
 
     private void setupButtons(){
+        //Find buttons
         loginButton = findViewById(R.id.button1);
         registerButton = findViewById(R.id.textView5);
+        languageButton1 = findViewById(R.id.imageButton);
+        languageButton2 = findViewById(R.id.textView16);
 
-        //Edit Text for user email and password
+        //Find Edit Text for user email and password
         userEmail = findViewById(R.id.editTextTextEmailAddress3);
         userPassword = findViewById(R.id.editTextTextPassword2);
 
+        //Setup OnClickListeners
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,17 +64,30 @@ public class MainActivity extends AppCompatActivity {
                 openActivity(RegisterActivity.class);
             }
         });
+        languageButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchLanguage();
+            }
+        });
+        languageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchLanguage();
+            }
+        });
     }
 
-    /*public void validate(String userEmail, String userPassword){
-        if(userEmail.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()) {
-            Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+    //Switches language depending on current language
+    private void switchLanguage(){
+        if("(EN)".equals(languageButton2.getText().toString())){
+            LanguageHelper.setLocale(this,"en");
         }
-        else{    login(); }
-
+        else{
+            LanguageHelper.setLocale(this,"sv");
         }
-
-    }*/
+        this.recreate();
+    }
 
     public void login(){
         LoginRequest loginRequest = new LoginRequest();
@@ -85,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             openActivity(GeneralActivity.class);
+                            finish();
 
                         }
                     },700);

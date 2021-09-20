@@ -20,13 +20,20 @@ public class GeneralActivity extends AppCompatActivity {
     private View header;
     private Button logoutButton;
 
+    private dashboardFragment dashFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        if(savedInstanceState == null) {
+            dashFragment = new dashboardFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+        }
+
         //Setup Menu Bar
         setupMenuBar();
+
 
         //Setup Navigation Drawer
         setUpNavigationView();
@@ -52,8 +59,7 @@ public class GeneralActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        dashboardFragment dashFragment = new dashboardFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+
     }
 
 
@@ -89,9 +95,15 @@ public class GeneralActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, passFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
+                    case R.id.nav_settingsFragment:
+                        LanguageFragment settFragment = new LanguageFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, settFragment).commit();
+                        mDrawerLayout.closeDrawers();
+                        break;
                     case R.id.logoutButton:
                         openActivity(MainActivity.class);
                         finish();
+                        break;
                 }
                 return true;
             }
