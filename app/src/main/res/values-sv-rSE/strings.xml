@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Covid tracker</string>
+    <string name="login">Logga in</string>
+    <string name="register">Registrera</string>
+    <string name="logout">Logga ut</string>
+    <string name="dashboard">Covidutveckling</string>
+    <string name="passport">Digitalt Vaccin Pass</string>
+    <string name="userInfo">Profil</string>
+    <string name="messages">Meddelanden</string>
+    <string name="handleAppoint">Boka/Avboka tid</string>
+    <string name="settings">Inställningar</string>
+    <string name="Firstname">Förnamn</string>
+    <string name="Lastname">Efternamn</string>
+    <string name="Password">Lösenord</string>
+    <string name="PhoneNumber">Telefonnummer</string>
+    <string name="DOB">Födelsedatum (YYYYMMDD)</string>
+    <string name="StreetAddress">Gatuadress</string>
+    <string name="City">Stad</string>
+    <string name="County">Län</string>
+    <string name="ZipCode">Postkod</string>
+    <string name="NoAccount">Har du inget konto?</string>
+    <string name="RegHere">Registrera dig här!</string>
+    <string name="IncorrectEmailPassw">Felaktig email eller lösenord</string>
+    <string name="RepeatPassword">Upprepa lösenord</string>
+    <string name="english">Engelska</string>
+    <string name="swedish">Svenska</string>
+    <string name="languages">Språk</string>
+    <string name="switchLang">(EN)</string>
+
+</resources>
+

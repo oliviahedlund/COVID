@@ -20,13 +20,20 @@ public class GeneralActivity extends AppCompatActivity {
     private View header;
     private Button logoutButton;
 
+    private Covid_Tracking_dashboardFragment dashFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        if(savedInstanceState == null) {
+            Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+        }
+
         //Setup Menu Bar
         setupMenuBar();
+
 
         //Setup Navigation Drawer
         setUpNavigationView();
@@ -52,6 +59,7 @@ public class GeneralActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
     }
@@ -89,9 +97,15 @@ public class GeneralActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, passFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
+                    case R.id.nav_settingsFragment:
+                        SettingsFragment settFragment = new SettingsFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, settFragment).commit();
+                        mDrawerLayout.closeDrawers();
+                        break;
                     case R.id.logoutButton:
                         openActivity(MainActivity.class);
                         finish();
+                        break;
                 }
                 return true;
             }
