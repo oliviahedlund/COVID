@@ -7,11 +7,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GeneralActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -19,6 +26,9 @@ public class GeneralActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private View header;
     private Button logoutButton;
+    private TextView userName;
+    private TextView userEmail;
+    private UserResponse user;
 
     private Covid_Tracking_dashboardFragment dashFragment;
     @Override
@@ -38,6 +48,54 @@ public class GeneralActivity extends AppCompatActivity {
         //Setup Navigation Drawer
         setUpNavigationView();
 
+        //anropar detta för att få fram information om användaren
+        callUserApi();
+
+    }
+
+    public void callUserApi(){
+        UserRequest userRequest = new UserRequest();
+        Intent i = getIntent();
+        String token = i.getStringExtra("tok");
+        token = "Bearer " + token;
+        userRequest.setToken(token);
+
+        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUser(token);
+        userResponseCall.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                //todo - errorhandling
+                if (response.isSuccessful()) {
+                    Toast.makeText(GeneralActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
+                    UserResponse userResponse = response.body(); //i userResponse ligger all information om användaren
+                    System.out.println(userResponse);
+                    setUserData(userResponse);
+                    System.out.println(userResponse.getEmail());
+                    userName = findViewById(R.id.fullName);
+                    userEmail = findViewById(R.id.textViewEmail);
+                    userName.setText(userResponse.getFirstName() + " " + userResponse.getLastName());
+                    userEmail.setText(userResponse.getEmail());
+
+                }else{
+                    Toast.makeText(GeneralActivity.this,"user Failed", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(GeneralActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+
+    private UserResponse setUserData(UserResponse response){
+        return this.user = response;
+    }
+
+    private UserResponse getUserData(){
+        return user;
     }
 
     @Override
@@ -102,6 +160,13 @@ public class GeneralActivity extends AppCompatActivity {
                     case R.id.logoutButton:
                         openActivity(MainActivity.class);
                         finish();
+
+                    case R.id.nav_profile:
+                        //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, profileFragment).commit();
+                        mDrawerLayout.closeDrawers();
+
                         break;
                 }
                 return true;
