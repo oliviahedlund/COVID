@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
-public class UserResponse {
+import java.io.Serializable;
+
+public class UserResponse implements Serializable {
     private String email;
     private String firstName;
     private String lastName;

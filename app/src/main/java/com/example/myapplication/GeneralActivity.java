@@ -36,6 +36,10 @@ public class GeneralActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        //gets userinfo
+        Intent i = getIntent();
+        user = (UserResponse) i.getSerializableExtra("userInfo");
+
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
@@ -47,54 +51,7 @@ public class GeneralActivity extends AppCompatActivity {
         //Setup Navigation Drawer
         setUpNavigationView();
 
-        //anropar detta för att få fram information om användaren
-        callUserApi();
 
-    }
-
-    public void callUserApi(){
-        UserRequest userRequest = new UserRequest();
-        Intent i = getIntent();
-        String token = i.getStringExtra("tok");
-        token = "Bearer " + token;
-        userRequest.setToken(token);
-
-        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUser(token);
-        userResponseCall.enqueue(new Callback<UserResponse>() {
-            @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                //todo - errorhandling
-                if (response.isSuccessful()) {
-                    Toast.makeText(GeneralActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
-                    UserResponse userResponse = response.body(); //i userResponse ligger all information om användaren
-                    System.out.println(userResponse);
-                    setUserData(userResponse);
-                    System.out.println(userResponse.getEmail());
-                    userName = findViewById(R.id.fullName);
-                    userEmail = findViewById(R.id.textViewEmail);
-                    userName.setText(userResponse.getFirstName() + " " + userResponse.getLastName());
-                    userEmail.setText(userResponse.getEmail());
-
-                }else{
-                    Toast.makeText(GeneralActivity.this,"user Failed", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
-                Toast.makeText(GeneralActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-    }
-
-    private UserResponse setUserData(UserResponse response){
-        return this.user = response;
-    }
-
-    private UserResponse getUserData(){
-        return user;
     }
 
     //opens drawer menu when icon is clicked
@@ -124,6 +81,11 @@ public class GeneralActivity extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         logoutButton = header.findViewById(R.id.logoutButton);
+
+        userName = header.findViewById(R.id.fullName);
+        userEmail = header.findViewById(R.id.textViewEmail);
+        userName.setText(user.getFirstName() + " " + user.getLastName());
+        userEmail.setText(user.getEmail());
 
         //Logout Button
         logoutButton.setOnClickListener(new View.OnClickListener() {

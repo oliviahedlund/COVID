@@ -62,11 +62,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login" />
 
-            <Button
-                android:id="@+id/testAdmin"
+            <CheckBox
+                android:id="@+id/checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="test admin" />
+                android:text="Admin" />
 
         </LinearLayout>
 

@@ -23,11 +23,17 @@ public class AdminActivity extends AppCompatActivity {
     private TextView userName;
     private TextView userEmail;
     private Covid_Tracking_dashboardFragment dashFragment;
+    private UserResponse user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+        //gets userinfo
+        Intent i = getIntent();
+        user = (UserResponse) i.getSerializableExtra("userInfo");
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
@@ -67,7 +73,9 @@ public class AdminActivity extends AppCompatActivity {
 
         //clear username
         userName = header.findViewById(R.id.fullName);
+        userEmail = header.findViewById(R.id.textViewEmail);
         userName.setText("");
+        userEmail.setText(user.getEmail());
 
         //Logout Button
         logoutButton.setOnClickListener(new View.OnClickListener() {

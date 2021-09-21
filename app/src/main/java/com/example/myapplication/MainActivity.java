@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -29,24 +30,57 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton languageButton1;
     private TextView languageButton2;
 
+    private UserResponse userResponse;
+
+    private CheckBox adminCheck;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button testButton = findViewById(R.id.testAdmin);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-
+        adminCheck = findViewById(R.id.checkBox);
 
         setupButtons();
+
+    }
+
+    private void callUserApi(){
+        UserRequest userRequest = new UserRequest();
+        loginToken = "Bearer " + loginToken;
+        userRequest.setToken(loginToken);
+
+        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUser(loginToken);
+        userResponseCall.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                //errorhandling
+                if (response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
+                    userResponse = response.body(); //i userResponse ligger all information om användaren
+                    Intent i;
+                    // replace if-statement with: userResponse.getAdmin()
+                    if(userResponse.getAdmin() || adminCheck.isChecked()){
+                        i = new Intent(MainActivity.this, AdminActivity.class);
+                    }
+                    else {
+                        i = new Intent(MainActivity.this, GeneralActivity.class);
+                    }
+                    i.putExtra("userInfo", userResponse);
+                    startActivity(i);
+                    finish(); //clears page from history
+
+                }else{
+                    Toast.makeText(MainActivity.this,"user Failed", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
 
     }
 
@@ -104,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(){
-
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUserEmail(userEmail.getText().toString());
         loginRequest.setPassword(userPassword.getText().toString());
@@ -122,10 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent i = new Intent(MainActivity.this, GeneralActivity.class);
-                            i.putExtra("tok", loginToken);
-                            startActivity(i);
-                            finish(); //clears page from history
+                            callUserApi();
                         }
                     },700);
 
