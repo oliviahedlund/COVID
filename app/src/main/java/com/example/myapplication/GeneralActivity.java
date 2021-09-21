@@ -30,13 +30,20 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView userEmail;
     private UserResponse user;
 
+    private Covid_Tracking_dashboardFragment dashFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        if(savedInstanceState == null) {
+            dashFragment = new Covid_Tracking_dashboardFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+        }
+
         //Setup Menu Bar
         setupMenuBar();
+
 
         //Setup Navigation Drawer
         setUpNavigationView();
@@ -110,8 +117,6 @@ public class GeneralActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
     }
 
 
@@ -147,14 +152,21 @@ public class GeneralActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, passFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
+                    case R.id.nav_settingsFragment:
+                        SettingsFragment settFragment = new SettingsFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, settFragment).commit();
+                        mDrawerLayout.closeDrawers();
+                        break;
                     case R.id.logoutButton:
                         openActivity(MainActivity.class);
                         finish();
+
                     case R.id.nav_profile:
                         //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
                         ProfileFragment profileFragment = new ProfileFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, profileFragment).commit();
                         mDrawerLayout.closeDrawers();
+
                         break;
                 }
                 return true;
