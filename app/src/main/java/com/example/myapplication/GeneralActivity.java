@@ -27,7 +27,7 @@ public class GeneralActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         if(savedInstanceState == null) {
-            Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
+            dashFragment = new Covid_Tracking_dashboardFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
         }
 
@@ -59,9 +59,6 @@ public class GeneralActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
     }
 
 
