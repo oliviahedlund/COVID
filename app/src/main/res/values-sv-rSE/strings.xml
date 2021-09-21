@@ -27,6 +27,18 @@
     <string name="swedish">Svenska</string>
     <string name="languages">Språk</string>
     <string name="switchLang">(EN)</string>
+    <string name="quest">Frågeformulär</string>
+    <string name="sched">Schemaläggning</string>
+    <string name="location">Plats</string>
+    <string name="ageGroup">Åldersgrupp</string>
+    <string name="product">Produkt</string>
+    <string name="dose">Dos</string>
+    <string name="totalCases">Antal fall:</string>
+    <string name="totalDeaths">Antal dödsfall:</string>
+    <string name="totalDistri">Antal distribuerade doser:</string>
+    <string name="totalAdmini">Antal administrerade doser:</string>
+    <string name="vs">Dos 1 vs Dos 2:</string>
+
 
 </resources>
 

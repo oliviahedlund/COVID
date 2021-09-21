@@ -62,6 +62,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login" />
 
+            <Button
+                android:id="@+id/testAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test admin" />
+
         </LinearLayout>
 
         <LinearLayout

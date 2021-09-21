@@ -29,8 +29,8 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView userName;
     private TextView userEmail;
     private UserResponse user;
-
     private Covid_Tracking_dashboardFragment dashFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,6 @@ public class GeneralActivity extends AppCompatActivity {
 
         //Setup Menu Bar
         setupMenuBar();
-
 
         //Setup Navigation Drawer
         setUpNavigationView();
@@ -98,6 +97,7 @@ public class GeneralActivity extends AppCompatActivity {
         return user;
     }
 
+    //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
@@ -157,16 +157,12 @@ public class GeneralActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, settFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
-                    case R.id.logoutButton:
-                        openActivity(MainActivity.class);
-                        finish();
 
                     case R.id.nav_profile:
                         //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
                         ProfileFragment profileFragment = new ProfileFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, profileFragment).commit();
                         mDrawerLayout.closeDrawers();
-
                         break;
                 }
                 return true;

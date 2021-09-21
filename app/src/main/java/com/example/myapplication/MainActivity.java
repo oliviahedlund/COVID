@@ -34,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button testButton = findViewById(R.id.testAdmin);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
         setupButtons();
 
     }
@@ -113,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent i = new Intent(MainActivity.this, GeneralActivity.class);
                             i.putExtra("tok", loginToken);
                             startActivity(i);
+                            finish(); //clears page from history
                         }
                     },700);
 
