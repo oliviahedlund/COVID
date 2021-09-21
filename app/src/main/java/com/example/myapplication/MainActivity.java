@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView registerButton;
     private EditText userEmail;
     private EditText userPassword;
+    private String loginToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,15 +78,18 @@ public class MainActivity extends AppCompatActivity {
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
+                //om response ej är 200 ha felhantering, isBusy
                 if(response.isSuccessful()){
                     Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
                     LoginResponse loginResponse = response.body();
+                    loginToken = loginResponse.getToken();
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            openActivity(GeneralActivity.class);
+                            Intent i = new Intent(MainActivity.this, GeneralActivity.class);
+                            i.putExtra("tok", loginToken);
+                            startActivity(i);
 
                         }
                     },700);

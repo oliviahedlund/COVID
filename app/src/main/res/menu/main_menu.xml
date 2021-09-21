@@ -29,6 +29,7 @@
         android:id="@+id/menu_bottom"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_profile"
             android:icon="@drawable/ic_user"
             android:title="@string/userInfo" />
         <item
