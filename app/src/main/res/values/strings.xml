@@ -51,26 +51,26 @@
 
 
     <string-array name="location">
-        <item>None</item>
+        <item>All Locations</item>
         <item>Sweden</item>
         <item>Stockholm</item>
         <item>Uppsala</item>
     </string-array>
 
     <string-array name="ageGroup">
-        <item>None</item>
+        <item>All Age Groups</item>
         <item>Child</item>
         <item>Adult</item>
         <item>Elder</item>
     </string-array>
 
     <string-array name="product">
-        <item>None</item>
+        <item>All Products</item>
         <item>Pfizer</item>
     </string-array>
 
     <string-array name="dose">
-        <item>None</item>
+        <item>Any doses</item>
         <item>Dose 1</item>
         <item>Dose 2</item>
     </string-array>

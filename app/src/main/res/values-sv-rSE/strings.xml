@@ -39,6 +39,30 @@
     <string name="totalAdmini">Antal administrerade doser:</string>
     <string name="vs">Dos 1 vs Dos 2:</string>
 
+    <string-array name="location">
+        <item>Alla platser</item>
+        <item>Sverige</item>
+        <item>Stockholm</item>
+        <item>Uppsala</item>
+    </string-array>
+
+    <string-array name="ageGroup">
+        <item>Alla åldersgrupper</item>
+        <item>Barn</item>
+        <item>Vuxen</item>
+        <item>Äldre</item>
+    </string-array>
+
+    <string-array name="product">
+        <item>Alla produkter</item>
+        <item>Pfizer</item>
+    </string-array>
+
+    <string-array name="dose">
+        <item>Någon dos</item>
+        <item>Dos 1</item>
+        <item>Dos 2</item>
+    </string-array>
 
 </resources>
 

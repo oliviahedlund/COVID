@@ -1,13 +1,9 @@
 package com.example.myapplication;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -31,34 +27,35 @@ public class SettingsFragment extends Fragment{
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_language, container, false);
 
-        setUpButtons(inflater);
+        setUpButtons();
 
         return view;
     }
 
-    private void setUpButtons(LayoutInflater inflater){
+    private void setUpButtons(){
         Button enBut = (Button) view.findViewById(R.id.button);
         Button svBut = (Button) view.findViewById(R.id.button3);
 
         enBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setLanguage(inflater, "en");
+                setLanguage("en");
             }
         });
         svBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setLanguage(inflater, "sv");
+                setLanguage("sv");
             }
         });
     }
 
-    private void setLanguage(LayoutInflater inflater, String language){
+    private void setLanguage(String language){
+        Context context = getActivity().getBaseContext();
         //update only if language is not already set
-        if(! language.equals(LanguageHelper.getLanguage(inflater.getContext()))) {
+        if(! language.equals(LanguageHelper.getLanguage(context))) {
             //set language
-            LanguageHelper.setLocale(inflater.getContext(), language);
+            LanguageHelper.setLocale(context, language);
             //update view
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             getActivity().recreate();

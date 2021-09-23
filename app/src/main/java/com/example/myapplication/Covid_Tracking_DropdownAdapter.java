@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.myapplication.R;
+
 public class Covid_Tracking_DropdownAdapter extends ArrayAdapter<String> {
 
     LayoutInflater layoutInflater;
