@@ -32,19 +32,6 @@ public class FAQ extends Fragment {
         return view;
     }
 
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        expandableListView = findViewById(R.id.faq_expandable_listview);
-        listGroup = new ArrayList<>();
-        listItem = new HashMap<>();
-        adapter = new MainAdapter(this, listGroup,listItem);
-        expandableListView.setAdapter(adapter);
-        initListData();
-    }*/
-
     private void initListData() {
         listGroup.add(getString(R.string.group1));
         listGroup.add(getString(R.string.group2));
