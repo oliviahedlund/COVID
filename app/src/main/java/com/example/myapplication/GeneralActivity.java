@@ -92,6 +92,11 @@ public class GeneralActivity extends AppCompatActivity {
                     case R.id.logoutButton:
                         openActivity(MainActivity.class);
                         finish();
+                    case R.id.nav_FAQ:
+                        FAQ faq = new FAQ();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, faq).commit();
+                        mDrawerLayout.closeDrawers();
+                        break;
                 }
                 return true;
             }

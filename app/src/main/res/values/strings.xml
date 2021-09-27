@@ -69,4 +69,119 @@
         <item>Dose 2</item>
     </string-array>
 
+    //FAQ
+    <string name="FAQ_app">FAQExpandableListView</string>
+    <string name="group1">Information om allmänna råd och rekommendationer</string>
+    <string name="group2">Information till resenärer</string>
+    <string name="group3">Serveringsställen</string>
+    <string name="group4">Fester</string>
+    <string name="group5">Läger och cuper</string>
+    <string name="group6">Testning</string>
+    <string name="group7">Smittspridning</string>
+    <string name="group8">Så kan vi minska smittspridningen</string>
+    <string name="group9">Viruset och sjukdomen</string>
+    <string name="group10">Äldre</string>
+    <string name="group11">Statistik</string>
+    <string name="group12">Oro och psykiskt välmående</string>
+
+
+    <string-array name="group1">
+        <item>
+            <b>Hur många får träffas inomhus och utomhus vid olika aktiviteter?</b>\n\n
+            <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/verksamheter/information-till-arrangorer-av-evenemang/max-antal-deltagare-i-sammankomster-och-i-olika-lokaler/">På den här sidan finns en tabell som visar max antal deltagare vid olika sorters sammankomster och i olika lokaler</a>
+        </item>
+        <item>
+            <b>Vad innebär Folkhälsomyndighetens föreskrifter och allmänna råd om allas ansvar?</b>\n\n
+            Folkhälsomyndighetens föreskrifter och allmänna råd riktar sig till både individer och verksamheter.
+            \nFöreskrifterna är rättsligt bindande, dvs. de beskriver vad verksamheten och du som individ är skyldig att göra. I det här fallet handlar det om att vidta försiktighetsåtgärder för att skydda dig själv och andra mot covid-19. Du ska själv tänka igenom hur du kan undvika att bli smittad och hur du kan undvika att smitta andra. Det är särskilt viktigt att visa hänsyn till personer i riskgrupper.
+
+            \nDe allmänna råden är inte rättsligt bindande, utan en slags rekommendation för hur du kan göra för att uppfylla det som står i föreskriften eller i en annan bindande regel. Det betyder att du inte måste göra exakt så som det allmänna rådet säger, men väljer du att göra på ett annat sätt, måste du ändå uppfylla det som står i den bindande regeln.
+        </item>
+    </string-array>
+
+    <string-array name="group2">
+        <item>
+            <b>Vad ska jag tänka på när jag åker utomlands?</b>\n\n
+            Oavsett vart du ska resa vilar ett stort ansvar på dig som enskild resenär. Varje resenär bör hålla sig välinformerad om vilka inresebestämmelser som gäller på resmålet och följa de lokala myndigheternas råd och anvisningar på plats. Tänk på att reserestriktioner kan införas med kort varsel vilket kan påverka dina möjligheter att resa hem.
+            \nDu behöver också hålla koll på vad som gäller då du reser in i Sverige igen.
+        </item>
+        <item>
+            <b>Vad gäller när jag reser in i Sverige?</b>\n\n
+            Det kan se olika ut beroende på vilket land du reser ifrån och om du är svensk eller utländsk medborgare. För dig som reser in i Sverige från utlandet gäller det att ha koll på vad som gäller för just dig.
+            \nLäs mer om Folkhälsomyndighetens <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">rekommendationer vid inresa i Sverige</a>.
+        </item>
+        <item>
+            <b>Vad gäller för hotell, vandrarhem och campingplatser?</b>\n\n
+            Alla verksamheter i Sverige är skyldiga att vidta åtgärder för att minska risken för smittspridning, till exempel genom att begränsa antalet gäster som vistas samtidigt i en lokal.
+            \nHotell, vandrarhem och campingplatser bör erbjuda alternativa lösningar till köer vid incheckningen eller anvisa hur långt avstånd gästerna ska ha mellan varandra.
+            \nHotell, vandrarhem och campingplatser bör också se till att personal och besökare har möjlighet att tvätta händerna med tvål och vatten samt erbjuda handsprit. Olika anläggningar kan hantera detta olika, beroende på deras storlek och läge.
+            \nOm verksamheten har en restaurang, bar, ett café eller liknande, omfattas de även av reglerna för restauranger och krogar. Smittskyddsläkaren kan då, efter samråd med kommunen, fatta beslut om att stänga dessa delar av verksamheten, om de inte uppfyller kraven.
+        </item>
+        <item>
+            <b>Vad gäller för mig som ska resa utomlands, behöver jag covidbevis?</b>\n\n
+            Svaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer om bland annat covidbevis under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/om-vaccination/jag-ar-vaccinerad-och-ska-resa-utomlands-i-sommar--vad-galler/">Jag är vaccinerad och ska resa utomlands – vad gäller?</a>
+        </item>
+    </string-array>
+
+    <string-array name="group3">
+        <item>item1</item>
+        <item>item2</item>
+    </string-array>
+
+    <string-array name="group4">
+        <item>item1</item>
+        <item>item2</item>
+    </string-array>
+
+    <string-array name="group5">
+        <item>item1</item>
+    </string-array>
+
+    <string-array name="group6">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+        <item>item5</item>
+        <item>item6</item>
+        <item>item7</item>
+        <item>item8</item>
+        <item>item9</item>
+        <item>item10</item>
+        <item>item11</item>
+        <item>item12</item>
+        <item>item13</item>
+        <item>item14</item>
+    </string-array>
+
+    <string-array name="group7">
+        <item>item1</item>
+        <item>item2</item>
+    </string-array>
+
+    <string-array name="group8">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+    </string-array>
+
+    <string-array name="group9">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+    </string-array>
+
+    <string-array name="group10">
+        <item>item1</item>
+    </string-array>
+
+    <string-array name="group11">
+        <item>item1</item>
+    </string-array>
+
+    <string-array name="group12">
+        <item>item1</item>
+        <item>item2</item>
+    </string-array>
+
 </resources>
