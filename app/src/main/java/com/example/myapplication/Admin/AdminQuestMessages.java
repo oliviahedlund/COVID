@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Admin;
 
 import android.os.Bundle;
 
@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 
 import com.example.myapplication.R;
 
-public class AdminNewQuestionnaires extends Fragment {
+public class AdminQuestMessages extends Fragment {
 
-    public AdminNewQuestionnaires() {
+
+    public AdminQuestMessages() {
         // Required empty public constructor
     }
 
@@ -22,13 +23,9 @@ public class AdminNewQuestionnaires extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_admin_new_questionnaires, container, false);
+        view = inflater.inflate(R.layout.questionnaire_admin_messages, container, false);
 
-        setupButtons();
 
         return view;
-    }
-
-    private void setupButtons(){
     }
 }

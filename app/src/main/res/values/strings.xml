@@ -17,6 +17,8 @@
     <string name="switchLang">(SV)</string>
     <string name="quest">Questionnaires</string>
     <string name="sched">Scheduling</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     //registerActivity
     <string name="Firstname">First name</string>
@@ -49,6 +51,13 @@
     <string name="totalAdmini">Total administered doses: </string>
     <string name="vs">Dose 1 vs Dose 2: </string>
 
+    <string-array name="questions">
+        <item>1. Have you ever had a strong reaction after a vaccination, and needed hospital assistance?</item>
+        <item>2. Do you have allergies that ever gave you strong reactions that you needed hospital assistance for?</item>
+        <item>3. Do you have an increased tendency to bleed because of an illness or medication?</item>
+        <item>4. Are you pregnant?</item>
+        <item>5. Have you been vaccinated in the past 7 days?</item>
+    </string-array>
 
     <string-array name="location">
         <item>All Locations</item>
@@ -74,5 +83,6 @@
         <item>Dose 1</item>
         <item>Dose 2</item>
     </string-array>
+
 
 </resources>

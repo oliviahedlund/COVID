@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminQuestionnaireFragment">
+    tools:context=".Admin.AdminQuestionnaireFragment">
 
     <Button
         android:id="@+id/button4"
@@ -40,13 +40,13 @@
         android:id="@+id/frameAdminQ"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintBottom_toTopOf="@+id/approveB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button4"></FrameLayout>
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/approveB"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -56,13 +56,13 @@
         android:text="Approve"
         app:backgroundTint="#009688"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button7"
+        app:layout_constraintEnd_toStartOf="@id/addQuestB"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frameAdminQ"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/addQuestB"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -73,7 +73,7 @@
         app:backgroundTint="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button6"
+        app:layout_constraintStart_toEndOf="@id/approveB"
         app:layout_constraintTop_toBottomOf="@id/frameAdminQ"
         app:layout_constraintVertical_bias="1.0" />
 

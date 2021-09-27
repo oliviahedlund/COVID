@@ -38,6 +38,16 @@
     <string name="totalDistri">Antal distribuerade doser:</string>
     <string name="totalAdmini">Antal administrerade doser:</string>
     <string name="vs">Dos 1 vs Dos 2:</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+
+    <string-array name="questions">
+        <item>1. Har du någon gång fått en kraftig reaktion efter vaccination, och behövt sjukhusvård?</item>
+        <item>2. Har du allergier som någon gång gett dig kraftiga reaktioner som du har behövt sjukhusvård för?</item>
+        <item>3. Har du ökad blödningsbenägenhet p.g.a. sjukdom eller medicin?</item>
+        <item>4. Är du gravid?</item>
+        <item>5. Har du vaccinerat dig någon gång under de senaste 7 dagarna?</item>
+    </string-array>
 
     <string-array name="location">
         <item>Alla platser</item>
