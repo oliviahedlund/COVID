@@ -4,21 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class GeneralActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -109,32 +104,28 @@ public class GeneralActivity extends AppCompatActivity {
             // When Menu Item Is Clicked
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+                Fragment newFragment;
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, dashFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new Covid_Tracking_dashboardFragment();
                         break;
                     case R.id.nav_covidpassport:
-                        covidPassportFragment passFragment = new covidPassportFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, passFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new covidPassportFragment();
                         break;
                     case R.id.nav_settingsFragment:
-                        SettingsFragment settFragment = new SettingsFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, settFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new SettingsFragment();
                         break;
-
                     case R.id.nav_profile:
                         //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
-                        ProfileFragment profileFragment = new ProfileFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, profileFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new ProfileFragment();
                         break;
+                    default:
+                        newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
+                mDrawerLayout.closeDrawers();
                 return true;
             }
         });

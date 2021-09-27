@@ -1,9 +1,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,8 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Console;
-import java.util.Locale;
+import com.example.myapplication.Admin.AdminActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,12 +35,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //check default language before creating view
+        checkDefaultLanguage();
         setContentView(R.layout.activity_main);
 
         adminCheck = findViewById(R.id.checkBox);
 
         setupButtons();
 
+    }
+
+    private void checkDefaultLanguage(){
+        if("sv".equals(LanguageHelper.getLanguage(this.getBaseContext()))) {
+            LanguageHelper.setLocale(this.getBaseContext(), "sv");
+        }
+        else{
+            LanguageHelper.setLocale(this.getBaseContext(), "en");
+        }
     }
 
     private void callUserApi(){
@@ -108,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(RegisterActivity.class);
+                //openActivity(RegisterActivity.class);
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
         languageButton1.setOnClickListener(new View.OnClickListener() {
@@ -175,11 +187,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+/*
     public void openActivity(Class _act){
         Intent intent = new Intent(this, _act);
         startActivity(intent);
     }
-
+*/
 
 }

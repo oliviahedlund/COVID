@@ -1,9 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
+import com.example.myapplication.SettingsFragment;
+import com.example.myapplication.UserResponse;
+import com.example.myapplication.covidPassportFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {
@@ -92,25 +99,26 @@ public class AdminActivity extends AppCompatActivity {
             // When Menu Item Is Clicked
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
+                Fragment newFragment;
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, dashFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new Covid_Tracking_dashboardFragment();
+                        break;
+                    case R.id.nav_quest:
+                        newFragment = new AdminQuestionnaireFragment();
                         break;
                     case R.id.nav_covidpassport:
-                        covidPassportFragment passFragment = new covidPassportFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, passFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new covidPassportFragment();
                         break;
                     case R.id.nav_settingsFragment:
-                        SettingsFragment settFragment = new SettingsFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, settFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new SettingsFragment();
                         break;
+                    default:
+                        newFragment = getSupportFragmentManager().findFragmentById(R.id.frameAdmin);
                 }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                mDrawerLayout.closeDrawers();
                 return true;
             }
         });

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,11 +26,11 @@ public class Covid_Tracking_ListViewAdapter extends ArrayAdapter<Covid_Tracking_
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.covid_tracking_listview_item, parent, false);
         }
 
-        ImageView image = (ImageView) convertView.findViewById(R.id.listViewCellImage);
+        //ImageView image = (ImageView) convertView.findViewById(R.id.listViewCellImage);
         TextView label = (TextView) convertView.findViewById(R.id.listViewCellLabel);
         TextView data = (TextView) convertView.findViewById(R.id.listViewCellData);
 
-        image.setImageResource(item.getImage());
+        //image.setImageResource(item.getImage());
         label.setText(item.getLabel());
 
         if(item.getData() == null){
