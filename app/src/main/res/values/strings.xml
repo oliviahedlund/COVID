@@ -73,4 +73,19 @@
         <item>Dose 2</item>
     </string-array>
 
+    // Appointment making
+    <string name="center">Center</string>
+    <string name="time">Time</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="chooseDate">Choose a date</string>
+    <string name="chooseDay">Choose a day</string>
+
+    <string-array name="questionnaire">
+        <item>Have you ever had a big reaction after vaccination, and neede healthcare?</item>
+        <item>Do you have any allergy that has given you a big reaction that you need healthcare?</item>
+        <item>Do you have a tendency to bleed because of sickness or medicine?</item>
+        <item>Are you pregnant?</item>
+        <item>Have you ever been vaccinated in the last 7 days?</item>
+    </string-array>
 </resources>

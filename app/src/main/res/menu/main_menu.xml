@@ -15,6 +15,7 @@
             android:title="@string/messages" />
 
         <item
+            android:id="@+id/booking"
             android:icon="@drawable/ic_clock"
             android:title="@string/handleAppoint" />
         <item

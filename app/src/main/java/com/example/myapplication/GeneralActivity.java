@@ -7,7 +7,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -145,6 +144,11 @@ public class GeneralActivity extends AppCompatActivity {
                     case R.id.nav_dashboard:
                         Covid_Tracking_dashboardFragment dashFragment = new Covid_Tracking_dashboardFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, dashFragment).commit();
+                        mDrawerLayout.closeDrawers();
+                        break;
+                    case R.id.booking:
+                        Appointment_fragment appointmentFragment = new Appointment_fragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
                         mDrawerLayout.closeDrawers();
                         break;
                     case R.id.nav_covidpassport:

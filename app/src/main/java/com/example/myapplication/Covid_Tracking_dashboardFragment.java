@@ -31,7 +31,7 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
     private ListView listView;
 
     private Button filterButton;
-    private boolean filterHidden = true;
+    private boolean filterHidden = false;
 
     private LinearLayout filterTabs1;
     private LinearLayout filterTabs2;
@@ -63,17 +63,16 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
         ageGroupFilter = (AutoCompleteTextView) view.findViewById(R.id.ageGroupFilter);
         productFilter = (AutoCompleteTextView) view.findViewById(R.id.productFilter);
         doseFilter = (AutoCompleteTextView) view.findViewById(R.id.doseFilter);
-        Log.d("fuck", "fuck");
 
-        Covid_Tracking_DropdownAdapter locationAdapter = new Covid_Tracking_DropdownAdapter(this.getContext(), R.layout.covid_tracking_dropdown_item, locations);
+        Simple_DropdownAdapter locationAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, locations);
 
         locationFilter.setAdapter(locationAdapter);
 
-        Covid_Tracking_DropdownAdapter ageGroupAdapter = new Covid_Tracking_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.covid_tracking_dropdown_item, ageGroup);
+        Simple_DropdownAdapter ageGroupAdapter = new Simple_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.simple_dropdown_item, ageGroup);
         ageGroupFilter.setAdapter(ageGroupAdapter);
-        Covid_Tracking_DropdownAdapter productAdapter = new Covid_Tracking_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.covid_tracking_dropdown_item, product);
+        Simple_DropdownAdapter productAdapter = new Simple_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.simple_dropdown_item, product);
         productFilter.setAdapter(productAdapter);
-        Covid_Tracking_DropdownAdapter doseAdapter = new Covid_Tracking_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.covid_tracking_dropdown_item, dose);
+        Simple_DropdownAdapter doseAdapter = new Simple_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.simple_dropdown_item, dose);
         doseFilter.setAdapter(doseAdapter);
 
     }

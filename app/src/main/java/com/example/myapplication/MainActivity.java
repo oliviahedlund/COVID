@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -93,42 +95,45 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(){
 
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUserEmail(userEmail.getText().toString());
-        loginRequest.setPassword(userPassword.getText().toString());
+        Intent i = new Intent(MainActivity.this, GeneralActivity.class);
+        startActivity(i);
 
-        Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                //om response ej är 200 ha felhantering, isBusy
-                if(response.isSuccessful()){
-                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
-                    LoginResponse loginResponse = response.body();
-                    loginToken = loginResponse.getToken();
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent i = new Intent(MainActivity.this, GeneralActivity.class);
-                            i.putExtra("tok", loginToken);
-                            startActivity(i);
-                        }
-                    },700);
-
-                }else{
-                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
+//        LoginRequest loginRequest = new LoginRequest();
+//        loginRequest.setUserEmail(userEmail.getText().toString());
+//        loginRequest.setPassword(userPassword.getText().toString());
+//
+//        Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
+//        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+//            @Override
+//            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+//                //om response ej är 200 ha felhantering, isBusy
+//                if(response.isSuccessful()){
+//                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
+//                    LoginResponse loginResponse = response.body();
+//                    loginToken = loginResponse.getToken();
+//
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Intent i = new Intent(MainActivity.this, GeneralActivity.class);
+//                            i.putExtra("tok", loginToken);
+//                            startActivity(i);
+//                        }
+//                    },700);
+//
+//                }else{
+//                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_LONG).show();
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginResponse> call, Throwable t) {
+//                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
 
 
     }
