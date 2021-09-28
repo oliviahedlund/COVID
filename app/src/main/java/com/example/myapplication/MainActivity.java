@@ -48,6 +48,31 @@ public class MainActivity extends AppCompatActivity {
 
         setupButtons();
 
+        Button testB = findViewById(R.id.testbuttonMain);
+        testB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, GeneralActivity.class);
+                UserResponse dummyUserResponse = new UserResponse();
+                dummyUserResponse.setEmail("dummy@test.com");
+                dummyUserResponse.setFirstName("Dummy");
+                dummyUserResponse.setLastName("Dumdum");
+                dummyUserResponse.setPhoneNumber("0701234567");
+                dummyUserResponse.setBirthDate("19990412");
+                dummyUserResponse.setAddress("Dummystreet 12");
+                dummyUserResponse.setCity("Dumtown");
+                dummyUserResponse.setDistrict("Dummiton");
+                dummyUserResponse.setPostalCode("77777");
+                dummyUserResponse.setId("0");
+                dummyUserResponse.setAdmin(false);
+                String dummyToken = " ";
+                i.putExtra("userInfo", dummyUserResponse);
+                i.putExtra("token", loginToken);
+                startActivity(i);
+                finish(); //clears page from history
+            }
+        });
+
 
     }
 
