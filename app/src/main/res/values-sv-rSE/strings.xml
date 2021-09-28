@@ -82,13 +82,7 @@
     <string name="chooseDate">Välj ett datum</string>
     <string name="chooseDay">välj en dag</string>
 
-    <string-array name="questionnaire">
-        <item>Har du någon gång fått en kraftig reaktion efter vaccination, och behövt sjukhusvård?</item>
-        <item>Har du allergier som någon gång gett dig kraftiga reaktioner som du har behövt sjukhusvård för?</item>
-        <item>Har du ökad blödningsbenägenhet p.g.a. sjukdom eller medicin?</item>
-        <item>Är du gravid?</item>
-        <item>Har du vaccinerat dig någon gång under de senaste 7 dagarna?</item>
-    </string-array>
+
 
 </resources>
 

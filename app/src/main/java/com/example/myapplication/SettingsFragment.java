@@ -46,7 +46,7 @@ public class SettingsFragment extends Fragment{
         //View view = inflater.inflate(R.layout.fragment_profile, container, false);
         // Inflate the layout for this fragment
         GeneralActivity activity = (GeneralActivity) getActivity();
-        token = activity.getUserToken();
+//        token = activity.getUserToken();
 
         setUpButtons();
 

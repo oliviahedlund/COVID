@@ -12,8 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GeneralActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -24,18 +29,12 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView userName;
     private TextView userEmail;
     private UserResponse user;
-    private Covid_Tracking_dashboardFragment dashFragment;
-    private String token;
 
+    private Covid_Tracking_dashboardFragment dashFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
-        //gets userinfo
-        Intent i = getIntent();
-        user = (UserResponse) i.getSerializableExtra("userInfo");
-        token = (String) i.getStringExtra("token");
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
@@ -45,27 +44,60 @@ public class GeneralActivity extends AppCompatActivity {
         //Setup Menu Bar
         setupMenuBar();
 
+
         //Setup Navigation Drawer
         setUpNavigationView();
 
+        //anropar detta för att få fram information om användaren
+        callUserApi();
 
     }
+
+    public void callUserApi(){
+        UserRequest userRequest = new UserRequest();
+        Intent i = getIntent();
+        String token = i.getStringExtra("tok");
+        token = "Bearer " + token;
+        userRequest.setToken(token);
+
+        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUser(token);
+        userResponseCall.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                //todo - errorhandling
+                if (response.isSuccessful()) {
+                    Toast.makeText(GeneralActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
+                    UserResponse userResponse = response.body(); //i userResponse ligger all information om användaren
+                    System.out.println(userResponse);
+                    setUserData(userResponse);
+                    System.out.println(userResponse.getEmail());
+                    userName = findViewById(R.id.fullName);
+                    userEmail = findViewById(R.id.textViewEmail);
+                    userName.setText(userResponse.getFirstName() + " " + userResponse.getLastName());
+                    userEmail.setText(userResponse.getEmail());
+
+                }else{
+                    Toast.makeText(GeneralActivity.this,"user Failed", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(GeneralActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+
     private UserResponse setUserData(UserResponse response){
         return this.user = response;
     }
 
-    public UserResponse getUserData(){
+    private UserResponse getUserData(){
         return user;
     }
-    private String setUserToken(String response){
-        return this.token = response;
-    }
 
-    public String getUserToken(){
-        return token;
-    }
-
-    //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
@@ -93,11 +125,6 @@ public class GeneralActivity extends AppCompatActivity {
         header = navigationView.getHeaderView(0);
         logoutButton = header.findViewById(R.id.logoutButton);
 
-        userName = header.findViewById(R.id.fullName);
-        userEmail = header.findViewById(R.id.textViewEmail);
-        userName.setText(user.getFirstName() + " " + user.getLastName());
-        userEmail.setText(user.getEmail());
-
         //Logout Button
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,16 +140,16 @@ public class GeneralActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Fragment newFragment;
-
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
                         newFragment = new Covid_Tracking_dashboardFragment();
                         break;
                     case R.id.booking:
-                        Appointment_fragment appointmentFragment = new Appointment_fragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new Appointment_fragment();
+//                        Appointment_fragment appointmentFragment = new Appointment_fragment();
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
+//                        mDrawerLayout.closeDrawers();
                         break;
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();
