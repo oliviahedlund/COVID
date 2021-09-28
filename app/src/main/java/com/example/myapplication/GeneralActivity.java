@@ -122,9 +122,7 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = new ProfileFragment();
                         break;
                     case R.id.nav_FAQ:
-                        FAQ faq = new FAQ();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, faq).commit();
-                        mDrawerLayout.closeDrawers();
+                        newFragment = new FAQ();
                         break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
