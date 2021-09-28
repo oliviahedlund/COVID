@@ -39,7 +39,7 @@
     <string name="IncorrectEmailPassw">Incorrect email or password</string>
     <string name="passport">Digital Vaccin Passport</string>
 
-    // covid tracking dashboard
+    //covid tracking dashboard
     <string name="location">Location</string>
     <string name="ageGroup">Age Group</string>
     <string name="product">Product</string>
