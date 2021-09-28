@@ -79,8 +79,6 @@ public class SettingsFragment extends Fragment{
         });
         ///////////
 
-
-
         return view;
     }
 
