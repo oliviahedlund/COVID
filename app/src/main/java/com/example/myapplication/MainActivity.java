@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         setupButtons();
 
-        Button testB = findViewById(R.id.testbuttonMain);
+////////////// Dummy Login /////////////////////
+        Button testB = findViewById(R.id.dummyLoginButton);
         testB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,8 +73,19 @@ public class MainActivity extends AppCompatActivity {
                 finish(); //clears page from history
             }
         });
-
-
+////////////// Dummy Login /////////////////////
+////////////// Set Text Button /////////////////////
+        Button setLoginText = findViewById(R.id.setLoginButton);
+        setLoginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userEmail = findViewById(R.id.editTextTextEmailAddress3);
+                userPassword = findViewById(R.id.editTextTextPassword2);
+                userEmail.setText("test@test.com");
+                userPassword.setText("Losenord123");
+            }
+        });
+////////////// Set Text Button /////////////////////
     }
 
     private void checkDefaultLanguage(){

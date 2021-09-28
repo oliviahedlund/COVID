@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.myapplication.Booking.BookingRequest;
-import com.example.myapplication.Booking.BookingResponse;
+//import com.example.myapplication.Booking.BookingRequest;
+//import com.example.myapplication.Booking.BookingResponse;
 import com.example.myapplication.Booking.DateTimeHelper;
 
 import java.time.LocalTime;
@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class SettingsFragment extends Fragment{
     Fragment thisFragment = this;
     View view;
-    private BookingResponse bookingResponse; ////
+    //private BookingResponse bookingResponse; ////
     UserResponse user;
     String token;
 

@@ -23,19 +23,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <!-- Testknappar -->
             <Button
-                android:id="@+id/testbuttonMain"
+                android:id="@+id/dummyLoginButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="testbutton" />
+                android:text="dummy login" />
+            <Button
+                android:id="@+id/setLoginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="set login text" />
+            <!-- Testknappar -->
+
 
             <TextView
                 android:id="@+id/errorText1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/red" />
-
-
 
             <TextView
                 android:id="@+id/textView3"
