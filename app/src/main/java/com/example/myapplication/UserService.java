@@ -2,6 +2,11 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 
+import com.example.myapplication.Booking.BookingRequest;
+import com.example.myapplication.Booking.BookingResponse;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -22,4 +27,7 @@ public interface UserService {
 
         @GET("/api/User/")
         Call<UserResponse> getUser(@Header("Authorization") String authHeader);
+
+        @GET("/api/Appointments/booking/")
+        Call<List<BookingResponse>> booking(@Header("Authorization") String authHeader, @Query("month") int month, @Query("year") int year, @Query("center") int center);
 }

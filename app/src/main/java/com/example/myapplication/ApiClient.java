@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import com.example.myapplication.Booking.BookingService;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -28,4 +30,9 @@ public class ApiClient {
 
         return userService;
     }
+    public static BookingService getBookingService(){
+        BookingService bookingService = getRetrofit().create(BookingService.class);
+        return bookingService;
+    }
+
 }
