@@ -20,6 +20,7 @@ import com.example.myapplication.Booking.DateTimeHelper;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,8 +65,8 @@ public class SettingsFragment extends Fragment{
                 array.add("2021-09-27T11:40:00");
                 DateTimeHelper dt = new DateTimeHelper(array);
                 //dt.testDate();
-                ArrayList<Integer> days = dt.getDates();
-                ArrayList<LocalTime> times = dt.getTimes(27);
+                ArrayList<Calendar> days = dt.getDates();
+                ArrayList<String> times = dt.getTimes(27);
 
                 for (int i = 0; i < days.size(); i++) {
                     System.out.println(days.get(i));
