@@ -14,12 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-//import com.example.myapplication.Booking.BookingRequest;
-//import com.example.myapplication.Booking.BookingResponse;
+import com.example.myapplication.Booking.BookingRequest;
+import com.example.myapplication.Booking.BookingResponse;
 import com.example.myapplication.Booking.DateTimeHelper;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -30,53 +31,43 @@ import retrofit2.Response;
 public class SettingsFragment extends Fragment{
     Fragment thisFragment = this;
     View view;
-    //private BookingResponse bookingResponse; ////
     UserResponse user;
-    String token;
+    DateTimeHelper dateTimeHelper;
 
     public SettingsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_language, container, false);
-        //View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        // Inflate the layout for this fragment
-        GeneralActivity activity = (GeneralActivity) getActivity();
-//        token = activity.getUserToken();
+
+        user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
 
         setUpButtons();
 
         ///////////
         Button testB = view.findViewById(R.id.testbutton);
+        Button testB2 = view.findViewById(R.id.testbutton2);
         testB.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                //CallBookingAPI();
-
-                ArrayList<String> array = new ArrayList<String>();
-                array.add("2021-09-26T11:00:00");
-                array.add("2021-09-27T11:00:00");
-                array.add("2021-09-27T11:40:00");
-                DateTimeHelper dt = new DateTimeHelper(array);
-                //dt.testDate();
-                ArrayList<Calendar> days = dt.getDates();
-                ArrayList<String> times = dt.getTimes(27);
-
-                for (int i = 0; i < days.size(); i++) {
-                    System.out.println(days.get(i));
-                }
-
-                for (int i = 0; i < times.size(); i++) {
-                    System.out.println(times.get(i));
-                }
+                dateTimeHelper = new DateTimeHelper();
+                dateTimeHelper.CallBookingAPI(getActivity(), user, 9,2021,0);
             }
         });
+        testB2.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+                dateTimeHelper.getDates();
+                dateTimeHelper.getTimes(29);
+            }
+        });
+
         ///////////
 
         return view;
@@ -111,26 +102,40 @@ public class SettingsFragment extends Fragment{
             getActivity().recreate();
         }
     }
-    /*
+/*
     ////////////////////////////////////////////////////////////
     private void CallBookingAPI(){
 
         BookingRequest bookingRequest = new BookingRequest();
-        //bookingRequest.setToken(token);
         bookingRequest.setMonth(9);
         bookingRequest.setYear(2021);
         bookingRequest.setCenter(0);
-        System.out.println(token);
-        Call<BookingResponse> bookingResponseCall = ApiClient.getUserService().booking(bookingRequest, token);
-        bookingResponseCall.enqueue(new Callback<BookingResponse>() {
+        //System.out.println(user.getToken());
+        Call<List<BookingResponse>> bookingResponseCall = ApiClient.getUserService().booking(user.getToken(), 9,2021,0);
+        bookingResponseCall.enqueue(new Callback<List<BookingResponse>>() {
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onResponse(Call<BookingResponse> call, Response<BookingResponse> response) {
+            public void onResponse(Call<List<BookingResponse>> call, Response<List<BookingResponse>> response) {
                 //errorhandling
                 if (response.isSuccessful()) {
                     //Toast.makeText(MainActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
                     bookingResponse = response.body(); //i userResponse ligger all information om användaren
-                    System.out.println(bookingResponse.getTimes());
+                    //System.out.println(bookingResponse);
+                    for (int i = 0; i < bookingResponse.size(); i++) {
+                        System.out.println(bookingResponse.get(i).getTime());
+                    }
                     System.out.println("här");
+                    dateTimeHelper = new DateTimeHelper(bookingResponse);
+                    ArrayList<Integer> days = dateTimeHelper.getDates();
+                    ArrayList<LocalTime> times = dateTimeHelper.getTimes(29);
+                    for (int i = 0; i < days.size(); i++) {
+                        System.out.println(days.get(i));
+                    }
+
+                    for (int i = 0; i < times.size(); i++) {
+                        System.out.println(times.get(i));
+                    }
                     //bookingResponse.getTime();
 
                 }else{
@@ -140,7 +145,7 @@ public class SettingsFragment extends Fragment{
             }
 
             @Override
-            public void onFailure(Call<BookingResponse> call, Throwable t) {
+            public void onFailure(Call<List<BookingResponse>> call, Throwable t) {
                 Toast.makeText(getActivity(),"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 System.out.println("fail");
 
@@ -148,6 +153,6 @@ public class SettingsFragment extends Fragment{
         });
 
     }
-    ////////////////////////////////////////////////////////////*/
-
+    ////////////////////////////////////////////////////////////
+*/
 }

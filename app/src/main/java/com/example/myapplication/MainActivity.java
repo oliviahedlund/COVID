@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -50,10 +51,15 @@ public class MainActivity extends AppCompatActivity {
 
 ////////////// Dummy Login /////////////////////
         Button testB = findViewById(R.id.dummyLoginButton);
+        CheckBox isAdmin = findViewById(R.id.checkBox);
         testB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, GeneralActivity.class);
+                Intent i;
+                if(isAdmin.isChecked()){
+                    i = new Intent(MainActivity.this, AdminActivity.class);
+                }
+                else{i = new Intent(MainActivity.this, GeneralActivity.class);}
                 UserResponse dummyUserResponse = new UserResponse();
                 dummyUserResponse.setEmail("dummy@test.com");
                 dummyUserResponse.setFirstName("Dummy");
@@ -81,8 +87,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userEmail = findViewById(R.id.editTextTextEmailAddress3);
                 userPassword = findViewById(R.id.editTextTextPassword2);
-                userEmail.setText("test@test.com");
-                userPassword.setText("Losenord123");
+                userEmail.setText("olivia@gmail.com");
+                userPassword.setText("Citron123");
+            }
+        });
+        Button setLoginAdmin = findViewById(R.id.setLoginButtonAdmin);
+        setLoginAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userEmail = findViewById(R.id.editTextTextEmailAddress3);
+                userPassword = findViewById(R.id.editTextTextPassword2);
+                userEmail.setText("olivia@admin.com");
+                userPassword.setText("Citron123");
             }
         });
 ////////////// Set Text Button /////////////////////
@@ -119,8 +135,9 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         i = new Intent(MainActivity.this, GeneralActivity.class);
                     }
+                    userResponse.setToken(loginToken); //////////////
                     i.putExtra("userInfo", userResponse);
-                    i.putExtra("token", loginToken);
+                    //i.putExtra("token", loginToken);
                     startActivity(i);
                     finish(); //clears page from history
 
