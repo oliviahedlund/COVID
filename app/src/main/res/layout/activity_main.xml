@@ -30,6 +30,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/red" />
 
+
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
@@ -61,12 +63,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Admin" />
 
         </LinearLayout>
 

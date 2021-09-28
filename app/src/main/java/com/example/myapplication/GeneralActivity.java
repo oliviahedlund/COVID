@@ -25,6 +25,7 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView userEmail;
     private UserResponse user;
     private Covid_Tracking_dashboardFragment dashFragment;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class GeneralActivity extends AppCompatActivity {
         //gets userinfo
         Intent i = getIntent();
         user = (UserResponse) i.getSerializableExtra("userInfo");
+        token = (String) i.getStringExtra("token");
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
@@ -47,6 +49,20 @@ public class GeneralActivity extends AppCompatActivity {
         setUpNavigationView();
 
 
+    }
+    private UserResponse setUserData(UserResponse response){
+        return this.user = response;
+    }
+
+    public UserResponse getUserData(){
+        return user;
+    }
+    private String setUserToken(String response){
+        return this.token = response;
+    }
+
+    public String getUserToken(){
+        return token;
     }
 
     //opens drawer menu when icon is clicked

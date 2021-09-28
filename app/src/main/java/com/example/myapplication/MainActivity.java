@@ -1,19 +1,26 @@
 package com.example.myapplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminActivity;
+import com.example.myapplication.Booking.BookingRequest;
+import com.example.myapplication.Booking.BookingResponse;
+import com.example.myapplication.Booking.DateTimeHelper;
+
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
     private UserResponse userResponse;
 
-    private CheckBox adminCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +46,8 @@ public class MainActivity extends AppCompatActivity {
         checkDefaultLanguage();
         setContentView(R.layout.activity_main);
 
-        adminCheck = findViewById(R.id.checkBox);
-
         setupButtons();
+
 
     }
 
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             LanguageHelper.setLocale(this.getBaseContext(), "en");
         }
     }
+
 
     private void callUserApi(){
         UserRequest userRequest = new UserRequest();
@@ -70,13 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     userResponse = response.body(); //i userResponse ligger all information om användaren
                     Intent i;
                     // replace if-statement with: userResponse.getAdmin()
-                    if(userResponse.getAdmin() || adminCheck.isChecked()){
+                    if(userResponse.getAdmin()){
                         i = new Intent(MainActivity.this, AdminActivity.class);
                     }
                     else {
                         i = new Intent(MainActivity.this, GeneralActivity.class);
                     }
                     i.putExtra("userInfo", userResponse);
+                    i.putExtra("token", loginToken);
                     startActivity(i);
                     finish(); //clears page from history
 
