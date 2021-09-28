@@ -16,10 +16,11 @@ import java.util.Calendar;
 
 public class Appointment_Day_Time_fragment extends Fragment implements DatePickerDialog.OnDateSetListener{
     private Button dayButton;
+    private Button confirmButton;
+    private Button cancelButton;
     private int month;
     private int year;
     View view;
-
 
     public Appointment_Day_Time_fragment(int month, int year){
         this.month = month;
@@ -46,6 +47,24 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
                 showDayPicker();
             }
         });
+
+        confirmButton = (Button) view.findViewById(R.id.confirmDayTime);
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        cancelButton = (Button) view.findViewById(R.id.cancelDayTime);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Appointment_fragment appointmentFragment = new Appointment_fragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
+            }
+        });
+
 
     }
 

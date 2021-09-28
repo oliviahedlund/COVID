@@ -22,7 +22,7 @@ public class Appointment_Center_Date_fragment extends Fragment {
     public static final int MAX_YEAR = 2030;
 
     private AutoCompleteTextView centerDropdown;
-    private String centers[] = {"Center1", "Center2", "Center3"};
+    private String centers[] = {"CCC", "Arena"};
 
     private Button dateButton;
     private Button confirmButton;
@@ -30,8 +30,9 @@ public class Appointment_Center_Date_fragment extends Fragment {
     private int center = NOT_DEFINED;
     private int month = NOT_DEFINED;
     private int year = NOT_DEFINED;
+    private int minMonth = month;
 
-
+    MonthPickerDialog picker;
     View view;
 
     @Override
@@ -71,6 +72,13 @@ public class Appointment_Center_Date_fragment extends Fragment {
             }
         });
         cancelButton = (Button) view.findViewById(R.id.cancelCenterDate);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Appointment_fragment appointmentFragment = new Appointment_fragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
+            }
+        });
     }
 
     private void showDatePicker() {
@@ -88,21 +96,30 @@ public class Appointment_Center_Date_fragment extends Fragment {
 
                     }
                     }, yearNow, monthNow);
-        builder.setActivatedMonth(monthNow)
+        showPicker(monthNow, yearNow, builder);
+    }
+
+    private void showPicker(int monthNow, int yearNow, MonthPickerDialog.Builder builder) {
+        int activeYear = year == NOT_DEFINED ? yearNow : year;
+        int minMonth = activeYear == yearNow ? monthNow : Calendar.JANUARY;
+        picker = builder
+                .setActivatedYear(activeYear)
+                .setActivatedMonth(monthNow)
                 .setMinYear(yearNow)
-                .setActivatedYear(yearNow)
+                .setMinMonth(minMonth)
+
                 .setMaxYear(MAX_YEAR)
-//                .setMinMonth(Calendar.FEBRUARY)
                 .setTitle("Select Date")
-                .setMonthRange(Calendar.JANUARY, Calendar.DECEMBER)
+//                .setMonthRange(Calendar.JANUARY, Calendar.DECEMBER)
                 .setOnMonthChangedListener(new MonthPickerDialog.OnMonthChangedListener() {
                     @Override
                     public void onMonthChanged(int selectedMonth) { month = selectedMonth; } })
                 .setOnYearChangedListener(new MonthPickerDialog.OnYearChangedListener() {
                     @Override
-                    public void onYearChanged(int selectedYear) { year = selectedYear; } })
-                .build()
-                .show();
+                    public void onYearChanged(int selectedYear) { picker.dismiss(); year = selectedYear; showPicker(monthNow,yearNow,builder); } })
+                .build();
+
+        picker.show();
     }
 
     public void setupDropdownMenu(){
