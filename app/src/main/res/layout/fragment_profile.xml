@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    tools:context=".ProfileFragment">
+    //tools:context=".ProfileFragment">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,18 +24,18 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/Firstname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Förnamn: "
                 android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/profileName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="NAMN"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
 
@@ -47,15 +47,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Efternamn: "
+                android:text="@string/Lastname"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profileLastName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="EFTERNAMN"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -66,15 +67,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Email: "
+                android:text="@string/Email"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profileEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="MAIL"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -85,15 +87,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Telefon: "
+                android:text="@string/PhoneNumber"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profilePhone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="number"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -104,15 +107,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Födelsedag: "
+                android:text="@string/DOB"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profileBirth"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="datum"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -123,15 +127,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Adress: "
+                android:text="@string/StreetAddress"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profileAdress"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="adress"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -142,15 +147,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Stad: "
+                android:text="@string/City"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profileCity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="stad"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -161,15 +167,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Postnummer: "
+                android:text="@string/ZipCode"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profileZip"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="zip"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -180,14 +187,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Landsting: "
+                android:text="@string/County"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/profileCounty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="landsting"
                 android:textSize="20sp"/>
 
         </LinearLayout>
