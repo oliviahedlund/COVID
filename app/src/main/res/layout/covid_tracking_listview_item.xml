@@ -5,7 +5,7 @@ android:layout_width="match_parent"
 android:layout_height="50dp"
 android:background="@color/white">
 
-
+<!--
     <ImageView
         android:id="@+id/listViewCellImage"
         android:layout_width="30dp"
@@ -15,17 +15,17 @@ android:background="@color/white">
         android:layout_marginStart="20dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp" />
-
+-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/listViewCellLabel"
         android:gravity="center_vertical"
         android:text="TextView"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="30dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginLeft="80dp" />
+        android:layout_marginLeft="30dp" />
 
     <TextView
         android:layout_width="wrap_content"

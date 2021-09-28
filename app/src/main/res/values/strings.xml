@@ -2,21 +2,28 @@
     <string name="app_name">Covid tracker</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="open" translatable="false">Open</string>
+    <string name="close" translatable="false">Close</string>
     <string name="logout">Logout</string>
     <string name="dashboard">Covid Tracking</string>
-    <string name="passport">Digital Health Passport</string>
     <string name="userInfo">Profile</string>
     <string name="messages">Messages</string>
     <string name="handleAppoint">Book/Cancel Appointment</string>
-    <string name="faq">FAQ</string>
+    <string name="faq" translatable="false">FAQ</string>
     <string name="settings">Settings</string>
+    <string name="english">English</string>
+    <string name="swedish">Swedish</string>
+    <string name="languages">Languages</string>
+    <string name="switchLang">(SV)</string>
+    <string name="quest">Questionnaires</string>
+    <string name="sched">Scheduling</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     //registerActivity
     <string name="Firstname">First name</string>
     <string name="Lastname">Last name</string>
-    <string name="Email">Email</string>
+    <string name="Email" translatable="false">Email</string>
     <string name="Password">Password</string>
     <string name="RepeatPassword">Repeat password</string>
     <string name="PhoneNumber">Phone Number</string>
@@ -30,6 +37,7 @@
     <string name="NoAccount">Don\'t have an account?</string>
     <string name="RegHere">Register here!</string>
     <string name="IncorrectEmailPassw">Incorrect email or password</string>
+    <string name="passport">Digital Vaccin Passport</string>
 
     // covid tracking dashboard
     <string name="location">Location</string>
@@ -43,28 +51,35 @@
     <string name="totalAdmini">Total administered doses: </string>
     <string name="vs">Dose 1 vs Dose 2: </string>
 
+    <string-array name="questions">
+        <item>1. Have you ever had a strong reaction after a vaccination, and needed hospital assistance?</item>
+        <item>2. Do you have allergies that ever gave you strong reactions that you needed hospital assistance for?</item>
+        <item>3. Do you have an increased tendency to bleed because of an illness or medication?</item>
+        <item>4. Are you pregnant?</item>
+        <item>5. Have you been vaccinated in the past 7 days?</item>
+    </string-array>
 
     <string-array name="location">
-        <item>None</item>
+        <item>All Locations</item>
         <item>Sweden</item>
         <item>Stockholm</item>
         <item>Uppsala</item>
     </string-array>
 
     <string-array name="ageGroup">
-        <item>None</item>
+        <item>All Age Groups</item>
         <item>Child</item>
         <item>Adult</item>
         <item>Elder</item>
     </string-array>
 
     <string-array name="product">
-        <item>None</item>
+        <item>All Products</item>
         <item>Pfizer</item>
     </string-array>
 
     <string-array name="dose">
-        <item>None</item>
+        <item>Any doses</item>
         <item>Dose 1</item>
         <item>Dose 2</item>
     </string-array>

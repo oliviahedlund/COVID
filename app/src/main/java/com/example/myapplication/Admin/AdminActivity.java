@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,9 +13,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
+import com.example.myapplication.SettingsFragment;
+import com.example.myapplication.UserResponse;
+import com.example.myapplication.covidPassportFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class GeneralActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
@@ -23,13 +29,14 @@ public class GeneralActivity extends AppCompatActivity {
     private Button logoutButton;
     private TextView userName;
     private TextView userEmail;
-    private UserResponse user;
     private Covid_Tracking_dashboardFragment dashFragment;
+    private UserResponse user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_admin);
 
         //gets userinfo
         Intent i = getIntent();
@@ -37,24 +44,16 @@ public class GeneralActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
 
         //Setup Menu Bar
         setupMenuBar();
 
+
         //Setup Navigation Drawer
         setUpNavigationView();
 
-
-    }
-
-    private UserResponse setUserData(UserResponse response){
-        return this.user = response;
-    }
-
-    public UserResponse getUserData(){
-        return user;
     }
 
     //opens drawer menu when icon is clicked
@@ -66,35 +65,31 @@ public class GeneralActivity extends AppCompatActivity {
         return true;
     }
 
-    private void openActivity(Class _act){
-        Intent intent = new Intent(this, _act);
-        startActivity(intent);
-    }
-
     private void setupMenuBar(){
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayoutAdmin);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-
     private void setUpNavigationView() {
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_viewAdmin);
         header = navigationView.getHeaderView(0);
         logoutButton = header.findViewById(R.id.logoutButton);
 
+        //clear username
         userName = header.findViewById(R.id.fullName);
         userEmail = header.findViewById(R.id.textViewEmail);
-        userName.setText(user.getFirstName() + " " + user.getLastName());
+        userName.setText("");
         userEmail.setText(user.getEmail());
 
         //Logout Button
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(MainActivity.class);
+                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -105,11 +100,13 @@ public class GeneralActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Fragment newFragment;
-
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
                         newFragment = new Covid_Tracking_dashboardFragment();
+                        break;
+                    case R.id.nav_quest:
+                        newFragment = new AdminQuestionnaireFragment();
                         break;
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();
@@ -117,19 +114,10 @@ public class GeneralActivity extends AppCompatActivity {
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
                         break;
-                    case R.id.nav_profile:
-                        //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
-                        newFragment = new ProfileFragment();
-                        break;
-                    case R.id.nav_FAQ:
-                        FAQ faq = new FAQ();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, faq).commit();
-                        mDrawerLayout.closeDrawers();
-                        break;
                     default:
-                        newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
+                        newFragment = getSupportFragmentManager().findFragmentById(R.id.frameAdmin);
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
                 mDrawerLayout.closeDrawers();
                 return true;
             }

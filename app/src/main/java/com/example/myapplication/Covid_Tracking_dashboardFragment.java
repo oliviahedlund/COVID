@@ -63,7 +63,6 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
         ageGroupFilter = (AutoCompleteTextView) view.findViewById(R.id.ageGroupFilter);
         productFilter = (AutoCompleteTextView) view.findViewById(R.id.productFilter);
         doseFilter = (AutoCompleteTextView) view.findViewById(R.id.doseFilter);
-        Log.d("fuck", "fuck");
 
         Covid_Tracking_DropdownAdapter locationAdapter = new Covid_Tracking_DropdownAdapter(this.getContext(), R.layout.covid_tracking_dropdown_item, locations);
 
@@ -82,11 +81,18 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
 //        OBS2: How to display the data according to the filter. when we have gotten the data from the database, we can set each ListViewCell data section in order to display the data.
 //        we can use for loop to cycle through the listViewItems, put the listViewCells we need to display in the newly create ArryaList
 //        and use adapter to display them
-        Covid_Tracking_ListViewCell totalDistri = new Covid_Tracking_ListViewCell("0", getResources().getString(R.string.totalDistri), R.drawable.circle);
-        Covid_Tracking_ListViewCell totalAdmini = new Covid_Tracking_ListViewCell("1", getResources().getString(R.string.totalAdmini), R.drawable.triangle);
-        Covid_Tracking_ListViewCell totalCases = new Covid_Tracking_ListViewCell("2", getResources().getString(R.string.totalCases), R.drawable.square);
-        Covid_Tracking_ListViewCell totalDeaths = new Covid_Tracking_ListViewCell("3", getResources().getString(R.string.totalDeaths), R.drawable.rectangle);
-        Covid_Tracking_ListViewCell vs = new Covid_Tracking_ListViewCell("4", getResources().getString(R.string.vs), R.drawable.octagon);
+/*
+        Covid_Tracking_ListViewCell totalDistri = new Covid_Tracking_ListViewCell("0", getResources().getString(R.string.totalDistri), R.drawable.ic_virus);
+        Covid_Tracking_ListViewCell totalAdmini = new Covid_Tracking_ListViewCell("1", getResources().getString(R.string.totalAdmini), R.drawable.ic_virus);
+        Covid_Tracking_ListViewCell totalCases = new Covid_Tracking_ListViewCell("2", getResources().getString(R.string.totalCases), R.drawable.ic_virus);
+        Covid_Tracking_ListViewCell totalDeaths = new Covid_Tracking_ListViewCell("3", getResources().getString(R.string.totalDeaths), R.drawable.ic_virus);
+        Covid_Tracking_ListViewCell vs = new Covid_Tracking_ListViewCell("4", getResources().getString(R.string.vs), R.drawable.ic_virus);
+*/
+        Covid_Tracking_ListViewCell totalDistri = new Covid_Tracking_ListViewCell("0", getResources().getString(R.string.totalDistri));
+        Covid_Tracking_ListViewCell totalAdmini = new Covid_Tracking_ListViewCell("1", getResources().getString(R.string.totalAdmini));
+        Covid_Tracking_ListViewCell totalCases = new Covid_Tracking_ListViewCell("2", getResources().getString(R.string.totalCases));
+        Covid_Tracking_ListViewCell totalDeaths = new Covid_Tracking_ListViewCell("3", getResources().getString(R.string.totalDeaths));
+        Covid_Tracking_ListViewCell vs = new Covid_Tracking_ListViewCell("4", getResources().getString(R.string.vs));
 
         listViewItems.add(totalDistri);
         listViewItems.add(totalAdmini);

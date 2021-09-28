@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 /*
  * A simple {@link Fragment} subclass.
@@ -14,52 +24,53 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class covidPassportFragment extends Fragment {
-/*
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private String id;
+    private String fullname;
+    private String birthDate;
+    private TextView userName;
+    private TextView userBirthDate;
+    //private ImageView qr;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-*/
     public covidPassportFragment() {
         // Required empty public constructor
     }
 
-    /*
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment covidPassportFragment.
-     */
-    /*
-    // TODO: Rename and change types and number of parameters
-    public static covidPassportFragment newInstance(String param1, String param2) {
-        covidPassportFragment fragment = new covidPassportFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        GeneralActivity activity = (GeneralActivity) getActivity();
+        UserResponse user = activity.getUserData();
+        View view = inflater.inflate(R.layout.fragment_covid_passport, container, false);
+        //set string to user id,birth date and full name
+        id = user.getId();
+        birthDate = user.getBirthDate();
+        fullname = user.getFirstName() +" "+ user.getLastName();
+        userName = (TextView) view.findViewById(R.id.name);
+        userName.setText(fullname);
+        userBirthDate = (TextView) view.findViewById(R.id.birth_date);
+        userBirthDate.setText(birthDate);
+
+        if(!id.isEmpty()){
+            //initialize multiformatwriter
+            MultiFormatWriter writer = new MultiFormatWriter();
+            try {
+                BitMatrix matrix = writer.encode(id, BarcodeFormat.QR_CODE, 350, 350);
+                //initialize barcode encoder
+                BarcodeEncoder encoder = new BarcodeEncoder();
+                //initialize bitmap
+                Bitmap bitmap = encoder.createBitmap(matrix);
+                //set bitmap on imageView
+                ImageView qr = view.findViewById(R.id.qr_output);
+                qr.setImageBitmap(bitmap);
+            } catch (WriterException e) {
+                e.printStackTrace();
+            }
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_covid_passport, container, false);
+        return view;
     }
+
+
 }

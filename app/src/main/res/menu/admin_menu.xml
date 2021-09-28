@@ -11,28 +11,22 @@
             android:icon="@drawable/ic_dashboard"
             android:title="@string/dashboard" />
         <item
-            android:icon="@drawable/ic_messages"
-            android:title="@string/messages" />
+            android:id="@+id/nav_quest"
+            android:icon="@drawable/ic_questionnaire"
+            android:title="@string/quest" />
 
         <item
+            android:id="@+id/nav_sched"
             android:icon="@drawable/ic_clock"
-            android:title="@string/handleAppoint" />
+            android:title="@string/sched" />
         <item
             android:id="@+id/nav_covidpassport"
             android:icon="@drawable/ic_covid_passport"
             android:title="@string/passport" />
-        <item
-            android:id="@+id/nav_FAQ"
-            android:icon="@drawable/ic_faq"
-            android:title="@string/faq" />
     </group>
     <group
         android:id="@+id/menu_bottom"
         android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_user"
-            android:title="@string/userInfo" />
         <item
             android:id="@+id/nav_settingsFragment"
             android:icon="@drawable/ic_settings"

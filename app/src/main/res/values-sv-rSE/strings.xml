@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Covid tracker</string>
+    <string name="login">Logga in</string>
+    <string name="register">Registrera</string>
+    <string name="logout">Logga ut</string>
+    <string name="dashboard">Covidutveckling</string>
+    <string name="passport">Digitalt Vaccin Pass</string>
+    <string name="userInfo">Profil</string>
+    <string name="messages">Meddelanden</string>
+    <string name="handleAppoint">Boka/Avboka tid</string>
+    <string name="settings">Inställningar</string>
+    <string name="Firstname">Förnamn</string>
+    <string name="Lastname">Efternamn</string>
+    <string name="Password">Lösenord</string>
+    <string name="PhoneNumber">Telefonnummer</string>
+    <string name="DOB">Födelsedatum (YYYYMMDD)</string>
+    <string name="StreetAddress">Gatuadress</string>
+    <string name="City">Stad</string>
+    <string name="County">Län</string>
+    <string name="ZipCode">Postkod</string>
+    <string name="NoAccount">Har du inget konto?</string>
+    <string name="RegHere">Registrera dig här!</string>
+    <string name="IncorrectEmailPassw">Felaktig email eller lösenord</string>
+    <string name="RepeatPassword">Upprepa lösenord</string>
+    <string name="english">Engelska</string>
+    <string name="swedish">Svenska</string>
+    <string name="languages">Språk</string>
+    <string name="switchLang">(EN)</string>
+    <string name="quest">Frågeformulär</string>
+    <string name="sched">Schemaläggning</string>
+    <string name="location">Plats</string>
+    <string name="ageGroup">Åldersgrupp</string>
+    <string name="product">Produkt</string>
+    <string name="dose">Dos</string>
+    <string name="totalCases">Antal fall:</string>
+    <string name="totalDeaths">Antal dödsfall:</string>
+    <string name="totalDistri">Antal distribuerade doser:</string>
+    <string name="totalAdmini">Antal administrerade doser:</string>
+    <string name="vs">Dos 1 vs Dos 2:</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+
+    <string-array name="questions">
+        <item>1. Har du någon gång fått en kraftig reaktion efter vaccination, och behövt sjukhusvård?</item>
+        <item>2. Har du allergier som någon gång gett dig kraftiga reaktioner som du har behövt sjukhusvård för?</item>
+        <item>3. Har du ökad blödningsbenägenhet p.g.a. sjukdom eller medicin?</item>
+        <item>4. Är du gravid?</item>
+        <item>5. Har du vaccinerat dig någon gång under de senaste 7 dagarna?</item>
+    </string-array>
+
+    <string-array name="location">
+        <item>Alla platser</item>
+        <item>Sverige</item>
+        <item>Stockholm</item>
+        <item>Uppsala</item>
+    </string-array>
+
+    <string-array name="ageGroup">
+        <item>Alla åldersgrupper</item>
+        <item>Barn</item>
+        <item>Vuxen</item>
+        <item>Äldre</item>
+    </string-array>
+
+    <string-array name="product">
+        <item>Alla produkter</item>
+        <item>Pfizer</item>
+    </string-array>
+
+    <string-array name="dose">
+        <item>Någon dos</item>
+        <item>Dos 1</item>
+        <item>Dos 2</item>
+    </string-array>
+
+</resources>
+
