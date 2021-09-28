@@ -86,247 +86,247 @@
 
     //FAQ
     <string name="FAQ_app">FAQExpandableListView</string>
-    <string name="group1">Information om allmänna råd och rekommendationer</string>
-    <string name="group2">Information till resenärer</string>
-    <string name="group3">Serveringsställen</string>
-    <string name="group4">Fester</string>
-    <string name="group5">Läger och cuper</string>
-    <string name="group6">Testning</string>
-    <string name="group7">Smittspridning</string>
-    <string name="group8">Så kan vi minska smittspridningen</string>
-    <string name="group9">Viruset och sjukdomen</string>
-    <string name="group10">Äldre</string>
-    <string name="group11">Statistik</string>
-    <string name="group12">Oro och psykiskt välmående</string>
+    <string name="group1">Information on general advice and recommendations</string>
+    <string name="group2">Information for travelers</string>
+    <string name="group3">Serving places</string>
+    <string name="group4">Parties</string>
+    <string name="group5">Camps and cups</string>
+    <string name="group6">Testing</string>
+    <string name="group7">Spread of infection</string>
+    <string name="group8">This is how we can reduce the spread of infection</string>
+    <string name="group9">The virus and the disease</string>
+    <string name="group10">Older</string>
+    <string name="group11">Statistics</string>
+    <string name="group12">Anxiety and mental well-being</string>
 
     <string-array name="group1">
         <item>
-            <b>Hur många får träffas inomhus och utomhus vid olika aktiviteter?</b>\n\n
-            <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/verksamheter/information-till-arrangorer-av-evenemang/max-antal-deltagare-i-sammankomster-och-i-olika-lokaler/">På den här sidan finns en tabell som visar max antal deltagare vid olika sorters sammankomster och i olika lokaler</a>
+            <b>How many people can meet indoors and outdoors at different activities?</b>
+            \n\n<a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/verksamheter/information-till-arrangorer-av-evenemang/max-antal-deltagare-i-sammankomster-och-i-olika-lokaler/">On this page there is a table that shows the maximum number of participants at different kinds of gatherings and in different rooms</a>
         </item>
         <item>
-            <b>Vad innebär Folkhälsomyndighetens föreskrifter och allmänna råd om allas ansvar?</b>\n\n
-            Folkhälsomyndighetens föreskrifter och allmänna råd riktar sig till både individer och verksamheter.
-            \nFöreskrifterna är rättsligt bindande, dvs. de beskriver vad verksamheten och du som individ är skyldig att göra. I det här fallet handlar det om att vidta försiktighetsåtgärder för att skydda dig själv och andra mot covid-19. Du ska själv tänka igenom hur du kan undvika att bli smittad och hur du kan undvika att smitta andra. Det är särskilt viktigt att visa hänsyn till personer i riskgrupper.
+            <b>What do the Public Health Agency's regulations and general advice on everyone's responsibilities mean?</b>
+            \n\nThe Swedish Public Health Agency's regulations and general advice are aimed at both individuals and businesses.
+            \nThe regulations are legally binding, ie. they describe what the business and you as an individual are obliged to do. In this case, it's about taking precautions to protect yourself and others from covid-19. You should think for yourself how you can avoid becoming infected and how you can avoid infecting others. It is especially important to show consideration for people in risk groups.
 
-            \nDe allmänna råden är inte rättsligt bindande, utan en slags rekommendation för hur du kan göra för att uppfylla det som står i föreskriften eller i en annan bindande regel. Det betyder att du inte måste göra exakt så som det allmänna rådet säger, men väljer du att göra på ett annat sätt, måste du ändå uppfylla det som står i den bindande regeln.
+            \nThe general advice is not legally binding, but a kind of recommendation for how you can do to comply with what is in the regulation or in another binding rule. This means that you do not have to do exactly as the General Council says, but if you choose to do it in a different way, you must still comply with what is stated in the binding rule.
         </item>
     </string-array>
 
     <string-array name="group2">
         <item>
-            <b>Vad ska jag tänka på när jag åker utomlands?</b>\n\n
-            Oavsett vart du ska resa vilar ett stort ansvar på dig som enskild resenär. Varje resenär bör hålla sig välinformerad om vilka inresebestämmelser som gäller på resmålet och följa de lokala myndigheternas råd och anvisningar på plats. Tänk på att reserestriktioner kan införas med kort varsel vilket kan påverka dina möjligheter att resa hem.
-            \nDu behöver också hålla koll på vad som gäller då du reser in i Sverige igen.
+            What should I keep in mind when I go abroad?
+            \n\nNo matter where you are going to travel, a great responsibility rests on you as an individual traveler. Every traveler should stay well informed about the entry regulations that apply to the destination and follow the advice and instructions of the local authorities on site. Keep in mind that travel restrictions may be imposed at short notice, which may affect your ability to travel home.
+            \nYou also need to keep track of what applies when you travel into Sweden again.
         </item>
         <item>
-            <b>Vad gäller när jag reser in i Sverige?</b>\n\n
-            Det kan se olika ut beroende på vilket land du reser ifrån och om du är svensk eller utländsk medborgare. För dig som reser in i Sverige från utlandet gäller det att ha koll på vad som gäller för just dig.
-            \nLäs mer om Folkhälsomyndighetens <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">rekommendationer vid inresa i Sverige</a>.
+            What applies when I travel into Sweden?
+            \n\nIt can look different depending on which country you are traveling from and whether you are a Swedish or foreign citizen. For those of you who travel into Sweden from abroad, it is important to keep track of what applies to you.
+            \nRead more about the Swedish Public Health Agency's <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
         </item>
         <item>
-            <b>Vad gäller för hotell, vandrarhem och campingplatser?</b>\n\n
-            Alla verksamheter i Sverige är skyldiga att vidta åtgärder för att minska risken för smittspridning, till exempel genom att begränsa antalet gäster som vistas samtidigt i en lokal.
-            \nHotell, vandrarhem och campingplatser bör erbjuda alternativa lösningar till köer vid incheckningen eller anvisa hur långt avstånd gästerna ska ha mellan varandra.
-            \nHotell, vandrarhem och campingplatser bör också se till att personal och besökare har möjlighet att tvätta händerna med tvål och vatten samt erbjuda handsprit. Olika anläggningar kan hantera detta olika, beroende på deras storlek och läge.
-            \nOm verksamheten har en restaurang, bar, ett café eller liknande, omfattas de även av reglerna för restauranger och krogar. Smittskyddsläkaren kan då, efter samråd med kommunen, fatta beslut om att stänga dessa delar av verksamheten, om de inte uppfyller kraven.
+            What about hotels, hostels and campsites?
+            \n\nAll businesses in Sweden are obliged to take measures to reduce the risk of the spread of infection, for example by limiting the number of guests staying at the same time in a room.
+            \nHotels, hostels and campsites should offer alternative solutions to queues at check-in or indicate the distance between guests.
+            \nHotels, hostels and campsites should also ensure that staff and visitors have the opportunity to wash their hands with soap and water and offer hand sanitizer. Different plants can handle this differently, depending on their size and location.
+            \nIf the business has a restaurant, bar, café or similar, they are also covered by the rules for restaurants and taverns. The infection control doctor can then, after consultation with the municipality, decide to close these parts of the business, if they do not meet the requirements.
         </item>
         <item>
-            <b>Vad gäller för mig som ska resa utomlands, behöver jag covidbevis?</b>\n\n
-            Svaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer om bland annat covidbevis under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/om-vaccination/jag-ar-vaccinerad-och-ska-resa-utomlands-i-sommar--vad-galler/">Jag är vaccinerad och ska resa utomlands – vad gäller?</a>
+            What applies to me who is going to travel abroad, do I need a covid certificate?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more about covid evidence under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/om-vaccination/jag-ar-vaccinerad-och-ska-resa-utomlands-i-sommar--vad-galler/">I am vaccinated and will travel abroad - what about?</a>
         </item>
     </string-array>
 
     <string-array name="group3">
         <item>
-            Vad innebär Folkhälsomyndighetens föreskrifter och allmänna råd på serveringsställen?\n\n
-            Av dessa följer bl.a. att serveringsställen ska vidta lämpliga åtgärder för att trängsel ska kunna undvikas. Det handlar om att möblera om och att begränsa antalet besökare i lokalen så att sällskap kan hålla minst en meters avstånd från andra sällskap. Antalet besökare vid ett och samma bord får uppgå till högst åtta personer inomhus. Utomhus finns ingen sådan begränsning.
-            \nServeringsställen ska också erbjuda möjlighet till handtvätt eller handdesinfektion och informera besökare om hur de kan minska risken för smittspridning.
+            What do the Public Health Agency's regulations and general advice on serving places mean?
+            \n\nOf these, e.g. that restaurants must take appropriate measures to avoid congestion. It is about refurnishing and limiting the number of visitors in the room so that parties can keep at least one meter away from other parties. The number of visitors at one and the same table may amount to a maximum of eight people indoors. Outdoors there is no such restriction.
+            \nServing places must also offer the possibility of hand washing or hand disinfection and inform visitors about how they can reduce the risk of infection spreading.
         </item>
         <item>
-            Vart kan jag vända mig om reglerna inte följs?\n\n
-            Det är kommunerna som har ansvar för tillsyn och kan besluta om förelägganden och förbud mot serveringsställen. Om du upplever att reglerna inte följs kan du därför vända dig till den kommun där serveringsstället finns.
+            Where can I turn if the rules are not followed?
+            \n\nIt is the municipalities that are responsible for supervision and can decide on injunctions and bans on restaurants. If you feel that the rules are not followed, you can therefore turn to the municipality where the restaurant is located.
         </item>
     </string-array>
 
     <string-array name="group4">
         <item>
-            Vad gäller om jag hyr en lokal för en privat fest?\n\n
-            Maximalt 50 personer får delta i en fest i en hyrd lokal. Det gäller även om alla deltagare är vaccinerade mot covid-19. Det är den som hyr ut lokalen som ansvarar för att den inte används till en privat sammankomst med fler än 50 deltagare.
+            What if I rent a room for a private party?
+            \n\nA maximum of 50 people can participate in a party in a rented room. This also applies if all participants have been vaccinated against covid-19. The person who rents out the premises is responsible for ensuring that it is not used for a private gathering with more than 50 participants.
         </item>
         <item>
-            Vad gäller för en privat fest i ett hem eller i en trädgård?\n\n
-            Covid-19 sprids vid nära kontakt och ofta i hemmiljö. För privata sammankomster, som fester, gäller dels det individuella ansvaret enligt smittskyddslagen, dels Folkhälsomyndighetens <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">allmänna råd och rekommendationer</a> som bygger på skyddsplikten. En av rekommendationerna från 1 juli är att man ska vidta smittskyddsåtgärder om man träffar personer utanför den närmaste kretsen. Det gör man exempelvis genom att träffas utomhus i mindre grupper och att undvika att vara nära varandra längre tid i små utrymmen. Privata fester i hem och trädgårdar omfattas inte av juridiskt bindande regler som kan tillsynas. För vaccinerade gäller samma regler som för andra.
+            What about a private party in a home or in a garden?
+            \n\nCovid-19 is spread by close contact and often in a home environment. For private gatherings, such as parties, the individual responsibility according to the Swedish Communicable Diseases Act applies, as well as the Swedish Public Health Agency's <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">general advice and recommendations</a> based on the duty of protection. One of the recommendations from 1 July is that you should take infection control measures if you meet people outside the immediate area. This is done, for example, by meeting outdoors in small groups and avoiding being close to each other for a long time in small spaces. Private parties in homes and gardens are not covered by legally binding rules that can be supervised. For vaccinated people, the same rules apply as for others.
         </item>
     </string-array>
 
     <string-array name="group5">
         <item>
-            Vad gäller för läger och cuper för barn och ungdomar?\n\n
-            Lägerverksamheter och fysisk aktivitet bidrar till att främja barn och ungas hälsa. Det är dock extra viktigt att vara vaksam och planera för ett smittsäkert genomförande och förebyggande åtgärder.
+            What about camps and cups for children and young people?
+            \n\nCamp activities and physical activity help to promote the health of children and young people. However, it is extra important to be vigilant and plan for infection-proof implementation and preventive measures.
         </item>
     </string-array>
 
     <string-array name="group6">
         <item>
-            Behöver jag testa mig för covid-19 vid inresa i Sverige?\n\n
-            Läs mer om Folkhälsomyndighetens <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">rekommendationer vid inresa i Sverige</a>.
+            Do I need to test for covid-19 when entering Sweden?
+            \n\nRead more about the Swedish Public Health Agency's <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
         </item>
         <item>
-            Vilka olika tester finns det för covid-19?\n\n
-            Det finns test som kan visa om du har en pågående infektion just nu och test som kan visa om du redan har haft covid-19 och utvecklat antikroppar.
-            \nDe tester som finns för att visa pågående covid-19 är PCR-test och antigentest. PCR-test är det som idag används i stor skala. Det visar om det finns arvsmassa från viruset som orsakar infektionen. Ett antigentest visar om det finns proteindelar av viruset.
-            \nPCR-test har generellt bättre prestanda vad det gäller känslighet och tillförlitlighet än antigentest. Antigentest kan användas som ett komplement till PCR-tester när det finns behov av snabba svar eller om PCR-kapaciteten är otillräcklig.
-            \nAntikroppstest visar om en person har haft covid-19 och bildat antikroppar mot viruset. Ett antikroppstest tas först 2-3 veckor efter att man blev sjuk. Efter vaccination bildas också antikroppar.
+            What are the different tests for covid-19?
+            \n\nThere are tests that can show if you have an ongoing infection right now and tests that can show if you have already had covid-19 and developed antibodies.
+            \nThe tests that are available to show ongoing covid-19 are PCR tests and antigen tests. PCR testing is what is used today on a large scale. It shows if there is genetic material from the virus that is causing the infection. An antigen test shows if there are protein parts of the virus.
+            \nPCR tests generally have better performance and reliability performance than antigen tests. Antigen testing can be used as a complement to PCR testing when rapid responses are required or if PCR capacity is insufficient.
+            \nAntibody test shows if a person has had covid-19 and formed antibodies against the virus. An antibody test is only taken 2-3 weeks after you become ill. After vaccination, antibodies are also formed.
         </item>
         <item>
-            Vart vänder jag mig om jag vil testa mig för covid-19?\n\n
-            Det är vården som bedömer om du bör göra ett test beroende på dina symtom och hur regionens riktlinjer ser ut. Känner du dig sjuk och har symtom för covid-19 kan du läsa mer på <a href="https://www.1177.se/Varmland/covid-19-prov">1177.se/covid19-prov</a> för att ta reda på hur det är ordnat med testningen där du bor.
-            \nPå vissa arbetsplatser med nära kontakt med människor, där det inte går att jobba hemifrån, kan arbetsgivaren besluta om regelbunden screening för att upptäcka SARS-CoV-2, det virus som orsakar covid-19. Screening är ett tillägg till andra smittskyddsåtgärder. Det är arbetsgivaren som ska informera kring screeningen och ha rutiner för den.
+            Where do I go if I want to test for covid-19?
+            \n\nIt is the care that assesses whether you should do a test depending on your symptoms and what the region's guidelines look like. If you feel sick and have symptoms of covid-19, you can read more at <a href="https://www.1177.se/Varmland/covid-19-prov">1177.se/covid19-prov</a > to find out how the testing is arranged where you live.
+            \nn some workplaces with close contact with people, where it is not possible to work from home, the employer may decide on regular screening to detect SARS-CoV-2, the virus that causes covid-19. Screening is a supplement to other infection control measures. It is the employer who must inform about the screening and have routines for it.
         </item>
         <item>
-            Vilka personer bör testas för pågående covid-19-infektion?\n\n
-            Testningen sker alltid utifrån lokala och regionala riktlinjer. Folkhälsomyndigheten rekommenderar att vuxna samt barn och unga i skolålder inklusive förskoleklass som har <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/om-sjukdomen-och-smittspridning/om-viruset-och-sjukdomen/?exp=80112#_80112">symtom för covid-19</a> testas för att se om de har en pågående infektion.
-            \nVi rekommenderar också att testning sker vid smittspårning. Testningen kan då vara aktuell oberoende av symtom.
-            \nI en situation där antalet misstänkta fall överskrider hälso- och sjukvårdens kapacitet till testning kan regionen besluta om tillfälliga justeringar i riktlinjerna för testningen.
+            Which people should be tested for ongoing covid-19 infection?
+            \n\nThe testing is always based on local and regional guidelines. The Swedish Public Health Agency recommends that adults and children and young people of school age, including preschool class who have <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/om-sjukdomen-och-smittspridning/om-viruset-och-sjukdomen/?exp=80112#_80112">covid-19 symptoms</a> are tested to see if they have an ongoing infection.
+            \nWe also recommend that testing takes place during infection tracking. The testing can then be relevant regardless of symptoms.
+            \nIn a situation where the number of suspected cases exceeds the health service's capacity for testing, the region may decide on temporary adjustments in the guidelines for testing.
         </item>
         <item>
-            Vad innebär det om jag är positiv i ett PCR-test eller ett antigentest?\n\n
-            Ett positivt PCR-test visar att du har en pågående eller en nyligen genomgången covid-19-infektion. Ett positivt antigentest visar också det. Personer som haft covid-19 som bekräftats med PCR-test eller antigentest och tillfrisknat bedöms ha en mycket låg risk att bli sjuka igen i åtminstone sex månader framåt.
-            \nOm du är positiv i ett PCR-test eller ett antigentest är det viktigt att du stannar hemma och följer de förhållningsregler du får av läkaren för att inte smitta andra.
-            \nAntigentest finns också som självtest. Det innebär att du själv tar provet och läser av svaret. Om ditt självtest visar att du har covid-19 behöver du isolera dig och utan dröjsmål kontakta hälso- och sjukvården, detta görs i regel genom att du själv bokar ett uppföljande PCR-test. Du kan se vilka rutiner som gäller i din region genom att gå in på webbplatsen 1177.se.
+            What does it mean if I am positive in a PCR test or an antigen test?
+            \n\nA positive PCR test shows that you have an ongoing or recent covid-19 infection. A positive antigen test also shows that. People who have had covid-19 confirmed with a PCR test or antigen test and recovered are judged to have a very low risk of becoming ill again for at least six months.
+            \nIf you are positive in a PCR test or an antigen test, it is important that you stay at home and follow the rules of conduct you receive from the doctor so as not to infect others.
+            \nAntigen test is also available as a self-test. This means that you take the test yourself and read the answer. If your self-test shows that you have covid-19, you need to isolate yourself and contact the health service without delay, this is usually done by booking a follow-up PCR test yourself. You can see which routines apply in your region by visiting the website 1177.se.
         </item>
         <item>
-            Vad gäller för mig som har ett positivt antikroppstest?\n\n
-            Även om du har fått ett positivt testresultat behöver du fortsätta att följa de allmänna råden för att minska smittspridningen i samhället.
-            \nUtifrån den kunskap vi har idag bedömer vi att i stort sett alla som har utvecklat IgG-antikroppar har ett skydd mot återinfektion med allvarliga symtom och att skyddet varar åtminstone ett halvår från infektionstillfället.
+            What about me who has a positive antibody test?
+            \n\nEven if you have received a positive test result, you need to continue to follow the general advice to reduce the spread of infection in society.
+            \nBased on the knowledge we have today, we assess that virtually everyone who has developed IgG antibodies has protection against re-infection with serious symptoms and that the protection lasts at least six months from the time of infection.
         </item>
         <item>
-            Kan jag ha haft covid-19 och ändå inte testas positivt för antikroppar?\n\n
-            Alla som har haft covid-19 har inte påvisbara antikroppar. Det skydd man får efter att ha haft covid-19 kan variera från person till person. Det beror på faktorer som infektionens omfattning och personens immunsvar. En del personer har utvecklat så pass höga nivåer av antikroppar mot sjukdomen så de kan mätas i ett blodprov. Även om alla som varit sjuka i covid-19 inte utvecklar mätbara nivåer av antikroppar i blodet så har dessa personer i de allra flesta fall utvecklat någon form av immunförsvar.
+            Could I have had covid-19 and still not tested positive for antibodies?
+            \n\nNot everyone who has had covid-19 has detectable antibodies. The protection you get after having covid-19 can vary from person to person. It depends on factors such as the extent of the infection and the person's immune response. Some people have developed such high levels of antibodies to the disease that they can be measured in a blood test. Although not everyone who has been ill with covid-19 develops measurable levels of antibodies in the blood, in most cases these people have developed some form of immune system.
         </item>
         <item>
-            Behöver jag testa mig flera gånger för covid-19?\n\n
-            Du behöver vanligtvis inte testa dig igen om du vet att du har varit sjuk i covid-19 under det senaste halvåret. Däremot ska du stanna hemma tills du känner dig frisk. Du kan ha fått veta att du redan haft covid-19 genom ett positivt PCR-test, antigentest eller antikroppstest taget inom hälso- och sjukvården. I vissa fall kan en läkare be att du testar dig igen.
-            \nOm du är sjuk och har tagit ett PCR-test som är negativt för covid-19 behöver du inte heller ta ett nytt test medan du är sjuk.
-            \nHar du tidigare enbart testat negativt för covid-19 och senare blir sjuk på nytt med symtom för covid-19 ska du testa dig igen.
+            Do I need to test myself several times for covid-19?
+            \n\nYou do not usually need to be tested again if you know you have been ill with covid-19 for the past six months. However, you should stay at home until you feel healthy. You may have been told that you have already had covid-19 through a positive PCR test, antigen test or antibody test taken in healthcare. In some cases, a doctor may ask you to get tested again.
+            \nIf you are ill and have taken a PCR test that is negative for covid-19, you also do not need to take a new test while you are ill.
+            \nIf you have previously only tested negative for covid-19 and later become ill again with symptoms for covid-19, you should test yourself again.
         </item>
         <item>
-            Ska jag testa mig för att se om jag blivit frisk från covid-19?\n\n
-            Nej. Testerna används för att ställa diagnos när du är sjuk och inte för att se om du blivit frisk eller för att bedöma om du är smittsam. Därför ska du inte ta ett nytt test för att se om du har blivit frisk.
-            \nDet är i stället antalet dagar som gått sedan du blev sjuk och hur länge du har varit symtomfri som avgör när du slutar vara smittsam. Du ska stanna hemma och följa de förhållningsregler du får från sjukvården och kan därefter gå tillbaka till arbetet, skolan eller annan verksamhet.
+            Should I test myself to see if I have recovered from covid-19?
+            \n\nNo. The tests are used to diagnose when you are ill and not to see if you have recovered or to assess whether you are contagious. Therefore, do not take a new test to see if you have recovered.
+            \nInstead, it is the number of days that have passed since you became ill and how long you have been symptom-free that determines when you stop being contagious. You must stay at home and follow the rules of conduct you receive from healthcare and can then return to work, school or other activities.
         </item>
         <item>
-            Kan jag ta ett antikroppstest istället för att vaccinera mig mot covid-19?\n\n
-            Svaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=83571#_83571">Kan jag ta ett antikroppstest istället för att vaccinera mig mot covid-19?</a>.
+            Can I have an antibody test instead of getting vaccinated against covid-19?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=83571#_83571">Can I take an antibody test instead of vaccinating myself against covid-19?</ a>.
         </item>
         <item>
-            Jag är vaccinerad, behöver jag testa mig om jag får symtom på covid-19?\n\n
-            Svaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86785#_86785">Jag är vaccinerad, behöver jag testa mig om jag får symtom på covid-19?</a>.
+            I am vaccinated, do I need to be tested if I get symptoms of covid-19?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86785#_86785">I am vaccinated, do I need to be tested if I get symptoms of covid-19?</a>.
         </item>
         <item>
-            Jag har precis vaccinerat mig mot covid-19 och fått symptom på sjukdomen, ska jag testa mig?\n\n
-            Svaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86784#_86784">Jag har precis vaccinerat mig mot covid-19 och fått symtom på sjukdomen, ska jag testa mig?</a>.
+            I just got vaccinated against covid-19 and got symptoms of the disease, should I get tested?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86784#_86784">I just got vaccinated against covid-19 and got symptoms of the disease, should I get tested?</a>.
         </item>
         <item>
-            Kan min vaccination göra att jag fåt ett felaktigt svar om jag testar mig för sjukdom i covid-19?\n\n
-            Svaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=91087#_91087">Kan min vaccination göra att jag får ett felaktigt svar om jag testar mig för sjukdom i covid-19?</a>.
+            Can my vaccination cause me to get an incorrect answer if I test for covid-19 disease?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=91087#_91087">Can my vaccination cause me to get an incorrect answer if I test for covid-19 disease?</a>.
         </item>
         <item>
-            Vad gäller för screening på arbetsplatser?\n\n
-            För arbetsplatser där personalen behöver vara på plats och där man har svårt att undvika närkontakt kan regelbunden screening för covid-19 vara ett verktyg för att tidigt upptäcka smitta. Screening innebär att testa en grupp människor för att upp­täcka covid-19 på ett tidigt stadium, trots att det inte finns någon misstanke om sjukdom hos den enskilda individen.
-            \nSyftet är inte att öppna upp de arbetsplatser som kan erbjuda distansarbete. Screening ersätter inte andra förebyggande åtgärder, men kan vara ett värdefullt komplement till övriga insatser för att minska risken för smittspridning på en arbetsplats.
+            What about workplace screening?
+            \n\nFor workplaces where staff need to be on site and where it is difficult to avoid close contact, regular screening for covid-19 can be a tool for early detection of infection. Screening involves testing a group of people to detect covid-19 at an early stage, even though there is no suspicion of disease in the individual.
+            \nThe purpose is not to open up the workplaces that can offer telework. Screening does not replace other preventive measures, but can be a valuable complement to other initiatives to reduce the risk of the spread of infection in a workplace.
         </item>
     </string-array>
 
     <string-array name="group7">
         <item>
-            Hur smittar covid-19?\n\n
-            Spridning av covid-19 sker framför allt vid nära kontakter mellan personer genom små och stora droppar från luftvägarna. När en infekterad person nyser, hostar, talar eller andas ut sprids små droppar till omgivningen. Smittan kan ta sig in i kroppen både via inandning eller genom att man rör med orena händer i ögon eller på slemhinnor i näsa och mun.
+            How is covid-19 transmitted?
+            \n\nCovid-19 is spread mainly through close contacts between people through small and large droplets from the airways. When an infected person sneezes, coughs, speaks or exhales, small drops are spread to the environment. The infection can enter the body both by inhalation or by touching with unclean hands in the eyes or on mucous membranes in the nose and mouth.
         </item>
         <item>
-            Kan man bli smittar av en person som har covid-19 men inte har några symptom?\n\n
-            Ja, smitta kan spridas både från personer med och utan symtom. En person utan symtom kallas asymtomatisk.
+            Can you be infected by a person who has covid-19 but has no symptoms?
+            \n\nYes, infection can be spread both from people with and without symptoms. A person without symptoms is called asymptomatic.
         </item>
     </string-array>
 
     <string-array name="group8">
         <item>
-            Vad ska jag göra om jag får symtom på covid-19?\n\n
-            Barn och vuxna som känner sig sjuka bör alltid stanna hemma från arbetet, skolan, förskolan och andra aktiviteter. De bör också undvika nära kontakt med andra.
-            \nUnder coronapandemin är det viktigt att alla är extra försiktiga för att undvika smittspridning i samhället. Därför har vi på Folkhälsomyndigheten tagit fram särskilda rekommendationer som handlar om när barn och vuxna kan gå tillbaka till arbetet, skolan, förskolan och andra aktiviteter.
+            What should I do if I get symptoms of covid-19?
+            \n\nChildren and adults who feel ill should always stay home from work, school, preschool and other activities. They should also avoid close contact with others.
+            \nDuring the corona pandemic, it is important that everyone is extra careful to avoid the spread of infection in society. Therefore, we at the Swedish Public Health Agency have produced special recommendations that deal with when children and adults can return to work, school, preschool and other activities.
         </item>
         <item>
-            Hur skyddar du dig själv och andra?\n\n
-            Vi har alla ett personligt ansvar och en skyldighet att göra vad vi kan för att förhindra smittspridningen av sjukdomen covid-19.
+            How do you protect yourself and others?
+            \n\nWe all have a personal responsibility and an obligation to do what we can to prevent the spread of covid-19 disease.
         </item>
         <item>
-            Bör jag som symtomfri jobba hemma?\n\n
-            Vi rekommenderar att så många som möjligt arbetar hemifrån.
-            \nLiksom tidigare gäller att arbete hemifrån ska väljas i samförstånd med arbetsgivaren så att inte verksamheten drabbas av negativa effekter. För arbetsgivaren är det viktigt att arbete hemifrån genomförs med arbetsmiljöaspekter i åtanke.
+            Should I work at home as an asymptomatic?
+            \n\nWe recommend that as many people as possible work from home.
+            \nAs before, work from home must be chosen in agreement with the employer so that the business does not suffer from negative effects. For the employer, it is important that work from home is carried out with work environment aspects in mind.
         </item>
     </string-array>
 
     <string-array name="group9">
         <item>
-            Vilka är symtomen på covid-19?\n\n
-            Sjukdomen är hos de flesta en luftvägsinfektion och en rad olika symtom kan förekomma, de symtom som rapporterats är framförallt:
-            \n\nhosta
-            \nfeber
-            \nsvårt att andas
-            \nsnuva
-            \ntäppt näsa
-            \nhalsont
-            \nhuvudvärk
-            \nillamående
-            \nvärk i muskler och leder
-            \nförändrad smak och lukt
-            \ndiarré
-            \nMan kan inte avgöra om det är covid-19 bara genom att utgå från symtomen. För det krävs ett test som analyseras av hälso- och sjukvården.
+            What are the symptoms of covid-19?
+            \n\nThe disease is in most people a respiratory infection and a number of different symptoms can occur, the symptoms reported are mainly:
+            \n\nCough
+            \nFever
+            \nHard to breathe
+            \nCold
+            \nStuffy nose
+            \nSore throat
+            \nHeadache
+            \nNausea
+            \nPain in muscles and joints
+            \nChanged taste and smell
+            \nDiarrhea
+            \n\nIt is not possible to determine if it is covid-19 just by starting from the symptoms. This requires a test that is analyzed by the health service.
         </item>
         <item>
-            Hur lång är inkubationstiden?\n\n
-            Inkubationstiden, det vill säga perioden från smittotillfället till dess att en person uppvisar symtom, bedöms vanligtvis vara 2–14 dagar. De flesta insjuknar cirka 5 dagar efter att man smittats.
+            How long is the incubation period?
+            \n\nThe incubation period, ie the period from the time of infection until a person shows symptoms, is usually estimated to be 2–14 days. Most people get sick about 5 days after being infected.
         </item>
         <item>
-            Hur länge är man smittsam?\n\n
-            Smittsamheten av covid-19 är sannolikt störst i anslutning till insjuknandet och i början av sjukdomsförloppet.
+            How long are you contagious?
+            \n\nThe infectivity of covid-19 is probably greatest in connection with the illness and at the beginning of the course of the disease.
         </item>
     </string-array>
 
     <string-array name="group10">
         <item>
-            Hur ska jag skydda närstående i äldreboende vid besök?\n\n
-            Om du ska besöka en anhörig som bor på ett äldreboende, finns det flera saker du kan göra för att förebygga smittspridning:
-            \n\nAvstå från besöket om du har symtom på covid-19, även milda symtom.
-            \nInför besöket – prata med personalen om vad som gäller på det specifika äldreboendet.
-            \nVid besöket – tvätta händerna, och även om den du besöker är vaccinerad behöver du hålla avstånd till övriga boende, och även till personalen.
+            How should I protect relatives in nursing homes during visits?
+            \n\nIf you are going to visit a relative who lives in a nursing home, there are several things you can do to prevent the spread of infection:
+            \n\nRefrain from the visit if you have symptoms of covid-19, even mild symptoms.
+            \nBefore the visit - talk to the staff about what applies to the specific nursing home.
+            \nDuring the visit - wash your hands, and even if the person you are visiting is vaccinated, you need to keep your distance from other residents, and also from the staff.
         </item>
     </string-array>
 
     <string-array name="group11">
         <item>
-            Hur många fall av covid-19 och hur många är vaccinerade i Sverige och globalt?\n\n
-            Aktuell statistik över antalet bekräftade fall av covid-19 i Sverige uppdateras dagligen och finns på vår webbsida om bekräftade fall i Sverige. För bekräftade fall globalt hänvisar vi till WHO och ECDC.
+            How many cases of covid-19 and how many have been vaccinated in Sweden and globally?
+            \n\nCurrent statistics on the number of confirmed cases of covid-19 in Sweden are updated daily and can be found on our website about confirmed cases in Sweden. For confirmed cases globally, we refer to the WHO and ECDC.
         </item>
     </string-array>
 
     <string-array name="group12">
         <item>
-            Jag känner mig orolig under pandemin, hur ska jag hantera min oro?\n\n
-            Alla reagerar olika i oroliga tider. Att känna stress, oro och rädsla är naturliga reaktioner vid en kris. Om du känner dig mycket orolig, inte kan sova eller om du inte kan släppa tankarna på viruset, finns det saker som du kan göra för att hantera din oro eller stress:
-            \n\nSätt ord på dina känslor. Ring och prata med någon om hur du känner och våga fråga om stöd.
-            \nAnvänd tillförlitliga källor för att hämta information om covid-19.
-            \nBegränsa tiden du tar del av nyheter och sociala medier.
-            \nBehåll dina vanliga rutiner så långt det går och gör sådant du tycker är roligt och avkopplande.
-            \nFörsök att komma ut i friska luften och fortsätt vara fysiskt aktiv.
-            \n<a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-kanner-oro-for-coronaviruset/">Läs mer om hur du kan hantera din oro kopplat till det nya coronaviruset här</a>.
-            \nDet finns flera organisationer som erbjuder stöd via telefon, chatt eller mejl, om du vill prata med någon utomstående om din oro eller ångest.
+            I feel anxious during the pandemic, how should I deal with my anxiety?
+            \n\nEveryone reacts differently in troubled times. Feeling stress, anxiety and fear are natural reactions to a crisis. If you feel very anxious, unable to sleep or if you can not let go of the virus, there are things you can do to deal with your anxiety or stress:
+            \n\nPut your feelings into words. Call and talk to someone about how you feel and dare to ask for support.
+            \nUse reliable sources to obtain information about covid-19.
+            \nLimit the time you take part in news and social media.
+            \nMaintain your usual routines as far as possible and do things you think are fun and relaxing.
+            \nTry to get out into the fresh air and continue to be physically active.
+            \n<a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-kanner-oro-for-coronaviruset/">Read more about how to deal with your concerns linked to the new coronavirus here</a>.
+            \nThere are several organizations that offer support by phone, chat or email, if you want to talk to someone outside about your worries or anxieties.
         </item>
         <item>
-            Jag har förlorat en närstående och känner sorg. Vad kan jag göra?\n\n
-            Att känna sorg när man har förlorat någon är naturligt. Sorgen pågår ofta under lång tid, men den har olika faser. I den första fasen kan känslorna vara mycket intensiva och svåra att hantera. Det är vanligt att känna t.ex. förtvivlan, ilska och skuld. I senare faser blir sorgen mindre plågsam och det brukar kännas lättare att fortsätta med sitt vardagsliv och planera inför framtiden. Under sorgen är det viktigt att du tillåter dig att känna. Försök att hålla dina rutiner när det gäller t.ex. mat och sömn. Prata gärna med någon som du känner dig trygg med.
-            \nOm du behöver mer stöd kan du vända dig till vården. Det finns också stödlinjer du kan ringa. Läs mer om <a href="https://www.1177.se/Stockholm/liv--halsa/psykisk-halsa/sorg-nar-nagon-har-dott/">sorg, hur den kan yttra sig och hur du kan hantera den på 1177.se</a>.
+            I have lost a loved one and feel sad. What can I do?
+            \n\nFeeling sad when you have lost someone is natural. The grief often lasts for a long time, but it has different phases. In the first phase, the emotions can be very intense and difficult to deal with. It is common to feel e.g. despair, anger and guilt. In later phases, the grief becomes less painful and it usually feels easier to continue with your everyday life and plan for the future. During grief, it is important that you allow yourself to feel. Try to keep your routines when it comes to e.g. food and sleep. Feel free to talk to someone you feel comfortable with.
+            \nIf you need more support, you can turn to healthcare. There are also guides you can call. Read more about <a href="https://www.1177.se/Stockholm/liv--halsa/psykisk-halsa/sorg-nar-nagon-har-dott/">grief, how it can express itself and how you can handle it on 1177.se</a>.
         </item>
     </string-array>
 
