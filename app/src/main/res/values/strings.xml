@@ -105,9 +105,9 @@
             \n\n<a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/verksamheter/information-till-arrangorer-av-evenemang/max-antal-deltagare-i-sammankomster-och-i-olika-lokaler/">On this page there is a table that shows the maximum number of participants at different kinds of gatherings and in different rooms</a>
         </item>
         <item>
-            <b>What do the Public Health Agency's regulations and general advice on everyone's responsibilities mean?</b>
-            \n\nThe Swedish Public Health Agency's regulations and general advice are aimed at both individuals and businesses.
-            \nThe regulations are legally binding, ie. they describe what the business and you as an individual are obliged to do. In this case, it's about taking precautions to protect yourself and others from covid-19. You should think for yourself how you can avoid becoming infected and how you can avoid infecting others. It is especially important to show consideration for people in risk groups.
+            <b>What do the Public Health Agency\'s regulations and general advice on everyone\'s responsibilities mean?</b>
+            \n\nThe Swedish Public Health Agency\'s regulations and general advice are aimed at both individuals and businesses.
+            \nThe regulations are legally binding, ie. they describe what the business and you as an individual are obliged to do. In this case, it\'s about taking precautions to protect yourself and others from covid-19. You should think for yourself how you can avoid becoming infected and how you can avoid infecting others. It is especially important to show consideration for people in risk groups.
             \nThe general advice is not legally binding, but a kind of recommendation for how you can do to comply with what is in the regulation or in another binding rule. This means that you do not have to do exactly as the General Council says, but if you choose to do it in a different way, you must still comply with what is stated in the binding rule.
         </item>
     </string-array>
@@ -121,7 +121,7 @@
         <item>
             What applies when I travel into Sweden?
             \n\nIt can look different depending on which country you are traveling from and whether you are a Swedish or foreign citizen. For those of you who travel into Sweden from abroad, it is important to keep track of what applies to you.
-            \nRead more about the Swedish Public Health Agency's <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
+            \nRead more about the Swedish Public Health Agency\'s <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
         </item>
         <item>
             What about hotels, hostels and campsites?
@@ -138,7 +138,7 @@
 
     <string-array name="group3">
         <item>
-            What do the Public Health Agency's regulations and general advice on serving places mean?
+            What do the Public Health Agency\'s regulations and general advice on serving places mean?
             \n\nOf these, e.g. that restaurants must take appropriate measures to avoid congestion. It is about refurnishing and limiting the number of visitors in the room so that parties can keep at least one meter away from other parties. The number of visitors at one and the same table may amount to a maximum of eight people indoors. Outdoors there is no such restriction.
             \nServing places must also offer the possibility of hand washing or hand disinfection and inform visitors about how they can reduce the risk of infection spreading.
         </item>
@@ -155,7 +155,7 @@
         </item>
         <item>
             What about a private party in a home or in a garden?
-            \n\nCovid-19 is spread by close contact and often in a home environment. For private gatherings, such as parties, the individual responsibility according to the Swedish Communicable Diseases Act applies, as well as the Swedish Public Health Agency's <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">general advice and recommendations</a> based on the duty of protection. One of the recommendations from 1 July is that you should take infection control measures if you meet people outside the immediate area. This is done, for example, by meeting outdoors in small groups and avoiding being close to each other for a long time in small spaces. Private parties in homes and gardens are not covered by legally binding rules that can be supervised. For vaccinated people, the same rules apply as for others.
+            \n\nCovid-19 is spread by close contact and often in a home environment. For private gatherings, such as parties, the individual responsibility according to the Swedish Communicable Diseases Act applies, as well as the Swedish Public Health Agency\'s <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">general advice and recommendations</a> based on the duty of protection. One of the recommendations from 1 July is that you should take infection control measures if you meet people outside the immediate area. This is done, for example, by meeting outdoors in small groups and avoiding being close to each other for a long time in small spaces. Private parties in homes and gardens are not covered by legally binding rules that can be supervised. For vaccinated people, the same rules apply as for others.
         </item>
     </string-array>
 
@@ -169,7 +169,7 @@
     <string-array name="group6">
         <item>
             Do I need to test for covid-19 when entering Sweden?
-            \n\nRead more about the Swedish Public Health Agency's <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
+            \n\nRead more about the Swedish Public Health Agency\'s <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
         </item>
         <item>
             What are the different tests for covid-19?
@@ -180,14 +180,14 @@
         </item>
         <item>
             Where do I go if I want to test for covid-19?
-            \n\nIt is the care that assesses whether you should do a test depending on your symptoms and what the region's guidelines look like. If you feel sick and have symptoms of covid-19, you can read more at <a href="https://www.1177.se/Varmland/covid-19-prov">1177.se/covid19-prov</a> to find out how the testing is arranged where you live.
+            \n\nIt is the care that assesses whether you should do a test depending on your symptoms and what the region\'s guidelines look like. If you feel sick and have symptoms of covid-19, you can read more at <a href="https://www.1177.se/Varmland/covid-19-prov">1177.se/covid19-prov</a> to find out how the testing is arranged where you live.
             \nIn some workplaces with close contact with people, where it is not possible to work from home, the employer may decide on regular screening to detect SARS-CoV-2, the virus that causes covid-19. Screening is a supplement to other infection control measures. It is the employer who must inform about the screening and have routines for it.
         </item>
         <item>
             Which people should be tested for ongoing covid-19 infection?
             \n\nThe testing is always based on local and regional guidelines. The Swedish Public Health Agency recommends that adults and children and young people of school age, including preschool class who have <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/om-sjukdomen-och-smittspridning/om-viruset-och-sjukdomen/?exp=80112#_80112">covid-19 symptoms</a> are tested to see if they have an ongoing infection.
             \nWe also recommend that testing takes place during infection tracking. The testing can then be relevant regardless of symptoms.
-            \nIn a situation where the number of suspected cases exceeds the health service's capacity for testing, the region may decide on temporary adjustments in the guidelines for testing.
+            \nIn a situation where the number of suspected cases exceeds the health service\'s capacity for testing, the region may decide on temporary adjustments in the guidelines for testing.
         </item>
         <item>
             What does it mean if I am positive in a PCR test or an antigen test?
@@ -202,7 +202,7 @@
         </item>
         <item>
             Could I have had covid-19 and still not tested positive for antibodies?
-            \n\nNot everyone who has had covid-19 has detectable antibodies. The protection you get after having covid-19 can vary from person to person. It depends on factors such as the extent of the infection and the person's immune response. Some people have developed such high levels of antibodies to the disease that they can be measured in a blood test. Although not everyone who has been ill with covid-19 develops measurable levels of antibodies in the blood, in most cases these people have developed some form of immune system.
+            \n\nNot everyone who has had covid-19 has detectable antibodies. The protection you get after having covid-19 can vary from person to person. It depends on factors such as the extent of the infection and the person\'s immune response. Some people have developed such high levels of antibodies to the disease that they can be measured in a blood test. Although not everyone who has been ill with covid-19 develops measurable levels of antibodies in the blood, in most cases these people have developed some form of immune system.
         </item>
         <item>
             Do I need to test myself several times for covid-19?
