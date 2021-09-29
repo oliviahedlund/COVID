@@ -17,10 +17,10 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.Booking.DateTimeHelper;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 
 public class Appointment_Day_Time_fragment extends Fragment implements DatePickerDialog.OnDateSetListener{
     private Button dayButton;
@@ -28,18 +28,23 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
     private Button cancelButton;
     private int month;
     private int year;
-    DateTimeHelper dt;
-    View view;
-    Calendar [] allowedDays;
-    String [] allowedTimes;
-    AutoCompleteTextView dropDown;
-    int selectedDay;
-    String selectedTime;
+    private int center;
+
+    private DateTimeHelper dateTimeHelper;
+    private View view;
+//    private Calendar [] allowedDays;
+    private String [] allowedTimes;
+    private AutoCompleteTextView dropDown;
+    private int selectedDay;
+    private String selectedTime;
+
+    UserResponse user;
 
 
-    public Appointment_Day_Time_fragment(int month, int year){
+    public Appointment_Day_Time_fragment(int month, int year, int center){
         this.month = month;
         this.year = year;
+        this.center = center;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -49,30 +54,20 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
 
         view = inflater.inflate(R.layout.appointment_day_time, container, false);
 
-        setupAllowedDays();
-        setupWidget();
+        user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
 
+        dateTimeHelper = new DateTimeHelper();
+        // month + 1 : because Calendar.January in java returns 0 and API in C# returns 1
+        dateTimeHelper.CallBookingAPI(getActivity(), user, month + 1, year, center);
+
+        setupWidget();
 
         // Inflate the layout for this fragment
         return view;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setupAllowedDays() {
-        ArrayList<String> array = new ArrayList<String>();
-        array.add("2021-09-28T11:00:00");
-        array.add("2021-09-30T11:00:00");
-        array.add("2021-09-30T11:40:00");
-
-        dt = new DateTimeHelper(array);
-        ArrayList<Calendar> daysBuffer = dt.getDates();
-
-        allowedDays = new Calendar[daysBuffer.size()];
-        allowedDays = daysBuffer.toArray(allowedDays);
-
-    }
-
     public void setupWidget() {
+
         dayButton = (Button) view.findViewById(R.id.chooseDay);
         dayButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +80,7 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // här anropa api för att skicka user selected day, month, year, center and user token
             }
         });
 
@@ -120,9 +115,9 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
         );
 
         // disable the year and month selection and past days selection
-        dpd.setMinDate(now);
-        dpd.setMaxDate(last);
-        dpd.setSelectableDays(allowedDays);
+//        dpd.setMinDate(now);
+//        dpd.setMaxDate(last);
+        dpd.setSelectableDays(dateTimeHelper.getAllowedDays());
 
         dpd.show(getActivity().getSupportFragmentManager(), "Daypickerdialog");
     }
@@ -137,10 +132,11 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setupAllowedTimes(int dayOfMonth) {
 
-        ArrayList<String> timesBuffer = dt.getTimes(dayOfMonth);
+        ArrayList<String> timesBuffer = dateTimeHelper.getTimes(dayOfMonth);
 
         allowedTimes = new String[timesBuffer.size()];
         allowedTimes = timesBuffer.toArray(allowedTimes);
+
 
         Simple_DropdownAdapter adapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, allowedTimes);
 

@@ -40,10 +40,7 @@ public class Appointment_fragment extends Fragment{
             public void onClick(View view) {
                 Appointment_Center_Date_fragment appointment_CenterDate_fragment = new Appointment_Center_Date_fragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_CenterDate_fragment)
-                        .addToBackStack(null).commit();
-
-//                DialogFragment datePicker = new DatepickerFragment();
-//                datePicker.show(getActivity().getSupportFragmentManager(), "datePicker");
+                        .commit();
             }
         });
     }

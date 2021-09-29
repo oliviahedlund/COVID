@@ -127,9 +127,6 @@ public class GeneralActivity extends AppCompatActivity {
                         break;
                     case R.id.booking:
                         newFragment = new Appointment_fragment();
-//                        Appointment_fragment appointmentFragment = new Appointment_fragment();
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
-//                        mDrawerLayout.closeDrawers();
                         break;
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();

@@ -2,6 +2,8 @@ package com.example.myapplication.Booking;
 
 import android.app.Activity;
 import android.os.Build;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -26,6 +28,12 @@ public class DateTimeHelper {
     private ArrayList<LocalDateTime> dtArray;
     private ArrayList<Calendar> days;
     private ArrayList<String> times;
+
+    public Calendar[] getAllowedDays() {
+        return allowedDays;
+    }
+
+    private Calendar [] allowedDays;
     private List<BookingResponse> bookingResponse; ////
 
     //Example: ArrayList<String>  arrray = {"2021-09-26T11:00:00", "2021-09-27T11:00:00", "2021-09-27T11:40:00"};
@@ -37,6 +45,14 @@ public class DateTimeHelper {
         /*for (int i = 0; i < _array.size(); i++) {
             array.add(_array.get(i).getTime());
         }*/
+    }
+
+    public ArrayList<String> getArray() {
+        return array;
+    }
+
+    public void setArray(ArrayList<String> array) {
+        this.array = array;
     }
 
     public void CallBookingAPI(Activity activity, UserResponse user, int month, int year, int center){
@@ -58,12 +74,17 @@ public class DateTimeHelper {
                     for (int i = 0; i < bookingResponse.size(); i++) {
                         array.add(bookingResponse.get(i).getTime());
                     }
-                    System.out.println("här");
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setupAllowedDays();
+                        }
+                    },600);
 
                 }else{
                     Toast.makeText(activity,"Appointments/Booking failed", Toast.LENGTH_LONG).show();
                     System.out.println("else");
-
                 }
             }
 
@@ -73,7 +94,14 @@ public class DateTimeHelper {
                 System.out.println("fail");
             }
         });
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void setupAllowedDays() {
+        ArrayList<Calendar> daysBuffer = this.getDates();
+
+        allowedDays = new Calendar[daysBuffer.size()];
+        allowedDays = daysBuffer.toArray(allowedDays);
     }
 
     //gets times from initialization-array + specified day and returns a list of available times
@@ -81,6 +109,7 @@ public class DateTimeHelper {
     public ArrayList<String> getTimes(int _day) {
         int hour;
         int minute;
+
         times = new ArrayList<String>();
         int j = 0;
 
@@ -105,10 +134,11 @@ public class DateTimeHelper {
     }
 
     //gets dates from initialization-array and returns a list of available days
-    @RequiresApi(api = Build.VERSION_CODES.O) //method invoking this must add this line
+    //method invoking this must add this line
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<Calendar> getDates() {
-        dtArray = new ArrayList<LocalDateTime>();
-        days = new ArrayList<Calendar>();
+//        System.out.println("Array size is: " + array.size());
+        Log.d("hahadate", "" + array.size());
         int j = 0;
         for (int i = 0; i < array.size(); i++) {
             dtArray.add(LocalDateTime.parse(array.get(i)));
@@ -142,6 +172,8 @@ public class DateTimeHelper {
         }
         return -1;
     }
+
+
 }
 
 

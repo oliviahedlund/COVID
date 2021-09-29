@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ import com.example.myapplication.Booking.BookingRequest;
 import com.example.myapplication.Booking.BookingResponse;
 import com.example.myapplication.Booking.DateTimeHelper;
 
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,12 +60,15 @@ public class SettingsFragment extends Fragment{
             public void onClick(View view) {
                 dateTimeHelper = new DateTimeHelper();
                 dateTimeHelper.CallBookingAPI(getActivity(), user, 9,2021,0);
+
+//                Log.d("hahaSettings", "" + dateTimeHelper.getArray().size());
             }
         });
         testB2.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
+                Log.d("hahaSettings1", "" + dateTimeHelper.getArray().size());
                 dateTimeHelper.getDates();
                 dateTimeHelper.getTimes(29);
             }

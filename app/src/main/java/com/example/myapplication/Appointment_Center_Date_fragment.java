@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Booking.DateTimeHelper;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.text.DateFormatSymbols;
@@ -34,6 +35,8 @@ public class Appointment_Center_Date_fragment extends Fragment {
 
     MonthPickerDialog picker;
     View view;
+    UserResponse user;
+    DateTimeHelper dateTimeHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,9 +66,9 @@ public class Appointment_Center_Date_fragment extends Fragment {
                 if(center == NOT_DEFINED || month == NOT_DEFINED || year == NOT_DEFINED){
                     Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
                 } else {
-                    Appointment_Day_Time_fragment appointment_day_time_fragment = new Appointment_Day_Time_fragment(month, year);
+                    Appointment_Day_Time_fragment appointment_day_time_fragment = new Appointment_Day_Time_fragment(month, year, center);
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_day_time_fragment)
-                            .addToBackStack(null).commit();
+                            .commit();
                 }
 
 //                Toast.makeText(getContext(), "Center: " + String.valueOf(center) + " " + "Month: " + String.valueOf(month) + " " + "Year: " + String.valueOf(year), Toast.LENGTH_LONG).show();
@@ -75,6 +78,8 @@ public class Appointment_Center_Date_fragment extends Fragment {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                getActivity().getSupportFragmentManager().popBackStackImmediate();
+
                 Appointment_fragment appointmentFragment = new Appointment_fragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
             }
