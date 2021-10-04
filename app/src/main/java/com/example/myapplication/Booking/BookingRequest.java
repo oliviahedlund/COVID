@@ -14,6 +14,12 @@ public class BookingRequest {
         return token;
     }
 */
+    public void BookingRequest(int month, int year, int center){
+        this.month = month;
+        this.year = year;
+        this.center = center;
+    }
+
     public void setMonth(int month) {
         this.month = month;
     }
