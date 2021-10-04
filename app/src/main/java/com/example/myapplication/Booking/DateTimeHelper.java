@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.myapplication.ApiClient;
+import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.UserResponse;
 
 import java.time.LocalDateTime;
@@ -29,11 +31,11 @@ public class DateTimeHelper {
     private ArrayList<Calendar> days;
     private ArrayList<String> times;
 
+    private Calendar [] allowedDays;
     public Calendar[] getAllowedDays() {
         return allowedDays;
     }
 
-    private Calendar [] allowedDays;
     private List<BookingResponse> bookingResponse; ////
 
     //Example: ArrayList<String>  arrray = {"2021-09-26T11:00:00", "2021-09-27T11:00:00", "2021-09-27T11:40:00"};
@@ -55,10 +57,11 @@ public class DateTimeHelper {
         this.array = array;
     }
 
-    public void CallBookingAPI(Activity activity, UserResponse user, int month, int year, int center){
+    public void CallBookingAPI(Activity activity, UserResponse user, int month, int year, int center, LoadingAnimation loader){
         BookingRequest bookingRequest = new BookingRequest();
         //System.out.println(user.getToken());
         Call<List<BookingResponse>> bookingResponseCall = ApiClient.getUserService().booking(user.getToken(), month,year,center);
+
         bookingResponseCall.enqueue(new Callback<List<BookingResponse>>() {
 
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -74,11 +77,12 @@ public class DateTimeHelper {
                     for (int i = 0; i < bookingResponse.size(); i++) {
                         array.add(bookingResponse.get(i).getTime());
                     }
-
+                    Log.d("hahaAPI", "" + array.size());
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setupAllowedDays();
+                            loader.dismissLoadingAnimation();
                         }
                     },600);
 

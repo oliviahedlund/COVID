@@ -38,6 +38,8 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
     private int selectedDay;
     private String selectedTime;
 
+    private LoadingAnimation loadingAnimation;
+
     UserResponse user;
 
 
@@ -56,9 +58,12 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
 
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
 
+        loadingAnimation = new LoadingAnimation(this.getActivity());
+        loadingAnimation.startLoadingAnimation();
         dateTimeHelper = new DateTimeHelper();
+
         // month + 1 : because Calendar.January in java returns 0 and API in C# returns 1
-        dateTimeHelper.CallBookingAPI(getActivity(), user, month + 1, year, center);
+        dateTimeHelper.CallBookingAPI(getActivity(), user, month + 1, year, center, loadingAnimation);
 
         setupWidget();
 

@@ -51,28 +51,28 @@ public class SettingsFragment extends Fragment{
 
         setUpButtons();
 
-        ///////////
-        Button testB = view.findViewById(R.id.testbutton);
-        Button testB2 = view.findViewById(R.id.testbutton2);
-        testB.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View view) {
-                dateTimeHelper = new DateTimeHelper();
-                dateTimeHelper.CallBookingAPI(getActivity(), user, 9,2021,0);
-
-//                Log.d("hahaSettings", "" + dateTimeHelper.getArray().size());
-            }
-        });
-        testB2.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View view) {
-                Log.d("hahaSettings1", "" + dateTimeHelper.getArray().size());
-                dateTimeHelper.getDates();
-                dateTimeHelper.getTimes(29);
-            }
-        });
+//        ///////////
+//        Button testB = view.findViewById(R.id.testbutton);
+//        Button testB2 = view.findViewById(R.id.testbutton2);
+//        testB.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.O)
+//            @Override
+//            public void onClick(View view) {
+//                dateTimeHelper = new DateTimeHelper();
+//                dateTimeHelper.CallBookingAPI(getActivity(), user, 9,2021,0);
+//
+////                Log.d("hahaSettings", "" + dateTimeHelper.getArray().size());
+//            }
+//        });
+//        testB2.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.O)
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("hahaSettings1", "" + dateTimeHelper.getArray().size());
+//                dateTimeHelper.getDates();
+//                dateTimeHelper.getTimes(29);
+//            }
+//        });
 
         ///////////
 
