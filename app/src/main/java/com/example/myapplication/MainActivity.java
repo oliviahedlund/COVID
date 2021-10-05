@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminActivity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private String loginToken;
     private ImageButton languageButton1;
     private TextView languageButton2;
+    private TextView errorText;
 
     private UserResponse userResponse;
 
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.textView5);
         languageButton1 = findViewById(R.id.imageButton);
         languageButton2 = findViewById(R.id.textView16);
+        errorText = findViewById(R.id.errorText1);
 
         //Find Edit Text for user email and password
         userEmail = findViewById(R.id.editTextTextEmailAddress3);
@@ -109,10 +114,21 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(userEmail.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                //initialize patterns for email and password
+                Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+                Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$"); //one digit+lower+upper
+                //initialize matchers for the patterns for email and password
+                Matcher mat_email = emailPattern.matcher(userEmail.getText().toString());
+                Matcher mat_passw = passwordPattern.matcher(userPassword.getText().toString());
+                //check if email and password matches required patterns
+                if(mat_email.matches()) {
+                    //Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                    if(mat_passw.matches()){
+                        login();
+                    }
+                    else{ errorText.setText("Invalid password"); }
                 }
-                else{    login(); }
+                else{ errorText.setText("Invalid E-mail address"); }
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -149,41 +165,42 @@ public class MainActivity extends AppCompatActivity {
         this.recreate();
     }
 
-    public void login(){
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUserEmail(userEmail.getText().toString());
-        loginRequest.setPassword(userPassword.getText().toString());
+    public void login() {
 
-        Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                //om response ej är 200 ha felhantering, isBusy
-                if(response.isSuccessful()){
-                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
-                    LoginResponse loginResponse = response.body();
-                    loginToken = loginResponse.getToken();
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.setUserEmail(userEmail.getText().toString());
+            loginRequest.setPassword(userPassword.getText().toString());
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            callUserApi();
-                        }
-                    },700);
 
-                }else{
-                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_LONG).show();
+            Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
+            loginResponseCall.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    //om response ej är 200 ha felhantering, isBusy
+                    if (response.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+                        LoginResponse loginResponse = response.body();
+                        loginToken = loginResponse.getToken();
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callUserApi();
+                            }
+                        }, 700);
+
+                    }
+                    else { errorText.setText("Password did not match e-mail \nor e-mail does not exist"); }
 
                 }
 
-            }
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    // Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    errorText.setText("Login Failed");
+                }
+            });
 
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
 
 
     }
