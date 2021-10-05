@@ -121,6 +121,9 @@ public class GeneralActivity extends AppCompatActivity {
                         //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
                         newFragment = new ProfileFragment();
                         break;
+                    case R.id.nav_FAQ:
+                        newFragment = new FAQ();
+                        break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }

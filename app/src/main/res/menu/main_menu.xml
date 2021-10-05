@@ -22,6 +22,7 @@
             android:icon="@drawable/ic_covid_passport"
             android:title="@string/passport" />
         <item
+            android:id="@+id/nav_FAQ"
             android:icon="@drawable/ic_faq"
             android:title="@string/faq" />
     </group>
