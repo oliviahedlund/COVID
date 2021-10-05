@@ -32,7 +32,6 @@ public class AdminDashboardGeneric extends AppCompatActivity {
     private Covid_Tracking_dashboardFragment dashFragment;
     private UserResponse user;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +45,11 @@ public class AdminDashboardGeneric extends AppCompatActivity {
             dashFragment = new Covid_Tracking_dashboardFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
-
         //Setup Menu Bar
         setupMenuBar();
 
-
         //Setup Navigation Drawer
         setUpNavigationView();
-
     }
 
     //opens drawer menu when icon is clicked
