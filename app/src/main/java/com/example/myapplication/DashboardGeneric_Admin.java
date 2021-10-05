@@ -22,9 +22,9 @@ public class DashboardGeneric_Admin extends Fragment {
     private String[] ageGroup;
     private String[] product;
     private String[] dose;
-    private AutoCompleteTextView countyFilter; //Prev countyFilter
-    private AutoCompleteTextView centerFilter; //Prev centerFilter
-    private AutoCompleteTextView dateFilter; //Prev dateFilter
+    private AutoCompleteTextView countyFilter; //Prev locationFilter
+    private AutoCompleteTextView centerFilter; //Prev ageGroupFilter
+    private AutoCompleteTextView dateFilter; //Prev productFilter
     //private AutoCompleteTextView doseFilter;
 
     private ArrayList<Covid_Tracking_ListViewCell> listViewItems = new ArrayList<Covid_Tracking_ListViewCell>();
