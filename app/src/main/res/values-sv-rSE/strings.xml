@@ -46,6 +46,7 @@
     <string name="age">Ålder</string>
     <string name="chooseDays">Tillgängliga dagar</string>
     <string name="days">Dagar</string>
+    <string name="chooseAppointmentLength">Tid per bokning</string>
 
 
     <string-array name="questions">
