@@ -65,6 +65,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Get days and time" />
+        <Button
+            android:id="@+id/testbutton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin add range" />
+
 
     </LinearLayout>
 

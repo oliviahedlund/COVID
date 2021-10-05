@@ -28,16 +28,20 @@ public class DateTimeHelper {
 
     private List<BookingResponse> bookingResponse;
     private ArrayList<String> apiRawAppointmentList;
+    private Calendar [] allowedDays;
+    private int global_month;
+    private int global_year;
+
     private ArrayList<LocalDateTime> dateTimeArray; /// OLD - Delete
     private ArrayList<Calendar> days; /// OLD - Delete
     private ArrayList<String> times; /// OLD - Delete
-    private Calendar [] allowedDays;
+
 
 
     public DateTimeHelper() {
         apiRawAppointmentList = new ArrayList<String>();
-        dateTimeArray = new ArrayList<LocalDateTime>(); /// OLD - Delete
-        days = new ArrayList<Calendar>(); /// OLD - Delete
+        //dateTimeArray = new ArrayList<LocalDateTime>(); /// OLD - Delete
+        //days = new ArrayList<Calendar>(); /// OLD - Delete
     }
 
     public Calendar[] getAllowedDays() {
@@ -54,6 +58,8 @@ public class DateTimeHelper {
 
     public void CallBookingAPI(Activity activity, UserResponse user, int month, int year, int center){
         // TODO: Ändra input till en bookingRequest istället för month, year, center
+        global_month = month;
+        global_year = year;
         // int month = bookingRequest.month
         // int year = bookingRequest.year
         // int center = bookingRequest.center
@@ -92,7 +98,7 @@ public class DateTimeHelper {
             }
         });
     }
-
+/*
     //// OLD - Delete , rename setupAllowedDaysNEW ////
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setupAllowedDaysOLD() {
@@ -154,7 +160,7 @@ public class DateTimeHelper {
         System.out.println("Returned from getDates");
         return days;
     }
-
+*/
     //////////// NEW and improved ////////////
     private void setupAllowedDays() {
         ArrayList<Integer> intDays = new ArrayList<Integer>();
@@ -172,9 +178,13 @@ public class DateTimeHelper {
     //////////// NEW and improved ////////////
     private Calendar[] convertIntToCalendar(ArrayList<Integer> intList){
         Calendar[] calendarList = new Calendar[intList.size()];
-        Calendar temp = Calendar.getInstance();
 
+
+        int testvariabel;
         for (int i = 0; i < intList.size(); i++) {
+            Calendar temp = Calendar.getInstance();
+            temp.set(Calendar.MONTH, global_month);
+            temp.set(Calendar.YEAR, global_year);
             temp.set(Calendar.DAY_OF_MONTH, intList.get(i));
             calendarList[i] = temp;
         }
@@ -182,7 +192,7 @@ public class DateTimeHelper {
     }
 
     //////////// NEW and improved ////////////
-    public ArrayList<String> getTimesNEW(int _day) {
+    public ArrayList<String> getTimes(int _day) {
         ArrayList<String> times = new ArrayList<String>();
 
         for (int i = 0; i < apiRawAppointmentList.size(); i++) {
@@ -204,11 +214,10 @@ public class DateTimeHelper {
     }
 
 
-    private int getPosition(Calendar calendarDay, String time) {
-        String day = calendarDay.toString();
+    private int getPosition(int day, String time) {
 
         for (int i = 0; i < apiRawAppointmentList.size(); i++) {
-            if (day.equals(extractDayApiResponse(i))) {
+            if (day==extractDayApiResponse(i)) {
                 if (time.equals(extractTimeApiResponse(i))) {
                     return i;
                 }
@@ -218,45 +227,51 @@ public class DateTimeHelper {
     }
 
 
-    public int SetBookingAPI(Activity activity, UserResponse user, Calendar calendarMonth, String appointmentTime) {
-        int index = getPosition(calendarMonth, appointmentTime);
+    public void SetBookingAPI(Activity activity, UserResponse user, int day, String appointmentTime) {
+        int index = getPosition(day, appointmentTime);
         if(index == -1){
-            System.out.println("No appointment available at: "+ calendarMonth.toString()+" "+appointmentTime);
-            return 0;
+            System.out.println("No appointment available at: "+ day +" "+appointmentTime);
+            return;
         }
-        String time = bookingResponse.get(index).getTime();
+        SetBookingRequest setBookingRequest = new SetBookingRequest();
+        setBookingRequest.setTime(bookingResponse.get(index).getTime());
+        setBookingRequest.setCenter(bookingResponse.get(index).getCenter());
+        setBookingRequest.setLength(bookingResponse.get(index).getLength());
+
+        /*String time = bookingResponse.get(index).getTime();
         int center = bookingResponse.get(index).getCenter();
         int length = bookingResponse.get(index).getLength();
+*/
+/*
+        String time = "2021-10-04T12:34:27.292Z";
+        int center = 0;
+        int length = 20;
+*/
 
-        /*Call<BookingResponse> bookingResponseCall = ApiClient.getUserService().booking(user.getToken(), time,center,length);
+        Call<String> setBookingResponseCall = ApiClient.getUserService().setBooking(user.getToken(), setBookingRequest);
 
-        bookingResponseCall.enqueue(new Callback<List<BookingResponse>>() {
+        setBookingResponseCall.enqueue(new Callback<String>() {
 
-            @RequiresApi(api = Build.VERSION_CODES.O) /// OLD - Delete
             @Override
-            public void onResponse(Call<List<BookingResponse>> call, Response<List<BookingResponse>> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 //TODO: errorhandling
                 if (response.isSuccessful()) {
-                    return 1;
-
-
+                    System.out.println(response);
 
                 }else{
                     Toast.makeText(activity,"Appointments/Booking failed", Toast.LENGTH_LONG).show();
                     System.out.println("else");
-                    return 0;
+                    System.out.println(response);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<BookingResponse>> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 System.out.println("fail");
-                return 0;
             }
         });
-        */
-        return 0;
+
     }
 
     /*

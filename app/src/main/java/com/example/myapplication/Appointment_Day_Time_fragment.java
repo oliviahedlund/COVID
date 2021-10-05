@@ -80,6 +80,9 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println(selectedDay+" "+selectedTime);
+                //selectedTime = "07:00";
+                dateTimeHelper.SetBookingAPI(getActivity(), user, selectedDay, selectedTime);
                 // här anropa api för att skicka user selected day, month, year, center and user token
             }
         });
@@ -145,6 +148,7 @@ public class Appointment_Day_Time_fragment extends Fragment implements DatePicke
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 System.out.println(allowedTimes[position]);
+                selectedTime = allowedTimes[position];
             }
         });
     }
