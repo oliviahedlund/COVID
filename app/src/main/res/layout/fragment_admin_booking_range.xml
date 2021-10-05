@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:dividerPadding="32dp"
+    android:padding="20dp"
     tools:context=".Admin.AdminBookingRange">
 
     <TextView
@@ -13,112 +12,122 @@
         android:layout_height="wrap_content"
         android:text="@string/generate"
         android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:paddingBottom="17dp"/>
 
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginHorizontal="5dp"
+        android:hint="@string/center"
+        android:textColorHint="@color/beige">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="30sp"
-            android:text="@string/chooseCenter"
-            android:textSize="25sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <AutoCompleteTextView
+            android:id="@+id/generateCenter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="1"
-            android:hint="@string/center"
-            android:textColorHint="@color/beige">
+            android:inputType="none"
+            android:text="@string/center"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <AutoCompleteTextView
-                android:id="@+id/generateCenter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:text="@string/center"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
 
-    <LinearLayout
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginHorizontal="5dp"
+        android:hint="@string/age"
+        android:textColorHint="@color/beige">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="15sp"
-            android:text="@string/chooseAge"
-            android:textSize="25sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <AutoCompleteTextView
+            android:id="@+id/generateAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="1"
-            android:hint="@string/age"
-            android:textColorHint="@color/beige">
+            android:inputType="none"
+            android:text="@string/age"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <AutoCompleteTextView
-                android:id="@+id/generateAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:text="@string/age"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="@string/chooseDays" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <CheckBox
+            android:id="@+id/cbMonday"
+            style="@android:style/Widget.CompoundButton.CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="10sp"
-            android:text="@string/chooseDays"
-            android:textSize="25sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
-            android:hint="@string/days"
-            android:textColorHint="@color/beige">
+            android:text="M" />
 
-            <AutoCompleteTextView
-                android:id="@+id/generateDays"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:text="@string/days"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tu" />
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="W" />
+
+        <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Th" />
+
+        <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="F" />
+
+        <CheckBox
+            android:id="@+id/checkBox7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sa" />
+
+        <CheckBox
+            android:id="@+id/checkBox8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Su" />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="17dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10sp"
             android:text="@string/chooseAppointmentLength"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
 
         <EditText
@@ -132,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="min"
-            android:textSize="25sp"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
@@ -141,20 +150,21 @@
         android:id="@+id/textView29"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Startdate (YYYY-MM-DD HH:mm)" />
+        android:textSize="20sp"
+        android:text="@string/startdate" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="17dp">
 
         <TextView
             android:id="@+id/textView28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="Date: " />
+            android:text="@string/date" />
 
         <EditText
             android:id="@+id/editTextDate5"
@@ -196,7 +206,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:text="Time: " />
+            android:text="@string/time" />
 
         <EditText
             android:id="@+id/editTextTime4"
@@ -224,19 +234,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enddate (YYYY-MM-DD HH:mm)" />
+        android:text="@string/enddate"
+        android:textSize="20sp"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="17dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="Date: " />
+            android:text="@string/date" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -272,7 +283,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:text="Time: " />
+            android:text="@string/time" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -292,7 +303,15 @@
             android:ems="2"
             android:gravity="center"
             android:inputType="time" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/publishTimesBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/publishTimes" />
+
 
 </LinearLayout>
 

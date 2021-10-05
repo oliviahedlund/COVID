@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button logoutButton;
     private TextView userName;
     private TextView userEmail;
-    private AdminBookingRange dashFragment;
+    private Covid_Tracking_dashboardFragment dashFragment;
     private UserResponse user;
 
 
@@ -43,7 +43,7 @@ public class AdminActivity extends AppCompatActivity {
         user = (UserResponse) i.getSerializableExtra("userInfo");
 
         if(savedInstanceState == null) {
-            dashFragment = new AdminBookingRange();
+            dashFragment = new Covid_Tracking_dashboardFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
 
@@ -113,6 +113,9 @@ public class AdminActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
+                        break;
+                    case R.id.nav_sched:
+                        newFragment = new AdminBookingRange();
                         break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frameAdmin);

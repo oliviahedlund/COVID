@@ -47,6 +47,10 @@
     <string name="chooseDays">Tillgängliga dagar</string>
     <string name="days">Dagar</string>
     <string name="chooseAppointmentLength">Tid per bokning</string>
+    <string name="date">Datum</string>
+    <string name="startdate">Startdatum (åååå-MM-DD TT:mm)</string>
+    <string name="enddate">Slutdatum (åååå-MM-DD TT:mm)</string>
+    <string name="publishTimes">Publicera Tider</string>
 
 
     <string-array name="questions">

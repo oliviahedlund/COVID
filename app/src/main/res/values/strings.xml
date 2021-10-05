@@ -26,6 +26,10 @@
     <string name="chooseDays">Available days</string>
     <string name="days">Days</string>
     <string name="chooseAppointmentLength">Time per booking</string>
+    <string name="date">Date</string>
+    <string name="startdate">Startdate (YYYY-MM-DD HH:mm)</string>
+    <string name="enddate">Enddate (YYYY-MM-DD HH:mm)</string>
+    <string name="publishTimes">Publish Times</string>
 
 
     //registerActivity
@@ -99,5 +103,19 @@
     <string name="cancel">Cancel</string>
     <string name="chooseDate">Choose a date</string>
     <string name="chooseDay">Choose a day</string>
+
+    <string-array name="Centers">
+        <item>CCC</item>
+        <item>Arena</item>
+    </string-array>
+
+    <string-array name="Age">
+        <item>All ages</item>
+        <item>18 +</item>
+        <item>30 +</item>
+        <item>40 +</item>
+        <item>50 +</item>
+        <item>60 +</item>
+    </string-array>
 
 </resources>
