@@ -17,7 +17,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class Covid_Tracking_dashboardFragment extends Fragment {
+public class DashboardGeneric_Admin extends Fragment {
     private String[] locations;
     private String[] ageGroup;
     private String[] product;
