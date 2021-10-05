@@ -40,6 +40,13 @@
     <string name="vs">Dos 1 vs Dos 2:</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
+    <string name="generate">Generera tillgängliga tider</string>
+    <string name="chooseCenter">Center</string>
+    <string name="chooseAge">Åldersgrupp</string>
+    <string name="age">Ålder</string>
+    <string name="chooseDays">Tillgängliga dagar</string>
+    <string name="days">Dagar</string>
+
 
     <string-array name="questions">
         <item>1. Har du någon gång fått en kraftig reaktion efter vaccination, och behövt sjukhusvård?</item>

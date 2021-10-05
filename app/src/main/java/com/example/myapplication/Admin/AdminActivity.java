@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button logoutButton;
     private TextView userName;
     private TextView userEmail;
-    private Covid_Tracking_dashboardFragment dashFragment;
+    private AdminBookingRange dashFragment;
     private UserResponse user;
 
 
@@ -43,7 +43,7 @@ public class AdminActivity extends AppCompatActivity {
         user = (UserResponse) i.getSerializableExtra("userInfo");
 
         if(savedInstanceState == null) {
-            dashFragment = new Covid_Tracking_dashboardFragment();
+            dashFragment = new AdminBookingRange();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
 
