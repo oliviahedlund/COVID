@@ -86,6 +86,7 @@
 
     // Appointment making
     <string name="center">Center</string>
+    <string name="vaccine">Vaccine</string>
     <string name="time">Time</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>

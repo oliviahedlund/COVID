@@ -1,6 +1,11 @@
 package com.example.myapplication.Booking;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +22,9 @@ public class BookingResponse {
         return length;
     }
 
-    public String getTime() {
-        return time;
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDateTime getTime() {
+        return LocalDateTime.parse(time);
     }
 
     public void setCenter(int center) {

@@ -76,6 +76,7 @@
 
     // Appointment making
     <string name="center">Centret</string>
+    <string name="vaccine">Vaccin</string>
     <string name="time">Tid</string>
     <string name="confirm">Klar</string>
     <string name="cancel">Avbryt</string>

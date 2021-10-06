@@ -12,7 +12,10 @@ import androidx.annotation.RequiresApi;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.UserResponse;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -26,8 +29,7 @@ import retrofit2.Response;
 public class DateTimeHelper {
     //{"2021-09-26T11:00:00", "2021-09-27T11:00:00", "2021-09-27T11:40:00"}
 
-    private ArrayList<String> array;
-    private ArrayList<LocalDateTime> dtArray;
+    private ArrayList<LocalDateTime> array;
     private ArrayList<Calendar> days;
     private ArrayList<String> times;
 
@@ -36,30 +38,18 @@ public class DateTimeHelper {
         return allowedDays;
     }
 
-    private List<BookingResponse> bookingResponse; ////
+    private List<BookingResponse> bookingResponses; ////
 
     //Example: ArrayList<String>  arrray = {"2021-09-26T11:00:00", "2021-09-27T11:00:00", "2021-09-27T11:40:00"};
-    //         DateTimeHelperTest dt = new DateTimeHelperTest(array);
+
     public DateTimeHelper() {
-        array = new ArrayList<String>();
-        dtArray = new ArrayList<LocalDateTime>();
-        days = new ArrayList<Calendar>();
-        /*for (int i = 0; i < _array.size(); i++) {
-            array.add(_array.get(i).getTime());
-        }*/
+        array = new ArrayList<LocalDateTime>();
     }
 
-    public ArrayList<String> getArray() {
-        return array;
-    }
-
-    public void setArray(ArrayList<String> array) {
-        this.array = array;
-    }
 
     public void CallBookingAPI(Activity activity, UserResponse user, int month, int year, int center, LoadingAnimation loader){
         BookingRequest bookingRequest = new BookingRequest();
-        //System.out.println(user.getToken());
+
         Call<List<BookingResponse>> bookingResponseCall = ApiClient.getUserService().booking(user.getToken(), month,year,center);
 
         bookingResponseCall.enqueue(new Callback<List<BookingResponse>>() {
@@ -67,96 +57,76 @@ public class DateTimeHelper {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<List<BookingResponse>> call, Response<List<BookingResponse>> response) {
-                //errorhandling
-                if (response.isSuccessful()) {
-                    //Toast.makeText(MainActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
-                    bookingResponse = response.body(); //i userResponse ligger all information om användaren
-                    //System.out.println(bookingResponse);
 
-                    //initialize array with strings
-                    for (int i = 0; i < bookingResponse.size(); i++) {
-                        array.add(bookingResponse.get(i).getTime());
+                if (response.isSuccessful()) {
+
+                    bookingResponses = response.body();
+
+                    for (int i = 0; i < bookingResponses.size(); i++) {
+                        array.add(bookingResponses.get(i).getTime());
                     }
-                    Log.d("hahaAPI", "" + array.size());
+
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            setupAllowedDays();
+                            getDates();
                             loader.dismissLoadingAnimation();
                         }
                     },600);
 
                 }else{
                     Toast.makeText(activity,"Appointments/Booking failed", Toast.LENGTH_LONG).show();
-                    System.out.println("else");
                 }
             }
 
             @Override
             public void onFailure(Call<List<BookingResponse>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                System.out.println("fail");
             }
         });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setupAllowedDays() {
-        ArrayList<Calendar> daysBuffer = this.getDates();
-
-        allowedDays = new Calendar[daysBuffer.size()];
-        allowedDays = daysBuffer.toArray(allowedDays);
-    }
-
-    //gets times from initialization-array + specified day and returns a list of available times
-    @RequiresApi(api = Build.VERSION_CODES.O)  //method invoking this must add this line
-    public ArrayList<String> getTimes(int _day) {
+    public String[] getTimes(Calendar day) {
         int hour;
         int minute;
 
         times = new ArrayList<String>();
-        int j = 0;
 
         for (int i = 0; i < array.size(); i++) {
-            dtArray.add(LocalDateTime.parse(array.get(i)));
-            System.out.println("Available appointment: " + dtArray.get(i)); ////
-            if (dtArray.get(i).getDayOfMonth() == _day) {
-                hour = dtArray.get(i).getHour();
-                minute = dtArray.get(i).getMinute();
-//                times.add(LocalTime.of(hour, minute));
+            if (array.get(i).getYear() == day.get(Calendar.YEAR)
+                    && array.get(i).getMonthValue() == (day.get(Calendar.MONTH) + 1)
+                    && array.get(i).getDayOfMonth() == day.get(Calendar.DAY_OF_MONTH)) {
+
+                hour = array.get(i).getHour();
+                minute = array.get(i).getMinute();
+
                 if(minute < 10){
                     times.add(hour + " : 0" + minute);
                 } else
                     times.add(hour + " : " + minute);
-                System.out.println("Added time: " + times.get(times.size() - 1)); ////
             }
-
-
         }
-        System.out.println("Returned from getTimes"); ////
-        return times;
+
+        String [] allowedTimes = new String[times.size()];
+
+        return times.toArray(allowedTimes);
     }
 
-    //gets dates from initialization-array and returns a list of available days
-    //method invoking this must add this line
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ArrayList<Calendar> getDates() {
-//        System.out.println("Array size is: " + array.size());
-        Log.d("hahadate", "" + array.size());
-        int j = 0;
+    public void getDates() {
+        days = new ArrayList<Calendar>();
+
         for (int i = 0; i < array.size(); i++) {
-            dtArray.add(LocalDateTime.parse(array.get(i)));
-            System.out.println("Available appointment: " + dtArray.get(i)); ////
-            if (!days.contains(dtArray.get(i).getDayOfMonth())) {
-                Calendar buffer = Calendar.getInstance();
-                buffer.set(Calendar.DAY_OF_MONTH, dtArray.get(i).getDayOfMonth());
-                days.add(buffer);
-                System.out.println("New day: " + days.get(days.size() - 1)); ////
-                j++;
-            }
+            Calendar buffer = Calendar.getInstance();
+            buffer.set(Calendar.YEAR, array.get(i).getYear());
+            buffer.set(Calendar.MONTH, array.get(i).getMonthValue() - 1);
+            buffer.set(Calendar.DAY_OF_MONTH, array.get(i).getDayOfMonth());
+            days.add(buffer);
         }
-        System.out.println("Returned from getDates");
-        return days;
+
+        allowedDays = new Calendar[days.size()];
+        allowedDays = days.toArray(allowedDays);
     }
 
     //Returns position in list based on chosen day and time
@@ -165,10 +135,10 @@ public class DateTimeHelper {
         int hour = time.getHour();
         int minute = time.getMinute();
 
-        for (int i = 0; i < dtArray.size(); i++) {
-            if(dtArray.get(i).getDayOfMonth() == day){
-                if(dtArray.get(i).getHour() == hour) {
-                    if (dtArray.get(i).getMinute() == minute) {
+        for (int i = 0; i < array.size(); i++) {
+            if(array.get(i).getDayOfMonth() == day){
+                if(array.get(i).getHour() == hour) {
+                    if (array.get(i).getMinute() == minute) {
                         return i;
                     }
                 }
