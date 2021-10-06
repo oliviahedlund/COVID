@@ -69,8 +69,7 @@ public class DashboardGeneric_Admin extends Fragment {
         Center_dropdown.setAdapter(adapterCenter);
         Date_dropdown.setAdapter(adapterDate);
     }
-
-    private String[] getCenters(String county){
+    /*private String[] getCenters(String county){
         switch(county){
             case "Blekinge":
             case "Dalarna":
@@ -98,7 +97,7 @@ public class DashboardGeneric_Admin extends Fragment {
                 return new String[]{"Center"};
         }
     }
-
+*/
 }
 
 
