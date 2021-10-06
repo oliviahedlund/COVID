@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.DashboardGeneric_Admin;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.SettingsFragment;
@@ -29,7 +30,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button logoutButton;
     private TextView userName;
     private TextView userEmail;
-    private Covid_Tracking_dashboardFragment dashFragment;
+    private DashboardGeneric_Admin dashFragment;
     private UserResponse user;
 
 
@@ -43,7 +44,7 @@ public class AdminActivity extends AppCompatActivity {
         user = (UserResponse) i.getSerializableExtra("userInfo");
 
         if(savedInstanceState == null) {
-            dashFragment = new Covid_Tracking_dashboardFragment();
+            dashFragment = new DashboardGeneric_Admin();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
 
@@ -103,7 +104,7 @@ public class AdminActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        newFragment = new Covid_Tracking_dashboardFragment();
+                        newFragment = new DashboardGeneric_Admin();
                         break;
                     case R.id.nav_quest:
                         newFragment = new AdminQuestionnaireFragment();

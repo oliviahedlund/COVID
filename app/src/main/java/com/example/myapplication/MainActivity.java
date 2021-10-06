@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminActivity;
-import com.example.myapplication.Admin.AdminDashboardGeneric;
+import com.example.myapplication.DashboardGeneric_Admin;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent i;
                     // replace if-statement with: userResponse.getAdmin()
                     if(userResponse.getAdmin() || adminCheck.isChecked()){
-                        i = new Intent(MainActivity.this, AdminDashboardGeneric.class);
+                        i = new Intent(MainActivity.this, AdminActivity.class);
                     }
                     else {
                         i = new Intent(MainActivity.this, GeneralActivity.class);
