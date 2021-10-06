@@ -27,8 +27,8 @@
     <string name="days">Days</string>
     <string name="chooseAppointmentLength">Time per booking</string>
     <string name="date">Date</string>
-    <string name="startdate">Startdate (YYYY-MM-DD HH:mm)</string>
-    <string name="enddate">Enddate (YYYY-MM-DD HH:mm)</string>
+    <string name="startdate">Startdate</string>
+    <string name="enddate">Enddate</string>
     <string name="publishTimes">Publish Times</string>
 
 
@@ -116,6 +116,16 @@
         <item>40 +</item>
         <item>50 +</item>
         <item>60 +</item>
+    </string-array>
+
+    <string-array name="weekdaysShort">
+        <item>Su</item>
+        <item>Mo</item>
+        <item>Tu</item>
+        <item>We</item>
+        <item>Th</item>
+        <item>Fr</item>
+        <item>Sa</item>
     </string-array>
 
 </resources>

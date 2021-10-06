@@ -48,8 +48,8 @@
     <string name="days">Dagar</string>
     <string name="chooseAppointmentLength">Tid per bokning</string>
     <string name="date">Datum</string>
-    <string name="startdate">Startdatum (åååå-MM-DD TT:mm)</string>
-    <string name="enddate">Slutdatum (åååå-MM-DD TT:mm)</string>
+    <string name="startdate">Startdatum</string>
+    <string name="enddate">Slutdatum</string>
     <string name="publishTimes">Publicera Tider</string>
 
 
@@ -87,14 +87,22 @@
     </string-array>
 
     // Appointment making
-    <string name="center">Centret</string>
+    <string name="center">Center</string>
     <string name="time">Tid</string>
     <string name="confirm">Klar</string>
     <string name="cancel">Avbryt</string>
     <string name="chooseDate">Välj ett datum</string>
     <string name="chooseDay">välj en dag</string>
 
-
+    <string-array name="weekdaysShort">
+        <item>Sö</item>
+        <item>Må</item>
+        <item>Ti</item>
+        <item>On</item>
+        <item>To</item>
+        <item>Fr</item>
+        <item>Lö</item>
+    </string-array>
 
 </resources>
 

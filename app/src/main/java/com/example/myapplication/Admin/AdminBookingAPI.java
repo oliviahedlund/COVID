@@ -7,12 +7,25 @@ import com.example.myapplication.ApiClient;
 import com.example.myapplication.Booking.SetBookingRequest;
 import com.example.myapplication.UserResponse;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AdminBookingAPI {
 
+
+    public String convertTimeToAPIString(int year, int month, int date, int hour, int minute){
+        month = month-1; //because januari = 0
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year,month,date,hour,minute,00);
+        SimpleDateFormat apiFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return apiFormat.format(calendar.getTime());
+    }
 
     public void PostBookingRange(Activity activity, UserResponse user, PostRangeRequest postRangeRequest) {
         postRangeRequest.setStartDateTime("2021-12-04T08:00:00");
