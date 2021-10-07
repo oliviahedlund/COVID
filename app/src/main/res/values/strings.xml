@@ -93,4 +93,6 @@
     <string name="chooseDate">Choose a date</string>
     <string name="chooseDay">Choose a day</string>
 
+    <string name="connectionFailureAlert">Connection failed, please try again later!</string>
+
 </resources>

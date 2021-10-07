@@ -83,7 +83,7 @@
     <string name="chooseDate">Välj ett datum</string>
     <string name="chooseDay">välj en dag</string>
 
-
+    <string name="connectionFailureAlert">Uppkoppling misslyckades, vänligen pröva lite senare!</string>
 
 </resources>
 

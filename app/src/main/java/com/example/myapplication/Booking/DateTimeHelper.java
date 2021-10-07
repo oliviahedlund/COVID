@@ -5,10 +5,13 @@ import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.AlertWindow;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.UserResponse;
@@ -47,7 +50,8 @@ public class DateTimeHelper {
     }
 
 
-    public void CallBookingAPI(Activity activity, UserResponse user, int month, int year, int center, LoadingAnimation loader){
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void CallBookingAPI(Activity activity, UserResponse user, int month, int year, int center, LoadingAnimation loader, Fragment fragment){
         BookingRequest bookingRequest = new BookingRequest();
 
         Call<List<BookingResponse>> bookingResponseCall = ApiClient.getUserService().booking(user.getToken(), month,year,center);
@@ -82,6 +86,8 @@ public class DateTimeHelper {
             @Override
             public void onFailure(Call<List<BookingResponse>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                loader.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow();
             }
         });
     }

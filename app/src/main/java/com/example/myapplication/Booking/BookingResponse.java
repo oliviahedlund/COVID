@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookingResponse {
-    private String time;
+    private LocalDateTime time;
     private int length;
     private int center;
 
@@ -24,14 +24,15 @@ public class BookingResponse {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public LocalDateTime getTime() {
-        return LocalDateTime.parse(time);
+//        return LocalDateTime.parse(time);
+        return time;
     }
 
     public void setCenter(int center) {
         this.center = center;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

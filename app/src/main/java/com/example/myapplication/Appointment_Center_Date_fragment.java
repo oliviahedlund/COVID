@@ -1,8 +1,8 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,10 +45,9 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
     private int day = NOT_DEFINED;
     private int month = NOT_DEFINED;
     private int year = NOT_DEFINED;
-//    private int minMonth = month;
 
     private LoadingAnimation loadingAnimation;
-    MonthPickerDialog picker;
+
     View view;
     UserResponse user;
     DateTimeHelper dateTimeHelper;
@@ -79,6 +78,10 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
         return view;
     }
 
+    public Fragment getFragment(){
+        return this;
+    }
+
     public void setupCenters() {
 
         centerDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseCenter);
@@ -102,12 +105,13 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
 
         vaccineDropdown.setAdapter(vaccineAdapter);
         vaccineDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 vaccine = position;
                 selectedVaccine = centerVaccineHelper.getSelectedVaccine(vaccine);
                 dateButton.setEnabled(true);
-                dateTimeHelper.CallBookingAPI(getActivity(), user, 10, 2021, 0, loadingAnimation);
+                dateTimeHelper.CallBookingAPI(getActivity(), user, 10, 2021, 0, loadingAnimation, getFragment());
                 loadingAnimation.startLoadingAnimation();
             }
         });
