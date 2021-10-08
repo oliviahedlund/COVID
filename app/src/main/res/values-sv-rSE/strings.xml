@@ -49,6 +49,8 @@
         <item>5. Har du vaccinerat dig någon gång under de senaste 7 dagarna?</item>
     </string-array>
 
+    <string name="questionnairTitle">Vänligen fyll i hälsodeklarationen</string>
+
     <string-array name="location">
         <item>Alla platser</item>
         <item>Sverige</item>
@@ -84,6 +86,8 @@
     <string name="chooseDay">välj en dag</string>
 
     <string name="connectionFailureAlert">Uppkoppling misslyckades, vänligen pröva lite senare!</string>
+
+    <string name="placeHolder">Place Holder</string>
 
 </resources>
 

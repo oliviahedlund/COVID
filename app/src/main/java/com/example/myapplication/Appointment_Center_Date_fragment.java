@@ -34,19 +34,19 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
     private AutoCompleteTextView timeDropdown;
     private String times[];
 
-
     private Button dateButton;
     private Button confirmButton;
     private Button cancelButton;
+
     private int center = NOT_DEFINED;
     private int vaccine = NOT_DEFINED;
     private int time = NOT_DEFINED;
-
     private int day = NOT_DEFINED;
     private int month = NOT_DEFINED;
     private int year = NOT_DEFINED;
 
     private LoadingAnimation loadingAnimation;
+    private int [] questionnaireAnswers;
 
     View view;
     UserResponse user;
@@ -54,6 +54,14 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
     private CenterVaccineHelper centerVaccineHelper;
     private String selectedCenter;
     private String selectedVaccine;
+
+    public Appointment_Center_Date_fragment(int [] questionnaireAnswers){
+        this.questionnaireAnswers = questionnaireAnswers;
+    }
+
+    public Fragment getFragment(){
+        return this;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,13 +81,7 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
         setupCenters();
         setupButtons();
 
-
-        // Inflate the layout for this fragment
         return view;
-    }
-
-    public Fragment getFragment(){
-        return this;
     }
 
     public void setupCenters() {
@@ -135,20 +137,14 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
                 if(center == NOT_DEFINED || month == NOT_DEFINED || year == NOT_DEFINED){
                     Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
                 } else {
-//                    Appointment_Day_Time_fragment appointment_day_time_fragment = new Appointment_Day_Time_fragment(month, year, center);
-//                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_day_time_fragment)
-//                            .commit();
+                    // api post to the server
                 }
-
-//                Toast.makeText(getContext(), "Center: " + String.valueOf(center) + " " + "Month: " + String.valueOf(month) + " " + "Year: " + String.valueOf(year), Toast.LENGTH_LONG).show();
             }
         });
         cancelButton = (Button) view.findViewById(R.id.cancelCenterDate);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                getActivity().getSupportFragmentManager().popBackStackImmediate();
-
                 Appointment_fragment appointmentFragment = new Appointment_fragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
             }
@@ -218,15 +214,5 @@ public class Appointment_Center_Date_fragment extends Fragment implements DatePi
 
             }
         });
-    }
-
-    private String getMonthForInt(int num) {
-        String month = "wrong";
-        DateFormatSymbols dfs = new DateFormatSymbols();
-        String[] months = dfs.getMonths();
-        if (num >= 0 && num <= 11 ) {
-            month = months[num];
-        }
-        return month;
     }
 }

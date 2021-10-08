@@ -1,10 +1,8 @@
 package com.example.myapplication;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -22,7 +20,7 @@ public class AlertWindow {
 
     public void createAlertWindow(){
         dialogBuilder = new AlertDialog.Builder(fragment.getContext());
-        final View popupView = fragment.getLayoutInflater().inflate(R.layout.popupwindow, null);
+        final View popupView = fragment.getLayoutInflater().inflate(R.layout.alertwindow, null);
         okButton = (Button) popupView.findViewById(R.id.alertConfirmButton);
 
         dialogBuilder.setView(popupView);

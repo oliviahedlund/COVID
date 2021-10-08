@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -17,6 +20,10 @@ import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -35,8 +42,9 @@ public class ApiClient {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
             @Override
             public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-                Instant instant = Instant.ofEpochMilli(json.getAsJsonPrimitive().getAsLong());
-                return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+//                Instant instant = Instant.ofEpochMilli(json.getAsJsonPrimitive().getAsLong());
+//                return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+                return LocalDateTime.parse(json.getAsString());
             }
         }).create();
 

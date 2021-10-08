@@ -26,11 +26,9 @@ public class Covid_Tracking_ListViewAdapter extends ArrayAdapter<Covid_Tracking_
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.covid_tracking_listview_item, parent, false);
         }
 
-        //ImageView image = (ImageView) convertView.findViewById(R.id.listViewCellImage);
         TextView label = (TextView) convertView.findViewById(R.id.listViewCellLabel);
         TextView data = (TextView) convertView.findViewById(R.id.listViewCellData);
 
-        //image.setImageResource(item.getImage());
         label.setText(item.getLabel());
 
         if(item.getData() == null){

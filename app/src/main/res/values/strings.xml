@@ -59,6 +59,8 @@
         <item>5. Have you been vaccinated in the past 7 days?</item>
     </string-array>
 
+    <string name="questionnairTitle">Please fill out the questionnaire</string>
+
     <string-array name="location">
         <item>All Locations</item>
         <item>Sweden</item>
@@ -94,5 +96,7 @@
     <string name="chooseDay">Choose a day</string>
 
     <string name="connectionFailureAlert">Connection failed, please try again later!</string>
+
+    <string name="placeHolder">Place Holder</string>
 
 </resources>

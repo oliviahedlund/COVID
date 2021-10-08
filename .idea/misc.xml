@@ -10,19 +10,28 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_CenterDate.xml" value="0.1" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_center_date.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_confirm_window.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_day_time.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_making.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_making_fragment.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_making_popup.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_dropdown_item.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_fragment_dashboard.xml" value="0.264" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.19972826086956522" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/fragment_covid_passport.xml" value="0.25" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/listview_cell_questionnaire.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/loading_animation.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/nav_header.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/popup_window.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/popupwindow.xml" value="0.2" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_admin.xml" value="0.25" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_admin_messages.xml" value="0.25" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_cell.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_cell1.xml" value="0.25" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_cell_user.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_fragment.xml" value="0.25" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_popup.xml" value="0.253125" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_user_fragment.xml" value="0.1902497027348395" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/simple_dropdown_item.xml" value="0.1546875" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/main_menu.xml" value="0.25" />
         <entry key="..\:/Users/linda/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_dashboard.xml" value="0.14947916666666666" />

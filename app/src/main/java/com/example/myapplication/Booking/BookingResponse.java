@@ -24,7 +24,6 @@ public class BookingResponse {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public LocalDateTime getTime() {
-//        return LocalDateTime.parse(time);
         return time;
     }
 
