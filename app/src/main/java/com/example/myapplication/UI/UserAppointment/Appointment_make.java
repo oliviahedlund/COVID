@@ -64,7 +64,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     private int month = NOT_DEFINED;
     private int year = NOT_DEFINED;
 
-    private LoadingAnimation loadingAnimation;
     private int [] questionnaireAnswers;
 
     private View view;
@@ -93,8 +92,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         centerVaccineHelper.apiGetCenterList();
         centers = centerVaccineHelper.getCenters();
 
-        loadingAnimation = new LoadingAnimation(this.getActivity());
-
         setupCenters();
         setupButtons();
 
@@ -119,7 +116,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                         @Override
                         public void run() {
                             getDates();
-                            loadingAnimation.dismissLoadingAnimation();
+                            LoadingAnimation.dismissLoadingAnimation();
                         }
                     },600);
 
@@ -131,7 +128,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onFailure(Call<List<BookingResponse>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                loadingAnimation.dismissLoadingAnimation();
+                LoadingAnimation.dismissLoadingAnimation();
                 new AlertWindow(getFragment()).createAlertWindow();
             }
         });
@@ -210,7 +207,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 selectedVaccine = centerVaccineHelper.getSelectedVaccine(vaccine);
                 dateButton.setEnabled(true);
                 CallBookingAPI(getActivity(), user, 10, 2021, 0);
-                loadingAnimation.startLoadingAnimation();
+                LoadingAnimation.startLoadingAnimation(getFragment().getActivity());
             }
         });
     }

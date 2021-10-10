@@ -7,14 +7,9 @@ import android.view.LayoutInflater;
 import com.example.myapplication.R;
 
 public class LoadingAnimation {
-    private Activity activity;
-    private AlertDialog dialog;
+    private static AlertDialog dialog;
 
-    public LoadingAnimation(Activity myActivity){
-        activity = myActivity;
-    }
-
-    public void startLoadingAnimation(){
+    public static void startLoadingAnimation(Activity activity){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         LayoutInflater inflater = activity.getLayoutInflater();
@@ -25,7 +20,7 @@ public class LoadingAnimation {
         dialog.show();
     }
 
-    public void dismissLoadingAnimation(){
+    public static void dismissLoadingAnimation(){
         dialog.dismiss();
     }
 }
