@@ -1,7 +1,7 @@
 package com.example.myapplication.Booking;
 
-import android.util.Log;
-
+import com.example.myapplication.API.Model.Appointment_user.Center;
+import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,9 +29,8 @@ public class CenterVaccineHelper {
 //        Log.d("haha", centers.get(0).getVaccines().get(0).getId() + "");
     }
 
-//    public String apiGetDateTimeList(String center, String vaccine){
-//        // what do you want for parameters for all the available dates and times list, names or ids?
-//    }
+
+
 
     public String [] getCenters(){
         centerBuffer = new ArrayList<String>();

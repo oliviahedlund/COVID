@@ -1,14 +1,10 @@
 package com.example.myapplication;
 
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.myapplication.Booking.BookingService;
-//import com.example.myapplication.Booking.LocalDateTimeDeserializer;
+import com.example.myapplication.API.Service.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -17,13 +13,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -64,10 +54,4 @@ public class ApiClient {
 
         return userService;
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static BookingService getBookingService(){
-        BookingService bookingService = getRetrofit().create(BookingService.class);
-        return bookingService;
-    }
-
 }

@@ -1,10 +1,8 @@
 package com.example.myapplication;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,13 +13,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.API.Model.Login.LoginRequest;
+import com.example.myapplication.API.Model.Login.LoginResponse;
+import com.example.myapplication.API.Model.User.UserRequest;
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Admin.AdminActivity;
 //import com.example.myapplication.Booking.BookingRequest;
-//import com.example.myapplication.Booking.BookingResponse;
-import com.example.myapplication.Booking.DateTimeHelper;
+//import com.example.myapplication.API.Model.Appointment_user.BookingResponse;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;

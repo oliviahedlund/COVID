@@ -1,19 +1,10 @@
 package com.example.myapplication.Booking;
 
 public class BookingRequest {
-    //private String token;
     private int month;
     private int year;
     private int center;
-/*
-    public void setToken(String token) {
-        this.token = token;
-    }
 
-    public String getToken() {
-        return token;
-    }
-*/
     public void setMonth(int month) {
         this.month = month;
     }

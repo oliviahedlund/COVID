@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.SettingsFragment;
-import com.example.myapplication.UserResponse;
-import com.example.myapplication.covidPassportFragment;
+import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {
