@@ -1,14 +1,19 @@
 package com.example.myapplication.API.Model.Appointment_user;
 
 public class Vaccine {
-    private String id;
-    private String name;
+    private String vaccineId;
+    private String vaccineName;
+    private int amount;
 
-    public String getId() {
-        return id;
+    public int getAmount() {
+        return amount;
     }
 
-    public String getName() {
-        return name;
+    public String getVaccineId() {
+        return vaccineId;
+    }
+
+    public String getVaccineName() {
+        return vaccineName;
     }
 }

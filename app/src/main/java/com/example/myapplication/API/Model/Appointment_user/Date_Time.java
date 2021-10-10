@@ -9,14 +9,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookingResponse {
+public class Date_Time {
     private LocalDateTime time;
     private int length;
-    private int center;
-
-    public int getCenter() {
-        return center;
-    }
 
     public int getLength() {
         return length;
@@ -25,10 +20,6 @@ public class BookingResponse {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public LocalDateTime getTime() {
         return time;
-    }
-
-    public void setCenter(int center) {
-        this.center = center;
     }
 
     public void setTime(LocalDateTime time) {

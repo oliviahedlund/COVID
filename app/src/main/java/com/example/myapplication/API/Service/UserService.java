@@ -1,6 +1,7 @@
 package com.example.myapplication.API.Service;
 
-import com.example.myapplication.API.Model.Appointment_user.BookingResponse;
+import com.example.myapplication.API.Model.Appointment_user.Date_Time;
+import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
@@ -27,6 +28,9 @@ public interface UserService {
         @GET("/api/User/")
         Call<UserResponse> getUser(@Header("Authorization") String authHeader);
 
-        @GET("/api/Appointments/booking/")
-        Call<List<BookingResponse>> booking(@Header("Authorization") String authHeader, @Query("month") int month, @Query("year") int year, @Query("center") int center);
+        @GET("/api/Appointments/Booking/")
+        Call<List<Date_Time>> getDateTimes(@Header("Authorization") String authHeader, @Query("center") String center);
+
+        @GET("/api/Center")
+        Call<List<Center>> getCenters(@Header("Authorization") String authHeader);
 }

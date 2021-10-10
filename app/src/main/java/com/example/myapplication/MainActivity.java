@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.User.UserRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Admin.AdminActivity;
+import com.example.myapplication.Helpers.LanguageHelper;
 //import com.example.myapplication.Booking.BookingRequest;
 //import com.example.myapplication.API.Model.Appointment_user.BookingResponse;
 
@@ -87,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userEmail = findViewById(R.id.editTextTextEmailAddress3);
                 userPassword = findViewById(R.id.editTextTextPassword2);
-                userEmail.setText("olivia@gmail.com");
-                userPassword.setText("Citron123");
+                userEmail.setText("baiwei1@gmail.com");
+                userPassword.setText("ghJK12345");
             }
         });
         Button setLoginAdmin = findViewById(R.id.setLoginButtonAdmin);
@@ -97,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userEmail = findViewById(R.id.editTextTextEmailAddress3);
                 userPassword = findViewById(R.id.editTextTextPassword2);
-                userEmail.setText("olivia@admin.com");
-                userPassword.setText("Citron123");
+                userEmail.setText("baiwei2@gmail.com");
+                userPassword.setText("ghJK12345");
             }
         });
 ////////////// Set Text Button /////////////////////
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void callUserApi(){
         UserRequest userRequest = new UserRequest();
         loginToken = "Bearer " + loginToken;
@@ -210,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
         this.recreate();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void login(){
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUserEmail(userEmail.getText().toString());

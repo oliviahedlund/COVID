@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.LanguageHelper;
+import com.example.myapplication.Helpers.LanguageHelper;
 import com.example.myapplication.R;
 
 

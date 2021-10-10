@@ -13,7 +13,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -32,9 +35,7 @@ public class ApiClient {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
             @Override
             public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-//                Instant instant = Instant.ofEpochMilli(json.getAsJsonPrimitive().getAsLong());
-//                return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-                return LocalDateTime.parse(json.getAsString());
+                return ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString()).toLocalDateTime();
             }
         }).create();
 
