@@ -60,17 +60,17 @@ public class AdminAddCenterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_admin_add_vaccine, container, false);
+        View view = inflater.inflate(R.layout.fragment_admin_add_center, container, false);
         setup(view);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
-
+/*
         bodyCenter.setAddress(centerAdd);
         bodyCenter.setName(center);
         vac.setVaccineName(vaccineName);
         vac.setAmount(value);
         vaccines.add(vac);
         bodyCenter.setVaccines(vaccines);
-
+*/
 
 
         return view;
@@ -102,6 +102,7 @@ public class AdminAddCenterFragment extends Fragment {
 
 
     private void setup(View view){
+        /*
         centerName = view.findViewById(R.id.centerName);
         centerAddress = view.findViewById(R.id.centerAddress);
         vaccine = view.findViewById(R.id.vaccineName);
@@ -110,8 +111,10 @@ public class AdminAddCenterFragment extends Fragment {
         centerAdd = centerAddress.getText().toString();
         vaccineName = vaccine.getText().toString();
         number = amount.getText().toString();
-        value=Integer.parseInt(number);
+        value = Integer.parseInt(number);
         btn = view.findViewById(R.id.button7);
+
+         */
 
     }
 }
