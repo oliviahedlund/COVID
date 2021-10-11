@@ -41,7 +41,7 @@ public interface UserService {
         Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);
 
         @POST("/api/Center")
-        Call<List<Center>> getCenters(@Header("Authorization") String authHeader, @Body Center center);
+        Call<String> postCenters(@Header("Authorization") String authHeader, @Body Center center);
 
 
 }

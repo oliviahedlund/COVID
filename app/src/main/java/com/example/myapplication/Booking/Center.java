@@ -6,7 +6,7 @@ public class Center {
     private String id;
     private String name;
     private String address;
-    private List<Vaccine> vaccines;
+    private List<Vaccine> vaccineStocks;
 
     public String getId() {
         return id;
@@ -33,10 +33,10 @@ public class Center {
     }
 
     public List<Vaccine> getVaccines() {
-        return vaccines;
+        return vaccineStocks;
     }
 
     public void setVaccines(List<Vaccine> vaccines) {
-        this.vaccines = vaccines;
+        this.vaccineStocks = vaccines;
     }
 }

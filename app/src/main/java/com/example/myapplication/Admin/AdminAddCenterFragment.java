@@ -25,6 +25,8 @@ import com.example.myapplication.Booking.Vaccine;
 import com.example.myapplication.R;
 import com.example.myapplication.UserResponse;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,11 +47,9 @@ public class AdminAddCenterFragment extends Fragment {
     private String number;
     private int value;
     private UserResponse user;
-    private Center bodyCenter;
-    private Vaccine vac;
-    private List<Vaccine> vaccines;
-    private List<Center> centers;
+    private String centers;
     private Button btn;
+    private View view;
 
 
     public AdminAddCenterFragment() {
@@ -60,41 +60,51 @@ public class AdminAddCenterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_admin_add_center, container, false);
+        view = inflater.inflate(R.layout.fragment_admin_add_center, container, false);
         setup(view);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
-/*
-        bodyCenter.setAddress(centerAdd);
-        bodyCenter.setName(center);
-        vac.setVaccineName(vaccineName);
-        vac.setAmount(value);
-        vaccines.add(vac);
-        bodyCenter.setVaccines(vaccines);
-*/
 
-
+        btn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+                center = centerName.getEditableText().toString();
+                centerAdd = centerAddress.getEditableText().toString();
+                vaccineName = vaccine.getEditableText().toString();
+                number = amount.getEditableText().toString();
+                value=Integer.parseInt(number);
+                System.out.println(center + centerAdd + vaccineName + value);
+                Center bodyCenter = new Center();
+                bodyCenter.setAddress(centerAdd);
+                bodyCenter.setName(center);
+                Vaccine vac = new Vaccine();
+                List<Vaccine> vaccines = new ArrayList<>();
+                vac.setVaccineId("5b2382b1-1b6b-49a2-a3fd-ae438fcdf336");
+                vac.setAmount(value);
+                vaccines.add(vac);
+                bodyCenter.setVaccines(vaccines);
+                API_postCenters(user, bodyCenter);
+            }
+        });
         return view;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_getCenters(UserResponse user, Center bodyCenter){
-        Call<List<Center>> call = ApiClient.getUserService().getCenters(user.getToken(), bodyCenter);
-        call.enqueue(new Callback<List<Center>>() {
+    public void API_postCenters(UserResponse user, Center bodycenter){
+        Call<String> call = ApiClient.getUserService().postCenters(user.getToken(), bodycenter);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<List<Center>> call, Response<List<Center>> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
-                    centers = response.body();
-                    System.out.println(centers);
-
+                    centers = response.body().toString();
 
                 }else{
-                    System.out.println("else");
+                    System.out.println("could not add center");
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Center>> call, Throwable t) {
-                System.out.println("fail");
+            public void onFailure(Call<String> call, Throwable t) {
+                System.out.println(t.getLocalizedMessage());
             }
         });
     }
@@ -102,19 +112,11 @@ public class AdminAddCenterFragment extends Fragment {
 
 
     private void setup(View view){
-        /*
         centerName = view.findViewById(R.id.centerName);
         centerAddress = view.findViewById(R.id.centerAddress);
         vaccine = view.findViewById(R.id.vaccineName);
         amount = view.findViewById(R.id.vaccineAmount);
-        center = centerName.getText().toString();
-        centerAdd = centerAddress.getText().toString();
-        vaccineName = vaccine.getText().toString();
-        number = amount.getText().toString();
-        value = Integer.parseInt(number);
         btn = view.findViewById(R.id.button7);
-
-         */
 
     }
 }

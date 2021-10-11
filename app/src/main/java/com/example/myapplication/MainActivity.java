@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 dummyUserResponse.setPostalCode("77777");
                 dummyUserResponse.setId("0");
                 dummyUserResponse.setAdmin(false);
+                System.out.println("USER ID: "+ userResponse.getId());
                 String dummyToken = " ";
                 i.putExtra("userInfo", dummyUserResponse);
                 i.putExtra("token", loginToken);

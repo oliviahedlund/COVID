@@ -36,7 +36,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnCreateVaccine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add vaccine"
