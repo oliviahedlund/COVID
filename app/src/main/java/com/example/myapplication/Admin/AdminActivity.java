@@ -117,6 +117,12 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_sched:
                         newFragment = new AdminBookingRange();
                         break;
+                    case R.id.nav_addCenter:
+                        newFragment = new AdminAddCenterFragment();
+                        break;
+                    case R.id.nav_addVaccin:
+                        newFragment = new AdminAddVaccineFragment();
+                        break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frameAdmin);
                 }
