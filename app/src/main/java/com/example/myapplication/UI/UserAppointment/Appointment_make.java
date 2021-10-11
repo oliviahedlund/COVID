@@ -40,15 +40,10 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     public static final int NOT_DEFINED = -1;
 
     private UserResponse user;
-    private List<Date_Time> dateTimes;
-    private List<Center> centers;
 
     private AutoCompleteTextView centerDropdown;
-    private String centerStrings[];
     private AutoCompleteTextView vaccineDropdown;
-    private String vaccineStrings[];
     private AutoCompleteTextView timeDropdown;
-    private String timeStrings[];
 
     private Button dateButton;
     private Button confirmButton;
@@ -85,7 +80,16 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         view = inflater.inflate(R.layout.appointment_center_date, container, false);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
 
-        API_getCenters(getActivity(), user);
+        centerVaccineHelper = new CenterVaccineHelper(this);
+
+        centerVaccineHelper.API_getCenters(getActivity(), user, new Runnable(){
+            @Override
+            public void run() {
+                setupCenters();
+                LoadingAnimation.dismissLoadingAnimation();
+            }
+        });
+
         LoadingAnimation.startLoadingAnimation(this.getActivity());
 
         setupButtons();
@@ -124,43 +128,10 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_getCenters(Activity activity, UserResponse user){
-        Call<List<Center>> call = ApiClient.getUserService().getCenters(user.getToken());
-        call.enqueue(new Callback<List<Center>>() {
-            @Override
-            public void onResponse(Call<List<Center>> call, Response<List<Center>> response) {
-                if (response.isSuccessful()) {
-                    centers = response.body();
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            centerVaccineHelper = new CenterVaccineHelper(centers);
-                            centerStrings = centerVaccineHelper.getCenters();
-                            setupCenters();
-                            LoadingAnimation.dismissLoadingAnimation();
-                        }
-                    },600);
-
-                }else{
-                    Toast.makeText(activity,"Appointments/Booking failed", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Center>> call, Throwable t) {
-                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(getFragment()).createAlertWindow(getResources().getString(R.string.connectionFailureAlert));
-            }
-        });
-    }
-
     public void setupCenters() {
 
         centerDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseCenter);
-        Simple_DropdownAdapter centerAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, centerStrings);
+        Simple_DropdownAdapter centerAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, centerVaccineHelper.getCenters());
 
         centerDropdown.setAdapter(centerAdapter);
         centerDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -168,7 +139,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 center = position;
                 selectedCenter = centerVaccineHelper.getSelectedCenter(center);
-                vaccineStrings = centerVaccineHelper.getVaccines(center);
                 setupVaccines();
             }
         });
@@ -176,7 +146,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     public void setupVaccines(){
         vaccineDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseVaccine);
-        Simple_DropdownAdapter vaccineAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, vaccineStrings);
+        Simple_DropdownAdapter vaccineAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, centerVaccineHelper.getVaccines(center));
 
         vaccineDropdown.setAdapter(vaccineAdapter);
         vaccineDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -186,41 +156,17 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 vaccine = position;
                 selectedVaccine = centerVaccineHelper.getSelectedVaccine(vaccine);
                 dateButton.setEnabled(true);
-                API_getDateTime(getActivity(), user);
+                dateTimeHelper = new DateTimeHelper(getFragment());
+
+                dateTimeHelper.API_getDateTime(getActivity(), user, new Runnable() {
+                    @Override
+                    public void run() {
+                        allowedDays = dateTimeHelper.getDates();
+                        LoadingAnimation.dismissLoadingAnimation();
+                    }
+                }, selectedCenter);
+
                 LoadingAnimation.startLoadingAnimation(getFragment().getActivity());
-            }
-        });
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_getDateTime(Activity activity, UserResponse user){
-        Call<List<Date_Time>> bookingResponseCall = ApiClient.getUserService().getDateTimes(user.getToken(), selectedCenter);
-        bookingResponseCall.enqueue(new Callback<List<Date_Time>>() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onResponse(Call<List<Date_Time>> call, Response<List<Date_Time>> response) {
-                if (response.isSuccessful()) {
-                    dateTimes = response.body();
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            dateTimeHelper = new DateTimeHelper(dateTimes);
-                            allowedDays = dateTimeHelper.getDates();
-                            LoadingAnimation.dismissLoadingAnimation();
-                        }
-                    },600);
-
-                }else{
-                    Toast.makeText(activity,"Appointments/Booking failed", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Date_Time>> call, Throwable t) {
-                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(getFragment()).createAlertWindow(getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
@@ -276,10 +222,8 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         buffer.set(Calendar.MONTH, month);
         buffer.set(Calendar.DAY_OF_MONTH, day);
 
-        timeStrings = dateTimeHelper.getTimes(buffer);
-
         timeDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseTime);
-        Simple_DropdownAdapter timeAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, timeStrings);
+        Simple_DropdownAdapter timeAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, dateTimeHelper.getTimes(buffer));
 
         timeDropdown.setAdapter(timeAdapter);
         timeDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {

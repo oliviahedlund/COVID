@@ -1,10 +1,19 @@
 package com.example.myapplication.Helpers;
 
+import android.app.Activity;
 import android.os.Build;
+import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.Appointment_user.Date_Time;
+import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.ApiClient;
+import com.example.myapplication.R;
+import com.example.myapplication.UI.AlertWindow;
+import com.example.myapplication.UI.LoadingAnimation;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -12,19 +21,48 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DateTimeHelper {
     private ArrayList<ZonedDateTime> zonedDateTimeArrayList;
-    private ArrayList<String> times;
-    private ArrayList<Calendar> days;
+    private List<Date_Time> dateTimes;
+    private Fragment fragment;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public DateTimeHelper(List<Date_Time> dateTimes){
-
+    public DateTimeHelper(Fragment fragment){
+        this.fragment = fragment;
         zonedDateTimeArrayList = new ArrayList<ZonedDateTime>();
+    }
 
-        for (int i = 0; i < dateTimes.size(); i++) {
-            zonedDateTimeArrayList.add(dateTimes.get(i).getTime());
-        }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_getDateTime(Activity activity, UserResponse user, Runnable runnable, String selectedCenter){
+        Call<List<Date_Time>> bookingResponseCall = ApiClient.getUserService().getDateTimes(user.getToken(), selectedCenter);
+        bookingResponseCall.enqueue(new Callback<List<Date_Time>>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onResponse(Call<List<Date_Time>> call, Response<List<Date_Time>> response) {
+                if (response.isSuccessful()) {
+                    dateTimes = response.body();
+                    for (int i = 0; i < dateTimes.size(); i++) {
+                        zonedDateTimeArrayList.add(dateTimes.get(i).getTime());
+                    }
+                    new Handler().postDelayed(
+                        runnable,600);
+                }else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Date_Time>> call, Throwable t) {
+                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -32,7 +70,7 @@ public class DateTimeHelper {
         int hour;
         int minute;
 
-        times = new ArrayList<String>();
+        ArrayList<String> times = new ArrayList<String>();
 
         for (int i = 0; i < zonedDateTimeArrayList.size(); i++) {
             if (zonedDateTimeArrayList.get(i).getYear() == day.get(Calendar.YEAR)
@@ -56,7 +94,7 @@ public class DateTimeHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Calendar [] getDates() {
-        days = new ArrayList<Calendar>();
+        ArrayList<Calendar> days = new ArrayList<Calendar>();
 
         for (int i = 0; i < zonedDateTimeArrayList.size(); i++) {
             Calendar buffer = Calendar.getInstance();
