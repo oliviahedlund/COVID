@@ -27,6 +27,7 @@ import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 
@@ -98,7 +99,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-
                 showDatePicker();
             }
         });

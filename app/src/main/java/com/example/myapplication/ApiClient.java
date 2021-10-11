@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -16,6 +17,7 @@ import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 import okhttp3.OkHttpClient;
@@ -32,10 +34,15 @@ public class ApiClient {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
 
-        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+        Gson gson = new GsonBuilder().registerTypeAdapter(ZonedDateTime.class, new JsonDeserializer<ZonedDateTime>() {
             @Override
-            public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-                return ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString()).toLocalDateTime();
+            public ZonedDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                LocalDateTime ldt = ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString()).toLocalDateTime();
+                ZoneId zoneId = ZoneId.of("Europe/Stockholm");
+                ZonedDateTime zdt = ldt.atZone(ZoneId.of("UTC")).withZoneSameInstant(zoneId);
+//                ZonedDateTime ret = ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString()).withZoneSameLocal(ZoneId.systemDefault());
+//                Log.d("haha retrofit", "" + zdt);
+                return zdt;
             }
         }).create();
 

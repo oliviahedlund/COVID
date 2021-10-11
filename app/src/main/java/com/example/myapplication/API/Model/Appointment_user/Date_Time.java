@@ -6,11 +6,12 @@ import androidx.annotation.RequiresApi;
 
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Date_Time {
-    private LocalDateTime time;
+    private ZonedDateTime time;
     private int length;
 
     public int getLength() {
@@ -18,11 +19,11 @@ public class Date_Time {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public LocalDateTime getTime() {
+    public ZonedDateTime getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(ZonedDateTime time) {
         this.time = time;
     }
 
