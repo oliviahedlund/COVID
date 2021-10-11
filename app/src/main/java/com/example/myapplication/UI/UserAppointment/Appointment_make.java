@@ -1,9 +1,9 @@
 package com.example.myapplication.UI.UserAppointment;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +15,14 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
+import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
+import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.Helpers.DateTimeHelper;
-import com.example.myapplication.API.Model.Appointment_user.Date_Time;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.RegisterActivity;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.UI.LoadingAnimation;
@@ -27,7 +31,11 @@ import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.List;
 
@@ -40,6 +48,8 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     public static final int NOT_DEFINED = -1;
 
     private UserResponse user;
+    private ZonedDateTime appointmentDateTime;
+    private AppointmentRequest appointment;
 
     private AutoCompleteTextView centerDropdown;
     private AutoCompleteTextView vaccineDropdown;
@@ -51,7 +61,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     private int center = NOT_DEFINED;
     private int vaccine = NOT_DEFINED;
-    private int time = NOT_DEFINED;
+    private int selectedTime = NOT_DEFINED;
     private int day = NOT_DEFINED;
     private int month = NOT_DEFINED;
     private int year = NOT_DEFINED;
@@ -109,12 +119,14 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
         confirmButton = (Button) view.findViewById(R.id.confirmCenterDate);
         confirmButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 if(center == NOT_DEFINED || month == NOT_DEFINED || year == NOT_DEFINED){
                     Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
                 } else {
-                    // api post to the server
+                    API_sendNewAppointment();
+                    LoadingAnimation.startLoadingAnimation(getActivity());
                 }
             }
         });
@@ -229,9 +241,54 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         timeDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
+                selectedTime = position;
+                fillAppointment();
             }
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void fillAppointment(){
+        appointment = new AppointmentRequest();
+        appointmentDateTime = LocalDateTime.of(LocalDate.of(year, month, day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
+        appointment.setTime(appointmentDateTime);
+        appointment.setCenterId(selectedCenter);
+        appointment.setVaccineId(selectedVaccine);
+        appointment.setLength(dateTimeHelper.getLength(selectedTime));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_sendNewAppointment(){
+        Call<AppointmentResponse> call = ApiClient.getUserService().postNewAppointments(user.getToken(), appointment);
+        call.enqueue(new Callback<AppointmentResponse>() {
+            @Override
+            public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
+                if(response.isSuccessful()){
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("haha success", "success" + response.body().getId());
+                            LoadingAnimation.dismissLoadingAnimation();
+                        }
+                    }, 600);
+                }
+                else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    try {
+                        new AlertWindow(getFragment()).createAlertWindow(response.errorBody().string());
+                    } catch (IOException e) {
+                        new AlertWindow(getFragment()).createAlertWindow("Unknown error");
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(getFragment()).createAlertWindow(getFragment().getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
 }

@@ -51,7 +51,7 @@ public class ApiClient {
                 .registerTypeAdapter(ZonedDateTime.class, new JsonSerializer<ZonedDateTime>(){
                     @Override
                     public JsonElement serialize(ZonedDateTime src, Type typeOfSrc, JsonSerializationContext context) throws JsonParseException {
-                        return new JsonPrimitive(DateTimeFormatter.ISO_DATE_TIME.format(src));
+                        return new JsonPrimitive(DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(src));
                     }
                 }).create();
 

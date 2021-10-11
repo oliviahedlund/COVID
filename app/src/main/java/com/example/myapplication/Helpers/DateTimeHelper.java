@@ -16,6 +16,7 @@ import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,8 +39,8 @@ public class DateTimeHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_getDateTime(Activity activity, UserResponse user, Runnable runnable, String selectedCenter){
-        Call<List<Date_Time>> bookingResponseCall = ApiClient.getUserService().getDateTimes(user.getToken(), selectedCenter);
-        bookingResponseCall.enqueue(new Callback<List<Date_Time>>() {
+        Call<List<Date_Time>> call = ApiClient.getUserService().getDateTimes(user.getToken(), selectedCenter);
+        call.enqueue(new Callback<List<Date_Time>>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<List<Date_Time>> call, Response<List<Date_Time>> response) {
@@ -105,5 +106,14 @@ public class DateTimeHelper {
         }
 
         return days.toArray(new Calendar[days.size()]);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalTime getSelectedTime(int time){
+        return dateTimes.get(time).getTime().toLocalTime();
+    }
+
+    public int getLength(int time){
+        return dateTimes.get(time).getLength();
     }
 }
