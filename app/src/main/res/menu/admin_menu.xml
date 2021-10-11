@@ -22,11 +22,11 @@
         <item
             android:id="@+id/nav_addCenter"
             android:icon="@drawable/ic_center"
-            android:title="@string/addCenter" />
+            android:title="@string/addCenterMenu" />
         <item
             android:id="@+id/nav_addVaccin"
             android:icon="@drawable/ic_vaccine"
-            android:title="@string/addVaccine" />
+            android:title="@string/addVaccineMenu" />
         <item
             android:id="@+id/nav_covidpassport"
             android:icon="@drawable/ic_covid_passport"

@@ -122,7 +122,7 @@ public class AdminActivity extends AppCompatActivity {
                         newFragment = new SettingsFragment();
                         break;
                     case R.id.nav_sched:
-                        newFragment = new AdminBookingRange();
+                        newFragment = new AdminBookingRangeFragment();
                         break;
                     case R.id.nav_addCenter:
                         newFragment = new AdminAddCenterFragment();

@@ -1,12 +1,10 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-
 import com.example.myapplication.Admin.PostRangeRequest;
-import com.example.myapplication.Booking.BookingRequest;
 import com.example.myapplication.Booking.BookingResponse;
-import com.example.myapplication.Booking.Center;
+import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.Booking.SetBookingRequest;
+import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 
 import java.util.List;
 
@@ -14,10 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface UserService {
@@ -42,6 +37,12 @@ public interface UserService {
 
         @POST("/api/Center")
         Call<String> postCenters(@Header("Authorization") String authHeader, @Body Center center);
+
+        @GET("/api/Center")
+        Call<List<Center>> getCenters(@Header("Authorization") String authHeader);
+
+        @GET("/api/Vaccine")
+        Call<List<Vaccine>> getVaccines(@Header("Authorization") String authHeader);
 
 
 }

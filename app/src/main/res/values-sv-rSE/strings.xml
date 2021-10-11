@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Reusable / other -->
     <string name="app_name">Covid tracker</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+
+    <!--not used?-->
+    <string name="generate">Generera tillgängliga tider</string>
+
+    <!--LoginActivity-->
+    <string name="NoAccount">Har du inget konto?</string>
+    <string name="RegHere">Registrera dig här!</string>
+    <string name="IncorrectEmailPassw">Felaktig email eller lösenord</string>
     <string name="login">Logga in</string>
     <string name="register">Registrera</string>
-    <string name="logout">Logga ut</string>
-    <string name="dashboard">Covidutveckling</string>
-    <string name="passport">Digitalt Vaccin Pass</string>
-    <string name="userInfo">Profil</string>
-    <string name="messages">Meddelanden</string>
-    <string name="handleAppoint">Boka/Avboka tid</string>
-    <string name="settings">Inställningar</string>
+
+    <!--RegisterActivity-->
     <string name="Firstname">Förnamn</string>
     <string name="Lastname">Efternamn</string>
     <string name="Password">Lösenord</string>
@@ -19,28 +25,28 @@
     <string name="City">Stad</string>
     <string name="County">Län</string>
     <string name="ZipCode">Postkod</string>
-    <string name="NoAccount">Har du inget konto?</string>
-    <string name="RegHere">Registrera dig här!</string>
-    <string name="IncorrectEmailPassw">Felaktig email eller lösenord</string>
     <string name="RepeatPassword">Upprepa lösenord</string>
+
+    <!--Language-->
     <string name="english">Engelska</string>
     <string name="swedish">Svenska</string>
     <string name="languages">Språk</string>
     <string name="switchLang">(EN)</string>
+
+    <!--menu-->
+    <string name="logout">Logga ut</string>
+    <string name="dashboard">Covidutveckling</string>
+    <string name="messages">Meddelanden</string>
+    <string name="handleAppoint">Boka/Avboka tid</string>
+    <string name="passport">Digitalt Vaccin Pass</string>
+    <string name="userInfo">Profil</string>
+    <string name="settings">Inställningar</string>
     <string name="quest">Frågeformulär</string>
     <string name="sched">Schemaläggning</string>
-    <string name="location">Plats</string>
-    <string name="ageGroup">Åldersgrupp</string>
-    <string name="product">Produkt</string>
-    <string name="dose">Dos</string>
-    <string name="totalCases">Antal fall:</string>
-    <string name="totalDeaths">Antal dödsfall:</string>
-    <string name="totalDistri">Antal distribuerade doser:</string>
-    <string name="totalAdmini">Antal administrerade doser:</string>
-    <string name="vs">Dos 1 vs Dos 2:</string>
-    <string name="yes">Ja</string>
-    <string name="no">Nej</string>
-    <string name="generate">Generera tillgängliga tider</string>
+    <string name="addCenterMenu">+ Lägg till center</string>
+    <string name="addVaccineMenu">+ Lägg till vaccin</string>
+
+    <!--admin scheduling-->
     <string name="chooseCenter">Center</string>
     <string name="chooseAge">Åldersgrupp</string>
     <string name="age">Ålder</string>
@@ -51,8 +57,31 @@
     <string name="startdate">Startdatum</string>
     <string name="enddate">Slutdatum</string>
     <string name="publishTimes">Publicera Tider</string>
-    <string name="addCenter">+ Lägg till center</string>
-    <string name="addVaccine">+ Lägg till vaccin</string>
+
+    <!--add centers-->
+    <string name="addCenters">Lägg till nya center</string>
+    <string name="centerName">Centernamn:</string>
+    <string name="centerAddress">Centeradress: </string>
+    <string name="amountVac">Antal vaccindoser: </string>
+    <string name="addCenter">Lägg till center</string>
+
+    <!--add vaccine-->
+    <string name="addVaccines">Lägg till nya vaccin</string>
+    <string name="vaccineName">Vaccinnamn:</string>
+    <string name="addVaccine">Lägg till vaccin</string>
+    <string name="addVaccineCenter">Lägg till vaccin till center</string>
+
+    <!--covid tracking dashboard-->
+    <string name="location">Plats</string>
+    <string name="ageGroup">Åldersgrupp</string>
+    <string name="product">Produkt</string>
+    <string name="dose">Dos</string>
+    <string name="totalCases">Antal fall:</string>
+    <string name="totalDeaths">Antal dödsfall:</string>
+    <string name="totalDistri">Antal distribuerade doser:</string>
+    <string name="totalAdmini">Antal administrerade doser:</string>
+    <string name="vs">Dos 1 vs Dos 2:</string>
+
 
 
     <string-array name="questions">
@@ -88,7 +117,7 @@
         <item>Dos 2</item>
     </string-array>
 
-    // Appointment making
+    <!--Appointment making-->
     <string name="center">Center</string>
     <string name="time">Tid</string>
     <string name="confirm">Klar</string>

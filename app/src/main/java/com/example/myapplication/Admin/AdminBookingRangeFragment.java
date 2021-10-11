@@ -14,8 +14,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.myapplication.CenterVaccineHelper;
+import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.Simple_DropdownAdapter;
+import com.example.myapplication.UserResponse;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +27,7 @@ import java.util.List;
 import kotlin.collections.ArrayDeque;
 
 
-public class AdminBookingRange extends Fragment {
+public class AdminBookingRangeFragment extends Fragment {
 
     private AutoCompleteTextView center;
     private View view;
@@ -33,8 +36,11 @@ public class AdminBookingRange extends Fragment {
     private AutoCompleteTextView centerFilter;
     private AutoCompleteTextView ageFilter;
     List<CheckBox> cbWeekdays;
+    CenterVaccineHelper centerVaccineHelper;
+    private UserResponse user;
 
-    public AdminBookingRange() {
+
+    public AdminBookingRangeFragment() {
         // Required empty public constructor
     }
 
@@ -45,19 +51,35 @@ public class AdminBookingRange extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_admin_booking_range, container, false);
         //TODO: get centers
+        user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+        apiCallCenter();
 
-        setupDropdown();
+        //setupDropdown();
         setupCheckboxes();
         setupTimeTexts();
         setupButton();
         return view;
     }
 
+    private void apiCallCenter(){
+        LoadingAnimation.startLoadingAnimation(getActivity());
+        centerVaccineHelper = new CenterVaccineHelper(this);
+
+        Runnable next = new Runnable() {
+            @Override
+            public void run() {
+                setupDropdown();
+            }
+        };
+        centerVaccineHelper.API_getCenters(getActivity(), user, next);
+
+    }
 
 
     private void setupDropdown(){
 
-        centers = getResources().getStringArray(R.array.Centers);
+        //centers = getResources().getStringArray(R.array.Centers);
+        centers = centerVaccineHelper.getCenters();
         age = getResources().getStringArray(R.array.Age);
 
         centerFilter = (AutoCompleteTextView) view.findViewById(R.id.generateCenter);
@@ -68,6 +90,7 @@ public class AdminBookingRange extends Fragment {
         Simple_DropdownAdapter ageAdapter = new Simple_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.simple_dropdown_item, age);
         ageFilter.setAdapter(ageAdapter);
 
+        LoadingAnimation.dismissLoadingAnimation();
     }
 
     private void setupCheckboxes(){

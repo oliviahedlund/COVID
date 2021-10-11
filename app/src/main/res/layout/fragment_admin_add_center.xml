@@ -4,69 +4,90 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="@dimen/mediumPadding"
     tools:context=".Admin.AdminAddCenterFragment" >
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/mediumPadding"
+        android:text="@string/addCenters"
+        android:textSize="@dimen/title" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Centernamn" />
+            android:paddingRight="@dimen/smallPadding"
+            android:text="@string/centerName"
+            android:textSize="@dimen/mediumText" />
 
         <EditText
             android:id="@+id/centerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="5" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Centeradress" />
+            android:paddingRight="@dimen/smallPadding"
+            android:text="@string/centerAddress"
+            android:textSize="@dimen/mediumText" />
 
         <EditText
             android:id="@+id/centerAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="5" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/textView22"
+        android:layout_marginTop="@dimen/smallPadding"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:hint="Vaccine"
+        android:textColorHint="@color/beige">
+
+        <AutoCompleteTextView
+            android:id="@+id/generateVaccin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vaccin" />
-        <EditText
-            android:id="@+id/vaccineName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="5" />
-    </LinearLayout>
+            android:inputType="none"
+            android:text="Vaccine"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textView23"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Antal" />
+            android:paddingRight="@dimen/smallPadding"
+            android:text="@string/amountVac"
+            android:textSize="@dimen/mediumText" />
 
         <EditText
             android:id="@+id/vaccineAmount"
@@ -80,9 +101,11 @@
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/mediumPadding"
         android:layout_weight="1"
-        android:text="Import Vaccines" />
+        android:text="Add center" />
 
 </LinearLayout>

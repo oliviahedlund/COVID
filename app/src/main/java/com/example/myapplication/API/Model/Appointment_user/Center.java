@@ -1,4 +1,6 @@
-package com.example.myapplication.Booking;
+package com.example.myapplication.API.Model.Appointment_user;
+
+import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 
 import java.util.List;
 

@@ -5,16 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/mediumPadding"
-    tools:context=".Admin.AdminBookingRange">
+    tools:context=".Admin.AdminBookingRangeFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/generate"
         android:textSize="@dimen/title"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:paddingBottom="@dimen/smallPadding"/>
+        android:paddingBottom="@dimen/mediumPadding" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"

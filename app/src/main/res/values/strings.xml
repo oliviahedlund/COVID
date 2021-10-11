@@ -1,25 +1,56 @@
 <resources>
+    <!-- Reusable / other -->
     <string name="app_name">Covid tracker</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="Email" translatable="false">Email</string>
+
+    <!--not used?-->
+    <string name="generate">Generate avalible times</string>
+
+    <!--LoginActivity-->
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="open" translatable="false">Open</string>
-    <string name="close" translatable="false">Close</string>
-    <string name="logout">Logout</string>
-    <string name="dashboard">Covid Tracking</string>
-    <string name="userInfo">Profile</string>
-    <string name="messages">Messages</string>
-    <string name="handleAppoint">Book/Cancel Appointment</string>
-    <string name="faq" translatable="false">FAQ</string>
-    <string name="settings">Settings</string>
+    <string name="NoAccount">Don\'t have an account?</string>
+    <string name="RegHere">Register here!</string>
+    <string name="IncorrectEmailPassw">Incorrect email or password</string>
+
+    <!--RegisterActivity-->
+    <string name="Firstname">First name</string>
+    <string name="Lastname">Last name</string>
+    <string name="Password">Password</string>
+    <string name="RepeatPassword">Repeat password</string>
+    <string name="PhoneNumber">Phone Number</string>
+    <string name="DOB">Date of birth (YYYYMMDD)</string>
+    <string name="StreetAddress">Street Address</string>
+    <string name="City">City</string>
+    <string name="County">County</string>
+    <string name="ZipCode">Zip Code</string>
+
+    <!--Language-->
     <string name="english">English</string>
     <string name="swedish">Swedish</string>
     <string name="languages">Languages</string>
     <string name="switchLang">(SV)</string>
+
+    <!--menu-->
+    <string name="open" translatable="false">Open</string>
+    <string name="close" translatable="false">Close</string>
+    <string name="logout">Logout</string>
+    <string name="dashboard">Covid Tracking</string>
+    <string name="messages">Messages</string>
+    <string name="handleAppoint">Book/Cancel Appointment</string>
+    <string name="passport">Digital Vaccin Passport</string>
+    <string name="faq" translatable="false">FAQ</string>
+    <string name="userInfo">Profile</string>
+    <string name="settings">Settings</string>
     <string name="quest">Questionnaires</string>
     <string name="sched">Scheduling</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="generate">Generate avalible times</string>
+    <string name="addCenterMenu">+ Add Center</string>
+    <string name="addVaccineMenu">+ Add Vaccine</string>
+
+
+    <!--admin scheduling-->
     <string name="chooseCenter">Center</string>
     <string name="chooseAge">Age group</string>
     <string name="age">Age</string>
@@ -30,35 +61,26 @@
     <string name="startdate">Startdate</string>
     <string name="enddate">Enddate</string>
     <string name="publishTimes">Publish Times</string>
-    <string name="addCenter">+ Add Center</string>
-    <string name="addVaccine">+ Add Vaccine</string>
+
+    <!--add centers-->
+    <string name="addCenters">Add New Centers</string>
+    <string name="centerName">Center Name:</string>
+    <string name="centerAddress">Center Address: </string>
+    <string name="amountVac">Amount of vaccine doses: </string>
+    <string name="addCenter">Add Center</string>
+
+    <!--add vaccine-->
+    <string name="addVaccines">Add New Vaccine</string>
+    <string name="vaccineName">Vaccine Name:</string>
+    <string name="addVaccine">Add Vaccine</string>
+    <string name="addVaccineCenter">Add Vaccine to Center</string>
 
 
-    //registerActivity
-    <string name="Firstname">First name</string>
-    <string name="Lastname">Last name</string>
-    <string name="Email" translatable="false">Email</string>
-    <string name="Password">Password</string>
-    <string name="RepeatPassword">Repeat password</string>
-    <string name="PhoneNumber">Phone Number</string>
-    <string name="DOB">Date of birth (YYYYMMDD)</string>
-    <string name="StreetAddress">Street Address</string>
-    <string name="City">City</string>
-    <string name="County">County</string>
-    <string name="ZipCode">Zip Code</string>
-
-    //LoginActivity
-    <string name="NoAccount">Don\'t have an account?</string>
-    <string name="RegHere">Register here!</string>
-    <string name="IncorrectEmailPassw">Incorrect email or password</string>
-    <string name="passport">Digital Vaccin Passport</string>
-
-    // covid tracking dashboard
+    <!--covid tracking dashboard-->
     <string name="location">Location</string>
     <string name="ageGroup">Age Group</string>
     <string name="product">Product</string>
     <string name="dose">Dose</string>
-
     <string name="totalCases">Total cases: </string>
     <string name="totalDeaths">Total deaths: </string>
     <string name="totalDistri">Total distributed doses: </string>
@@ -98,18 +120,13 @@
         <item>Dose 2</item>
     </string-array>
 
-    // Appointment making
+    <!--Appointment making-->
     <string name="center">Center</string>
     <string name="time">Time</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="chooseDate">Choose a date</string>
     <string name="chooseDay">Choose a day</string>
-
-    <string-array name="Centers">
-        <item>CCC</item>
-        <item>Arena</item>
-    </string-array>
 
     <string-array name="Age">
         <item>All ages</item>
@@ -128,6 +145,11 @@
         <item>Th</item>
         <item>Fr</item>
         <item>Sa</item>
+    </string-array>
+
+    <string-array name="Centers">
+        <item>CCC - hardcoded</item>
+        <item>Löfbergs Arena - hardcoded</item>
     </string-array>
 
 

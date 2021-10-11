@@ -1,38 +1,30 @@
 package com.example.myapplication.Admin;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
-import com.example.myapplication.ApiClient;
-import com.example.myapplication.Booking.Center;
-import com.example.myapplication.Booking.Vaccine;
+import com.example.myapplication.Booking.ApiCenter;
+import com.example.myapplication.API.Model.Appointment_user.Center;
+import com.example.myapplication.API.Model.Appointment_user.Vaccine;
+import com.example.myapplication.CenterVaccineHelper;
+import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
+import com.example.myapplication.Simple_DropdownAdapter;
 import com.example.myapplication.UserResponse;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class AdminAddCenterFragment extends Fragment {
@@ -50,6 +42,12 @@ public class AdminAddCenterFragment extends Fragment {
     private String centers;
     private Button btn;
     private View view;
+    private ApiCenter apiCenter;
+    private ApiVaccine apiVaccin;
+    private CenterVaccineHelper centerVaccineHelper;
+    private String[] vaccines;
+    int vaccinePosition;
+    private AutoCompleteTextView vaccineFilter;
 
 
     public AdminAddCenterFragment() {
@@ -61,62 +59,91 @@ public class AdminAddCenterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_admin_add_center, container, false);
-        setup(view);
-        user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+        //setup();
+        //inizialize if not chosen
+        vaccinePosition=-1;
 
+        user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+        apiCenter = new ApiCenter();
+        apiCallVaccine();
+
+
+        return view;
+    }
+
+    private void apiCallVaccine(){
+        apiVaccin = new ApiVaccine();
+
+        Runnable next = new Runnable() {
+            @Override
+            public void run() {
+                setup();
+            }
+        };
+        apiVaccin.CallVaccineAPI(getActivity(), user, next);
+    }
+
+
+
+    private void setup(){
+        centerName = view.findViewById(R.id.centerName);
+        centerAddress = view.findViewById(R.id.centerAddress);
+        //vaccine = view.findViewById(R.id.vaccineName);
+        amount = view.findViewById(R.id.vaccineAmount);
+        btn = view.findViewById(R.id.button7);
         btn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 center = centerName.getEditableText().toString();
                 centerAdd = centerAddress.getEditableText().toString();
-                vaccineName = vaccine.getEditableText().toString();
                 number = amount.getEditableText().toString();
-                value=Integer.parseInt(number);
+
+                try {
+                    value=Integer.parseInt(number);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    System.out.println("Wrong input in vaccin amount");
+                    return;
+                }
+
                 System.out.println(center + centerAdd + vaccineName + value);
+
                 Center bodyCenter = new Center();
-                bodyCenter.setAddress(centerAdd);
                 bodyCenter.setName(center);
+                bodyCenter.setAddress(centerAdd);
+
                 Vaccine vac = new Vaccine();
                 List<Vaccine> vaccines = new ArrayList<>();
-                vac.setVaccineId("5b2382b1-1b6b-49a2-a3fd-ae438fcdf336");
-                vac.setAmount(value);
-                vaccines.add(vac);
-                bodyCenter.setVaccines(vaccines);
-                API_postCenters(user, bodyCenter);
-            }
-        });
-        return view;
-    }
-
-    public void API_postCenters(UserResponse user, Center bodycenter){
-        Call<String> call = ApiClient.getUserService().postCenters(user.getToken(), bodycenter);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()) {
-                    centers = response.body().toString();
-
-                }else{
-                    System.out.println("could not add center");
+                if(vaccinePosition!=-1) {
+                    vac.setId(apiVaccin.getVaccinID(vaccinePosition));
                 }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                System.out.println(t.getLocalizedMessage());
+                else{
+                    System.out.println("Error: no vaccin chosen");
+                    return;
+                }
+                //vac.setId("5b2382b1-1b6b-49a2-a3fd-ae438fcdf336");
+                vac.setAmount(value);
+                //vaccines.add(vac);
+                bodyCenter.setVaccines(vaccines);
+                apiCenter.API_postCenters(user, bodyCenter);
+                //API_postCenters(user, bodyCenter);
             }
         });
-    }
 
+        vaccines = apiVaccin.getVaccines();
 
+        vaccineFilter = (AutoCompleteTextView) view.findViewById(R.id.generateVaccin);
 
-    private void setup(View view){
-        centerName = view.findViewById(R.id.centerName);
-        centerAddress = view.findViewById(R.id.centerAddress);
-        vaccine = view.findViewById(R.id.vaccineName);
-        amount = view.findViewById(R.id.vaccineAmount);
-        btn = view.findViewById(R.id.button7);
+        Simple_DropdownAdapter vaccineAdapter = new Simple_DropdownAdapter(getContext(), R.layout.simple_dropdown_item, vaccines);
+        vaccineFilter.setAdapter(vaccineAdapter);
+        vaccineFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                vaccinePosition = position;
+            }
+        });
 
+        LoadingAnimation.dismissLoadingAnimation();
     }
 }

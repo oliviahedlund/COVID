@@ -11,8 +11,9 @@
         android:id="@+id/textView19"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add new vaccin"
-        android:textSize="@dimen/largeText"/>
+        android:paddingBottom="@dimen/mediumPadding"
+        android:text="@string/addVaccines"
+        android:textSize="@dimen/title" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,8 +24,8 @@
             android:id="@+id/textView30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vaccin name: "
-            android:textSize="@dimen/mediumText"/>
+            android:text="@string/vaccineName"
+            android:textSize="@dimen/mediumText" />
 
         <EditText
             android:id="@+id/editTextTextPersonName5"
@@ -39,8 +40,8 @@
         android:id="@+id/btnCreateVaccine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add vaccine"
-        />
+        android:layout_marginTop="@dimen/smallPadding"
+        android:text="@string/addVaccine" />
 
     <View
         android:layout_width="match_parent"
@@ -59,9 +60,9 @@
         android:id="@+id/textView31"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add vaccin to center"
-        android:textSize="@dimen/largeText"
-        android:paddingBottom="@dimen/smallPadding"/>
+        android:paddingBottom="@dimen/mediumPadding"
+        android:text="@string/addVaccineCenter"
+        android:textSize="@dimen/title" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -108,8 +109,8 @@
             android:id="@+id/textView34"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vaccine amount: "
-            android:textSize="@dimen/mediumText"/>
+            android:text="@string/amountVac"
+            android:textSize="@dimen/mediumText" />
 
         <EditText
             android:id="@+id/editTextNumber3"
@@ -123,6 +124,7 @@
         android:id="@+id/button7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add vaccine to center" />
+        android:layout_marginTop="@dimen/smallPadding"
+        android:text="@string/addVaccineCenter" />
 
 </LinearLayout>
