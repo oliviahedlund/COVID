@@ -30,6 +30,8 @@
     <string name="startdate">Startdate</string>
     <string name="enddate">Enddate</string>
     <string name="publishTimes">Publish Times</string>
+    <string name="addCenter">+ Add Center</string>
+    <string name="addVaccine">+ Add Vaccine</string>
 
 
     //registerActivity

@@ -51,6 +51,8 @@
     <string name="startdate">Startdatum</string>
     <string name="enddate">Slutdatum</string>
     <string name="publishTimes">Publicera Tider</string>
+    <string name="addCenter">+ Lägg till center</string>
+    <string name="addVaccine">+ Lägg till vaccin</string>
 
 
     <string-array name="questions">

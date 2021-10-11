@@ -44,6 +44,8 @@ public class AdminBookingRange extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_admin_booking_range, container, false);
+        //TODO: get centers
+
         setupDropdown();
         setupCheckboxes();
         setupTimeTexts();
