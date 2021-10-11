@@ -31,6 +31,11 @@ public interface UserService {
         @GET("/api/Appointments/Booking/")
         Call<List<Date_Time>> getDateTimes(@Header("Authorization") String authHeader, @Query("center") String center);
 
+        @POST("/api/Appointments/Booking/")
+        Call<List<Date_Time>> postNewAppointments(@Header("Authorization") String authHeader);
+
         @GET("/api/Center")
         Call<List<Center>> getCenters(@Header("Authorization") String authHeader);
+
+
 }
