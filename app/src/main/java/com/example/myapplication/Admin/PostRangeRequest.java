@@ -6,7 +6,7 @@ public class PostRangeRequest {
     private int allowedDaysOfWeek;
     private int allowedAgeGroups;
     private int timePerAppointmentMinutes;
-    private int center;
+    private String center;
 
     public void setStartDateTime(String startDateTime) {
         this.startDateTime = startDateTime;
@@ -28,7 +28,7 @@ public class PostRangeRequest {
         this.timePerAppointmentMinutes = timePerAppointmentMinutes;
     }
 
-    public void setCenter(int center) {
+    public void setCenter(String center) {
         this.center = center;
     }
 }

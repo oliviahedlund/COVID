@@ -71,6 +71,12 @@
             android:layout_height="wrap_content"
             android:text="Admin add range" />
 
+        <Button
+            android:id="@+id/testButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin get center" />
+
 
     </LinearLayout>
 

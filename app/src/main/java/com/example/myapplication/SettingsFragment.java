@@ -13,24 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminBookingAPI;
 import com.example.myapplication.Admin.PostRangeRequest;
-import com.example.myapplication.Booking.BookingRequest;
-import com.example.myapplication.Booking.BookingResponse;
 import com.example.myapplication.Booking.DateTimeHelper;
-
-import java.sql.Time;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class SettingsFragment extends Fragment{
@@ -57,6 +43,7 @@ public class SettingsFragment extends Fragment{
         Button testB = view.findViewById(R.id.testbutton);
         Button testB2 = view.findViewById(R.id.testbutton2);
         Button testB3 = view.findViewById(R.id.testbutton3);
+        Button testB4 = view.findViewById(R.id.testButton4);
         testB.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -85,6 +72,7 @@ public class SettingsFragment extends Fragment{
                 adminBookingAPI.PostBookingRange(getActivity(), user, testRequest);
             }
         });
+
 
         ///////////
 

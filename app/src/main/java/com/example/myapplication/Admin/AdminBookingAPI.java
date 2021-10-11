@@ -28,12 +28,13 @@ public class AdminBookingAPI {
     }
 
     public void PostBookingRange(Activity activity, UserResponse user, PostRangeRequest postRangeRequest) {
-        postRangeRequest.setStartDateTime("2021-12-04T08:00:00");
-        postRangeRequest.setEndDateTime("2021-12-06T16:00:00");
+        postRangeRequest.setStartDateTime("2021-12-04T08:00:00" + "Z");
+        postRangeRequest.setEndDateTime("2021-12-06T16:00:00.456Z");
         postRangeRequest.setAllowedDaysOfWeek(0);
         postRangeRequest.setAllowedAgeGroups(-1);
         postRangeRequest.setTimePerAppointmentMinutes(20);
-        postRangeRequest.setCenter(0);
+        postRangeRequest.setCenter("b56e2ae8-49c2-4f5b-94c3-e1bcff4a8768");
+
 
         Call<String> postBookingRangeCall = ApiClient.getUserService().setRange(user.getToken(), postRangeRequest);
 
@@ -45,10 +46,12 @@ public class AdminBookingAPI {
                 if (response.isSuccessful()) {
                     System.out.println(response);
 
+
                 }else{
                     System.out.println("Post range failed");
                     System.out.println("else");
                     System.out.println(response);
+                    System.out.println(response.message());
                 }
             }
 

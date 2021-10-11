@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.example.myapplication.Admin.PostRangeRequest;
 import com.example.myapplication.Booking.BookingRequest;
 import com.example.myapplication.Booking.BookingResponse;
+import com.example.myapplication.Booking.Center;
 import com.example.myapplication.Booking.SetBookingRequest;
 
 import java.util.List;
@@ -36,8 +37,11 @@ public interface UserService {
         @POST("/api/Appointments/booking/")
         Call<String> setBooking(@Header("Authorization") String authHeader, @Body SetBookingRequest setBookingRequest);
 
-        @POST("/api/Appointments/booking/")
+        @POST("/api/Appointments/range/")
         Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);
+
+        @POST("/api/Center")
+        Call<List<Center>> getCenters(@Header("Authorization") String authHeader, @Body Center center);
 
 
 }
