@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
 import com.example.myapplication.R;
 
 
@@ -19,6 +20,7 @@ public class QuestionnaireAdapter_user extends RecyclerView.Adapter<Questionnair
     private String array[];
     private Context context;
     private int [] answers;
+//    private QuestionnaireRequest questionnaireRequest;
 
     public QuestionnaireAdapter_user(Context c, String s[], int [] answers){
         this.array = s;
