@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         i = new Intent(MainActivity.this, GeneralActivity.class);
                     }
+                    userResponse.setToken(loginToken); ////////////
                     i.putExtra("userInfo", userResponse);
                     startActivity(i);
                     finish(); //clears page from history

@@ -15,6 +15,11 @@ public class UserResponse implements Serializable {
     private String postalCode;
     private String id;
     private Boolean isAdmin;
+    private String token;
+
+    public String getToken() { return token; }
+
+    public void setToken(String token) { this.token = token; }
 
     public String getEmail() {
         return email;

@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -22,4 +24,10 @@ public interface UserService {
 
         @GET("/api/User/")
         Call<UserResponse> getUser(@Header("Authorization") String authHeader);
+
+        @GET("/api/Appointments/Booking/Manage/Extra/")
+        Call<List<AppointmentResponse>> getAllAppointments(@Header("Authorization") String authHeader, @Query("getPrior") boolean getPrior);
+
+        @GET("/api/User/Manage")
+        Call<UserInfo> getUserInfoAll(@Header("Authorization") String authHeader, @Query("UserId") String UserId);
 }

@@ -1,34 +1,29 @@
 package com.example.myapplication;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 
-
-import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.content.res.Resources;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+
+import com.example.myapplication.Admin.AdminActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DashboardGeneric_Admin extends Fragment {
     //private String[] locations;
@@ -39,6 +34,16 @@ public class DashboardGeneric_Admin extends Fragment {
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
     private String[] CenterItems = new String[]{"Choose center", "Center 1", "Center 2"};
     private String[] MonthItems = new String[]{"Choose month","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Okt","Nov","Dec"};
+    private String id;
+    private String userId;
+    private String centerId;
+    private String vaccineId;
+    private String time;
+    private int length;
+    private AdminActivity activity;
+    private UserResponse user;
+    private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
+    //private List<UserInfo> userInfo = new ArrayList<UserInfo>();
 
     View view;
 
@@ -48,6 +53,11 @@ public class DashboardGeneric_Admin extends Fragment {
 
         view = inflater.inflate(R.layout.activity_admin_dashboard_generic, container, false);
         setupDropdownMenus();
+
+        activity = (AdminActivity) getActivity();
+        user = activity.getUserData();
+
+        getAppointmentApi();
 
         // Inflate the layout for this fragment
         return view;
@@ -98,6 +108,48 @@ public class DashboardGeneric_Admin extends Fragment {
         }
     }
 */
+    /*private void getUserInfoApi(){
+        Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
+    }*/
+
+    private void getAppointmentApi(){
+        Call<List<AppointmentResponse>> appointmentResponseCall = ApiClient.getUserService().getAllAppointments(user.getToken(), false);
+        appointmentResponseCall.enqueue(new Callback<List<AppointmentResponse>>() {
+
+            @RequiresApi(api = Build.VERSION_CODES.O) // OLD - Delete
+            @Override
+            public void onResponse(Call<List<AppointmentResponse>> call, Response<List<AppointmentResponse>> response) {
+
+                //errorhandling
+                if (response.isSuccessful()) {
+                    appointmentResponse = response.body(); //i userResponse ligger all information om användaren
+
+                    //appointmentResponse.get(10).getId(); //Returnerar Id:t på 11e tiden
+                    if(appointmentResponse.size() > 0) {
+                        System.out.println("ID: " + appointmentResponse.get(0).getId());
+                        System.out.println("User ID: " + appointmentResponse.get(0).getUserId());
+                        System.out.println("Center ID: " + appointmentResponse.get(0).getCenterId());
+                        System.out.println("Vaccine ID: " + appointmentResponse.get(0).getVaccineId());
+                        System.out.println("Time: " + appointmentResponse.get(0).getTime());
+                        System.out.println("Length: " + appointmentResponse.get(0).getLength());
+                    }
+                    else{
+                        System.out.println("Empty appointmentResponse");
+                    }
+                }else{
+                    Toast.makeText(activity,"Appointments error", Toast.LENGTH_LONG).show();
+                    System.out.println("Fail - else");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AppointmentResponse>> call, Throwable t) {
+                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
+            }
+        });
+
+    }
 }
 
 

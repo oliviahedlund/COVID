@@ -57,6 +57,14 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+    private UserResponse setUserData(UserResponse response){
+        return this.user = response;
+    }
+
+    public UserResponse getUserData(){
+        return user;
+    }
+
     //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
