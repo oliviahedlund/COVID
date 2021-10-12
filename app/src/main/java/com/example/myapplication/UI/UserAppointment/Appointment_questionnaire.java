@@ -22,6 +22,7 @@ import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.ApiClient;
+import com.example.myapplication.Helpers.NewQuestionnaireHelper;
 import com.example.myapplication.UI.Adapter.QuestionnaireAdapter_user;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
@@ -47,7 +48,8 @@ public class Appointment_questionnaire extends Fragment {
 
     private UserResponse user;
     private int [] answers;
-
+    private NewQuestionnaireHelper newQuestionnaireHelper;
+    private QuestionnaireRequest questionnaireRequest;
 
     private Button confirmButton;
     private Button cancelButton;
@@ -60,7 +62,7 @@ public class Appointment_questionnaire extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.questionnaire_user_fragment, container, false);
-
+        user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
         setupQuestionnaire();
         setupButtons();
 
@@ -91,8 +93,17 @@ public class Appointment_questionnaire extends Fragment {
                     if(matchRejectCondition()){
                         new AlertWindow(getFragment()).createAlertWindow("Sorry, you are not allowed to book an appointment!");
                     } else {
-                        Appointment_make appointment_make = new Appointment_make(answers);
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
+                        fillQuestionnaireRequest();
+                        newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), questionnaireRequest);
+                        newQuestionnaireHelper.API_sendNewQuestionnaire(user, new Runnable() {
+                            @Override
+                            public void run() {
+                                LoadingAnimation.dismissLoadingAnimation();
+                                Appointment_make appointment_make = new Appointment_make();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
+                            }
+                        });
+                        LoadingAnimation.startLoadingAnimation(getActivity());
                     }
                 } else{
                     Toast.makeText(getActivity(),"Please answer all the questions", Toast.LENGTH_SHORT).show();
@@ -117,6 +128,15 @@ public class Appointment_questionnaire extends Fragment {
             }
         }
         return true;
+    }
+
+    public void fillQuestionnaireRequest() {
+        questionnaireRequest = new QuestionnaireRequest();
+        questionnaireRequest.setNeededHelpDuetoVax((answers[0] == 0));
+        questionnaireRequest.setTraveledInLast14Days((answers[1] == 0));
+        questionnaireRequest.setIsAllergicToVax((answers[2] == 0));
+        questionnaireRequest.setHasBloodProblems((answers[3] == 0));
+        questionnaireRequest.setIsPregnant((answers[4] == 0));
     }
 
     public boolean matchRejectCondition(){

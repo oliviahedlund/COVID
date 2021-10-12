@@ -62,7 +62,7 @@ public class CenterVaccineHelper {
     public String [] getCenters(){
         ArrayList<String> centerBuffer = new ArrayList<String>();
         for(Center center: centers){
-            if(center != null) centerBuffer.add(center.getName());
+            if(center != null) centerBuffer.add(center.getCenterName());
         }
 
         String [] centerArray = new String[centerBuffer.size()];
@@ -85,7 +85,7 @@ public class CenterVaccineHelper {
 
     public String getSelectedCenter(int center){
         selectedCenter = center;
-        return centers.get(center).getId();
+        return centers.get(center).getCenterId();
     }
 
     public String getSelectedVaccine(int vaccine){

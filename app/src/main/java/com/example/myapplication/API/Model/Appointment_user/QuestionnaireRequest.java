@@ -1,13 +1,15 @@
 package com.example.myapplication.API.Model.Appointment_user;
 
-public class QuestionnaireRequest {
+import java.io.Serializable;
+
+public class QuestionnaireRequest implements Serializable {
     private boolean neededHelpDuetoVax;
     private boolean traveledInLast14Days;
     private boolean isAllergicToVax;
     private boolean hasBloodProblems;
     private boolean isPregnant;
 
-    public boolean isNeededHelpDuetoVax() {
+    public boolean getNeededHelpDuetoVax() {
         return neededHelpDuetoVax;
     }
 
@@ -15,7 +17,7 @@ public class QuestionnaireRequest {
         this.neededHelpDuetoVax = neededHelpDuetoVax;
     }
 
-    public boolean isTraveledInLast14Days() {
+    public boolean getTraveledInLast14Days() {
         return traveledInLast14Days;
     }
 
@@ -23,15 +25,15 @@ public class QuestionnaireRequest {
         this.traveledInLast14Days = traveledInLast14Days;
     }
 
-    public boolean isAllergicToVax() {
+    public boolean getIsAllergicToVax() {
         return isAllergicToVax;
     }
 
-    public void setAllergicToVax(boolean allergicToVax) {
+    public void setIsAllergicToVax(boolean allergicToVax) {
         isAllergicToVax = allergicToVax;
     }
 
-    public boolean isHasBloodProblems() {
+    public boolean getHasBloodProblems() {
         return hasBloodProblems;
     }
 
@@ -39,11 +41,11 @@ public class QuestionnaireRequest {
         this.hasBloodProblems = hasBloodProblems;
     }
 
-    public boolean isPregnant() {
+    public boolean getIsPregnant() {
         return isPregnant;
     }
 
-    public void setPregnant(boolean pregnant) {
+    public void setIsPregnant(boolean pregnant) {
         isPregnant = pregnant;
     }
 

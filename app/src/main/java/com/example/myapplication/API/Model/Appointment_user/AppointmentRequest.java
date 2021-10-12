@@ -1,8 +1,9 @@
 package com.example.myapplication.API.Model.Appointment_user;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public class AppointmentRequest {
+public class AppointmentRequest implements Serializable {
 
     private ZonedDateTime time;
     private int length;
