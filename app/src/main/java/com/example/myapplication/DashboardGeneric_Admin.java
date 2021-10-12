@@ -114,12 +114,8 @@ public class DashboardGeneric_Admin extends Fragment {
         app_list.add(matt11);
 */
         //creates and sets custom adapter to the listview
-        DashboardGeneric_Adapter Appadapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
-        appointments.setAdapter(Appadapter);
-
-
-
-
+        DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
+        appointments.setAdapter(AppAdapter);
     }
 
     private void setupDropdownMenus(){ // sets up the dropdown menues
