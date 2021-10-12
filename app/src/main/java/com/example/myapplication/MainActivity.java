@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminActivity;
-import com.example.myapplication.DashboardGeneric_Admin;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

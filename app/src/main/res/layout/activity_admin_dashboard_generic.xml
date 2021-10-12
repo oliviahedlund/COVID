@@ -13,39 +13,41 @@
 
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Scheduled appointments"
-            android:textSize="20sp"
-            app:backgroundTint="#3F51B5"
-
-            />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scheduled appointments"
+        android:textSize="20sp"
+        app:backgroundTint="#3F51B5" />
 
 
-            <Spinner
-                android:id="@+id/spinner1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"/>
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:layout_toRightOf="@id/spinner1"
-                android:spinnerMode="dropdown"/>
-            <Spinner
-                android:id="@+id/spinner3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:layout_toRightOf="@id/spinner2"
-                android:spinnerMode="dropdown"/>
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_toRightOf="@id/spinner1"
+        android:spinnerMode="dropdown"/>
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_toRightOf="@id/spinner2"
+        android:spinnerMode="dropdown"/>
 
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/list" />
 
     </LinearLayout>

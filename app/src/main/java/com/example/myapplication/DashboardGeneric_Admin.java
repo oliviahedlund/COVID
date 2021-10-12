@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class DashboardGeneric_Admin extends Fragment {
     //private String[] locations;
     //private String[] ageGroup;
     //private String[] product;
+    private ListView appointments;
     private String[] CountyItems = new String[]{"Choose county","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
             "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala",
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
@@ -45,6 +47,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
     //private List<UserInfo> userInfo = new ArrayList<UserInfo>();
 
+
     View view;
 
     @Override
@@ -53,6 +56,7 @@ public class DashboardGeneric_Admin extends Fragment {
 
         view = inflater.inflate(R.layout.activity_admin_dashboard_generic, container, false);
         setupDropdownMenus();
+        setupListView();
 
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
@@ -62,8 +66,49 @@ public class DashboardGeneric_Admin extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+    private void setupListView(){
 
-    private void setupDropdownMenus() {
+        appointments = (ListView) view.findViewById(R.id.list) ;
+        DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
+        DashboardGeneric_Cell matt1 = new DashboardGeneric_Cell("12:10");
+        DashboardGeneric_Cell matt2 = new DashboardGeneric_Cell("12:20");
+        DashboardGeneric_Cell matt3 = new DashboardGeneric_Cell("12:30");
+        DashboardGeneric_Cell matt4 = new DashboardGeneric_Cell("12:40");
+        DashboardGeneric_Cell matt5 = new DashboardGeneric_Cell("12:50");
+        DashboardGeneric_Cell matt6 = new DashboardGeneric_Cell("13:00");
+        DashboardGeneric_Cell matt7 = new DashboardGeneric_Cell("13:10");
+        DashboardGeneric_Cell matt8 = new DashboardGeneric_Cell("13:20");
+        DashboardGeneric_Cell matt9 = new DashboardGeneric_Cell("13:30");
+        DashboardGeneric_Cell matt10 = new DashboardGeneric_Cell("13:40");
+        DashboardGeneric_Cell matt11 = new DashboardGeneric_Cell("13:50");
+
+
+
+
+        ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
+
+        app_list.add(matt0);
+        app_list.add(matt1);
+        app_list.add(matt2);
+        app_list.add(matt3);
+        app_list.add(matt4);
+        app_list.add(matt5);
+        app_list.add(matt6);
+        app_list.add(matt7);
+        app_list.add(matt8);
+        app_list.add(matt9);
+        app_list.add(matt10);
+        app_list.add(matt11);
+
+        DashboardGeneric_Adapter Appadapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
+        appointments.setAdapter(Appadapter);
+
+
+
+
+    }
+
+    private void setupDropdownMenus(){
         //Setup spinners
         Spinner County_dropdown = (Spinner) view.findViewById(R.id.spinner1);
         Spinner Center_dropdown = (Spinner) view.findViewById(R.id.spinner2);
