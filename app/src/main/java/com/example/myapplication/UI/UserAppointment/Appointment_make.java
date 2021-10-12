@@ -259,10 +259,10 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_sendNewQuestionnaire(){
-        Call<QuestionnaireRequest> call = ApiClient.getUserService().postNewQuestionnaire(user.getToken(), questionnaireRequest);
-        call.enqueue(new Callback<QuestionnaireRequest>() {
+        Call call = ApiClient.getUserService().postNewQuestionnaire(user.getToken(), questionnaireRequest);
+        call.enqueue(new Callback() {
             @Override
-            public void onResponse(Call<QuestionnaireRequest> call, Response<QuestionnaireRequest> response) {
+            public void onResponse(Call call, Response response) {
                 if(response.isSuccessful()){
 
                     new Handler().postDelayed(new Runnable() {
@@ -285,7 +285,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             }
 
             @Override
-            public void onFailure(Call<QuestionnaireRequest> call, Throwable t) {
+            public void onFailure(Call call, Throwable t) {
                 Log.d("haha fail", "" + t);
                 LoadingAnimation.dismissLoadingAnimation();
                 new AlertWindow(getFragment()).createAlertWindow(getFragment().getResources().getString(R.string.connectionFailureAlert));
