@@ -6,18 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.UI.GenericMessageFragment;
 import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.UI.UserAppointment.Appointment_Info;
+import com.example.myapplication.UI.UserAppointment.Appointment_make;
 import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
+import com.example.myapplication.UI.UserAppointment.Appointment_questionnaire;
 import com.example.myapplication.UI.User_profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -127,7 +133,24 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = new Covid_Tracking_dashboardFragment();
                         break;
                     case R.id.booking:
-                        newFragment = new Appointment_makeCancel();
+//                        if(user.isCanBook()){
+//                            newFragment = new Appointment_make();
+//                            break;
+//                        } else{
+//                            if(user.isGotFirstDose()){
+//                                newFragment = new GenericMessageFragment(getResources().getString(R.string.contactAdmin));
+//                                break;
+//                            } else{
+//                                if(user.getQuestionare() == null){
+//                                    newFragment = new Appointment_questionnaire();
+//                                    break;
+//                                } else{
+//                                    newFragment = new GenericMessageFragment("Admin has to book for you or allow you to book, please contact admin");
+//                                    break;
+//                                }
+//                            }
+//                        }
+                        newFragment = new Appointment_Info();
                         break;
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();
@@ -147,5 +170,9 @@ public class GeneralActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public Activity getGeneralActivity(){
+        return this;
     }
 }

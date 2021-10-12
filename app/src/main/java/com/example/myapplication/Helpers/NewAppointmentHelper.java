@@ -2,6 +2,7 @@ package com.example.myapplication.Helpers;
 
 import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -31,8 +32,8 @@ public class NewAppointmentHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_sendNewAppointment(UserResponse user, Runnable runnable){
-        Call<AppointmentResponse> call1 = ApiClient.getUserService().postNewAppointments(user.getToken(), appointment);
-        call1.enqueue(new Callback<AppointmentResponse>() {
+        Call<AppointmentResponse> call = ApiClient.getUserService().postNewAppointments(user.getToken(), appointment);
+        call.enqueue(new Callback<AppointmentResponse>() {
             @Override
             public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
                 if(response.isSuccessful()){
@@ -53,6 +54,7 @@ public class NewAppointmentHelper {
             @Override
             public void onFailure(Call<AppointmentResponse> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
+                Log.d("haha ", "" + t);
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });

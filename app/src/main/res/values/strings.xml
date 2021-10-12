@@ -99,4 +99,5 @@
 
     <string name="placeHolder">Place Holder</string>
 
+    <string name="contactAdmin">You cannot book a second dose. Contact an admin</string>
 </resources>

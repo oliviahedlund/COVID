@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userEmail = findViewById(R.id.editTextTextEmailAddress3);
                 userPassword = findViewById(R.id.editTextTextPassword2);
-                userEmail.setText("baiwei1@gmail.com");
+                userEmail.setText("baiwei4@gmail.com");
                 userPassword.setText("ghJK12345");
             }
         });

@@ -44,7 +44,8 @@
         android:layout_marginBottom="50dp"
         app:cardBackgroundColor="@color/red"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        android:visibility="invisible">
 
         <TextView
             android:layout_width="wrap_content"

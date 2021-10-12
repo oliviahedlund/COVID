@@ -132,7 +132,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                         }
                     });
 
-
                     LoadingAnimation.startLoadingAnimation(getActivity());
                 }
             }

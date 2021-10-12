@@ -89,5 +89,6 @@
 
     <string name="placeHolder">Place Holder</string>
 
+    <string name="contactAdmin">Du kan inte boka den andra dosen. Kontakta admin</string>
 </resources>
 
