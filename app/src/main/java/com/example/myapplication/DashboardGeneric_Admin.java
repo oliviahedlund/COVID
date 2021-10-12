@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -34,7 +35,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private String[] CountyItems = new String[]{"Choose county","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
             "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala",
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
-    private String[] CenterItems = new String[]{"Choose center", "Center 1", "Center 2"};
+    private String[] CenterItems = new String[]{"Choose center"};
     private String[] MonthItems = new String[]{"Choose month","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Okt","Nov","Dec"};
     private String id;
     private String userId;
@@ -56,7 +57,9 @@ public class DashboardGeneric_Admin extends Fragment {
 
         view = inflater.inflate(R.layout.activity_admin_dashboard_generic, container, false);
         setupDropdownMenus();
-        setupListView();
+        //setupListView();
+
+
 
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
@@ -66,8 +69,10 @@ public class DashboardGeneric_Admin extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-    private void setupListView(){
+    private void setupListView(){ // sets up list view with booked appointments depending on the filter
 
+
+        //creates objects
         appointments = (ListView) view.findViewById(R.id.list) ;
         DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
         DashboardGeneric_Cell matt1 = new DashboardGeneric_Cell("12:10");
@@ -82,11 +87,10 @@ public class DashboardGeneric_Admin extends Fragment {
         DashboardGeneric_Cell matt10 = new DashboardGeneric_Cell("13:40");
         DashboardGeneric_Cell matt11 = new DashboardGeneric_Cell("13:50");
 
-
-
-
+        //makes an arraylist of custom datatype
         ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
 
+        //adds every object to the arraylist
         app_list.add(matt0);
         app_list.add(matt1);
         app_list.add(matt2);
@@ -100,6 +104,7 @@ public class DashboardGeneric_Admin extends Fragment {
         app_list.add(matt10);
         app_list.add(matt11);
 
+        //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter Appadapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(Appadapter);
 
@@ -108,7 +113,7 @@ public class DashboardGeneric_Admin extends Fragment {
 
     }
 
-    private void setupDropdownMenus(){
+    private void setupDropdownMenus(){ // sets up the dropdown menues
         //Setup spinners
         Spinner County_dropdown = (Spinner) view.findViewById(R.id.spinner1);
         Spinner Center_dropdown = (Spinner) view.findViewById(R.id.spinner2);
@@ -123,8 +128,41 @@ public class DashboardGeneric_Admin extends Fragment {
         County_dropdown.setAdapter(adapterCounty);
         Center_dropdown.setAdapter(adapterCenter);
         Date_dropdown.setAdapter(adapterDate);
+
+        County_dropdown.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så centers sorteras och blir displayade beroende på county
+
+                        Object CountyItem = parent.getItemAtPosition(pos);
+                        System.out.println(CountyItem.toString());     //prints the text in spinner item.
+                        getCenters(CountyItem.toString(),adapterCenter,Center_dropdown);
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+        Center_dropdown.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
+
+                        Object CenterItem = parent.getItemAtPosition(pos);
+                        System.out.println(CenterItem.toString());     //prints the text in spinner item.
+
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
     }
-    /*private String[] getCenters(String county){
+    private void getCenters(String county,ArrayAdapter<String> adapter,Spinner Center_dropdown){
+
+        if(county.equals("Choose county")){
+            System.out.println("Choose county");
+            CenterItems = new String[]{"Choose cock"};
+            ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
+            Center_dropdown.setAdapter(adapterCenter);
+            return;
+        }
+       // String[] Centers = new String[]{"Choose center"};
+        /*
         switch(county){
             case "Blekinge":
             case "Dalarna":
@@ -151,8 +189,19 @@ public class DashboardGeneric_Admin extends Fragment {
             default:
                 return new String[]{"Center"};
         }
+
+         */
+        CenterItems = new String[]{"Choose citron"};
+        ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
+        Center_dropdown.setAdapter(adapterCenter);
+        //setCenter(Centers);
     }
-*/
+    private void setCenter(String[] Centers){
+        System.out.println("Center Set");
+
+
+    }
+
     /*private void getUserInfoApi(){
         Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
     }*/

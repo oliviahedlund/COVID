@@ -63,7 +63,7 @@ public class GeneralActivity extends AppCompatActivity {
     public UserResponse getUserData(){
         return user;
     }
-   /* private String setUserToken(String response){
+   /*private String setUserToken(String response){
         return this.token = response;
     }
 
@@ -71,13 +71,9 @@ public class GeneralActivity extends AppCompatActivity {
         return token;
     }*/
 
-    private UserResponse setUserData(UserResponse response){
-        return this.user = response;
-    }
 
-    public UserResponse getUserData(){
-        return user;
-    }
+
+
 
     //opens drawer menu when icon is clicked
     @Override
