@@ -1,44 +1,42 @@
 package com.example.myapplication.API.Model.Appointment_user;
 
-import com.example.myapplication.API.Model.Appointment_user.Vaccine;
-
 import java.util.List;
 
 public class Center {
-    private String id;
-    private String name;
-    private String address;
-    private List<Vaccine> vaccineStocks;
+    private String centerId;
+    private String centerName;
+    private String centerCounty;
+    private List<Vaccine> vaccines;
 
-    public String getId() {
-        return id;
+    public String getCenterId() {
+        return centerId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCenterId(String centerId) {
+        this.centerId = centerId;
     }
 
-    public String getName() {
-        return name;
+    public String getCenterName() {
+        return centerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCenterName(String centerName) {
+        this.centerName = centerName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCenterCounty() {
+        return centerCounty;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCenterCounty(String centerCounty) {
+        this.centerCounty = centerCounty;
     }
 
     public List<Vaccine> getVaccines() {
-        return vaccineStocks;
+        return vaccines;
     }
 
     public void setVaccines(List<Vaccine> vaccines) {
-        this.vaccineStocks = vaccines;
+        this.vaccines = vaccines;
     }
 }

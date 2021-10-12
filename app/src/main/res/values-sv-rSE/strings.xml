@@ -61,7 +61,7 @@
     <!--add centers-->
     <string name="addCenters">Lägg till nya center</string>
     <string name="centerName">Centernamn:</string>
-    <string name="centerAddress">Centeradress: </string>
+    <string name="centerCounty">Län: </string>
     <string name="amountVac">Antal vaccindoser: </string>
     <string name="addCenter">Lägg till center</string>
 

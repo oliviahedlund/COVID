@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -35,9 +36,14 @@ public class AdminBookingRangeFragment extends Fragment {
     private String[] age;
     private AutoCompleteTextView centerFilter;
     private AutoCompleteTextView ageFilter;
-    List<CheckBox> cbWeekdays;
-    CenterVaccineHelper centerVaccineHelper;
+    private List<CheckBox> cbWeekdays;
+    private CenterVaccineHelper centerVaccineHelper;
     private UserResponse user;
+    private int centerPosition;
+    private int agePosition;
+    private PostRangeRequest postRangeRequest;
+    List<EditText> editTexts;
+    AdminBookingAPI adminBookingAPI;
 
 
     public AdminBookingRangeFragment() {
@@ -50,11 +56,9 @@ public class AdminBookingRangeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_admin_booking_range, container, false);
-        //TODO: get centers
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
-        apiCallCenter();
 
-        //setupDropdown();
+        apiCallCenter();
         setupCheckboxes();
         setupTimeTexts();
         setupButton();
@@ -77,8 +81,8 @@ public class AdminBookingRangeFragment extends Fragment {
 
 
     private void setupDropdown(){
+        agePosition = 6;
 
-        //centers = getResources().getStringArray(R.array.Centers);
         centers = centerVaccineHelper.getCenters();
         age = getResources().getStringArray(R.array.Age);
 
@@ -87,32 +91,32 @@ public class AdminBookingRangeFragment extends Fragment {
 
         Simple_DropdownAdapter centerAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, centers);
         centerFilter.setAdapter(centerAdapter);
+        centerFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                centerPosition = position;
+            }
+        });
+
         Simple_DropdownAdapter ageAdapter = new Simple_DropdownAdapter(this.getActivity().getApplicationContext(), R.layout.simple_dropdown_item, age);
         ageFilter.setAdapter(ageAdapter);
+        ageFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                agePosition = position;
+            }
+        });
 
         LoadingAnimation.dismissLoadingAnimation();
     }
 
-    private void setupCheckboxes(){
-        cbWeekdays = new ArrayList<CheckBox>();
-        cbWeekdays.add(view.findViewById(R.id.cbSunday));
-        cbWeekdays.add(view.findViewById(R.id.cbMonday));
-        cbWeekdays.add(view.findViewById(R.id.cbTuesday));
-        cbWeekdays.add(view.findViewById(R.id.cbWednesday));
-        cbWeekdays.add(view.findViewById(R.id.cbThursday));
-        cbWeekdays.add(view.findViewById(R.id.cbFriday));
-        cbWeekdays.add(view.findViewById(R.id.cbSaturday));
 
-        for (int i = 0; i < cbWeekdays.size(); i++) {
-            cbWeekdays.get(i).setText(getResources().getStringArray(R.array.weekdaysShort)[i]);
-        }
-    }
 
 
 
     //Switches focus to next editText when max characters have been typed
     private void setupTimeTexts(){
-        List<EditText> editTexts = new ArrayList<EditText>();
+        editTexts = new ArrayList<EditText>();
         editTexts.add(view.findViewById(R.id.startYear));
         editTexts.add(view.findViewById(R.id.startMonth));
         editTexts.add(view.findViewById(R.id.startDay));
@@ -169,12 +173,46 @@ public class AdminBookingRangeFragment extends Fragment {
         }
     }
 
+    private String convertDateInputToString(int startIndex){
+        int[] dateList = new int[5];
+        for (int i = 0; i < 5; i++) {
+            dateList[i] = Integer.parseInt(editTexts.get(startIndex+i).getText().toString());
+        }
+        return adminBookingAPI.convertTimeToAPIString(dateList);
+
+    }
+    private void postAppointmentRange(){
+        adminBookingAPI = new AdminBookingAPI();
+        EditText etMinutes = view.findViewById(R.id.appMinutes);
+        int minutes;
+        try {
+            minutes = Integer.parseInt(etMinutes.getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("appMinutes not integer");
+            return;
+        }
+
+        postRangeRequest = new PostRangeRequest();
+        postRangeRequest.setCenter(centerVaccineHelper.getSelectedCenter(centerPosition));
+        postRangeRequest.setAllowedAgeGroups(getAgeCoding());
+        postRangeRequest.setAllowedDaysOfWeek(getCheckedWeekdays());
+        postRangeRequest.setTimePerAppointmentMinutes(minutes);
+        postRangeRequest.setStartDateTime(convertDateInputToString(0));
+        postRangeRequest.setEndDateTime(convertDateInputToString(5));
+
+        adminBookingAPI.PostBookingRange(getActivity(), user, postRangeRequest);
+
+    }
+
     private void setupButton(){
         Button publishButton = view.findViewById(R.id.publishTimesBtn);
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdminBookingAPI adminBookingAPI = new AdminBookingAPI();
+                postAppointmentRange();
+                /*
+                //TODO: check for empty input
 
                 //TODO: get/check center
                 //TODO: get/check age
@@ -190,18 +228,25 @@ public class AdminBookingRangeFragment extends Fragment {
 
                 //TODO: get and check date-time-input
                 //temporary
+                int[] dateList = {2021,11,12,8,20};
                 int year = 2021;
                 int month = 11;
                 int date = 12;
                 int hour = 8;
                 int minute = 20;
-                String test = adminBookingAPI.convertTimeToAPIString(year, month, date, hour, minute);
+                String test = adminBookingAPI.convertTimeToAPIString(dateList);
                 System.out.println(test);
-
+                adminBookingAPI.PostBookingRange(getActivity(),user, postRangeRequest);
+                */
 
             }
         });
     }
+    private int getAgeCoding(){
+        int[] ageConverter = {-1,1,2,4,8,16,0};
+        return ageConverter[agePosition];
+    }
+
     //Called when publish is clicked
     private int getCheckedWeekdays(){
         int[] binaryRepresentation = {1,2,4,8,16,32,64};
@@ -220,6 +265,20 @@ public class AdminBookingRangeFragment extends Fragment {
         }
 
         return chosenWeekdays;
+    }
+    private void setupCheckboxes(){
+        cbWeekdays = new ArrayList<CheckBox>();
+        cbWeekdays.add(view.findViewById(R.id.cbSunday));
+        cbWeekdays.add(view.findViewById(R.id.cbMonday));
+        cbWeekdays.add(view.findViewById(R.id.cbTuesday));
+        cbWeekdays.add(view.findViewById(R.id.cbWednesday));
+        cbWeekdays.add(view.findViewById(R.id.cbThursday));
+        cbWeekdays.add(view.findViewById(R.id.cbFriday));
+        cbWeekdays.add(view.findViewById(R.id.cbSaturday));
+
+        for (int i = 0; i < cbWeekdays.size(); i++) {
+            cbWeekdays.get(i).setText(getResources().getStringArray(R.array.weekdaysShort)[i]);
+        }
     }
 
 }

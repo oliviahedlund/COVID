@@ -59,14 +59,12 @@ public class AdminAddCenterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_admin_add_center, container, false);
-        //setup();
-        //inizialize if not chosen
-        vaccinePosition=-1;
+        vaccinePosition=-1; //inizialize if not chosen
 
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
-        apiCenter = new ApiCenter();
+        centerVaccineHelper = new CenterVaccineHelper(this);
         apiCallVaccine();
-
+        setup();
 
         return view;
     }
@@ -77,60 +75,15 @@ public class AdminAddCenterFragment extends Fragment {
         Runnable next = new Runnable() {
             @Override
             public void run() {
-                setup();
+                setupDropdown();
             }
         };
-        apiVaccin.CallVaccineAPI(getActivity(), user, next);
+        apiVaccin.API_getVaccine(getActivity(), user, next);
     }
 
 
 
-    private void setup(){
-        centerName = view.findViewById(R.id.centerName);
-        centerAddress = view.findViewById(R.id.centerAddress);
-        //vaccine = view.findViewById(R.id.vaccineName);
-        amount = view.findViewById(R.id.vaccineAmount);
-        btn = view.findViewById(R.id.button7);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View view) {
-                center = centerName.getEditableText().toString();
-                centerAdd = centerAddress.getEditableText().toString();
-                number = amount.getEditableText().toString();
-
-                try {
-                    value=Integer.parseInt(number);
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    System.out.println("Wrong input in vaccin amount");
-                    return;
-                }
-
-                System.out.println(center + centerAdd + vaccineName + value);
-
-                Center bodyCenter = new Center();
-                bodyCenter.setName(center);
-                bodyCenter.setAddress(centerAdd);
-
-                Vaccine vac = new Vaccine();
-                List<Vaccine> vaccines = new ArrayList<>();
-                if(vaccinePosition!=-1) {
-                    vac.setId(apiVaccin.getVaccinID(vaccinePosition));
-                }
-                else{
-                    System.out.println("Error: no vaccin chosen");
-                    return;
-                }
-                //vac.setId("5b2382b1-1b6b-49a2-a3fd-ae438fcdf336");
-                vac.setAmount(value);
-                //vaccines.add(vac);
-                bodyCenter.setVaccines(vaccines);
-                apiCenter.API_postCenters(user, bodyCenter);
-                //API_postCenters(user, bodyCenter);
-            }
-        });
-
+    private void setupDropdown(){
         vaccines = apiVaccin.getVaccines();
 
         vaccineFilter = (AutoCompleteTextView) view.findViewById(R.id.generateVaccin);
@@ -145,5 +98,75 @@ public class AdminAddCenterFragment extends Fragment {
         });
 
         LoadingAnimation.dismissLoadingAnimation();
+    }
+
+    private void setup(){
+        centerName = view.findViewById(R.id.centerName);
+        centerAddress = view.findViewById(R.id.centerAddress);
+        amount = view.findViewById(R.id.vaccineAmount);
+
+        btn = view.findViewById(R.id.button7);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+                Center bodyCenter = setupBodyCenter();
+                if(bodyCenter!=null) {
+                    centerVaccineHelper.API_postCenter(user, bodyCenter);
+                }
+                else{
+                    System.out.println("Error add center");
+                }
+
+            }
+        });
+
+    }
+
+    private Center setupBodyCenter(){
+        center = centerName.getEditableText().toString();
+        centerAdd = centerAddress.getEditableText().toString();
+        if(center.equals("") || centerAdd.equals("")){
+            return null;
+        }
+        Center bodyCenter = new Center();
+        bodyCenter.setCenterName(center);
+        bodyCenter.setCenterCounty(centerAdd);
+
+        List<Vaccine> vaccineList = new ArrayList<Vaccine>();
+        vaccineList = setupBodyVaccine();
+        if(vaccineList == null){
+            return null;
+        }
+
+        bodyCenter.setVaccines(vaccineList);
+        return bodyCenter;
+
+    }
+    private List<Vaccine> setupBodyVaccine(){
+        number = amount.getEditableText().toString();
+        try {
+            value=Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            System.out.println("Wrong input in vaccin amount");
+            return null;
+        }
+        if(value==0){
+            System.out.println("No vaccin amount");
+            return null;
+        }
+        List<Vaccine> vaccineList = new ArrayList<Vaccine>();
+        Vaccine vac = new Vaccine();
+        if(vaccinePosition!=-1) {
+            vac.setVaccineId(apiVaccin.getVaccineID(vaccinePosition));
+        }
+        else{
+            System.out.println("Error: no vaccin chosen");
+            return null;
+        }
+        vac.setAmount(value);
+        vaccineList.add(vac);
+        return vaccineList;
     }
 }

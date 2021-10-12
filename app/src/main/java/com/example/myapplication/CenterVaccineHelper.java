@@ -1,19 +1,13 @@
 package com.example.myapplication;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Handler;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
-import com.example.myapplication.UserResponse;
-import com.example.myapplication.ApiClient;
-import com.example.myapplication.R;
 //import com.example.myapplication.AlertWindow;
-import com.example.myapplication.LoadingAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +20,57 @@ public class CenterVaccineHelper {
     private List<Center> centers;
     private int selectedCenter;
     private Fragment fragment;
+    private String responseID;
 
     public CenterVaccineHelper(Fragment fragment){
         this.fragment = fragment;
     }
 
+    public void API_postCenterVaccine(UserResponse user, String centerID, Vaccine vaccine){
+        List<Vaccine> vaccines = new ArrayList<Vaccine>();
+        vaccines.add(vaccine);
+        Call<String> call = ApiClient.getUserService().postCenterVaccine(user.getToken(), centerID, vaccines);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    responseID = response.body().toString();
+
+                }else{
+                    System.out.println("could not add center");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                System.out.println(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void API_postCenter(UserResponse user, Center bodyCenter){
+        Call<String> call = ApiClient.getUserService().postCenter(user.getToken(), bodyCenter);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    responseID = response.body().toString();
+
+                }else{
+                    System.out.println("could not add center");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                System.out.println(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public String getResponseID(){
+        return responseID;
+    }
 
     public void API_getCenters(Activity activity, UserResponse user, Runnable runnable){
         Call<List<Center>> call = ApiClient.getUserService().getCenters(user.getToken());
@@ -60,24 +100,15 @@ public class CenterVaccineHelper {
     public String [] getCenters(){
         String [] centerArray = new String[centers.size()];
         for (int i = 0; i < centers.size(); i++) {
-            centerArray[i] = centers.get(i).getName();
+            centerArray[i] = centers.get(i).getCenterName();
         }
-        /*
-        ArrayList<String> centerBuffer = new ArrayList<String>();
-        for(Center center: centers){
-            if(center != null) centerBuffer.add(center.getName());
-        }
-
-        String [] centerArray = new String[centerBuffer.size()];
-        centerArray = centerBuffer.toArray(centerArray);
-        */
         return centerArray;
     }
 
     public String [] getVaccines(int center){
         ArrayList<String> vaccineBuffer = new ArrayList<String>();
         for(Vaccine vaccine: centers.get(center).getVaccines()){
-            if(vaccine != null) vaccineBuffer.add(vaccine.getName());
+            if(vaccine != null) vaccineBuffer.add(vaccine.getVaccineName());
         }
 
         String [] vaccineArray = new String[vaccineBuffer.size()];
@@ -88,10 +119,10 @@ public class CenterVaccineHelper {
 
     public String getSelectedCenter(int center){
         selectedCenter = center;
-        return centers.get(center).getId();
+        return centers.get(center).getCenterId();
     }
 
     public String getSelectedVaccine(int vaccine){
-        return centers.get(selectedCenter).getVaccines().get(vaccine).getId();
+        return centers.get(selectedCenter).getVaccines().get(vaccine).getVaccineId();
     }
 }

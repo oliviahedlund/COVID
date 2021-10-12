@@ -16,7 +16,7 @@ public class ApiCenter {
     }
 
     public void API_postCenters(UserResponse user, Center bodycenter){
-        Call<String> call = ApiClient.getUserService().postCenters(user.getToken(), bodycenter);
+        Call<String> call = ApiClient.getUserService().postCenter(user.getToken(), bodycenter);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

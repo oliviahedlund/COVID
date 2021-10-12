@@ -65,7 +65,7 @@
     <!--add centers-->
     <string name="addCenters">Add New Centers</string>
     <string name="centerName">Center Name:</string>
-    <string name="centerAddress">Center Address: </string>
+    <string name="centerCounty">County: </string>
     <string name="amountVac">Amount of vaccine doses: </string>
     <string name="addCenter">Add Center</string>
 

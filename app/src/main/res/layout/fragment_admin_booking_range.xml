@@ -129,7 +129,7 @@
 
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/appMinutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="3"

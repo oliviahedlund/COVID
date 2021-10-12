@@ -36,13 +36,19 @@ public interface UserService {
         Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);
 
         @POST("/api/Center")
-        Call<String> postCenters(@Header("Authorization") String authHeader, @Body Center center);
+        Call<String> postCenter(@Header("Authorization") String authHeader, @Body Center center);
 
         @GET("/api/Center")
         Call<List<Center>> getCenters(@Header("Authorization") String authHeader);
 
         @GET("/api/Vaccine")
         Call<List<Vaccine>> getVaccines(@Header("Authorization") String authHeader);
+
+        @POST("/api/Center/Vaccines")
+        Call<String> postCenterVaccine(@Header("Authorization") String authHeader, @Query("center") String centerID, @Body List<Vaccine> vaccines);
+
+        @POST("/api/Vaccine")
+        Call<String> postVaccine(@Header("Authorization") String authHeader, @Query("vaccineName") String vaccineName);
 
 
 }

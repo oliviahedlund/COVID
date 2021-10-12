@@ -16,19 +16,23 @@ import retrofit2.Response;
 
 public class ApiVaccine {
     private List<Vaccine> vaccineResponse;
+    String responseID;
 
     public String[] getVaccines(){
         String[] stringVaccine = new String[vaccineResponse.size()];
         for (int i = 0; i < vaccineResponse.size(); i++) {
-            stringVaccine[i] = vaccineResponse.get(i).getName();
+            stringVaccine[i] = vaccineResponse.get(i).getVaccineName();
         }
         return stringVaccine;
     }
-    public String getVaccinID(int index){
-        return vaccineResponse.get(index).getId();
+    public String getVaccineID(int index){
+        return vaccineResponse.get(index).getVaccineId();
+    }
+    public Vaccine getVaccine(int index){
+        return vaccineResponse.get(index);
     }
 
-    public void CallVaccineAPI(Activity activity, UserResponse user, Runnable runnable){
+    public void API_getVaccine(Activity activity, UserResponse user, Runnable runnable){
         Call<List<Vaccine>> vaccineResponseCall = ApiClient.getUserService().getVaccines(user.getToken());
         vaccineResponseCall.enqueue(new Callback<List<Vaccine>>() {
 
@@ -50,6 +54,28 @@ public class ApiVaccine {
             public void onFailure(Call<List<Vaccine>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 System.out.println("fail");
+            }
+        });
+    }
+
+    public void API_postVaccine(UserResponse user, String vaccineName){
+        System.out.println("in ApiVaccine");
+        Call<String> call = ApiClient.getUserService().postVaccine(user.getToken(), vaccineName);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    System.out.println("response");
+                    responseID = response.body().toString();
+
+                }else{
+                    System.out.println("could not add center");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                System.out.println(t.getLocalizedMessage());
             }
         });
     }
