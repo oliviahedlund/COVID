@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
+import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
 import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.Helpers.DateTimeHelper;
 import com.example.myapplication.API.Model.Appointment_user.Center;
@@ -67,19 +68,18 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     private int year = NOT_DEFINED;
 
     private View view;
-    private int [] questionnaireAnswers;
+
     private CenterVaccineHelper centerVaccineHelper;
     private DateTimeHelper dateTimeHelper;
     private String selectedCenter;
     private String selectedVaccine;
     private Calendar [] allowedDays;
 
+    private int [] questionnaireAnswers;
+    private QuestionnaireRequest questionnaireRequest;
+
     public Appointment_make(int [] questionnaireAnswers){
         this.questionnaireAnswers = questionnaireAnswers;
-    }
-
-    public Fragment getFragment(){
-        return this;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -125,7 +125,8 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 if(center == NOT_DEFINED || month == NOT_DEFINED || year == NOT_DEFINED){
                     Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
                 } else {
-                    API_sendNewAppointment();
+                    fillQuestionnaireRequest();
+                    API_sendNewQuestionnaire();
                     LoadingAnimation.startLoadingAnimation(getActivity());
                 }
             }
@@ -247,6 +248,51 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         });
     }
 
+    public void fillQuestionnaireRequest() {
+        questionnaireRequest = new QuestionnaireRequest();
+        questionnaireRequest.setNeededHelpDuetoVax((questionnaireAnswers[0] == 0));
+        questionnaireRequest.setTraveledInLast14Days((questionnaireAnswers[1] == 0));
+        questionnaireRequest.setAllergicToVax((questionnaireAnswers[2] == 0));
+        questionnaireRequest.setHasBloodProblems((questionnaireAnswers[3] == 0));
+        questionnaireRequest.setPregnant((questionnaireAnswers[4] == 0));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_sendNewQuestionnaire(){
+        Call<QuestionnaireRequest> call = ApiClient.getUserService().postNewQuestionnaire(user.getToken(), questionnaireRequest);
+        call.enqueue(new Callback<QuestionnaireRequest>() {
+            @Override
+            public void onResponse(Call<QuestionnaireRequest> call, Response<QuestionnaireRequest> response) {
+                if(response.isSuccessful()){
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            API_sendNewAppointment();
+                            LoadingAnimation.dismissLoadingAnimation();
+                        }
+                    }, 600);
+                }
+                else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    try {
+                        new AlertWindow(getFragment()).createAlertWindow(response.errorBody().string());
+                    } catch (IOException e) {
+                        new AlertWindow(getFragment()).createAlertWindow("Unknown error");
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QuestionnaireRequest> call, Throwable t) {
+                Log.d("haha fail", "" + t);
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(getFragment()).createAlertWindow(getFragment().getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fillAppointment(){
         appointment = new AppointmentRequest();
@@ -259,8 +305,8 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_sendNewAppointment(){
-        Call<AppointmentResponse> call = ApiClient.getUserService().postNewAppointments(user.getToken(), appointment);
-        call.enqueue(new Callback<AppointmentResponse>() {
+        Call<AppointmentResponse> call1 = ApiClient.getUserService().postNewAppointments(user.getToken(), appointment);
+        call1.enqueue(new Callback<AppointmentResponse>() {
             @Override
             public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
                 if(response.isSuccessful()){
@@ -290,5 +336,9 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 new AlertWindow(getFragment()).createAlertWindow(getFragment().getResources().getString(R.string.connectionFailureAlert));
             }
         });
+    }
+
+    public Fragment getFragment(){
+        return this;
     }
 }
