@@ -22,6 +22,8 @@ import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.Helpers.DateTimeHelper;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.Helpers.NewAppointmentHelper;
+import com.example.myapplication.Helpers.NewQuestionnaireHelper;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.RegisterActivity;
 import com.example.myapplication.UI.AlertWindow;
@@ -71,6 +73,8 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     private CenterVaccineHelper centerVaccineHelper;
     private DateTimeHelper dateTimeHelper;
+    private NewAppointmentHelper newAppointmentHelper;
+    private NewQuestionnaireHelper newQuestionnaireHelper;
     private String selectedCenter;
     private String selectedVaccine;
     private Calendar [] allowedDays;
@@ -91,7 +95,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
 
         centerVaccineHelper = new CenterVaccineHelper(this);
-
         centerVaccineHelper.API_getCenters(getActivity(), user, new Runnable(){
             @Override
             public void run() {
@@ -126,7 +129,20 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                     Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
                 } else {
                     fillQuestionnaireRequest();
-                    API_sendNewQuestionnaire();
+                    newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), questionnaireRequest);
+                    newQuestionnaireHelper.API_sendNewQuestionnaire(user, new Runnable() {
+                        @Override
+                        public void run() {
+                            newAppointmentHelper = new NewAppointmentHelper(getFragment(), appointment);
+                            newAppointmentHelper.API_sendNewAppointment(user, new Runnable() {
+                                @Override
+                                public void run() {
+                                    LoadingAnimation.dismissLoadingAnimation();
+                                }
+                            });
+                            LoadingAnimation.dismissLoadingAnimation();
+                        }
+                    });
                     LoadingAnimation.startLoadingAnimation(getActivity());
                 }
             }
@@ -258,42 +274,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_sendNewQuestionnaire(){
-        Call call = ApiClient.getUserService().postNewQuestionnaire(user.getToken(), questionnaireRequest);
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                if(response.isSuccessful()){
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            API_sendNewAppointment();
-                            LoadingAnimation.dismissLoadingAnimation();
-                        }
-                    }, 600);
-                }
-                else{
-                    LoadingAnimation.dismissLoadingAnimation();
-                    try {
-                        new AlertWindow(getFragment()).createAlertWindow(response.errorBody().string());
-                    } catch (IOException e) {
-                        new AlertWindow(getFragment()).createAlertWindow("Unknown error");
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.d("haha fail", "" + t);
-                LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(getFragment()).createAlertWindow(getFragment().getResources().getString(R.string.connectionFailureAlert));
-            }
-        });
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void fillAppointment(){
         appointment = new AppointmentRequest();
         appointmentDateTime = LocalDateTime.of(LocalDate.of(year, month, day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
@@ -301,41 +281,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         appointment.setCenterId(selectedCenter);
         appointment.setVaccineId(selectedVaccine);
         appointment.setLength(dateTimeHelper.getLength(selectedTime));
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_sendNewAppointment(){
-        Call<AppointmentResponse> call1 = ApiClient.getUserService().postNewAppointments(user.getToken(), appointment);
-        call1.enqueue(new Callback<AppointmentResponse>() {
-            @Override
-            public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
-                if(response.isSuccessful()){
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("haha success", "success" + response.body().getId());
-                            LoadingAnimation.dismissLoadingAnimation();
-                        }
-                    }, 600);
-                }
-                else{
-                    LoadingAnimation.dismissLoadingAnimation();
-                    try {
-                        new AlertWindow(getFragment()).createAlertWindow(response.errorBody().string());
-                    } catch (IOException e) {
-                        new AlertWindow(getFragment()).createAlertWindow("Unknown error");
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AppointmentResponse> call, Throwable t) {
-                LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(getFragment()).createAlertWindow(getFragment().getResources().getString(R.string.connectionFailureAlert));
-            }
-        });
     }
 
     public Fragment getFragment(){
