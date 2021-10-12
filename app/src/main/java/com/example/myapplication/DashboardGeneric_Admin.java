@@ -135,7 +135,7 @@ public class DashboardGeneric_Admin extends Fragment {
 
                         Object CountyItem = parent.getItemAtPosition(pos);
                         System.out.println(CountyItem.toString());     //prints the text in spinner item.
-                        getCenters(CountyItem.toString(),adapterCenter,Center_dropdown);
+                        getCenters(CountyItem.toString(),Center_dropdown);
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
@@ -152,11 +152,11 @@ public class DashboardGeneric_Admin extends Fragment {
                     }
                 });
     }
-    private void getCenters(String county,ArrayAdapter<String> adapter,Spinner Center_dropdown){
+    private void getCenters(String county,Spinner Center_dropdown){
 
         if(county.equals("Choose county")){
-            System.out.println("Choose county");
-            CenterItems = new String[]{"Choose cock"};
+            System.out.println("Default choice (choose county)");
+            CenterItems = new String[]{"Choose center"};
             ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
             Center_dropdown.setAdapter(adapterCenter);
             return;
@@ -194,9 +194,9 @@ public class DashboardGeneric_Admin extends Fragment {
         CenterItems = new String[]{"Choose citron"};
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
         Center_dropdown.setAdapter(adapterCenter);
-        //setCenter(Centers);
+        //setCenter(Centers,Center_dropdown);
     }
-    private void setCenter(String[] Centers){
+    private void setCenter(String[] Centers,Spinner Center_dropdown){
         System.out.println("Center Set");
 
 
