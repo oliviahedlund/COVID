@@ -320,5 +320,15 @@
         </item>
     </string-array>
 
+    // Appointment making
+    <string name="center">Centret</string>
+    <string name="time">Tid</string>
+    <string name="confirm">Klar</string>
+    <string name="cancel">Avbryt</string>
+    <string name="chooseDate">Välj ett datum</string>
+    <string name="chooseDay">välj en dag</string>
+
+
+
 </resources>
 

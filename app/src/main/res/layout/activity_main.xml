@@ -24,6 +24,31 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Testknappar -->
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="is admin(for dummy)" />
+
+            <Button
+                android:id="@+id/dummyLoginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="dummy login" />
+            <Button
+                android:id="@+id/setLoginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="set login text general" />
+            <Button
+                android:id="@+id/setLoginButtonAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="set login text admin" />
+            <!-- Testknappar -->
+
+
             <TextView
                 android:id="@+id/errorText1"
                 android:layout_width="match_parent"
@@ -61,13 +86,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Admin" />
-
 
         </LinearLayout>
 

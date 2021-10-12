@@ -12,8 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GeneralActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -24,7 +29,9 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView userName;
     private TextView userEmail;
     private UserResponse user;
+
     private Covid_Tracking_dashboardFragment dashFragment;
+    //private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,7 @@ public class GeneralActivity extends AppCompatActivity {
         //gets userinfo
         Intent i = getIntent();
         user = (UserResponse) i.getSerializableExtra("userInfo");
+        //token = (String) i.getStringExtra("token");
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
@@ -48,6 +56,20 @@ public class GeneralActivity extends AppCompatActivity {
 
 
     }
+    private UserResponse setUserData(UserResponse response){
+        return this.user = response;
+    }
+
+    public UserResponse getUserData(){
+        return user;
+    }
+   /* private String setUserToken(String response){
+        return this.token = response;
+    }
+
+    public String getUserToken(){
+        return token;
+    }*/
 
     private UserResponse setUserData(UserResponse response){
         return this.user = response;
@@ -110,6 +132,9 @@ public class GeneralActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
                         newFragment = new Covid_Tracking_dashboardFragment();
+                        break;
+                    case R.id.booking:
+                        newFragment = new Appointment_fragment();
                         break;
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();
