@@ -5,11 +5,13 @@ import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Date_Time;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
+import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
 import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.Admin.PostRangeRequest;
 
 import java.util.List;
 
@@ -43,5 +45,13 @@ public interface UserService {
         @POST("/api/Questionare")
         Call<QuestionnaireRequest> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
 
+        @POST("/api/Center")
+        Call<String> postCenters(@Header("Authorization") String authHeader, @Body Center center);
+
+        @POST("/api/Appointments/range/")
+        Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);
+
+        @GET("/api/Vaccine")
+        Call<List<Vaccine>> getVaccines(@Header("Authorization") String authHeader);
 
 }

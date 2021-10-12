@@ -8,7 +8,7 @@ public class Center {
     private String id;
     private String name;
     private String address;
-    private List<Vaccine> vaccineStocks;
+    private List<Vaccine> vaccines;
 
     public String getId() {
         return id;
@@ -35,10 +35,10 @@ public class Center {
     }
 
     public List<Vaccine> getVaccines() {
-        return vaccineStocks;
+        return vaccines;
     }
 
     public void setVaccines(List<Vaccine> vaccines) {
-        this.vaccineStocks = vaccines;
+        this.vaccines = vaccines;
     }
 }

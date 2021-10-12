@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.SettingsFragment;
 import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
 import com.example.myapplication.UI.User_profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;

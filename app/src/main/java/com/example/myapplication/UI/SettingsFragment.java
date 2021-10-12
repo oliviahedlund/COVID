@@ -14,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Admin.AdminBookingAPI;
 import com.example.myapplication.Admin.PostRangeRequest;
-import com.example.myapplication.Booking.DateTimeHelper;
+import com.example.myapplication.Helpers.DateTimeHelper;
+import com.example.myapplication.Helpers.LanguageHelper;
 
 
 public class SettingsFragment extends Fragment{
@@ -39,7 +41,7 @@ public class SettingsFragment extends Fragment{
 
         setUpButtons();
 
-        ///////////
+        /*
         Button testB = view.findViewById(R.id.testbutton);
         Button testB2 = view.findViewById(R.id.testbutton2);
         Button testB3 = view.findViewById(R.id.testbutton3);
@@ -72,7 +74,7 @@ public class SettingsFragment extends Fragment{
                 adminBookingAPI.PostBookingRange(getActivity(), user, testRequest);
             }
         });
-
+*/
 
         ///////////
 

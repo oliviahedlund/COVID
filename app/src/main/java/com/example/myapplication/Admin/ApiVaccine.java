@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
-import com.example.myapplication.UserResponse;
+import com.example.myapplication.API.Model.User.UserResponse;
 
 import java.util.List;
 
@@ -20,12 +21,12 @@ public class ApiVaccine {
     public String[] getVaccines(){
         String[] stringVaccine = new String[vaccineResponse.size()];
         for (int i = 0; i < vaccineResponse.size(); i++) {
-            stringVaccine[i] = vaccineResponse.get(i).getName();
+            stringVaccine[i] = vaccineResponse.get(i).getVaccineName();
         }
         return stringVaccine;
     }
     public String getVaccinID(int index){
-        return vaccineResponse.get(index).getId();
+        return vaccineResponse.get(index).getVaccineId();
     }
 
     public void CallVaccineAPI(Activity activity, UserResponse user, Runnable runnable){

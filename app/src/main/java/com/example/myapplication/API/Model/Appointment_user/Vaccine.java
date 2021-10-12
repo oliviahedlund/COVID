@@ -2,24 +2,24 @@ package com.example.myapplication.API.Model.Appointment_user;
 
 public class Vaccine {
 
-    private String id;
-    private String name;
+    private String vaccineId;
+    private String vaccineName;
     private int amount;
 
-    public String getId() {
-        return id;
+    public String getVaccineId() {
+        return vaccineId;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.vaccineId = id;
     }
 
-    public String getName() {
-        return name;
+    public String getVaccineName() {
+        return vaccineName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.vaccineName = name;
     }
 
     public int getAmount() {

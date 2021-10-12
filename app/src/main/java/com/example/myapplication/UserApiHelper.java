@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.myapplication.API.Model.Login.LoginRequest;
+import com.example.myapplication.API.Model.Login.LoginResponse;
+import com.example.myapplication.API.Model.User.UserRequest;
+import com.example.myapplication.API.Model.User.UserResponse;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

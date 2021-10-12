@@ -3,9 +3,10 @@ package com.example.myapplication.Admin;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.Booking.SetBookingRequest;
-import com.example.myapplication.UserResponse;
+import com.example.myapplication.API.Model.User.UserResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

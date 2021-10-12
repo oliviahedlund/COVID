@@ -2,7 +2,7 @@ package com.example.myapplication.Booking;
 
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.ApiClient;
-import com.example.myapplication.UserResponse;
+import com.example.myapplication.API.Model.User.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

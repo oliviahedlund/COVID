@@ -14,14 +14,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Booking.ApiCenter;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
-import com.example.myapplication.CenterVaccineHelper;
+import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
-import com.example.myapplication.Simple_DropdownAdapter;
-import com.example.myapplication.UserResponse;
+import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,6 @@ public class AdminAddCenterFragment extends Fragment {
     }
 
 
-
     private void setup(){
         centerName = view.findViewById(R.id.centerName);
         centerAddress = view.findViewById(R.id.centerAddress);
@@ -122,12 +122,12 @@ public class AdminAddCenterFragment extends Fragment {
                     System.out.println("Error: no vaccin chosen");
                     return;
                 }
-                //vac.setId("5b2382b1-1b6b-49a2-a3fd-ae438fcdf336");
                 vac.setAmount(value);
-                //vaccines.add(vac);
                 bodyCenter.setVaccines(vaccines);
                 apiCenter.API_postCenters(user, bodyCenter);
-                //API_postCenters(user, bodyCenter);
+                centerName.setText("");
+                centerAddress.setText("");
+                amount.setText("");
             }
         });
 

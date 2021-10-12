@@ -22,7 +22,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 public class CenterVaccineHelper {
     private List<Center> centers;
     private int selectedCenter;
@@ -58,7 +57,6 @@ public class CenterVaccineHelper {
             }
         });
     }
-
     public String [] getCenters(){
         ArrayList<String> centerBuffer = new ArrayList<String>();
         for(Center center: centers){
