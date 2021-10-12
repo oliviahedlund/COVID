@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
@@ -26,11 +29,9 @@ public class Covid_Tracking_ListViewAdapter extends ArrayAdapter<Covid_Tracking_
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.covid_tracking_listview_item, parent, false);
         }
 
-        //ImageView image = (ImageView) convertView.findViewById(R.id.listViewCellImage);
         TextView label = (TextView) convertView.findViewById(R.id.listViewCellLabel);
         TextView data = (TextView) convertView.findViewById(R.id.listViewCellData);
 
-        //image.setImageResource(item.getImage());
         label.setText(item.getLabel());
 
         if(item.getData() == null){

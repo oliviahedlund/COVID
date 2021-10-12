@@ -1,10 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.API.Model.User;
 
-public class RegisterRequest {
+import java.io.Serializable;
 
-   // private String username;
+public class UserResponse implements Serializable {
     private String email;
-    private String password;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -14,14 +13,17 @@ public class RegisterRequest {
     private String city;
     private String district;
     private String postalCode;
+    private String id;
+    private Boolean isAdmin;
+    private String token;
 
-   // public String getUsername() {
-     //   return username;
-   // }
+    public String getToken() {
+        return token;
+    }
 
-    //public void setUsername(String username) {
-      //  this.username = username;
-    //}
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getEmail() {
         return email;
@@ -29,14 +31,6 @@ public class RegisterRequest {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {
@@ -53,14 +47,6 @@ public class RegisterRequest {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getBirthDate() {
@@ -95,6 +81,14 @@ public class RegisterRequest {
         this.city = city;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getDistrict() {
         return district;
     }
@@ -109,5 +103,21 @@ public class RegisterRequest {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

@@ -9,11 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.myapplication.QuestionnaireAdapter;
+import com.example.myapplication.UI.Adapter.QuestionnaireAdapter;
 import com.example.myapplication.R;
 
 public class AdminNewQuestionnaires extends Fragment {

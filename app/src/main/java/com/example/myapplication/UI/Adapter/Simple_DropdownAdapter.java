@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import com.example.myapplication.R;
 public class Simple_DropdownAdapter extends ArrayAdapter<String> {
 
     LayoutInflater layoutInflater;
-
 
     public Simple_DropdownAdapter(@NonNull Context context, int resource, @NonNull String[] objects) {
         super(context, resource, objects);

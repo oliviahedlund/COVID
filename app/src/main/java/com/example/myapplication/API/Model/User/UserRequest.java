@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.API.Model.User;
 
 public class UserRequest {
     private String token;

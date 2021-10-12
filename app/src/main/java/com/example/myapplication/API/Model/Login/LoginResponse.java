@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.API.Model.Login;
 
 public class LoginResponse {
     private String token;

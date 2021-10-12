@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI.Covid_tracking;
 
 public class Covid_Tracking_FilterData {
 

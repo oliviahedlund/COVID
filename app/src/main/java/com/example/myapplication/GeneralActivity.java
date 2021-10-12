@@ -12,13 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
+import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
+import com.example.myapplication.UI.User_profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class GeneralActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -126,7 +127,7 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = new Covid_Tracking_dashboardFragment();
                         break;
                     case R.id.booking:
-                        newFragment = new Appointment_fragment();
+                        newFragment = new Appointment_makeCancel();
                         break;
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();

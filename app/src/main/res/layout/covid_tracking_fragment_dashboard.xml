@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".Covid_Tracking_dashboardFragment">
+    tools:context=".UI.Covid_tracking.Covid_Tracking_dashboardFragment">
 
     <Button
         android:id="@+id/filterButton"

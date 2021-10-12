@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    android:layout_marginHorizontal="16dp">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please fil out the questionnaire"
-        android:layout_margin="20dp"
-        android:paddingTop="10dp"
-        android:textSize="24sp"
-        android:textColor="@color/green"/>
-    <LinearLayout
+        android:text="@string/questionnairTitle"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:paddingTop="20dp"/>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray" />
 
-        <ListView
-            android:id="@+id/listViewInQuestionnaire"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="15dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewQuestionnaire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
 
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         >
 
         <Button
@@ -37,7 +38,8 @@
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:layout_weight="1"
-            android:layout_marginHorizontal="25dp"/>
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"/>
 
         <Button
             android:id="@+id/confirmQuestionnaire"
@@ -45,9 +47,11 @@
             android:layout_height="wrap_content"
             android:text="@string/confirm"
             android:layout_weight="1"
-            android:layout_marginHorizontal="25dp" />
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"/>
 
     </LinearLayout>
+
 
 
 </LinearLayout>

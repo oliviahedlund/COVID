@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI.Covid_tracking;
 
 import android.os.Bundle;
 
@@ -13,6 +13,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
+import com.example.myapplication.R;
+import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
+import com.example.myapplication.UI.Adapter.Covid_Tracking_ListViewAdapter;
 
 import java.util.ArrayList;
 

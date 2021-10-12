@@ -89,11 +89,13 @@
 
     <string-array name="questions">
         <item>1. Have you ever had a strong reaction after a vaccination, and needed hospital assistance?</item>
-        <item>2. Do you have allergies that ever gave you strong reactions that you needed hospital assistance for?</item>
-        <item>3. Do you have an increased tendency to bleed because of an illness or medication?</item>
-        <item>4. Are you pregnant?</item>
-        <item>5. Have you been vaccinated in the past 7 days?</item>
+        <item>2. Have you been vaccinated in the past 14 days?</item>
+        <item>3. Do you have allergies that ever gave you strong reactions that you needed hospital assistance for?</item>
+        <item>4. Do you have an increased tendency to bleed because of an illness or medication?</item>
+        <item>5. Are you pregnant?</item>
     </string-array>
+
+    <string name="questionnairTitle">Please fill out the questionnaire</string>
 
     <string-array name="location">
         <item>All Locations</item>
@@ -122,6 +124,7 @@
 
     <!--Appointment making-->
     <string name="center">Center</string>
+    <string name="vaccine">Vaccine</string>
     <string name="time">Time</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
@@ -152,5 +155,9 @@
         <item>Löfbergs Arena - hardcoded</item>
     </string-array>
 
+
+    <string name="connectionFailureAlert">Connection failed, please try again later!</string>
+
+    <string name="placeHolder">Place Holder</string>
 
 </resources>
