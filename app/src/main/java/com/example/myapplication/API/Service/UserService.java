@@ -43,7 +43,7 @@ public interface UserService {
         Call<List<Center>> getCenters(@Header("Authorization") String authHeader);
 
         @POST("/api/Questionare")
-        Call<QuestionnaireRequest> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
+        Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
 
         @POST("/api/Center")
         Call<String> postCenters(@Header("Authorization") String authHeader, @Body Center center);
