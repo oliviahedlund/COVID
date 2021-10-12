@@ -21,6 +21,8 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/popup_window.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_popup.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/main_menu.xml" value="0.25" />
+        <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_admin_dashboard_generic.xml" value="0.1947463768115942" />
+        <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/layout/dashboard_generic_adapter_view.xml" value="0.24909420289855072" />
         <entry key="..\:/Users/linda/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_dashboard.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/linda/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_dash.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/linda/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_login.xml" value="0.7333333333333334" />
@@ -47,9 +49,9 @@
         <entry key="app/src/main/res/layout/covid_tracking_dropdown_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/covid_tracking_fragment_dashboard.xml" value="0.22" />
         <entry key="app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/fragment_admin_booking_range.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/dashboard_generic_adapter_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/faq.xml" value="0.18840579710144928" />
+        <entry key="app/src/main/res/layout/fragment_admin_booking_range.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/fragment_admin_dashboard.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_admin_new_questionnaires.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/fragment_admin_quest_messages.xml" value="0.29583333333333334" />
@@ -61,7 +63,6 @@
         <entry key="app/src/main/res/layout/fragment_quest_no_new.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.19805194805194806" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.24479166666666666" />
-        <entry key="app/src/main/res/layout/questionnaire_admin_messages.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/questionnaire_admin.xml" value="0.22" />
         <entry key="app/src/main/res/layout/questionnaire_admin_messages.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/questionnaire_cell.xml" value="0.25" />

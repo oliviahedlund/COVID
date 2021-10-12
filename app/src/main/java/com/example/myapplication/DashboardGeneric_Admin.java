@@ -56,22 +56,31 @@ public class DashboardGeneric_Admin extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_admin_dashboard_generic, container, false);
-        setupDropdownMenus();
-        //setupListView();
-
-
-
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
-
         getAppointmentApi();
+        setupDropdownMenus();
+        setupListView();
 
         // Inflate the layout for this fragment
         return view;
     }
-    private void setupListView(){ // sets up list view with booked appointments depending on the filter
 
+    private void setupListView() { // sets up list view with booked appointments depending on the filter
+        appointments = (ListView) view.findViewById(R.id.list);
+        String name;
 
+        //makes an arraylist of custom datatype
+        ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
+        DashboardGeneric_Cell[] cells = new DashboardGeneric_Cell[appointmentResponse.size()];
+
+        //creates objects
+        //adds every object to the arraylist
+        for(int i =0; i<appointmentResponse.size(); i++){
+          cells[i] = new DashboardGeneric_Cell(appointmentResponse.get(i).getTime());
+          app_list.add(cells[i]);
+        }
+/*
         //creates objects
         appointments = (ListView) view.findViewById(R.id.list) ;
         DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
@@ -88,7 +97,7 @@ public class DashboardGeneric_Admin extends Fragment {
         DashboardGeneric_Cell matt11 = new DashboardGeneric_Cell("13:50");
 
         //makes an arraylist of custom datatype
-        ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
+        //ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
 
         //adds every object to the arraylist
         app_list.add(matt0);
@@ -103,7 +112,7 @@ public class DashboardGeneric_Admin extends Fragment {
         app_list.add(matt9);
         app_list.add(matt10);
         app_list.add(matt11);
-
+*/
         //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter Appadapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(Appadapter);
@@ -191,11 +200,13 @@ public class DashboardGeneric_Admin extends Fragment {
         }
 
          */
+
         CenterItems = new String[]{"Choose citron"};
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
         Center_dropdown.setAdapter(adapterCenter);
         //setCenter(Centers,Center_dropdown);
-    }
+    }// end of getCenter
+
     private void setCenter(String[] Centers,Spinner Center_dropdown){
         System.out.println("Center Set");
 
@@ -218,7 +229,7 @@ public class DashboardGeneric_Admin extends Fragment {
                 if (response.isSuccessful()) {
                     appointmentResponse = response.body(); //i userResponse ligger all information om användaren
 
-                    //appointmentResponse.get(10).getId(); //Returnerar Id:t på 11e tiden
+                    //appointmentResponse.get(10).getTime(); //Returnerar Id:t på 11e tiden
                     if(appointmentResponse.size() > 0) {
                         System.out.println("ID: " + appointmentResponse.get(0).getId());
                         System.out.println("User ID: " + appointmentResponse.get(0).getUserId());
@@ -238,12 +249,12 @@ public class DashboardGeneric_Admin extends Fragment {
 
             @Override
             public void onFailure(Call<List<AppointmentResponse>> call, Throwable t) {
-                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
             }
         });
 
-    }
+    }//end of getAppointment
 }
 
 
