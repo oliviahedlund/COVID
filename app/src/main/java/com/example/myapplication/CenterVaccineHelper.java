@@ -1,13 +1,15 @@
 package com.example.myapplication;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Handler;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
-//import com.example.myapplication.AlertWindow;
+import com.example.myapplication.API.Model.User.UserResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ public class CenterVaccineHelper {
         this.fragment = fragment;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_postCenterVaccine(UserResponse user, String centerID, Vaccine vaccine, Runnable runnable){
         List<Vaccine> vaccines = new ArrayList<Vaccine>();
         vaccines.add(vaccine);

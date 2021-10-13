@@ -1,21 +1,22 @@
 package com.example.myapplication.Admin;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Handler;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.AlertWindow;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.Booking.SetBookingRequest;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
-import com.example.myapplication.UserResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +38,7 @@ public class AdminBookingAPI {
         return apiFormat.format(calendar.getTime());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void PostBookingRange(Activity activity, UserResponse user, PostRangeRequest postRangeRequest, Runnable runnable) {
         Call<String> postBookingRangeCall = ApiClient.getUserService().setRange(user.getToken(), postRangeRequest);
         postBookingRangeCall.enqueue(new Callback<String>() {

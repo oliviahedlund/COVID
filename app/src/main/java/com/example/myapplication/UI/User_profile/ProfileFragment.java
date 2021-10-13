@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.R;
+
 
 public class ProfileFragment extends Fragment {
 

@@ -1,8 +1,10 @@
 package com.example.myapplication.Admin;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,12 +16,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.AlertWindow;
 import com.example.myapplication.CenterVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
-import com.example.myapplication.Simple_DropdownAdapter;
-import com.example.myapplication.UserResponse;
+import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,6 +75,7 @@ public class AdminAddVaccineFragment extends Fragment {
         apiVaccine.API_postVaccine(user ,vaccineName, next);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void postCenterVaccineAPI(){
         LoadingAnimation.startLoadingAnimation(getActivity());
         String centerID = centerVaccineHelper.getSelectedCenter(centerPosition);

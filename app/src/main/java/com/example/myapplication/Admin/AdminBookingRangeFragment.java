@@ -1,7 +1,9 @@
 package com.example.myapplication.Admin;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -15,12 +17,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.AlertWindow;
 import com.example.myapplication.CenterVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
-import com.example.myapplication.Simple_DropdownAdapter;
-import com.example.myapplication.UserResponse;
+import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -90,6 +92,7 @@ public class AdminBookingRangeFragment extends Fragment {
         return adminBookingAPI.convertTimeToAPIString(dateList);
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void postAppointmentRange(){
         LoadingAnimation.startLoadingAnimation(getActivity());
         adminBookingAPI = new AdminBookingAPI(this);
@@ -256,6 +259,7 @@ public class AdminBookingRangeFragment extends Fragment {
     private void setupButton(){
         Button publishButton = view.findViewById(R.id.publishTimesBtn);
         publishButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 postAppointmentRange();

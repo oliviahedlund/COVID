@@ -21,8 +21,8 @@ import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.CenterVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
-import com.example.myapplication.Simple_DropdownAdapter;
-import com.example.myapplication.UserResponse;
+import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
+import com.example.myapplication.API.Model.User.UserResponse;
 
 import java.util.ArrayList;
 import java.util.List;

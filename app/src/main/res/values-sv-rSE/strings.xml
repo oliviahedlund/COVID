@@ -83,8 +83,6 @@
     <string name="totalAdmini">Antal administrerade doser:</string>
     <string name="vs">Dos 1 vs Dos 2:</string>
 
-
-
     <string-array name="questions">
         <item>1. Har du någon gång fått en kraftig reaktion efter vaccination, och behövt sjukhusvård?</item>
         <item>2. Har du vaccinerat dig någon gång under de senaste 14 dagarna?</item>

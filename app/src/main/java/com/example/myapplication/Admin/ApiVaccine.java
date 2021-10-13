@@ -1,17 +1,19 @@
 package com.example.myapplication.Admin;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Handler;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.AlertWindow;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
-import com.example.myapplication.UserResponse;
 
 import java.util.List;
 
@@ -44,6 +46,7 @@ public class ApiVaccine {
         return vaccineResponse.get(index);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_getVaccine(Activity activity, UserResponse user, Runnable runnable){
         Call<List<Vaccine>> vaccineResponseCall = ApiClient.getUserService().getVaccines(user.getToken());
         vaccineResponseCall.enqueue(new Callback<List<Vaccine>>() {

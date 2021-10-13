@@ -11,6 +11,8 @@ import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
 import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.Admin.PostRangeRequest;
+import com.example.myapplication.Booking.SetBookingRequest;
 
 import java.util.List;
 
@@ -59,6 +61,22 @@ public interface UserService {
         @POST("/api/Questionare")
         Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
 
+        @POST("/api/Appointments/booking/")
+        Call<String> setBooking(@Header("Authorization") String authHeader, @Body SetBookingRequest setBookingRequest);
 
+        @POST("/api/Appointments/range/")
+        Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);
+
+        @POST("/api/Center")
+        Call<String> postCenter(@Header("Authorization") String authHeader, @Body Center center);
+
+        @GET("/api/Vaccine")
+        Call<List<Vaccine>> getVaccines(@Header("Authorization") String authHeader);
+
+        @POST("/api/Center/Vaccines")
+        Call<String> postCenterVaccine(@Header("Authorization") String authHeader, @Query("center") String centerID, @Body List<Vaccine> vaccines);
+
+        @POST("/api/Vaccine")
+        Call<String> postVaccine(@Header("Authorization") String authHeader, @Query("vaccineName") String vaccineName);
 
 }
