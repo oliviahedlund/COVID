@@ -207,9 +207,7 @@ public class DashboardGeneric_Admin extends Fragment {
 
     private void setCenter(String[] Centers,Spinner Center_dropdown){
         System.out.println("Center Set");
-        //   CenterItems = new String[]{"Choose citron"};
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
-        //ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
         Center_dropdown.setAdapter(adapterCenter);
 
     }
