@@ -59,21 +59,12 @@ public class DashboardGeneric_Admin extends Fragment {
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
         getAppointmentApi();
-        /*
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) { //pauses the thread for 10 sec, to get api call -- funka fan inte
-            e.printStackTrace();
-        }
-         */
         setupDropdownMenus();
        // setupListView();
 
         // Inflate the layout for this fragment
         return view;
     }
-
-
 
     private void setupDropdownMenus(){ // sets up the dropdown menues
         //Setup spinners
@@ -183,8 +174,6 @@ public class DashboardGeneric_Admin extends Fragment {
     /*private void getUserInfoApi(){
         Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
     }*/
-
-
 
     private void getAppointmentApi(){
         Call<List<AppointmentResponse>> appointmentResponseCall = ApiClient.getUserService().getAllAppointments(user.getToken(), false);
