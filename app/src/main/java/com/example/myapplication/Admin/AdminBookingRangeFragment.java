@@ -92,6 +92,7 @@ public class AdminBookingRangeFragment extends Fragment {
     }
     private void postAppointmentRange(){
         LoadingAnimation.startLoadingAnimation(getActivity());
+        adminBookingAPI = new AdminBookingAPI(this);
 
         EditText etMinutes = view.findViewById(R.id.appMinutes);
         Pattern minPattern = Pattern.compile("[0-9]*");
@@ -119,7 +120,7 @@ public class AdminBookingRangeFragment extends Fragment {
                 new AlertWindow(AdminBookingRangeFragment.this).createAlertWindow("Range added");
             }
         };
-        adminBookingAPI = new AdminBookingAPI(this);
+
         adminBookingAPI.PostBookingRange(getActivity(), user, postRangeRequest, next);
     }
 
