@@ -42,9 +42,9 @@ public class AppointmentHelper {
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
                     try {
-                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().string());
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
                     } catch (IOException e) {
-                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow("Unknown error");
+                        new AlertWindow(fragment).createAlertWindow("Unknown error");
                         e.printStackTrace();
                     }
                 }
@@ -53,7 +53,7 @@ public class AppointmentHelper {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
@@ -71,9 +71,9 @@ public class AppointmentHelper {
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
                     try {
-                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().string());
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
                     } catch (IOException e) {
-                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow("Unknown error");
+                        new AlertWindow(fragment).createAlertWindow("Unknown error");
                         e.printStackTrace();
                     }
                 }
@@ -82,7 +82,7 @@ public class AppointmentHelper {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
@@ -100,9 +100,9 @@ public class AppointmentHelper {
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
                     try {
-                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().string());
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
                     } catch (IOException e) {
-                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow("Unknown error");
+                        new AlertWindow(fragment).createAlertWindow("Unknown error");
                         e.printStackTrace();
                     }
                 }
@@ -111,7 +111,7 @@ public class AppointmentHelper {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }

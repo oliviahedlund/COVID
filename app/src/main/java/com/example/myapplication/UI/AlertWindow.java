@@ -19,11 +19,9 @@ public class AlertWindow {
     private Button okButton;
 
     private Fragment fragment;
-    private Fragment nextFragment;
 
-    public AlertWindow(Fragment fragment, Fragment nextFragment){
+    public AlertWindow(Fragment fragment){
         this.fragment = fragment;
-        this.nextFragment = nextFragment;
     }
 
     public void createAlertWindow(String message){
@@ -41,7 +39,6 @@ public class AlertWindow {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, nextFragment).commit();
             }
         });
     }

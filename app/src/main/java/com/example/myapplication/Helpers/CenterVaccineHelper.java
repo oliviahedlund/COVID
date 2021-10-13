@@ -50,7 +50,7 @@ public class CenterVaccineHelper {
 
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().toString());
+                    new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
                 }
             }
 
@@ -58,7 +58,7 @@ public class CenterVaccineHelper {
             public void onFailure(Call<List<Center>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
@@ -76,7 +76,7 @@ public class CenterVaccineHelper {
 
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().toString());
+                    new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
                 }
             }
 
@@ -84,7 +84,7 @@ public class CenterVaccineHelper {
             public void onFailure(Call<Center> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
@@ -102,7 +102,7 @@ public class CenterVaccineHelper {
 
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().toString());
+                    new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
                 }
             }
 
@@ -110,7 +110,7 @@ public class CenterVaccineHelper {
             public void onFailure(Call<Vaccine> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
