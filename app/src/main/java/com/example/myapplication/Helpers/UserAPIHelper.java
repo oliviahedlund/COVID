@@ -7,10 +7,9 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
-import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.ApiClient;
+import com.example.myapplication.GeneralActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
@@ -21,23 +20,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewAppointmentHelper {
+public class UserAPIHelper {
     private Fragment fragment;
-    private AppointmentRequest appointment;
+    private UserResponse userResponse;
 
-    public NewAppointmentHelper(Fragment fragment, AppointmentRequest appointment){
-        this.appointment = appointment;
+    public UserAPIHelper(Fragment fragment){
         this.fragment = fragment;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_sendNewAppointment(UserResponse user, Runnable runnable){
-        Call<AppointmentResponse> call = ApiClient.getUserService().postNewAppointments(user.getToken(), appointment);
-        call.enqueue(new Callback<AppointmentResponse>() {
+    public void API_getUser(UserResponse user, Runnable runnable){
+        Call<UserResponse> call = ApiClient.getUserService().getUser(user.getToken());
+        call.enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if(response.isSuccessful()){
-
+                    userResponse = response.body();
+                    userResponse.setToken(user.getToken());
+                    fragment.getActivity().getIntent().putExtra("userInfo", userResponse);
                     new Handler().postDelayed(runnable, 600);
                 }
                 else{
@@ -52,7 +52,7 @@ public class NewAppointmentHelper {
             }
 
             @Override
-            public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
                 Log.d("haha ", "" + t);
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));

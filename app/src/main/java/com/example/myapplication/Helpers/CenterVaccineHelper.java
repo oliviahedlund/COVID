@@ -25,6 +25,7 @@ import retrofit2.Response;
 
 public class CenterVaccineHelper {
     private List<Center> centers;
+    private Center center;
     private int selectedCenter;
     private Fragment fragment;
 
@@ -52,6 +53,32 @@ public class CenterVaccineHelper {
 
             @Override
             public void onFailure(Call<List<Center>> call, Throwable t) {
+                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_getCenterName(Activity activity, UserResponse user, Runnable runnable){
+        Call<Center> call = ApiClient.getUserService().getCenterName(user.getToken(), user.getAppointment().getCenterId());
+        call.enqueue(new Callback<Center>() {
+            @Override
+            public void onResponse(Call<Center> call, Response<Center> response) {
+                if (response.isSuccessful()) {
+                    center = response.body();
+
+                    new Handler().postDelayed(runnable,600);
+
+                }else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Center> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
@@ -91,4 +118,9 @@ public class CenterVaccineHelper {
     public String getSelectedVaccine(int vaccine){
         return centers.get(selectedCenter).getVaccines().get(vaccine).getVaccineId();
     }
+
+    public String getCenterName() {
+        return center.getCenterName();
+    }
+
 }

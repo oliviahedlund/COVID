@@ -15,9 +15,12 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface UserService {
@@ -35,13 +38,26 @@ public interface UserService {
         Call<List<Date_Time>> getDateTimes(@Header("Authorization") String authHeader, @Query("center") String center);
 
         @POST("/api/Appointments/Booking/")
-        Call<AppointmentResponse> postNewAppointments(@Header("Authorization") String authHeader, @Body AppointmentRequest appointmentRequest);
+        Call<Void> postNewAppointments(@Header("Authorization") String authHeader, @Body AppointmentRequest appointmentRequest);
+
+        @PUT("/api/Appointments/Booking/")
+        Call<Void> updateAppointments(@Header("Authorization") String authHeader, @Body AppointmentRequest appointmentRequest);
+
+        @DELETE("/api/Appointments/Booking/")
+        Call<Void> deleteAppointment_user(@Header("Authorization") String authHeader);
 
         @GET("/api/Center")
         Call<List<Center>> getCenters(@Header("Authorization") String authHeader);
 
+        @GET("/api/Center/{centerId}")
+        Call<Center> getCenterName(@Header("Authorization") String authHeader, @Path("centerId") String centerId);
+
+        @GET("/api/Vaccine/{vaccineId}")
+        Call<Center> getVaccineName(@Header("Authorization") String authHeader, @Path("vaccineId") String vaccineId);
+
         @POST("/api/Questionare")
         Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
+
 
 
 }

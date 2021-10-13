@@ -90,5 +90,12 @@
     <string name="placeHolder">Place Holder</string>
 
     <string name="contactAdmin">Du kan inte boka den andra dosen. Kontakta admin</string>
+
+    <string name="cancelAppointment">Ställ in bokning</string>
+    <string name="rebookAppointment">Gör om bokning</string>
+    <string name="bookAppointment">Gör en bokning</string>
+
+    <string name="emptyQuestionnaire">Du har inte fyllt i en hälsodeklaration</string>
+    <string name="emptyAppointment">Du har ingen bokning just nu</string>
 </resources>
 

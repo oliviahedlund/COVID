@@ -119,6 +119,7 @@ public class Appointment_questionnaire extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
             }
         });
+        cancelButton.setVisibility(View.GONE);
     }
 
     public boolean isAllAnswered(){

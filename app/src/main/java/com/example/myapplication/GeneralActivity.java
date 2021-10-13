@@ -133,25 +133,8 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = new Covid_Tracking_dashboardFragment();
                         break;
                     case R.id.booking:
-//                        if(user.isCanBook()){
-//                            newFragment = new Appointment_make();
-//                            break;
-//                        } else{
-//                            if(user.isGotFirstDose()){
-//                                newFragment = new GenericMessageFragment(getResources().getString(R.string.contactAdmin));
-//                                break;
-//                            } else{
-//                                if(user.getQuestionare() == null){
-//                                    newFragment = new Appointment_questionnaire();
-//                                    break;
-//                                } else{
-//                                    newFragment = new GenericMessageFragment("Admin has to book for you or allow you to book, please contact admin");
-//                                    break;
-//                                }
-//                            }
-//                        }
-                        newFragment = new Appointment_Info();
-                        break;
+                        newFragment = new Appointment_Info(); break;
+
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();
                         break;

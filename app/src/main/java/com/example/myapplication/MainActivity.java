@@ -127,10 +127,8 @@ public class MainActivity extends AppCompatActivity {
         userResponseCall.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                //errorhandling
                 if (response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
-                    userResponse = response.body(); //i userResponse ligger all information om användaren
+                    userResponse = response.body();
                     Intent i;
                     // replace if-statement with: userResponse.getAdmin()
                     if(userResponse.getAdmin()){
@@ -156,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void setupButtons(){

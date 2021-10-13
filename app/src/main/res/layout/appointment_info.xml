@@ -9,6 +9,7 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,13 +23,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             />
 
         <LinearLayout
+            android:id="@+id/emptyQuestionnaireGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:background="@drawable/custom_boarder">
+            <TextView
+                android:id="@+id/emptyQuestionnaire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@string/emptyQuestionnaire"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/emptyAppointmentGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:background="@drawable/custom_boarder">
+            <TextView
+                android:id="@+id/emptyAppointment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@string/emptyAppointment"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/appointmentGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
             <TextView
                 android:id="@+id/appointmentInfoCenter"
                 android:layout_width="match_parent"
@@ -46,25 +81,42 @@
                 android:textColor="@color/black"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/cancelRebookButtonGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="40dp">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:visibility="gone">
             <Button
                 android:id="@+id/appointmentCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="5dp"
-                android:text="Cancel"/>
+                android:text="@string/cancelAppointment"/>
             <Button
                 android:id="@+id/appointmentRebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="20dp"
-                android:text="Rebook"/>
+                android:text="@string/rebookAppointment"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bookButtongroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:visibility="gone">
+            <Button
+                android:id="@+id/appointmentBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bookAppointment"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

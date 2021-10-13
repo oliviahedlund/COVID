@@ -100,4 +100,10 @@
     <string name="placeHolder">Place Holder</string>
 
     <string name="contactAdmin">You cannot book a second dose. Contact an admin</string>
+
+    <string name="cancelAppointment">Cancel appointment</string>
+    <string name="rebookAppointment">Rebook appointment</string>
+    <string name="bookAppointment">Book appointment</string>
+    <string name="emptyQuestionnaire">You have not filled out a questionnaire</string>
+    <string name="emptyAppointment">You do not have any appointment at this moment</string>
 </resources>
