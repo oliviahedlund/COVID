@@ -14,6 +14,7 @@ import com.example.myapplication.ApiClient;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
+import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -53,7 +54,7 @@ public class DateTimeHelper {
                         runnable,600);
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
+                    new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().toString());
                 }
             }
 
@@ -61,7 +62,7 @@ public class DateTimeHelper {
             public void onFailure(Call<List<Date_Time>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }

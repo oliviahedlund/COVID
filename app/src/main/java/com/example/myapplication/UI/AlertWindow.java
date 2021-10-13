@@ -19,9 +19,11 @@ public class AlertWindow {
     private Button okButton;
 
     private Fragment fragment;
+    private Fragment nextFragment;
 
-    public AlertWindow(Fragment fragment){
+    public AlertWindow(Fragment fragment, Fragment nextFragment){
         this.fragment = fragment;
+        this.nextFragment = nextFragment;
     }
 
     public void createAlertWindow(String message){
@@ -39,8 +41,7 @@ public class AlertWindow {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                Appointment_Info appointment_info = new Appointment_Info();
-                fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_info).commit();
+                fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, nextFragment).commit();
             }
         });
     }

@@ -13,6 +13,7 @@ import com.example.myapplication.GeneralActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
+import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 
 import java.io.IOException;
 
@@ -43,9 +44,9 @@ public class UserAPIHelper {
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
                     try {
-                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
+                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(response.errorBody().string());
                     } catch (IOException e) {
-                        new AlertWindow(fragment).createAlertWindow("Unknown error");
+                        new AlertWindow(fragment, new Appointment_Info()).createAlertWindow("Unknown error");
                         e.printStackTrace();
                     }
                 }
@@ -55,7 +56,7 @@ public class UserAPIHelper {
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
                 Log.d("haha ", "" + t);
-                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment, new Appointment_Info()).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
