@@ -4,7 +4,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="Email" translatable="false">Email</string>
-<!--    <string name="connectionFailureAlert" translatable="false">Ändra senare</string>-->
     <string name="dateOfBirth">Date of Birth</string>
 
     <!--not used?-->

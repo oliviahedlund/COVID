@@ -33,7 +33,7 @@ public class AdminBookingAPI {
         date[1] = date[1]-1; //because januari = 0
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(date[0],date[1],date[2],date[3],date[4],00);
+        calendar.set(date[0],date[1],date[2],date[3]-1,date[4],00);
         SimpleDateFormat apiFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return apiFormat.format(calendar.getTime());
     }
@@ -49,7 +49,7 @@ public class AdminBookingAPI {
                     new Handler().postDelayed(runnable,600);
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                    new AlertWindow(fragment).createAlertWindow("Missing information or conflicting range may exist, try another one");
                 }
 
             }
