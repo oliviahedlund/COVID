@@ -175,7 +175,9 @@
             android:gravity="center"
             android:hint="YYYY"
             android:inputType="date"
-            android:maxLength="4" />
+            android:maxLength="4"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/startMonth"/>
 
         <TextView
             android:id="@+id/textView24"
@@ -191,7 +193,9 @@
             android:gravity="center"
             android:hint="MM"
             android:inputType="date"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/startDay"/>
         <TextView
             android:id="@+id/textView25"
             android:layout_width="wrap_content"
@@ -207,7 +211,9 @@
             android:gravity="center"
             android:hint="DD"
             android:inputType="date"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/startHour"/>
 
         <TextView
             android:id="@+id/textView26"
@@ -224,7 +230,9 @@
             android:gravity="center"
             android:hint="HH"
             android:inputType="time"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/startMinute"/>
 
         <TextView
             android:id="@+id/textView27"
@@ -240,7 +248,9 @@
             android:gravity="center"
             android:hint="mm"
             android:inputType="time"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/endYear"/>
     </LinearLayout>
 
     <TextView
@@ -269,7 +279,9 @@
             android:gravity="center"
             android:hint="YYYY"
             android:inputType="date"
-            android:maxLength="4"/>
+            android:maxLength="4"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/endMonth"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -284,7 +296,9 @@
             android:gravity="center"
             android:hint="MM"
             android:inputType="date"
-            android:maxLength="2"/>
+            android:maxLength="2"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/endDay"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -298,7 +312,9 @@
             android:gravity="center"
             android:hint="DD"
             android:inputType="date"
-            android:maxLength="2"/>
+            android:maxLength="2"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/endHour"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -314,7 +330,9 @@
             android:gravity="center"
             android:hint="HH"
             android:inputType="time"
-            android:maxLength="2"/>
+            android:maxLength="2"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/endMinute"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -329,7 +347,8 @@
             android:gravity="center"
             android:hint="mm"
             android:inputType="time"
-            android:maxLength="2"/>
+            android:maxLength="2"
+            android:imeOptions="actionDone" />
 
     </LinearLayout>
 

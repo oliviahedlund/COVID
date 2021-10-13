@@ -44,6 +44,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2387416668269345" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/alertwindow.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/appointment_day_time.xml" value="0.221875" />
         <entry key="app/src/main/res/layout/covid_tracking_dropdown_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/covid_tracking_fragment_dashboard.xml" value="0.3098958333333333" />

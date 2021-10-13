@@ -14,11 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
+import com.example.myapplication.AlertWindow;
 import com.example.myapplication.CenterVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.Simple_DropdownAdapter;
 import com.example.myapplication.UserResponse;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class AdminAddVaccineFragment extends Fragment {
@@ -52,30 +56,48 @@ public class AdminAddVaccineFragment extends Fragment {
     }
 
     private void postVaccineAPI(){
+        LoadingAnimation.startLoadingAnimation(getActivity());
         EditText etVaccineName = view.findViewById(R.id.vaccineName);
         String vaccineName = etVaccineName.getText().toString();
-        ApiVaccine apiVaccine = new ApiVaccine();
-        apiVaccine.API_postVaccine(user ,vaccineName);
+        ApiVaccine apiVaccine = new ApiVaccine(this);
+        Runnable next = new Runnable() {
+            @Override
+            public void run() {
+                LoadingAnimation.dismissLoadingAnimation();
+                Fragment newFragment = new AdminAddVaccineFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                new AlertWindow(AdminAddVaccineFragment.this).createAlertWindow("Vaccine added");
+
+            }
+        };
+        apiVaccine.API_postVaccine(user ,vaccineName, next);
     }
 
     private void postCenterVaccineAPI(){
+        LoadingAnimation.startLoadingAnimation(getActivity());
         String centerID = centerVaccineHelper.getSelectedCenter(centerPosition);
         Vaccine vaccine = apiVaccin.getVaccine(vaccinePosition);
+
         EditText etAmount = view.findViewById(R.id.vaccineAmount);
-        int amount=0;
-        try {
-            amount = Integer.parseInt(etAmount.getText().toString());
-            if(amount == 0){
-                System.out.println("Vaccine amount zero");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            System.out.println("Vaccine not integer");
+        Pattern amountPattern = Pattern.compile("[0-9]*");
+        Matcher mat = amountPattern.matcher(etAmount.getText().toString());
+        if(!mat.matches()){
             return;
         }
-        vaccine.setAmount(amount);
-        centerVaccineHelper.API_postCenterVaccine(user, centerID, vaccine);
+        vaccine.setAmount(Integer.parseInt(etAmount.getText().toString()));
+
+        Runnable next = new Runnable() {
+            @Override
+            public void run() {
+                LoadingAnimation.dismissLoadingAnimation();
+                Fragment newFragment = new AdminAddVaccineFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                new AlertWindow(AdminAddVaccineFragment.this).createAlertWindow("Vaccine added to center");
+
+            }
+        };
+
+        centerVaccineHelper.API_postCenterVaccine(user, centerID, vaccine, next);
     }
 
     private void setupButtons(){
@@ -114,7 +136,7 @@ public class AdminAddVaccineFragment extends Fragment {
 
 
     private void apiCallVaccine(){
-        apiVaccin = new ApiVaccine();
+        apiVaccin = new ApiVaccine(this);
 
         Runnable vaccineRunnable = new Runnable() {
             @Override

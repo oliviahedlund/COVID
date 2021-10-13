@@ -26,7 +26,7 @@ public class CenterVaccineHelper {
         this.fragment = fragment;
     }
 
-    public void API_postCenterVaccine(UserResponse user, String centerID, Vaccine vaccine){
+    public void API_postCenterVaccine(UserResponse user, String centerID, Vaccine vaccine, Runnable runnable){
         List<Vaccine> vaccines = new ArrayList<Vaccine>();
         vaccines.add(vaccine);
         Call<String> call = ApiClient.getUserService().postCenterVaccine(user.getToken(), centerID, vaccines);
@@ -35,35 +35,42 @@ public class CenterVaccineHelper {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
                     responseID = response.body().toString();
+                    new Handler().postDelayed(runnable,600);
 
                 }else{
                     System.out.println("could not add center");
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 System.out.println(t.getLocalizedMessage());
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
 
-    public void API_postCenter(UserResponse user, Center bodyCenter){
+    public void API_postCenter(UserResponse user, Center bodyCenter, Runnable runnable){
         Call<String> call = ApiClient.getUserService().postCenter(user.getToken(), bodyCenter);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
                     responseID = response.body().toString();
-
+                    new Handler().postDelayed(runnable,600);
                 }else{
-                    System.out.println("could not add center");
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                System.out.println(t.getLocalizedMessage());
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
@@ -79,20 +86,18 @@ public class CenterVaccineHelper {
             public void onResponse(Call<List<Center>> call, Response<List<Center>> response) {
                 if (response.isSuccessful()) {
                     centers = response.body();
-
                     new Handler().postDelayed(runnable,600);
 
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    //new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
                 }
             }
 
             @Override
             public void onFailure(Call<List<Center>> call, Throwable t) {
-                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
-                //new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }

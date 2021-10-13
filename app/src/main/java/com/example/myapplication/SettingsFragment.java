@@ -67,9 +67,15 @@ public class SettingsFragment extends Fragment{
         testB3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdminBookingAPI adminBookingAPI = new AdminBookingAPI();
+                AdminBookingAPI adminBookingAPI = new AdminBookingAPI(SettingsFragment.this);
                 PostRangeRequest testRequest = new PostRangeRequest();
-                adminBookingAPI.PostBookingRange(getActivity(), user, testRequest);
+                Runnable next = new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                };
+                adminBookingAPI.PostBookingRange(getActivity(), user, testRequest, next);
             }
         });
 

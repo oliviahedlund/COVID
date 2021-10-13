@@ -42,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/smallPadding"
-        android:text="@string/addVaccine" />
+        android:text="@string/addVaccine"
+        android:imeOptions="actionDone"/>
 
     <View
         android:layout_width="match_parent"
@@ -118,7 +119,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="4"
-            android:inputType="number" />
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
     </LinearLayout>
 
     <Button
@@ -126,6 +128,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/smallPadding"
-        android:text="@string/addVaccineCenter" />
+        android:text="@string/addVaccineCenter"
+        android:imeOptions="actionDone"/>
 
 </LinearLayout>

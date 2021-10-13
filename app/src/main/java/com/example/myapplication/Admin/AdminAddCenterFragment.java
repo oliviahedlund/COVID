@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.myapplication.AlertWindow;
 import com.example.myapplication.Booking.ApiCenter;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
@@ -70,7 +71,8 @@ public class AdminAddCenterFragment extends Fragment {
     }
 
     private void apiCallVaccine(){
-        apiVaccin = new ApiVaccine();
+        LoadingAnimation.startLoadingAnimation(getActivity());
+        apiVaccin = new ApiVaccine(this);
 
         Runnable next = new Runnable() {
             @Override
@@ -100,6 +102,27 @@ public class AdminAddCenterFragment extends Fragment {
         LoadingAnimation.dismissLoadingAnimation();
     }
 
+    private void postAPI(){
+        Center bodyCenter = setupBodyCenter();
+        Runnable next = new Runnable() {
+            @Override
+            public void run() {
+                LoadingAnimation.dismissLoadingAnimation();
+                Fragment newFragment = new AdminAddCenterFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                new AlertWindow(AdminAddCenterFragment.this).createAlertWindow("Center added");
+            }
+        };
+
+        if(bodyCenter!=null) {
+            LoadingAnimation.startLoadingAnimation(getActivity());
+            centerVaccineHelper.API_postCenter(user, bodyCenter, next);
+        }
+        else{
+            new AlertWindow(AdminAddCenterFragment.this).createAlertWindow("Not enough information provided");
+        }
+    }
+
     private void setup(){
         centerName = view.findViewById(R.id.centerName);
         centerAddress = view.findViewById(R.id.centerAddress);
@@ -110,14 +133,7 @@ public class AdminAddCenterFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                Center bodyCenter = setupBodyCenter();
-                if(bodyCenter!=null) {
-                    centerVaccineHelper.API_postCenter(user, bodyCenter);
-                }
-                else{
-                    System.out.println("Error add center");
-                }
-
+                postAPI();
             }
         });
 
@@ -143,6 +159,7 @@ public class AdminAddCenterFragment extends Fragment {
         return bodyCenter;
 
     }
+
     private List<Vaccine> setupBodyVaccine(){
         number = amount.getEditableText().toString();
         try {

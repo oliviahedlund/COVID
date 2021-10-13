@@ -1,10 +1,16 @@
 package com.example.myapplication.Admin;
 
 import android.app.Activity;
+import android.os.Handler;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.myapplication.AlertWindow;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.Booking.SetBookingRequest;
+import com.example.myapplication.LoadingAnimation;
+import com.example.myapplication.R;
 import com.example.myapplication.UserResponse;
 
 import java.text.SimpleDateFormat;
@@ -16,7 +22,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AdminBookingAPI {
+    private Fragment fragment;
 
+    public AdminBookingAPI(Fragment fragment){
+        this.fragment = fragment;
+    }
 
     public String convertTimeToAPIString(int[] date){
         date[1] = date[1]-1; //because januari = 0
@@ -27,30 +37,25 @@ public class AdminBookingAPI {
         return apiFormat.format(calendar.getTime());
     }
 
-    public void PostBookingRange(Activity activity, UserResponse user, PostRangeRequest postRangeRequest) {
+    public void PostBookingRange(Activity activity, UserResponse user, PostRangeRequest postRangeRequest, Runnable runnable) {
         Call<String> postBookingRangeCall = ApiClient.getUserService().setRange(user.getToken(), postRangeRequest);
-
         postBookingRangeCall.enqueue(new Callback<String>() {
 
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                //TODO: errorhandling
                 if (response.isSuccessful()) {
-                    System.out.println(response);
-
-
+                    new Handler().postDelayed(runnable,600);
                 }else{
-                    System.out.println("Post range failed");
-                    System.out.println("else");
-                    System.out.println(response);
-                    System.out.println(response.message());
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
                 }
+
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                System.out.println("fail");
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
 

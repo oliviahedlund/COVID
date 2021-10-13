@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.myapplication.AlertWindow;
 import com.example.myapplication.CenterVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
@@ -24,6 +25,8 @@ import com.example.myapplication.UserResponse;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import kotlin.collections.ArrayDeque;
 
@@ -79,6 +82,71 @@ public class AdminBookingRangeFragment extends Fragment {
 
     }
 
+    private String convertDateInputToString(int startIndex){
+        int[] dateList = new int[5];
+        for (int i = 0; i < 5; i++) {
+            dateList[i] = Integer.parseInt(editTexts.get(startIndex+i).getText().toString());
+        }
+        return adminBookingAPI.convertTimeToAPIString(dateList);
+
+    }
+    private void postAppointmentRange(){
+        LoadingAnimation.startLoadingAnimation(getActivity());
+
+        EditText etMinutes = view.findViewById(R.id.appMinutes);
+        Pattern minPattern = Pattern.compile("[0-9]*");
+        Matcher mat = minPattern.matcher(etMinutes.getText().toString());
+        if(!mat.matches()){
+            System.out.println("Minutes not integer");
+            return;
+        }
+        int minutes = Integer.parseInt(etMinutes.getText().toString());
+
+        postRangeRequest = new PostRangeRequest();
+        postRangeRequest.setCenter(centerVaccineHelper.getSelectedCenter(centerPosition));
+        postRangeRequest.setAllowedAgeGroups(getAgeCoding());
+        postRangeRequest.setAllowedDaysOfWeek(getCheckedWeekdays());
+        postRangeRequest.setTimePerAppointmentMinutes(minutes);
+        postRangeRequest.setStartDateTime(convertDateInputToString(0));
+        postRangeRequest.setEndDateTime(convertDateInputToString(5));
+
+        Runnable next = new Runnable() {
+            @Override
+            public void run() {
+                LoadingAnimation.dismissLoadingAnimation();
+                Fragment newFragment = new AdminBookingRangeFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                new AlertWindow(AdminBookingRangeFragment.this).createAlertWindow("Range added");
+            }
+        };
+        adminBookingAPI = new AdminBookingAPI(this);
+        adminBookingAPI.PostBookingRange(getActivity(), user, postRangeRequest, next);
+    }
+
+    private int getAgeCoding(){
+        int[] ageConverter = {-1,1,2,4,8,16,0};
+        return ageConverter[agePosition];
+    }
+
+    //Called when publish is clicked
+    private int getCheckedWeekdays(){
+        int[] binaryRepresentation = {1,2,4,8,16,32,64};
+
+        int chosenWeekdays = 0;
+        for (int i = 0; i < cbWeekdays.size(); i++) {
+            if(cbWeekdays.get(i).isChecked()){
+                chosenWeekdays+=binaryRepresentation[i];
+            }
+        }
+        if(chosenWeekdays==0){
+            chosenWeekdays=-1;
+        }
+        else if(chosenWeekdays==127){
+            chosenWeekdays=0;
+        }
+
+        return chosenWeekdays;
+    }
 
     private void setupDropdown(){
         agePosition = 6;
@@ -110,9 +178,20 @@ public class AdminBookingRangeFragment extends Fragment {
         LoadingAnimation.dismissLoadingAnimation();
     }
 
+    private void setupCheckboxes(){
+        cbWeekdays = new ArrayList<CheckBox>();
+        cbWeekdays.add(view.findViewById(R.id.cbSunday));
+        cbWeekdays.add(view.findViewById(R.id.cbMonday));
+        cbWeekdays.add(view.findViewById(R.id.cbTuesday));
+        cbWeekdays.add(view.findViewById(R.id.cbWednesday));
+        cbWeekdays.add(view.findViewById(R.id.cbThursday));
+        cbWeekdays.add(view.findViewById(R.id.cbFriday));
+        cbWeekdays.add(view.findViewById(R.id.cbSaturday));
 
-
-
+        for (int i = 0; i < cbWeekdays.size(); i++) {
+            cbWeekdays.get(i).setText(getResources().getStringArray(R.array.weekdaysShort)[i]);
+        }
+    }
 
     //Switches focus to next editText when max characters have been typed
     private void setupTimeTexts(){
@@ -173,112 +252,14 @@ public class AdminBookingRangeFragment extends Fragment {
         }
     }
 
-    private String convertDateInputToString(int startIndex){
-        int[] dateList = new int[5];
-        for (int i = 0; i < 5; i++) {
-            dateList[i] = Integer.parseInt(editTexts.get(startIndex+i).getText().toString());
-        }
-        return adminBookingAPI.convertTimeToAPIString(dateList);
-
-    }
-    private void postAppointmentRange(){
-        adminBookingAPI = new AdminBookingAPI();
-        EditText etMinutes = view.findViewById(R.id.appMinutes);
-        int minutes;
-        try {
-            minutes = Integer.parseInt(etMinutes.getText().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("appMinutes not integer");
-            return;
-        }
-
-        postRangeRequest = new PostRangeRequest();
-        postRangeRequest.setCenter(centerVaccineHelper.getSelectedCenter(centerPosition));
-        postRangeRequest.setAllowedAgeGroups(getAgeCoding());
-        postRangeRequest.setAllowedDaysOfWeek(getCheckedWeekdays());
-        postRangeRequest.setTimePerAppointmentMinutes(minutes);
-        postRangeRequest.setStartDateTime(convertDateInputToString(0));
-        postRangeRequest.setEndDateTime(convertDateInputToString(5));
-
-        adminBookingAPI.PostBookingRange(getActivity(), user, postRangeRequest);
-
-    }
-
     private void setupButton(){
         Button publishButton = view.findViewById(R.id.publishTimesBtn);
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 postAppointmentRange();
-                /*
-                //TODO: check for empty input
-
-                //TODO: get/check center
-                //TODO: get/check age
-                //TODO: field for vaccin-product?
-
-                int chosenWeekdays = getCheckedWeekdays();
-                if(chosenWeekdays==-1){
-                    //TODO: error message
-                    System.out.println("No days selected");
-                    return;
-                }
-                System.out.println(chosenWeekdays);
-
-                //TODO: get and check date-time-input
-                //temporary
-                int[] dateList = {2021,11,12,8,20};
-                int year = 2021;
-                int month = 11;
-                int date = 12;
-                int hour = 8;
-                int minute = 20;
-                String test = adminBookingAPI.convertTimeToAPIString(dateList);
-                System.out.println(test);
-                adminBookingAPI.PostBookingRange(getActivity(),user, postRangeRequest);
-                */
-
             }
         });
-    }
-    private int getAgeCoding(){
-        int[] ageConverter = {-1,1,2,4,8,16,0};
-        return ageConverter[agePosition];
-    }
-
-    //Called when publish is clicked
-    private int getCheckedWeekdays(){
-        int[] binaryRepresentation = {1,2,4,8,16,32,64};
-
-        int chosenWeekdays = 0;
-        for (int i = 0; i < cbWeekdays.size(); i++) {
-            if(cbWeekdays.get(i).isChecked()){
-                chosenWeekdays+=binaryRepresentation[i];
-            }
-        }
-        if(chosenWeekdays==0){
-            chosenWeekdays=-1;
-        }
-        else if(chosenWeekdays==127){
-            chosenWeekdays=0;
-        }
-
-        return chosenWeekdays;
-    }
-    private void setupCheckboxes(){
-        cbWeekdays = new ArrayList<CheckBox>();
-        cbWeekdays.add(view.findViewById(R.id.cbSunday));
-        cbWeekdays.add(view.findViewById(R.id.cbMonday));
-        cbWeekdays.add(view.findViewById(R.id.cbTuesday));
-        cbWeekdays.add(view.findViewById(R.id.cbWednesday));
-        cbWeekdays.add(view.findViewById(R.id.cbThursday));
-        cbWeekdays.add(view.findViewById(R.id.cbFriday));
-        cbWeekdays.add(view.findViewById(R.id.cbSaturday));
-
-        for (int i = 0; i < cbWeekdays.size(); i++) {
-            cbWeekdays.get(i).setText(getResources().getStringArray(R.array.weekdaysShort)[i]);
-        }
     }
 
 }
