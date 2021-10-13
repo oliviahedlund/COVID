@@ -1,5 +1,6 @@
 package com.example.myapplication.API.Service;
 
+import com.example.myapplication.API.Model.Admin.UserInfo;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Date_Time;
@@ -43,5 +44,10 @@ public interface UserService {
         @POST("/api/Questionare")
         Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
 
+        @GET("/api/Appointments/Booking/Manage/Extra/")
+        Call<List<AppointmentResponse>> getAllAppointments(@Header("Authorization") String authHeader, @Query("getPrior") boolean getPrior);
+
+        @GET("/api/User/Manage")
+        Call<UserInfo> getUserInfoAll(@Header("Authorization") String authHeader, @Query("UserId") String UserId);
 
 }

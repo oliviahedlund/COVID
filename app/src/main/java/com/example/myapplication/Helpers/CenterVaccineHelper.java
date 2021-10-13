@@ -71,6 +71,18 @@ public class CenterVaccineHelper {
         return centerArray;
     }
 
+    public String [] getCenterCounty(){
+        ArrayList<String> countyBuffer = new ArrayList<String>();
+        for(Center center: centers){
+            if(center != null) countyBuffer.add(center.getCenterCounty());
+        }
+
+        String [] countyArray = new String[countyBuffer.size()];
+        countyArray = countyBuffer.toArray(countyArray);
+
+        return countyArray;
+    }
+
     public String [] getVaccines(int center){
         ArrayList<String> vaccineBuffer = new ArrayList<String>();
         for(Vaccine vaccine: centers.get(center).getVaccines()){

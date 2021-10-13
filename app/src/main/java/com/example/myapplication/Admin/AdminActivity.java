@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
     private Button logoutButton;
     private TextView userName;
     private TextView userEmail;
-    private Covid_Tracking_dashboardFragment dashFragment;
+    private DashboardGeneric_Admin dashFragment;
     private UserResponse user;
 
 
@@ -43,7 +43,7 @@ public class AdminActivity extends AppCompatActivity {
         user = (UserResponse) i.getSerializableExtra("userInfo");
 
         if(savedInstanceState == null) {
-            dashFragment = new Covid_Tracking_dashboardFragment();
+            dashFragment = new DashboardGeneric_Admin();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
 
@@ -56,6 +56,13 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+    private UserResponse setUserData(UserResponse response){
+        return this.user = response;
+    }
+
+    public UserResponse getUserData(){
+        return user;
+    }
     //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
