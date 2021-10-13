@@ -73,6 +73,7 @@ public class Appointment_Info extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void showViewLogics(){
         if(user.getAppointment() != null && user.getQuestionare() != null){
             setupFilledQuestionnaire();

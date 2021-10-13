@@ -90,21 +90,17 @@ public class Appointment_questionnaire extends Fragment {
             @Override
             public void onClick(View view) {
                 if(isAllAnswered()){
-                    if(matchRejectCondition()){
-                        new AlertWindow(getFragment()).createAlertWindow("Sorry, you are not allowed to book an appointment!");
-                    } else {
-                        fillQuestionnaireRequest();
-                        newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), questionnaireRequest);
-                        newQuestionnaireHelper.API_sendNewQuestionnaire(user, new Runnable() {
-                            @Override
-                            public void run() {
-                                LoadingAnimation.dismissLoadingAnimation();
-                                Appointment_make appointment_make = new Appointment_make();
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
-                            }
-                        });
-                        LoadingAnimation.startLoadingAnimation(getActivity());
-                    }
+                    fillQuestionnaireRequest();
+                    newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), questionnaireRequest);
+                    newQuestionnaireHelper.API_sendNewQuestionnaire(user, new Runnable() {
+                        @Override
+                        public void run() {
+                            LoadingAnimation.dismissLoadingAnimation();
+                            Appointment_make appointment_make = new Appointment_make();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
+                        }
+                    });
+                    LoadingAnimation.startLoadingAnimation(getActivity());
                 } else{
                     Toast.makeText(getActivity(),"Please answer all the questions", Toast.LENGTH_SHORT).show();
                 }
@@ -138,17 +134,6 @@ public class Appointment_questionnaire extends Fragment {
         questionnaireRequest.setIsAllergicToVax((answers[2] == 0));
         questionnaireRequest.setHasBloodProblems((answers[3] == 0));
         questionnaireRequest.setIsPregnant((answers[4] == 0));
-    }
-
-    public boolean matchRejectCondition(){
-        return isAllYes();
-    }
-
-    public boolean isAllYes(){
-        for(int i = 0; i < array.length; i++){
-            if(answers[i] == 1) return false;
-        }
-        return true;
     }
 
     public Fragment getFragment(){return this;}

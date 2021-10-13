@@ -16,6 +16,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,5 +154,4 @@ public class CenterVaccineHelper {
     public String getVaccineName() {
         return vaccine.getVaccineName();
     }
-
 }
