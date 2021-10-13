@@ -5,6 +5,7 @@ import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Date_Time;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
+import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
@@ -53,7 +54,7 @@ public interface UserService {
         Call<Center> getCenterName(@Header("Authorization") String authHeader, @Path("centerId") String centerId);
 
         @GET("/api/Vaccine/{vaccineId}")
-        Call<Center> getVaccineName(@Header("Authorization") String authHeader, @Path("vaccineId") String vaccineId);
+        Call<Vaccine> getVaccineName(@Header("Authorization") String authHeader, @Path("vaccineId") String vaccineId);
 
         @POST("/api/Questionare")
         Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);

@@ -23,6 +23,7 @@ import com.example.myapplication.UI.GenericMessageFragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.ViewCells.AppointmentInfo_ListViewCell;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Appointment_Info extends Fragment {
@@ -44,20 +45,25 @@ public class Appointment_Info extends Fragment {
         userAPIHelper.API_getUser(user, new Runnable() {
             @Override
             public void run() {
-                LoadingAnimation.dismissLoadingAnimation();
                 user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
                 centerVaccineHelper = new CenterVaccineHelper(getFragment());
                 if(user.getAppointment() != null){
                     centerVaccineHelper.API_getCenterName(getActivity(), user, new Runnable() {
                         @Override
                         public void run() {
-                            LoadingAnimation.dismissLoadingAnimation();
                             centerName = centerVaccineHelper.getCenterName();
-                            showViewLogics();
+                            centerVaccineHelper.API_getVaccineName(getActivity(), user, new Runnable() {
+                                @Override
+                                public void run() {
+                                    vaccineName = centerVaccineHelper.getVaccineName();
+                                    LoadingAnimation.dismissLoadingAnimation();
+                                    showViewLogics();
+                                }
+                            });
                         }
                     });
-                    LoadingAnimation.startLoadingAnimation(getActivity());
                 } else{
+                    LoadingAnimation.dismissLoadingAnimation();
                     showViewLogics();
                 }
             }
@@ -152,16 +158,19 @@ public class Appointment_Info extends Fragment {
         listView.setVisibility(View.VISIBLE);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setupFilledAppointment() {
         LinearLayout textViewGroup = view.findViewById(R.id.appointmentGroup);
         TextView center = (TextView) view.findViewById(R.id.appointmentInfoCenter);
         TextView vaccine = (TextView) view.findViewById(R.id.appointmentInfoVaccine);
         TextView date = (TextView) view.findViewById(R.id.appointmentInfoDate);
 
-//        center.setText("Center: " + user.getAppointment().getCenterId());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        String formattedString = user.getAppointment().getTime().format(formatter);
+
         center.setText("Center: " + centerName);
-        vaccine.setText("Vaccine: " + user.getAppointment().getVaccineId());
-        date.setText("Date: " + user.getAppointment().getTime().toString());
+        vaccine.setText("Vaccine: " + vaccineName);
+        date.setText("Date: " + formattedString);
         textViewGroup.setVisibility(View.VISIBLE);
     }
 

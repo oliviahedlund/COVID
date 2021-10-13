@@ -26,6 +26,7 @@ import retrofit2.Response;
 public class CenterVaccineHelper {
     private List<Center> centers;
     private Center center;
+    private Vaccine vaccine;
     private int selectedCenter;
     private Fragment fragment;
 
@@ -86,6 +87,32 @@ public class CenterVaccineHelper {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_getVaccineName(Activity activity, UserResponse user, Runnable runnable){
+        Call<Vaccine> call = ApiClient.getUserService().getVaccineName(user.getToken(), user.getAppointment().getVaccineId());
+        call.enqueue(new Callback<Vaccine>() {
+            @Override
+            public void onResponse(Call<Vaccine> call, Response<Vaccine> response) {
+                if (response.isSuccessful()) {
+                    vaccine = response.body();
+
+                    new Handler().postDelayed(runnable,600);
+
+                }else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Vaccine> call, Throwable t) {
+                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
     public String [] getCenters(){
         ArrayList<String> centerBuffer = new ArrayList<String>();
         for(Center center: centers){
@@ -121,6 +148,10 @@ public class CenterVaccineHelper {
 
     public String getCenterName() {
         return center.getCenterName();
+    }
+
+    public String getVaccineName() {
+        return vaccine.getVaccineName();
     }
 
 }
