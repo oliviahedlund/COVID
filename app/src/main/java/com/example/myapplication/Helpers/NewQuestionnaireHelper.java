@@ -7,7 +7,10 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.API.Model.Appointment_user.AppointmentRespFull;
+import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
+import com.example.myapplication.API.Model.User.FullUserResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.R;
@@ -15,6 +18,8 @@ import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +28,7 @@ import retrofit2.Response;
 public class NewQuestionnaireHelper {
     private Fragment fragment;
     private QuestionnaireRequest questionnaireRequest;
+    private List<FullUserResponse> resp;
 
     public NewQuestionnaireHelper(Fragment fragment, QuestionnaireRequest questionnaireRequest){
         this.fragment = fragment;
@@ -55,6 +61,54 @@ public class NewQuestionnaireHelper {
                 Log.d("haha fail", "" + t);
                 LoadingAnimation.dismissLoadingAnimation();
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+    //
+
+
+    public List<FullUserResponse> getResp() {
+        return resp;
+    }
+
+    public FullUserResponse [] getListResp(List<FullUserResponse> response){
+        ArrayList<FullUserResponse> respBuffer = new ArrayList<FullUserResponse>();
+        for(FullUserResponse person: response){
+            if(person != null) respBuffer.add(person);
+        }
+
+        FullUserResponse [] respArray = new FullUserResponse[respBuffer.size()];
+        respArray = respBuffer.toArray(respArray);
+
+        return respArray;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_getIncorrect(UserResponse user, Runnable runnable){
+        Call<List<FullUserResponse>> call = ApiClient.getUserService().getIncorrectQuest(user.getToken());
+        call.enqueue(new Callback<List<FullUserResponse>>() {
+            @Override
+            public void onResponse(Call<List<FullUserResponse>> call, Response <List<FullUserResponse>> response) {
+                if(response.isSuccessful()){
+                    resp = response.body();
+                    new Handler().postDelayed(runnable, 600);
+                }
+                else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    try {
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
+                    } catch (IOException e) {
+                        new AlertWindow(fragment).createAlertWindow("Unknown error");
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<FullUserResponse>> call, Throwable t) {
+                Log.d("haha fail", "" + t);
+                //LoadingAnimation.dismissLoadingAnimation();
+                //new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }

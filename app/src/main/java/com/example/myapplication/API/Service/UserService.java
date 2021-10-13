@@ -10,6 +10,7 @@ import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
 import com.example.myapplication.API.Model.Register.RegisterResponse;
+import com.example.myapplication.API.Model.User.FullUserResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Admin.PostRangeRequest;
 
@@ -53,5 +54,8 @@ public interface UserService {
 
         @GET("/api/Vaccine")
         Call<List<Vaccine>> getVaccines(@Header("Authorization") String authHeader);
+
+        @GET("/api/User/Manage/Questionare/")
+        Call<List<FullUserResponse>> getIncorrectQuest(@Header("Authorization") String authHeader);
 
 }

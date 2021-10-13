@@ -79,12 +79,8 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     private String selectedVaccine;
     private Calendar [] allowedDays;
 
-    private int [] questionnaireAnswers;
     private QuestionnaireRequest questionnaireRequest;
 
-    public Appointment_make(int [] questionnaireAnswers){
-        this.questionnaireAnswers = questionnaireAnswers;
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -128,21 +124,15 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 if(center == NOT_DEFINED || month == NOT_DEFINED || year == NOT_DEFINED){
                     Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
                 } else {
-                    fillQuestionnaireRequest();
-                    newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), questionnaireRequest);
-                    newQuestionnaireHelper.API_sendNewQuestionnaire(user, new Runnable() {
+                    newAppointmentHelper = new NewAppointmentHelper(getFragment(), appointment);
+                    newAppointmentHelper.API_sendNewAppointment(user, new Runnable() {
                         @Override
                         public void run() {
-                            newAppointmentHelper = new NewAppointmentHelper(getFragment(), appointment);
-                            newAppointmentHelper.API_sendNewAppointment(user, new Runnable() {
-                                @Override
-                                public void run() {
-                                    LoadingAnimation.dismissLoadingAnimation();
-                                }
-                            });
                             LoadingAnimation.dismissLoadingAnimation();
                         }
                     });
+
+
                     LoadingAnimation.startLoadingAnimation(getActivity());
                 }
             }
@@ -264,14 +254,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         });
     }
 
-    public void fillQuestionnaireRequest() {
-        questionnaireRequest = new QuestionnaireRequest();
-        questionnaireRequest.setNeededHelpDuetoVax((questionnaireAnswers[0] == 0));
-        questionnaireRequest.setTraveledInLast14Days((questionnaireAnswers[1] == 0));
-        questionnaireRequest.setAllergicToVax((questionnaireAnswers[2] == 0));
-        questionnaireRequest.setHasBloodProblems((questionnaireAnswers[3] == 0));
-        questionnaireRequest.setPregnant((questionnaireAnswers[4] == 0));
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fillAppointment(){
