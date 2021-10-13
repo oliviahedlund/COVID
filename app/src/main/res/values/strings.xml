@@ -5,6 +5,7 @@
     <string name="no">No</string>
     <string name="Email" translatable="false">Email</string>
     <string name="connectionFailureAlert" translatable="false">Ändra senare</string>
+    <string name="dateOfBirth">Date of Birth</string>
 
     <!--not used?-->
     <string name="generate">Generate avalible times</string>
@@ -153,5 +154,249 @@
         <item>Löfbergs Arena - hardcoded</item>
     </string-array>
 
+    //FAQ
+    <string name="FAQ_app">FAQExpandableListView</string>
+    <string name="group1">Information on general advice and recommendations</string>
+    <string name="group2">Information for travelers</string>
+    <string name="group3">Serving places</string>
+    <string name="group4">Parties</string>
+    <string name="group5">Camps and cups</string>
+    <string name="group6">Testing</string>
+    <string name="group7">Spread of infection</string>
+    <string name="group8">This is how we can reduce the spread of infection</string>
+    <string name="group9">The virus and the disease</string>
+    <string name="group10">Older</string>
+    <string name="group11">Statistics</string>
+    <string name="group12">Anxiety and mental well-being</string>
+
+    <string-array name="group1">
+        <item>
+            <b>How many people can meet indoors and outdoors at different activities?</b>
+            \n\n<a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/verksamheter/information-till-arrangorer-av-evenemang/max-antal-deltagare-i-sammankomster-och-i-olika-lokaler/">On this page there is a table that shows the maximum number of participants at different kinds of gatherings and in different rooms</a>
+        </item>
+        <item>
+            <b>What do the Public Health Agency\'s regulations and general advice on everyone\'s responsibilities mean?</b>
+            \n\nThe Swedish Public Health Agency\'s regulations and general advice are aimed at both individuals and businesses.
+            \nThe regulations are legally binding, ie. they describe what the business and you as an individual are obliged to do. In this case, it\'s about taking precautions to protect yourself and others from covid-19. You should think for yourself how you can avoid becoming infected and how you can avoid infecting others. It is especially important to show consideration for people in risk groups.
+            \nThe general advice is not legally binding, but a kind of recommendation for how you can do to comply with what is in the regulation or in another binding rule. This means that you do not have to do exactly as the General Council says, but if you choose to do it in a different way, you must still comply with what is stated in the binding rule.
+        </item>
+    </string-array>
+
+    <string-array name="group2">
+        <item>
+            What should I keep in mind when I go abroad?
+            \n\nNo matter where you are going to travel, a great responsibility rests on you as an individual traveler. Every traveler should stay well informed about the entry regulations that apply to the destination and follow the advice and instructions of the local authorities on site. Keep in mind that travel restrictions may be imposed at short notice, which may affect your ability to travel home.
+            \nYou also need to keep track of what applies when you travel into Sweden again.
+        </item>
+        <item>
+            What applies when I travel into Sweden?
+            \n\nIt can look different depending on which country you are traveling from and whether you are a Swedish or foreign citizen. For those of you who travel into Sweden from abroad, it is important to keep track of what applies to you.
+            \nRead more about the Swedish Public Health Agency\'s <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
+        </item>
+        <item>
+            What about hotels, hostels and campsites?
+            \n\nAll businesses in Sweden are obliged to take measures to reduce the risk of the spread of infection, for example by limiting the number of guests staying at the same time in a room.
+            \nHotels, hostels and campsites should offer alternative solutions to queues at check-in or indicate the distance between guests.
+            \nHotels, hostels and campsites should also ensure that staff and visitors have the opportunity to wash their hands with soap and water and offer hand sanitizer. Different plants can handle this differently, depending on their size and location.
+            \nIf the business has a restaurant, bar, café or similar, they are also covered by the rules for restaurants and taverns. The infection control doctor can then, after consultation with the municipality, decide to close these parts of the business, if they do not meet the requirements.
+        </item>
+        <item>
+            What applies to me who is going to travel abroad, do I need a covid certificate?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more about covid evidence under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/om-vaccination/jag-ar-vaccinerad-och-ska-resa-utomlands-i-sommar--vad-galler/">I am vaccinated and will travel abroad - what about?</a>
+        </item>
+    </string-array>
+
+    <string-array name="group3">
+        <item>
+            What do the Public Health Agency\'s regulations and general advice on serving places mean?
+            \n\nOf these, e.g. that restaurants must take appropriate measures to avoid congestion. It is about refurnishing and limiting the number of visitors in the room so that parties can keep at least one meter away from other parties. The number of visitors at one and the same table may amount to a maximum of eight people indoors. Outdoors there is no such restriction.
+            \nServing places must also offer the possibility of hand washing or hand disinfection and inform visitors about how they can reduce the risk of infection spreading.
+        </item>
+        <item>
+            Where can I turn if the rules are not followed?
+            \n\nIt is the municipalities that are responsible for supervision and can decide on injunctions and bans on restaurants. If you feel that the rules are not followed, you can therefore turn to the municipality where the restaurant is located.
+        </item>
+    </string-array>
+
+    <string-array name="group4">
+        <item>
+            What if I rent a room for a private party?
+            \n\nA maximum of 50 people can participate in a party in a rented room. This also applies if all participants have been vaccinated against covid-19. The person who rents out the premises is responsible for ensuring that it is not used for a private gathering with more than 50 participants.
+        </item>
+        <item>
+            What about a private party in a home or in a garden?
+            \n\nCovid-19 is spread by close contact and often in a home environment. For private gatherings, such as parties, the individual responsibility according to the Swedish Communicable Diseases Act applies, as well as the Swedish Public Health Agency\'s <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">general advice and recommendations</a> based on the duty of protection. One of the recommendations from 1 July is that you should take infection control measures if you meet people outside the immediate area. This is done, for example, by meeting outdoors in small groups and avoiding being close to each other for a long time in small spaces. Private parties in homes and gardens are not covered by legally binding rules that can be supervised. For vaccinated people, the same rules apply as for others.
+        </item>
+    </string-array>
+
+    <string-array name="group5">
+        <item>
+            What about camps and cups for children and young people?
+            \n\nCamp activities and physical activity help to promote the health of children and young people. However, it is extra important to be vigilant and plan for infection-proof implementation and preventive measures.
+        </item>
+    </string-array>
+
+    <string-array name="group6">
+        <item>
+            Do I need to test for covid-19 when entering Sweden?
+            \n\nRead more about the Swedish Public Health Agency\'s <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">recommendations when entering Sweden</a>.
+        </item>
+        <item>
+            What are the different tests for covid-19?
+            \n\nThere are tests that can show if you have an ongoing infection right now and tests that can show if you have already had covid-19 and developed antibodies.
+            \nThe tests that are available to show ongoing covid-19 are PCR tests and antigen tests. PCR testing is what is used today on a large scale. It shows if there is genetic material from the virus that is causing the infection. An antigen test shows if there are protein parts of the virus.
+            \nPCR tests generally have better performance and reliability performance than antigen tests. Antigen testing can be used as a complement to PCR testing when rapid responses are required or if PCR capacity is insufficient.
+            \nAntibody test shows if a person has had covid-19 and formed antibodies against the virus. An antibody test is only taken 2-3 weeks after you become ill. After vaccination, antibodies are also formed.
+        </item>
+        <item>
+            Where do I go if I want to test for covid-19?
+            \n\nIt is the care that assesses whether you should do a test depending on your symptoms and what the region\'s guidelines look like. If you feel sick and have symptoms of covid-19, you can read more at <a href="https://www.1177.se/Varmland/covid-19-prov">1177.se/covid19-prov</a> to find out how the testing is arranged where you live.
+            \nIn some workplaces with close contact with people, where it is not possible to work from home, the employer may decide on regular screening to detect SARS-CoV-2, the virus that causes covid-19. Screening is a supplement to other infection control measures. It is the employer who must inform about the screening and have routines for it.
+        </item>
+        <item>
+            Which people should be tested for ongoing covid-19 infection?
+            \n\nThe testing is always based on local and regional guidelines. The Swedish Public Health Agency recommends that adults and children and young people of school age, including preschool class who have <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/om-sjukdomen-och-smittspridning/om-viruset-och-sjukdomen/?exp=80112#_80112">covid-19 symptoms</a> are tested to see if they have an ongoing infection.
+            \nWe also recommend that testing takes place during infection tracking. The testing can then be relevant regardless of symptoms.
+            \nIn a situation where the number of suspected cases exceeds the health service\'s capacity for testing, the region may decide on temporary adjustments in the guidelines for testing.
+        </item>
+        <item>
+            What does it mean if I am positive in a PCR test or an antigen test?
+            \n\nA positive PCR test shows that you have an ongoing or recent covid-19 infection. A positive antigen test also shows that. People who have had covid-19 confirmed with a PCR test or antigen test and recovered are judged to have a very low risk of becoming ill again for at least six months.
+            \nIf you are positive in a PCR test or an antigen test, it is important that you stay at home and follow the rules of conduct you receive from the doctor so as not to infect others.
+            \nAntigen test is also available as a self-test. This means that you take the test yourself and read the answer. If your self-test shows that you have covid-19, you need to isolate yourself and contact the health service without delay, this is usually done by booking a follow-up PCR test yourself. You can see which routines apply in your region by visiting the website 1177.se.
+        </item>
+        <item>
+            What about me who has a positive antibody test?
+            \n\nEven if you have received a positive test result, you need to continue to follow the general advice to reduce the spread of infection in society.
+            \nBased on the knowledge we have today, we assess that virtually everyone who has developed IgG antibodies has protection against re-infection with serious symptoms and that the protection lasts at least six months from the time of infection.
+        </item>
+        <item>
+            Could I have had covid-19 and still not tested positive for antibodies?
+            \n\nNot everyone who has had covid-19 has detectable antibodies. The protection you get after having covid-19 can vary from person to person. It depends on factors such as the extent of the infection and the person\'s immune response. Some people have developed such high levels of antibodies to the disease that they can be measured in a blood test. Although not everyone who has been ill with covid-19 develops measurable levels of antibodies in the blood, in most cases these people have developed some form of immune system.
+        </item>
+        <item>
+            Do I need to test myself several times for covid-19?
+            \n\nYou do not usually need to be tested again if you know you have been ill with covid-19 for the past six months. However, you should stay at home until you feel healthy. You may have been told that you have already had covid-19 through a positive PCR test, antigen test or antibody test taken in healthcare. In some cases, a doctor may ask you to get tested again.
+            \nIf you are ill and have taken a PCR test that is negative for covid-19, you also do not need to take a new test while you are ill.
+            \nIf you have previously only tested negative for covid-19 and later become ill again with symptoms for covid-19, you should test yourself again.
+        </item>
+        <item>
+            Should I test myself to see if I have recovered from covid-19?
+            \n\nNo. The tests are used to diagnose when you are ill and not to see if you have recovered or to assess whether you are contagious. Therefore, do not take a new test to see if you have recovered.
+            \nInstead, it is the number of days that have passed since you became ill and how long you have been symptom-free that determines when you stop being contagious. You must stay at home and follow the rules of conduct you receive from healthcare and can then return to work, school or other activities.
+        </item>
+        <item>
+            Can I have an antibody test instead of getting vaccinated against covid-19?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=83571#_83571">Can I take an antibody test instead of vaccinating myself against covid-19?</a>.
+        </item>
+        <item>
+            I am vaccinated, do I need to be tested if I get symptoms of covid-19?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86785#_86785">I am vaccinated, do I need to be tested if I get symptoms of covid-19?</a>.
+        </item>
+        <item>
+            I just got vaccinated against covid-19 and got symptoms of the disease, should I get tested?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86784#_86784">I just got vaccinated against covid-19 and got symptoms of the disease, should I get tested?</a>.
+        </item>
+        <item>
+            Can my vaccination cause me to get an incorrect answer if I test for covid-19 disease?
+            \n\nThe answer to this question is under our frequently asked questions and answers about vaccination against covid-19, read more under the question <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=91087#_91087">Can my vaccination cause me to get an incorrect answer if I test for covid-19 disease?</a>.
+        </item>
+        <item>
+            What about workplace screening?
+            \n\nFor workplaces where staff need to be on site and where it is difficult to avoid close contact, regular screening for covid-19 can be a tool for early detection of infection. Screening involves testing a group of people to detect covid-19 at an early stage, even though there is no suspicion of disease in the individual.
+            \nThe purpose is not to open up the workplaces that can offer telework. Screening does not replace other preventive measures, but can be a valuable complement to other initiatives to reduce the risk of the spread of infection in a workplace.
+        </item>
+    </string-array>
+
+    <string-array name="group7">
+        <item>
+            How is covid-19 transmitted?
+            \n\nCovid-19 is spread mainly through close contacts between people through small and large droplets from the airways. When an infected person sneezes, coughs, speaks or exhales, small drops are spread to the environment. The infection can enter the body both by inhalation or by touching with unclean hands in the eyes or on mucous membranes in the nose and mouth.
+        </item>
+        <item>
+            Can you be infected by a person who has covid-19 but has no symptoms?
+            \n\nYes, infection can be spread both from people with and without symptoms. A person without symptoms is called asymptomatic.
+        </item>
+    </string-array>
+
+    <string-array name="group8">
+        <item>
+            What should I do if I get symptoms of covid-19?
+            \n\nChildren and adults who feel ill should always stay home from work, school, preschool and other activities. They should also avoid close contact with others.
+            \nDuring the corona pandemic, it is important that everyone is extra careful to avoid the spread of infection in society. Therefore, we at the Swedish Public Health Agency have produced special recommendations that deal with when children and adults can return to work, school, preschool and other activities.
+        </item>
+        <item>
+            How do you protect yourself and others?
+            \n\nWe all have a personal responsibility and an obligation to do what we can to prevent the spread of covid-19 disease.
+        </item>
+        <item>
+            Should I work at home as an asymptomatic?
+            \n\nWe recommend that as many people as possible work from home.
+            \nAs before, work from home must be chosen in agreement with the employer so that the business does not suffer from negative effects. For the employer, it is important that work from home is carried out with work environment aspects in mind.
+        </item>
+    </string-array>
+
+    <string-array name="group9">
+        <item>
+            What are the symptoms of covid-19?
+            \n\nThe disease is in most people a respiratory infection and a number of different symptoms can occur, the symptoms reported are mainly:
+            \n\nCough
+            \nFever
+            \nHard to breathe
+            \nCold
+            \nStuffy nose
+            \nSore throat
+            \nHeadache
+            \nNausea
+            \nPain in muscles and joints
+            \nChanged taste and smell
+            \nDiarrhea
+            \n\nIt is not possible to determine if it is covid-19 just by starting from the symptoms. This requires a test that is analyzed by the health service.
+        </item>
+        <item>
+            How long is the incubation period?
+            \n\nThe incubation period, ie the period from the time of infection until a person shows symptoms, is usually estimated to be 2–14 days. Most people get sick about 5 days after being infected.
+        </item>
+        <item>
+            How long are you contagious?
+            \n\nThe infectivity of covid-19 is probably greatest in connection with the illness and at the beginning of the course of the disease.
+        </item>
+    </string-array>
+
+    <string-array name="group10">
+        <item>
+            How should I protect relatives in nursing homes during visits?
+            \n\nIf you are going to visit a relative who lives in a nursing home, there are several things you can do to prevent the spread of infection:
+            \n\nRefrain from the visit if you have symptoms of covid-19, even mild symptoms.
+            \nBefore the visit - talk to the staff about what applies to the specific nursing home.
+            \nDuring the visit - wash your hands, and even if the person you are visiting is vaccinated, you need to keep your distance from other residents, and also from the staff.
+        </item>
+    </string-array>
+
+    <string-array name="group11">
+        <item>
+            How many cases of covid-19 and how many have been vaccinated in Sweden and globally?
+            \n\nCurrent statistics on the number of confirmed cases of covid-19 in Sweden are updated daily and can be found on our website about confirmed cases in Sweden. For confirmed cases globally, we refer to the WHO and ECDC.
+        </item>
+    </string-array>
+
+    <string-array name="group12">
+        <item>
+            I feel anxious during the pandemic, how should I deal with my anxiety?
+            \n\nEveryone reacts differently in troubled times. Feeling stress, anxiety and fear are natural reactions to a crisis. If you feel very anxious, unable to sleep or if you can not let go of the virus, there are things you can do to deal with your anxiety or stress:
+            \n\nPut your feelings into words. Call and talk to someone about how you feel and dare to ask for support.
+            \nUse reliable sources to obtain information about covid-19.
+            \nLimit the time you take part in news and social media.
+            \nMaintain your usual routines as far as possible and do things you think are fun and relaxing.
+            \nTry to get out into the fresh air and continue to be physically active.
+            \nRead more about how to deal with your concerns linked to the new coronavirus <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-kanner-oro-for-coronaviruset/">here</a>.
+            \nThere are several organizations that offer support by phone, chat or email, if you want to talk to someone outside about your worries or anxieties.
+        </item>
+        <item>
+            I have lost a loved one and feel sad. What can I do?
+            \n\nFeeling sad when you have lost someone is natural. The grief often lasts for a long time, but it has different phases. In the first phase, the emotions can be very intense and difficult to deal with. It is common to feel e.g. despair, anger and guilt. In later phases, the grief becomes less painful and it usually feels easier to continue with your everyday life and plan for the future. During grief, it is important that you allow yourself to feel. Try to keep your routines when it comes to e.g. food and sleep. Feel free to talk to someone you feel comfortable with.
+            \nIf you need more support, you can turn to healthcare. There are also guides you can call. Read more about <a href="https://www.1177.se/Stockholm/liv--halsa/psykisk-halsa/sorg-nar-nagon-har-dott/">grief, how it can express itself and how you can handle it on 1177.se</a>.
+        </item>
+    </string-array>
 
 </resources>

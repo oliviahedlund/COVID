@@ -38,19 +38,19 @@ public class UserApiHelper {
 
                 if (response.isSuccessful()) {
                     successful=true;
-                    //Toast.makeText(MainActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
                     userResponse = response.body(); //i userResponse ligger all information om användaren
                     userResponse.setToken(bearerToken);
-                    new Handler().postDelayed(runnable,600);
 
                 }else{
                     Toast.makeText(activity,"user Failed", Toast.LENGTH_LONG).show();
                 }
+                new Handler().postDelayed(runnable,600);
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                new Handler().postDelayed(runnable,600);
             }
         });
 
@@ -72,6 +72,7 @@ public class UserApiHelper {
 
                 } else {
                     Toast.makeText(activity, "Login Failed", Toast.LENGTH_LONG).show();
+                    new Handler().postDelayed(runnable,600);
                 }
 
             }
@@ -79,6 +80,7 @@ public class UserApiHelper {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(activity, "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                new Handler().postDelayed(runnable,600);
             }
         });
     }

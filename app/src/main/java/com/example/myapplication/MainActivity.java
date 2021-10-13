@@ -4,18 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminActivity;
-//import com.example.myapplication.Booking.BookingRequest;
-//import com.example.myapplication.Booking.BookingResponse;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginButton;
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton languageButton1;
     private TextView languageButton2;
     private UserApiHelper userApiHelper;
+    private TextView errorText;
 
     private UserResponse userResponse;
 
@@ -120,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     startUserActivity();
                 }
                 else{
+                    errorText.setText("wrong email or parrsord");
                     System.out.println("Hantera fel");
                 }
                 LoadingAnimation.dismissLoadingAnimation();
@@ -150,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.textView5);
         languageButton1 = findViewById(R.id.imageButton);
         languageButton2 = findViewById(R.id.textView16);
+        errorText = findViewById(R.id.errorText1);
 
         //Find Edit Text for user email and password
         userEmail = findViewById(R.id.editTextTextEmailAddress3);
@@ -159,12 +167,21 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(userEmail.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                //initialize patterns for email and password
+                Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+                Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$"); //one digit+lower+upper
+                //initialize matchers for the patterns for email and password
+                Matcher mat_email = emailPattern.matcher(userEmail.getText().toString());
+                Matcher mat_passw = passwordPattern.matcher(userPassword.getText().toString());
+                //check if email and password matches required patterns
+                if(mat_email.matches()) {
+                    //Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                    if(mat_passw.matches()){
+                        login();
+                    }
+                    else{ errorText.setText("Invalid password"); }
                 }
-                else{
-                    login();
-                }
+                else{ errorText.setText("Invalid E-mail address"); }
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {

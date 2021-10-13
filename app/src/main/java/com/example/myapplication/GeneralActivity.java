@@ -64,13 +64,7 @@ public class GeneralActivity extends AppCompatActivity {
     public UserResponse getUserData(){
         return user;
     }
-   /* private String setUserToken(String response){
-        return this.token = response;
-    }
 
-    public String getUserToken(){
-        return token;
-    }*/
 
     //opens drawer menu when icon is clicked
     @Override
@@ -145,6 +139,9 @@ public class GeneralActivity extends AppCompatActivity {
                     case R.id.nav_profile:
                         //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
                         newFragment = new ProfileFragment();
+                        break;
+                    case R.id.nav_FAQ:
+                        newFragment = new FAQ();
                         break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);

@@ -120,12 +120,10 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_dashboard:
                         newFragment = new Covid_Tracking_dashboardFragment();
                         break;
+                        /*
                     case R.id.nav_quest:
                         newFragment = new AdminQuestionnaireFragment();
-                        break;
-                    case R.id.nav_covidpassport:
-                        newFragment = new covidPassportFragment();
-                        break;
+                        break;*/
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
                         break;

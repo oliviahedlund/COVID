@@ -4,6 +4,7 @@
     <string name="app_name">Covid tracker</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
+    <string name="dateOfBirth">Födelsedag</string>
 
     <!--not used?-->
     <string name="generate">Generera tillgängliga tider</string>
@@ -133,6 +134,252 @@
         <item>To</item>
         <item>Fr</item>
         <item>Lö</item>
+    </string-array>
+
+    //FAQ
+    <string name="FAQ_app">FAQExpandableListView</string>
+    <string name="group1">Information om allmänna råd och rekommendationer</string>
+    <string name="group2">Information till resenärer</string>
+    <string name="group3">Serveringsställen</string>
+    <string name="group4">Fester</string>
+    <string name="group5">Läger och cuper</string>
+    <string name="group6">Testning</string>
+    <string name="group7">Smittspridning</string>
+    <string name="group8">Så kan vi minska smittspridningen</string>
+    <string name="group9">Viruset och sjukdomen</string>
+    <string name="group10">Äldre</string>
+    <string name="group11">Statistik</string>
+    <string name="group12">Oro och psykiskt välmående</string>
+
+    <string-array name="group1">
+        <item>
+            Hur många får träffas inomhus och utomhus vid olika aktiviteter?
+            \n\n<a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/verksamheter/information-till-arrangorer-av-evenemang/max-antal-deltagare-i-sammankomster-och-i-olika-lokaler/">På den här sidan finns en tabell som visar max antal deltagare vid olika sorters sammankomster och i olika lokaler</a>
+        </item>
+        <item>
+            Vad innebär Folkhälsomyndighetens föreskrifter och allmänna råd om allas ansvar?
+            \n\nFolkhälsomyndighetens föreskrifter och allmänna råd riktar sig till både individer och verksamheter.
+            \nFöreskrifterna är rättsligt bindande, dvs. de beskriver vad verksamheten och du som individ är skyldig att göra. I det här fallet handlar det om att vidta försiktighetsåtgärder för att skydda dig själv och andra mot covid-19. Du ska själv tänka igenom hur du kan undvika att bli smittad och hur du kan undvika att smitta andra. Det är särskilt viktigt att visa hänsyn till personer i riskgrupper.
+
+            \nDe allmänna råden är inte rättsligt bindande, utan en slags rekommendation för hur du kan göra för att uppfylla det som står i föreskriften eller i en annan bindande regel. Det betyder att du inte måste göra exakt så som det allmänna rådet säger, men väljer du att göra på ett annat sätt, måste du ändå uppfylla det som står i den bindande regeln.
+        </item>
+    </string-array>
+
+    <string-array name="group2">
+        <item>
+            Vad ska jag tänka på när jag åker utomlands?
+            \n\nOavsett vart du ska resa vilar ett stort ansvar på dig som enskild resenär. Varje resenär bör hålla sig välinformerad om vilka inresebestämmelser som gäller på resmålet och följa de lokala myndigheternas råd och anvisningar på plats. Tänk på att reserestriktioner kan införas med kort varsel vilket kan påverka dina möjligheter att resa hem.
+            \nDu behöver också hålla koll på vad som gäller då du reser in i Sverige igen.
+        </item>
+        <item>
+            Vad gäller när jag reser in i Sverige?
+            \n\nDet kan se olika ut beroende på vilket land du reser ifrån och om du är svensk eller utländsk medborgare. För dig som reser in i Sverige från utlandet gäller det att ha koll på vad som gäller för just dig.
+            \nLäs mer om Folkhälsomyndighetens <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">rekommendationer vid inresa i Sverige</a>.
+        </item>
+        <item>
+            Vad gäller för hotell, vandrarhem och campingplatser?
+            \n\nAlla verksamheter i Sverige är skyldiga att vidta åtgärder för att minska risken för smittspridning, till exempel genom att begränsa antalet gäster som vistas samtidigt i en lokal.
+            \nHotell, vandrarhem och campingplatser bör erbjuda alternativa lösningar till köer vid incheckningen eller anvisa hur långt avstånd gästerna ska ha mellan varandra.
+            \nHotell, vandrarhem och campingplatser bör också se till att personal och besökare har möjlighet att tvätta händerna med tvål och vatten samt erbjuda handsprit. Olika anläggningar kan hantera detta olika, beroende på deras storlek och läge.
+            \nOm verksamheten har en restaurang, bar, ett café eller liknande, omfattas de även av reglerna för restauranger och krogar. Smittskyddsläkaren kan då, efter samråd med kommunen, fatta beslut om att stänga dessa delar av verksamheten, om de inte uppfyller kraven.
+        </item>
+        <item>
+            Vad gäller för mig som ska resa utomlands, behöver jag covidbevis?
+            \n\nSvaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer om bland annat covidbevis under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/om-vaccination/jag-ar-vaccinerad-och-ska-resa-utomlands-i-sommar--vad-galler/">Jag är vaccinerad och ska resa utomlands – vad gäller?</a>
+        </item>
+    </string-array>
+
+    <string-array name="group3">
+        <item>
+            Vad innebär Folkhälsomyndighetens föreskrifter och allmänna råd på serveringsställen?
+            \n\nAv dessa följer bl.a. att serveringsställen ska vidta lämpliga åtgärder för att trängsel ska kunna undvikas. Det handlar om att möblera om och att begränsa antalet besökare i lokalen så att sällskap kan hålla minst en meters avstånd från andra sällskap. Antalet besökare vid ett och samma bord får uppgå till högst åtta personer inomhus. Utomhus finns ingen sådan begränsning.
+            \nServeringsställen ska också erbjuda möjlighet till handtvätt eller handdesinfektion och informera besökare om hur de kan minska risken för smittspridning.
+        </item>
+        <item>
+            Vart kan jag vända mig om reglerna inte följs?
+            \n\nDet är kommunerna som har ansvar för tillsyn och kan besluta om förelägganden och förbud mot serveringsställen. Om du upplever att reglerna inte följs kan du därför vända dig till den kommun där serveringsstället finns.
+        </item>
+    </string-array>
+
+    <string-array name="group4">
+        <item>
+            Vad gäller om jag hyr en lokal för en privat fest?
+            \n\nMaximalt 50 personer får delta i en fest i en hyrd lokal. Det gäller även om alla deltagare är vaccinerade mot covid-19. Det är den som hyr ut lokalen som ansvarar för att den inte används till en privat sammankomst med fler än 50 deltagare.
+        </item>
+        <item>
+            Vad gäller för en privat fest i ett hem eller i en trädgård?
+            \n\nCovid-19 sprids vid nära kontakt och ofta i hemmiljö. För privata sammankomster, som fester, gäller dels det individuella ansvaret enligt smittskyddslagen, dels Folkhälsomyndighetens <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">allmänna råd och rekommendationer</a> som bygger på skyddsplikten. En av rekommendationerna från 1 juli är att man ska vidta smittskyddsåtgärder om man träffar personer utanför den närmaste kretsen. Det gör man exempelvis genom att träffas utomhus i mindre grupper och att undvika att vara nära varandra längre tid i små utrymmen. Privata fester i hem och trädgårdar omfattas inte av juridiskt bindande regler som kan tillsynas. För vaccinerade gäller samma regler som för andra.
+        </item>
+    </string-array>
+
+    <string-array name="group5">
+        <item>
+            Vad gäller för läger och cuper för barn och ungdomar?
+            \n\nLägerverksamheter och fysisk aktivitet bidrar till att främja barn och ungas hälsa. Det är dock extra viktigt att vara vaksam och planera för ett smittsäkert genomförande och förebyggande åtgärder.
+        </item>
+    </string-array>
+
+    <string-array name="group6">
+        <item>
+            Behöver jag testa mig för covid-19 vid inresa i Sverige?
+            \n\nLäs mer om Folkhälsomyndighetens <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-planerar-att-resa/rekommendationer-till-dig-som-reser-in-i-sverige/">rekommendationer vid inresa i Sverige</a>.
+        </item>
+        <item>
+            Vilka olika tester finns det för covid-19?
+            \n\nDet finns test som kan visa om du har en pågående infektion just nu och test som kan visa om du redan har haft covid-19 och utvecklat antikroppar.
+            \nDe tester som finns för att visa pågående covid-19 är PCR-test och antigentest. PCR-test är det som idag används i stor skala. Det visar om det finns arvsmassa från viruset som orsakar infektionen. Ett antigentest visar om det finns proteindelar av viruset.
+            \nPCR-test har generellt bättre prestanda vad det gäller känslighet och tillförlitlighet än antigentest. Antigentest kan användas som ett komplement till PCR-tester när det finns behov av snabba svar eller om PCR-kapaciteten är otillräcklig.
+            \nAntikroppstest visar om en person har haft covid-19 och bildat antikroppar mot viruset. Ett antikroppstest tas först 2-3 veckor efter att man blev sjuk. Efter vaccination bildas också antikroppar.
+        </item>
+        <item>
+            Vart vänder jag mig om jag vil testa mig för covid-19?
+            \n\nDet är vården som bedömer om du bör göra ett test beroende på dina symtom och hur regionens riktlinjer ser ut. Känner du dig sjuk och har symtom för covid-19 kan du läsa mer på <a href="https://www.1177.se/Varmland/covid-19-prov">1177.se/covid19-prov</a> för att ta reda på hur det är ordnat med testningen där du bor.
+            \nPå vissa arbetsplatser med nära kontakt med människor, där det inte går att jobba hemifrån, kan arbetsgivaren besluta om regelbunden screening för att upptäcka SARS-CoV-2, det virus som orsakar covid-19. Screening är ett tillägg till andra smittskyddsåtgärder. Det är arbetsgivaren som ska informera kring screeningen och ha rutiner för den.
+        </item>
+        <item>
+            Vilka personer bör testas för pågående covid-19-infektion?
+            \n\nTestningen sker alltid utifrån lokala och regionala riktlinjer. Folkhälsomyndigheten rekommenderar att vuxna samt barn och unga i skolålder inklusive förskoleklass som har <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/om-sjukdomen-och-smittspridning/om-viruset-och-sjukdomen/?exp=80112#_80112">symtom för covid-19</a> testas för att se om de har en pågående infektion.
+            \nVi rekommenderar också att testning sker vid smittspårning. Testningen kan då vara aktuell oberoende av symtom.
+            \nI en situation där antalet misstänkta fall överskrider hälso- och sjukvårdens kapacitet till testning kan regionen besluta om tillfälliga justeringar i riktlinjerna för testningen.
+        </item>
+        <item>
+            Vad innebär det om jag är positiv i ett PCR-test eller ett antigentest?
+            \n\nEtt positivt PCR-test visar att du har en pågående eller en nyligen genomgången covid-19-infektion. Ett positivt antigentest visar också det. Personer som haft covid-19 som bekräftats med PCR-test eller antigentest och tillfrisknat bedöms ha en mycket låg risk att bli sjuka igen i åtminstone sex månader framåt.
+            \nOm du är positiv i ett PCR-test eller ett antigentest är det viktigt att du stannar hemma och följer de förhållningsregler du får av läkaren för att inte smitta andra.
+            \nAntigentest finns också som självtest. Det innebär att du själv tar provet och läser av svaret. Om ditt självtest visar att du har covid-19 behöver du isolera dig och utan dröjsmål kontakta hälso- och sjukvården, detta görs i regel genom att du själv bokar ett uppföljande PCR-test. Du kan se vilka rutiner som gäller i din region genom att gå in på webbplatsen 1177.se.
+        </item>
+        <item>
+            Vad gäller för mig som har ett positivt antikroppstest?
+            \n\nÄven om du har fått ett positivt testresultat behöver du fortsätta att följa de allmänna råden för att minska smittspridningen i samhället.
+            \nUtifrån den kunskap vi har idag bedömer vi att i stort sett alla som har utvecklat IgG-antikroppar har ett skydd mot återinfektion med allvarliga symtom och att skyddet varar åtminstone ett halvår från infektionstillfället.
+        </item>
+        <item>
+            Kan jag ha haft covid-19 och ändå inte testas positivt för antikroppar?
+            \n\nAlla som har haft covid-19 har inte påvisbara antikroppar. Det skydd man får efter att ha haft covid-19 kan variera från person till person. Det beror på faktorer som infektionens omfattning och personens immunsvar. En del personer har utvecklat så pass höga nivåer av antikroppar mot sjukdomen så de kan mätas i ett blodprov. Även om alla som varit sjuka i covid-19 inte utvecklar mätbara nivåer av antikroppar i blodet så har dessa personer i de allra flesta fall utvecklat någon form av immunförsvar.
+        </item>
+        <item>
+            Behöver jag testa mig flera gånger för covid-19?
+            \n\nDu behöver vanligtvis inte testa dig igen om du vet att du har varit sjuk i covid-19 under det senaste halvåret. Däremot ska du stanna hemma tills du känner dig frisk. Du kan ha fått veta att du redan haft covid-19 genom ett positivt PCR-test, antigentest eller antikroppstest taget inom hälso- och sjukvården. I vissa fall kan en läkare be att du testar dig igen.
+            \nOm du är sjuk och har tagit ett PCR-test som är negativt för covid-19 behöver du inte heller ta ett nytt test medan du är sjuk.
+            \nHar du tidigare enbart testat negativt för covid-19 och senare blir sjuk på nytt med symtom för covid-19 ska du testa dig igen.
+        </item>
+        <item>
+            Ska jag testa mig för att se om jag blivit frisk från covid-19?
+            \n\nNej. Testerna används för att ställa diagnos när du är sjuk och inte för att se om du blivit frisk eller för att bedöma om du är smittsam. Därför ska du inte ta ett nytt test för att se om du har blivit frisk.
+            \nDet är i stället antalet dagar som gått sedan du blev sjuk och hur länge du har varit symtomfri som avgör när du slutar vara smittsam. Du ska stanna hemma och följa de förhållningsregler du får från sjukvården och kan därefter gå tillbaka till arbetet, skolan eller annan verksamhet.
+        </item>
+        <item>
+            Kan jag ta ett antikroppstest istället för att vaccinera mig mot covid-19?
+            \n\nSvaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=83571#_83571">Kan jag ta ett antikroppstest istället för att vaccinera mig mot covid-19?</a>.
+        </item>
+        <item>
+            Jag är vaccinerad, behöver jag testa mig om jag får symtom på covid-19?
+            \n\nSvaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86785#_86785">Jag är vaccinerad, behöver jag testa mig om jag får symtom på covid-19?</a>.
+        </item>
+        <item>
+            Jag har precis vaccinerat mig mot covid-19 och fått symptom på sjukdomen, ska jag testa mig?
+            \n\nSvaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=86784#_86784">Jag har precis vaccinerat mig mot covid-19 och fått symtom på sjukdomen, ska jag testa mig?</a>.
+        </item>
+        <item>
+            Kan min vaccination göra att jag fåt ett felaktigt svar om jag testar mig för sjukdom i covid-19?
+            \n\nSvaret på denna fråga ligger under våra vanliga frågor och svar om vaccination mot covid-19, läs mer under frågan <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/vaccination-mot-covid-19/fragor-och-svar-om-vaccination-mot-covid-19/?exp=91087#_91087">Kan min vaccination göra att jag får ett felaktigt svar om jag testar mig för sjukdom i covid-19?</a>.
+        </item>
+        <item>
+            Vad gäller för screening på arbetsplatser?
+            \n\nFör arbetsplatser där personalen behöver vara på plats och där man har svårt att undvika närkontakt kan regelbunden screening för covid-19 vara ett verktyg för att tidigt upptäcka smitta. Screening innebär att testa en grupp människor för att upp­täcka covid-19 på ett tidigt stadium, trots att det inte finns någon misstanke om sjukdom hos den enskilda individen.
+            \nSyftet är inte att öppna upp de arbetsplatser som kan erbjuda distansarbete. Screening ersätter inte andra förebyggande åtgärder, men kan vara ett värdefullt komplement till övriga insatser för att minska risken för smittspridning på en arbetsplats.
+        </item>
+    </string-array>
+
+    <string-array name="group7">
+        <item>
+            Hur smittar covid-19?
+            \n\nSpridning av covid-19 sker framför allt vid nära kontakter mellan personer genom små och stora droppar från luftvägarna. När en infekterad person nyser, hostar, talar eller andas ut sprids små droppar till omgivningen. Smittan kan ta sig in i kroppen både via inandning eller genom att man rör med orena händer i ögon eller på slemhinnor i näsa och mun.
+        </item>
+        <item>
+            Kan man bli smittar av en person som har covid-19 men inte har några symptom?
+            \n\nJa, smitta kan spridas både från personer med och utan symtom. En person utan symtom kallas asymtomatisk.
+        </item>
+    </string-array>
+
+    <string-array name="group8">
+        <item>
+            Vad ska jag göra om jag får symtom på covid-19?
+            \n\nBarn och vuxna som känner sig sjuka bör alltid stanna hemma från arbetet, skolan, förskolan och andra aktiviteter. De bör också undvika nära kontakt med andra.
+            \nUnder coronapandemin är det viktigt att alla är extra försiktiga för att undvika smittspridning i samhället. Därför har vi på Folkhälsomyndigheten tagit fram särskilda rekommendationer som handlar om när barn och vuxna kan gå tillbaka till arbetet, skolan, förskolan och andra aktiviteter.
+        </item>
+        <item>
+            Hur skyddar du dig själv och andra?
+            \n\nVi har alla ett personligt ansvar och en skyldighet att göra vad vi kan för att förhindra smittspridningen av sjukdomen covid-19.
+        </item>
+        <item>
+            Bör jag som symtomfri jobba hemma?
+            \n\nVi rekommenderar att så många som möjligt arbetar hemifrån.
+            \nLiksom tidigare gäller att arbete hemifrån ska väljas i samförstånd med arbetsgivaren så att inte verksamheten drabbas av negativa effekter. För arbetsgivaren är det viktigt att arbete hemifrån genomförs med arbetsmiljöaspekter i åtanke.
+        </item>
+    </string-array>
+
+    <string-array name="group9">
+        <item>
+            Vilka är symtomen på covid-19?
+            \n\nSjukdomen är hos de flesta en luftvägsinfektion och en rad olika symtom kan förekomma, de symtom som rapporterats är framförallt:
+            \n\nHosta
+            \nFeber
+            \nSvårt att andas
+            \nSnuva
+            \nTäppt näsa
+            \nHalsont
+            \nHuvudvärk
+            \nIllamående
+            \nVärk i muskler och leder
+            \nFörändrad smak och lukt
+            \nDiarré
+            \n\nMan kan inte avgöra om det är covid-19 bara genom att utgå från symtomen. För det krävs ett test som analyseras av hälso- och sjukvården.
+        </item>
+        <item>
+            Hur lång är inkubationstiden?
+            \n\nInkubationstiden, det vill säga perioden från smittotillfället till dess att en person uppvisar symtom, bedöms vanligtvis vara 2–14 dagar. De flesta insjuknar cirka 5 dagar efter att man smittats.
+        </item>
+        <item>
+            Hur länge är man smittsam?
+            \n\nSmittsamheten av covid-19 är sannolikt störst i anslutning till insjuknandet och i början av sjukdomsförloppet.
+        </item>
+    </string-array>
+
+    <string-array name="group10">
+        <item>
+            Hur ska jag skydda närstående i äldreboende vid besök?
+            \n\nOm du ska besöka en anhörig som bor på ett äldreboende, finns det flera saker du kan göra för att förebygga smittspridning:
+            \n\nAvstå från besöket om du har symtom på covid-19, även milda symtom.
+            \nInför besöket – prata med personalen om vad som gäller på det specifika äldreboendet.
+            \nVid besöket – tvätta händerna, och även om den du besöker är vaccinerad behöver du hålla avstånd till övriga boende, och även till personalen.
+        </item>
+    </string-array>
+
+    <string-array name="group11">
+        <item>
+            Hur många fall av covid-19 och hur många är vaccinerade i Sverige och globalt?
+            \n\nAktuell statistik över antalet bekräftade fall av covid-19 i Sverige uppdateras dagligen och finns på vår webbsida om bekräftade fall i Sverige. För bekräftade fall globalt hänvisar vi till WHO och ECDC.
+        </item>
+    </string-array>
+
+    <string-array name="group12">
+        <item>
+            Jag känner mig orolig under pandemin, hur ska jag hantera min oro?
+            \n\nAlla reagerar olika i oroliga tider. Att känna stress, oro och rädsla är naturliga reaktioner vid en kris. Om du känner dig mycket orolig, inte kan sova eller om du inte kan släppa tankarna på viruset, finns det saker som du kan göra för att hantera din oro eller stress:
+            \n\nSätt ord på dina känslor. Ring och prata med någon om hur du känner och våga fråga om stöd.
+            \nAnvänd tillförlitliga källor för att hämta information om covid-19.
+            \nBegränsa tiden du tar del av nyheter och sociala medier.
+            \nBehåll dina vanliga rutiner så långt det går och gör sådant du tycker är roligt och avkopplande.
+            \nFörsök att komma ut i friska luften och fortsätt vara fysiskt aktiv.
+            \n<a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/om-du-kanner-oro-for-coronaviruset/">Läs mer om hur du kan hantera din oro kopplat till det nya coronaviruset här</a>.
+            \nDet finns flera organisationer som erbjuder stöd via telefon, chatt eller mejl, om du vill prata med någon utomstående om din oro eller ångest.
+        </item>
+        <item>
+            Jag har förlorat en närstående och känner sorg. Vad kan jag göra?
+            \n\nAtt känna sorg när man har förlorat någon är naturligt. Sorgen pågår ofta under lång tid, men den har olika faser. I den första fasen kan känslorna vara mycket intensiva och svåra att hantera. Det är vanligt att känna t.ex. förtvivlan, ilska och skuld. I senare faser blir sorgen mindre plågsam och det brukar kännas lättare att fortsätta med sitt vardagsliv och planera inför framtiden. Under sorgen är det viktigt att du tillåter dig att känna. Försök att hålla dina rutiner när det gäller t.ex. mat och sömn. Prata gärna med någon som du känner dig trygg med.
+            \nOm du behöver mer stöd kan du vända dig till vården. Det finns också stödlinjer du kan ringa. Läs mer om <a href="https://www.1177.se/Stockholm/liv--halsa/psykisk-halsa/sorg-nar-nagon-har-dott/">sorg, hur den kan yttra sig och hur du kan hantera den på 1177.se</a>.
+        </item>
     </string-array>
 
 </resources>
