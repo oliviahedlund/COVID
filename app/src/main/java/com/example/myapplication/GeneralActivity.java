@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,18 +71,19 @@ public class GeneralActivity extends AppCompatActivity {
     public UserResponse getUserData(){
         return user;
     }
-   /* private String setUserToken(String response){
-        return this.token = response;
-    }
 
-    public String getUserToken(){
-        return token;
-    }*/
 
     //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
+            //hide keyboard if it is visible when menu is clicked
+            try  {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+
+            }
             return super.onOptionsItemSelected(item);
         }
         return true;
@@ -144,6 +146,9 @@ public class GeneralActivity extends AppCompatActivity {
                     case R.id.nav_profile:
                         //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
                         newFragment = new ProfileFragment();
+                        break;
+                    case R.id.nav_FAQ:
+                        newFragment = new FAQ();
                         break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/mediumPadding"
+    tools:context=".Admin.AdminAddVaccineFragment" >
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/mediumPadding"
+        android:text="@string/addVaccines"
+        android:textSize="@dimen/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vaccineName"
+            android:textSize="@dimen/mediumText" />
+
+        <EditText
+            android:id="@+id/vaccineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCreateVaccine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/smallPadding"
+        android:text="@string/addVaccine"
+        android:imeOptions="actionDone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/white" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/mediumPadding"
+        android:text="@string/addVaccineCenter"
+        android:textSize="@dimen/title" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:hint="@string/center"
+        android:textColorHint="@color/beige">
+
+        <AutoCompleteTextView
+            android:id="@+id/generateCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text="@string/center"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:hint="Vaccine"
+        android:textColorHint="@color/beige">
+
+        <AutoCompleteTextView
+            android:id="@+id/generateVaccin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text="Vaccine"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amountVac"
+            android:textSize="@dimen/mediumText" />
+
+        <EditText
+            android:id="@+id/vaccineAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="4"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAddVacToCenter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/smallPadding"
+        android:text="@string/addVaccineCenter"
+        android:imeOptions="actionDone"/>
+
+</LinearLayout>

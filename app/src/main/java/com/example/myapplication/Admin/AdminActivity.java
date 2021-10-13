@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -55,11 +56,25 @@ public class AdminActivity extends AppCompatActivity {
         setUpNavigationView();
 
     }
+    private UserResponse setUserData(UserResponse response){
+        return this.user = response;
+    }
+
+    public UserResponse getUserData(){
+        return user;
+    }
 
     //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
+            //hide keyboard if it is visible when menu is clicked
+            try  {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+
+            }
             return super.onOptionsItemSelected(item);
         }
         return true;
@@ -105,14 +120,21 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_dashboard:
                         newFragment = new Covid_Tracking_dashboardFragment();
                         break;
+                        /*
                     case R.id.nav_quest:
                         newFragment = new AdminQuestionnaireFragment();
-                        break;
-                    case R.id.nav_covidpassport:
-                        newFragment = new covidPassportFragment();
-                        break;
+                        break;*/
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
+                        break;
+                    case R.id.nav_sched:
+                        newFragment = new AdminBookingRangeFragment();
+                        break;
+                    case R.id.nav_addCenter:
+                        newFragment = new AdminAddCenterFragment();
+                        break;
+                    case R.id.nav_addVaccin:
+                        newFragment = new AdminAddVaccineFragment();
                         break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frameAdmin);

@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.Covid_Passport.covidPassportFragment">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    tools:context=".covidPassportFragment">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Vaccine Passport"
+        android:textSize="25sp"
+        app:backgroundTint="#3F51B5"
+
+        />
+
+
+    <ImageView
+        android:id="@+id/qr_output"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        />
+
 
     <TextView
+        android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CovidPassport" />
+        android:layout_height="wrap_content"
+        android:text="Full name"
+        android:textColor="#100B0B"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="right"
+        android:textAlignment="gravity"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/birth_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date of birth"
+        android:textColor="#090606"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="right"
+        android:textAlignment="gravity"/>
+
+</LinearLayout>

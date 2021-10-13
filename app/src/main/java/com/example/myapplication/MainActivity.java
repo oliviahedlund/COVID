@@ -1,29 +1,22 @@
 package com.example.myapplication;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.API.Model.Login.LoginRequest;
-import com.example.myapplication.API.Model.Login.LoginResponse;
-import com.example.myapplication.API.Model.User.UserRequest;
-import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Admin.AdminActivity;
-import com.example.myapplication.Helpers.LanguageHelper;
-//import com.example.myapplication.Booking.BookingRequest;
-//import com.example.myapplication.API.Model.Appointment_user.BookingResponse;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private String loginToken;
     private ImageButton languageButton1;
     private TextView languageButton2;
+    private UserApiHelper userApiHelper;
+    private TextView errorText;
 
     private UserResponse userResponse;
-
 
 
     @Override
@@ -49,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         //check default language before creating view
         checkDefaultLanguage();
         setContentView(R.layout.activity_main);
+        userApiHelper = new UserApiHelper(this);
 
         setupButtons();
 
@@ -75,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 dummyUserResponse.setPostalCode("77777");
                 dummyUserResponse.setId("0");
                 dummyUserResponse.setAdmin(false);
+                System.out.println("USER ID: "+ userResponse.getId());
                 String dummyToken = " ";
                 i.putExtra("userInfo", dummyUserResponse);
                 i.putExtra("token", loginToken);
@@ -90,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userEmail = findViewById(R.id.editTextTextEmailAddress3);
                 userPassword = findViewById(R.id.editTextTextPassword2);
-                userEmail.setText("baiwei4@gmail.com");
-                userPassword.setText("ghJK12345");
+                userEmail.setText("olivia@gmail.com");
+                userPassword.setText("Citron123");
             }
         });
         Button setLoginAdmin = findViewById(R.id.setLoginButtonAdmin);
@@ -100,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userEmail = findViewById(R.id.editTextTextEmailAddress3);
                 userPassword = findViewById(R.id.editTextTextPassword2);
-                userEmail.setText("baiwei2@gmail.com");
-                userPassword.setText("ghJK12345");
+                userEmail.setText("olivia@admin.com");
+                userPassword.setText("Citron123");
             }
         });
 ////////////// Set Text Button /////////////////////
@@ -116,44 +112,43 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void login(){
+        LoadingAnimation.startLoadingAnimation(MainActivity.this);
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void callUserApi(){
-        UserRequest userRequest = new UserRequest();
-        loginToken = "Bearer " + loginToken;
-        userRequest.setToken(loginToken);
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUserEmail(userEmail.getText().toString());
+        loginRequest.setPassword(userPassword.getText().toString());
 
-        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUser(loginToken);
-        userResponseCall.enqueue(new Callback<UserResponse>() {
+        Runnable next = new Runnable() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                if (response.isSuccessful()) {
-                    userResponse = response.body();
-                    Intent i;
-                    // replace if-statement with: userResponse.getAdmin()
-                    if(userResponse.getAdmin()){
-                        i = new Intent(MainActivity.this, AdminActivity.class);
-                    }
-                    else {
-                        i = new Intent(MainActivity.this, GeneralActivity.class);
-                    }
-                    userResponse.setToken(loginToken); //////////////
-                    i.putExtra("userInfo", userResponse);
-                    //i.putExtra("token", loginToken);
-                    startActivity(i);
-                    finish(); //clears page from history
-
-                }else{
-                    Toast.makeText(MainActivity.this,"user Failed", Toast.LENGTH_LONG).show();
+            public void run() {
+                if(userApiHelper.callSuccessful()){
+                    startUserActivity();
                 }
+                else{
+                    errorText.setText("wrong email or parrsord");
+                    System.out.println("Hantera fel");
+                }
+                LoadingAnimation.dismissLoadingAnimation();
             }
+        };
 
-            @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        userApiHelper.CallLoginApi(this, loginRequest, next);
+    }
 
-            }
-        });
+    public void startUserActivity(){
+        userResponse = userApiHelper.getUserResponse();
+        Intent i;
+
+        if (userResponse.getAdmin()) {
+            i = new Intent(MainActivity.this, AdminActivity.class);
+        } else {
+            i = new Intent(MainActivity.this, GeneralActivity.class);
+        }
+
+        i.putExtra("userInfo", userResponse);
+        startActivity(i);
+        finish(); //clears page from history
     }
 
     private void setupButtons(){
@@ -162,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.textView5);
         languageButton1 = findViewById(R.id.imageButton);
         languageButton2 = findViewById(R.id.textView16);
+        errorText = findViewById(R.id.errorText1);
 
         //Find Edit Text for user email and password
         userEmail = findViewById(R.id.editTextTextEmailAddress3);
@@ -171,10 +167,21 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(userEmail.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                //initialize patterns for email and password
+                Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+                Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$"); //one digit+lower+upper
+                //initialize matchers for the patterns for email and password
+                Matcher mat_email = emailPattern.matcher(userEmail.getText().toString());
+                Matcher mat_passw = passwordPattern.matcher(userPassword.getText().toString());
+                //check if email and password matches required patterns
+                if(mat_email.matches()) {
+                    //Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                    if(mat_passw.matches()){
+                        login();
+                    }
+                    else{ errorText.setText("Invalid password"); }
                 }
-                else{    login(); }
+                else{ errorText.setText("Invalid E-mail address"); }
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -210,51 +217,5 @@ public class MainActivity extends AppCompatActivity {
         //updates view
         this.recreate();
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void login(){
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUserEmail(userEmail.getText().toString());
-        loginRequest.setPassword(userPassword.getText().toString());
-
-        Call<LoginResponse> loginResponseCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                //om response ej är 200 ha felhantering, isBusy
-                if(response.isSuccessful()){
-                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_LONG).show();
-                    LoginResponse loginResponse = response.body();
-                    loginToken = loginResponse.getToken();
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            callUserApi();
-                        }
-                    },700);
-
-                }else{
-                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-
-    }
-/*
-    public void openActivity(Class _act){
-        Intent intent = new Intent(this, _act);
-        startActivity(intent);
-    }
-*/
 
 }
