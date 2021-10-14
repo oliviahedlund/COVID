@@ -11,8 +11,8 @@ import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.ApiClient;
-import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.LoadingAnimation;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

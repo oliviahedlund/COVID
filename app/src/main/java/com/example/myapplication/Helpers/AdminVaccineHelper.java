@@ -12,8 +12,8 @@ import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
-import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.LoadingAnimation;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class AdminVaccineHelper {
             @Override
             public void onResponse(Call<List<Vaccine>> call, Response<List<Vaccine>> response) {
                 if (response.isSuccessful()) {
-                    vaccineResponse = response.body(); //i userResponse ligger all information om användaren
+                    vaccineResponse = response.body(); //i userResponse logger all information om användaren
                     new Handler().postDelayed(runnable,600);
 
                 }else{

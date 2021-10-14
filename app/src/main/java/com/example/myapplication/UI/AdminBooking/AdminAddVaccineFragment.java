@@ -20,9 +20,9 @@ import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.Helpers.AdminVaccineHelper;
-import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
+import com.example.myapplication.UI.LoadingAnimation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

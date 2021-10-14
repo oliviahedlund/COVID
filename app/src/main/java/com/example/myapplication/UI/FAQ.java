@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.ExpandableListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+
+import com.example.myapplication.MainAdapter;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

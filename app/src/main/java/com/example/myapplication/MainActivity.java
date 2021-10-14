@@ -15,6 +15,7 @@ import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Helpers.UserLoginHelper;
 import com.example.myapplication.Helpers.LanguageHelper;
+import com.example.myapplication.UI.LoadingAnimation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
