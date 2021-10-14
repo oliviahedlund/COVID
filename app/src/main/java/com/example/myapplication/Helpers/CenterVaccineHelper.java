@@ -116,26 +116,19 @@ public class CenterVaccineHelper {
     }
 
     public String [] getCenters(){
-        ArrayList<String> centerBuffer = new ArrayList<String>();
-        for(Center center: centers){
-            if(center != null) centerBuffer.add(center.getCenterName());
+        String [] centerArray = new String[centers.size()];
+        for (int i = 0; i < centers.size(); i++) {
+            centerArray[i] = centers.get(i).getCenterName();
         }
-
-        String [] centerArray = new String[centerBuffer.size()];
-        centerArray = centerBuffer.toArray(centerArray);
-
         return centerArray;
     }
 
     public String [] getVaccines(int center){
-        ArrayList<String> vaccineBuffer = new ArrayList<String>();
-        for(Vaccine vaccine: centers.get(center).getVaccines()){
-            if(vaccine != null) vaccineBuffer.add(vaccine.getVaccineName());
+        List<Vaccine> list = centers.get(center).getVaccines();
+        String [] vaccineArray = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i) != null) vaccineArray[i] = list.get(i).getVaccineName();
         }
-
-        String [] vaccineArray = new String[vaccineBuffer.size()];
-        vaccineArray = vaccineBuffer.toArray(vaccineArray);
-
         return vaccineArray;
     }
 

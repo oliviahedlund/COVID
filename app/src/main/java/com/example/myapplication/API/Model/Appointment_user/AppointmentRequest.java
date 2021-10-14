@@ -11,7 +11,7 @@ public class AppointmentRequest implements Serializable {
     private String vaccineId;
 
     public ZonedDateTime getTime() {
-        return time;
+        return time.withMonth(time.getMonthValue() + 1);
     }
 
     public void setTime(ZonedDateTime time) {
