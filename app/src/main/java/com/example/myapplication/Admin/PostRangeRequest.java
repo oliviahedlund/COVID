@@ -1,18 +1,20 @@
 package com.example.myapplication.Admin;
 
+import java.time.ZonedDateTime;
+
 public class PostRangeRequest {
-    private String startDateTime;
-    private String endDateTime;
+    private ZonedDateTime startDateTime;
+    private ZonedDateTime endDateTime;
     private int allowedDaysOfWeek;
     private int allowedAgeGroups;
     private int timePerAppointmentMinutes;
     private String centerId;
 
-    public void setStartDateTime(String startDateTime) {
+    public void setStartDateTime(ZonedDateTime startDateTime) {
         this.startDateTime = startDateTime;
     }
 
-    public void setEndDateTime(String endDateTime) {
+    public void setEndDateTime(ZonedDateTime endDateTime) {
         this.endDateTime = endDateTime;
     }
 

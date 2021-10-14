@@ -16,6 +16,10 @@ import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -29,13 +33,14 @@ public class AdminBookingAPI {
         this.fragment = fragment;
     }
 
-    public String convertTimeToAPIString(int[] date){
-        date[1] = date[1]-1; //because januari = 0
+    public ZonedDateTime convertTimeToAPIString(int[] date){
+        //date[1] = date[1]-1; //because januari = 0
+        ZonedDateTime appointmentDateTime = LocalDateTime.of(date[0], date[1], date[2], date[3], date[4], 0).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
+        //Calendar calendar = Calendar.getInstance();
+        //calendar.set(date[0],date[1],date[2],date[3],date[4],00);
+        //SimpleDateFormat apiFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(date[0],date[1],date[2],date[3]-1,date[4],00);
-        SimpleDateFormat apiFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        return apiFormat.format(calendar.getTime());
+        return appointmentDateTime;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

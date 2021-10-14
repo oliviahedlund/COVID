@@ -24,6 +24,7 @@ import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -84,7 +85,7 @@ public class AdminBookingRangeFragment extends Fragment {
 
     }
 
-    private String convertDateInputToString(int startIndex){
+    private ZonedDateTime convertDateInputToString(int startIndex){
         int[] dateList = new int[5];
         for (int i = 0; i < 5; i++) {
             dateList[i] = Integer.parseInt(editTexts.get(startIndex+i).getText().toString());

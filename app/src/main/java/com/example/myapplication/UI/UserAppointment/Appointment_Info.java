@@ -23,6 +23,9 @@ import com.example.myapplication.UI.GenericMessageFragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.ViewCells.AppointmentInfo_ListViewCell;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -166,8 +169,10 @@ public class Appointment_Info extends Fragment {
         TextView vaccine = (TextView) view.findViewById(R.id.appointmentInfoVaccine);
         TextView date = (TextView) view.findViewById(R.id.appointmentInfoDate);
 
+        ZonedDateTime tmp = LocalDateTime.of(user.getAppointment().getTime().getYear(), user.getAppointment().getTime().getMonth(), user.getAppointment().getTime().getDayOfMonth(), user.getAppointment().getTime().getHour(), user.getAppointment().getTime().getMinute()).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
-        String formattedString = user.getAppointment().getTime().format(formatter);
+        //String formattedString = user.getAppointment().getTime().format(formatter);
+        String formattedString = tmp.format(formatter);
 
         center.setText("Center: " + centerName);
         vaccine.setText("Vaccine: " + vaccineName);
