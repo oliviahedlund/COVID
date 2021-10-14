@@ -1,7 +1,6 @@
 package com.example.myapplication.API.Service;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
-import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Date_Time;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
@@ -11,8 +10,7 @@ import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
 import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.Admin.PostRangeRequest;
-import com.example.myapplication.Booking.SetBookingRequest;
+import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 
 import java.util.List;
 
@@ -60,9 +58,6 @@ public interface UserService {
 
         @POST("/api/Questionare")
         Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
-
-        @POST("/api/Appointments/booking/")
-        Call<String> setBooking(@Header("Authorization") String authHeader, @Body SetBookingRequest setBookingRequest);
 
         @POST("/api/Appointments/range/")
         Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);

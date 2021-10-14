@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.Helpers;
 
 import android.app.Activity;
 import android.os.Build;
@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.AlertWindow;
+import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.LoadingAnimation;
@@ -21,12 +21,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ApiVaccine {
+public class AdminVaccineHelper {
     private List<Vaccine> vaccineResponse;
     String responseID;
     private Fragment fragment;
 
-    public ApiVaccine(Fragment fragment){
+    public AdminVaccineHelper(Fragment fragment){
         this.fragment = fragment;
     }
 
@@ -73,7 +73,7 @@ public class ApiVaccine {
     }
 
     public void API_postVaccine(UserResponse user, String vaccineName, Runnable runnable){
-        System.out.println("in ApiVaccine");
+        System.out.println("in AdminVaccineHelper");
         Call<String> call = ApiClient.getUserService().postVaccine(user.getToken(), vaccineName);
         call.enqueue(new Callback<String>() {
             @Override

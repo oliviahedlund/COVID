@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.UI.AdminBooking;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -17,21 +17,20 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.AlertWindow;
-import com.example.myapplication.CenterVaccineHelper;
+import com.example.myapplication.UI.AlertWindow;
+import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.Helpers.AdminBookingHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import kotlin.collections.ArrayDeque;
 
 
 public class AdminBookingRangeFragment extends Fragment {
@@ -49,7 +48,7 @@ public class AdminBookingRangeFragment extends Fragment {
     private int agePosition;
     private PostRangeRequest postRangeRequest;
     List<EditText> editTexts;
-    AdminBookingAPI adminBookingAPI;
+    AdminBookingHelper adminBookingAPI;
 
 
     public AdminBookingRangeFragment() {
@@ -96,7 +95,7 @@ public class AdminBookingRangeFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void postAppointmentRange(){
         LoadingAnimation.startLoadingAnimation(getActivity());
-        adminBookingAPI = new AdminBookingAPI(this);
+        adminBookingAPI = new AdminBookingHelper(this);
 
         EditText etMinutes = view.findViewById(R.id.appMinutes);
         Pattern minPattern = Pattern.compile("[0-9]*");

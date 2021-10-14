@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Helpers;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -8,18 +8,19 @@ import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.User.UserRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.ApiClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserApiHelper {
+public class UserLoginHelper {
     private UserResponse userResponse;
     private Activity activity;
     private boolean successful;
     private String loginToken;
 
-    public UserApiHelper(Activity activity){
+    public UserLoginHelper(Activity activity){
         this.activity = activity;
     }
     public UserResponse getUserResponse(){

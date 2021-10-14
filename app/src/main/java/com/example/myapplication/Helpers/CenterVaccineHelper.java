@@ -31,11 +31,64 @@ public class CenterVaccineHelper {
     private Vaccine vaccine;
     private int selectedCenter;
     private Fragment fragment;
+    private String responseID;
 
     public CenterVaccineHelper(Fragment fragment){
         this.fragment = fragment;
     }
 
+    public String getResponseID(){
+        return responseID;
+    }
+
+    public void API_postCenterVaccine(UserResponse user, String centerID, Vaccine vaccine, Runnable runnable){
+        List<Vaccine> vaccines = new ArrayList<Vaccine>();
+        vaccines.add(vaccine);
+        Call<String> call = ApiClient.getUserService().postCenterVaccine(user.getToken(), centerID, vaccines);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    responseID = response.body().toString();
+                    new Handler().postDelayed(runnable,600);
+
+                }else{
+                    System.out.println("could not add center");
+                    com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                System.out.println(t.getLocalizedMessage());
+                com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
+    public void API_postCenter(UserResponse user, Center bodyCenter, Runnable runnable){
+        Call<String> call = ApiClient.getUserService().postCenter(user.getToken(), bodyCenter);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    responseID = response.body().toString();
+                    new Handler().postDelayed(runnable,600);
+                }else{
+                    com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_getCenters(Activity activity, UserResponse user, Runnable runnable){

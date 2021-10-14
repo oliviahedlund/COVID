@@ -4,26 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.Admin.AdminActivity;
+import com.example.myapplication.Helpers.UserLoginHelper;
 import com.example.myapplication.Helpers.LanguageHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginButton;
@@ -33,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private String loginToken;
     private ImageButton languageButton1;
     private TextView languageButton2;
-    private UserApiHelper userApiHelper;
+    private UserLoginHelper userLoginHelper;
     private TextView errorText;
 
     private UserResponse userResponse;
@@ -46,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         //check default language before creating view
         checkDefaultLanguage();
         setContentView(R.layout.activity_main);
-        userApiHelper = new UserApiHelper(this);
+        userLoginHelper = new UserLoginHelper(this);
 
         setupButtons();
 
@@ -125,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         Runnable next = new Runnable() {
             @Override
             public void run() {
-                if(userApiHelper.callSuccessful()){
+                if(userLoginHelper.callSuccessful()){
                     startUserActivity();
                 }
                 else{
@@ -136,11 +130,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        userApiHelper.CallLoginApi(this, loginRequest, next);
+        userLoginHelper.CallLoginApi(this, loginRequest, next);
     }
 
     public void startUserActivity(){
-        userResponse = userApiHelper.getUserResponse();
+        userResponse = userLoginHelper.getUserResponse();
         Intent i;
 
         if (userResponse.getAdmin()) {

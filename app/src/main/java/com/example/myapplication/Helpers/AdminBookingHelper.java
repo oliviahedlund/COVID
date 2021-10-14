@@ -1,35 +1,31 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.Helpers;
 
 import android.app.Activity;
 import android.os.Build;
 import android.os.Handler;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.AlertWindow;
+import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.ApiClient;
-import com.example.myapplication.Booking.SetBookingRequest;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdminBookingAPI {
+public class AdminBookingHelper {
     private Fragment fragment;
 
-    public AdminBookingAPI(Fragment fragment){
+    public AdminBookingHelper(Fragment fragment){
         this.fragment = fragment;
     }
 

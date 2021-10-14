@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.UI.AdminBooking;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -14,11 +14,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.myapplication.AlertWindow;
-import com.example.myapplication.Booking.ApiCenter;
+import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
-import com.example.myapplication.CenterVaccineHelper;
+import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.Helpers.AdminVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
@@ -43,8 +43,7 @@ public class AdminAddCenterFragment extends Fragment {
     private String centers;
     private Button btn;
     private View view;
-    private ApiCenter apiCenter;
-    private ApiVaccine apiVaccin;
+    private AdminVaccineHelper apiVaccin;
     private CenterVaccineHelper centerVaccineHelper;
     private String[] vaccines;
     int vaccinePosition;
@@ -72,7 +71,7 @@ public class AdminAddCenterFragment extends Fragment {
 
     private void apiCallVaccine(){
         LoadingAnimation.startLoadingAnimation(getActivity());
-        apiVaccin = new ApiVaccine(this);
+        apiVaccin = new AdminVaccineHelper(this);
 
         Runnable next = new Runnable() {
             @Override

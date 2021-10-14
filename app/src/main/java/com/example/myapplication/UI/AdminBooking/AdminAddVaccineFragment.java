@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.UI.AdminBooking;
 
 import android.content.Intent;
 import android.os.Build;
@@ -17,8 +17,9 @@ import android.widget.EditText;
 
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.AlertWindow;
-import com.example.myapplication.CenterVaccineHelper;
+import com.example.myapplication.UI.AlertWindow;
+import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.Helpers.AdminVaccineHelper;
 import com.example.myapplication.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
@@ -33,7 +34,7 @@ public class AdminAddVaccineFragment extends Fragment {
     private String[] centers;
     private String[] vaccines;
     private UserResponse user;
-    ApiVaccine apiVaccin;
+    AdminVaccineHelper apiVaccin;
     CenterVaccineHelper centerVaccineHelper;
     private int centerPosition;
     private int vaccinePosition;
@@ -61,7 +62,7 @@ public class AdminAddVaccineFragment extends Fragment {
         LoadingAnimation.startLoadingAnimation(getActivity());
         EditText etVaccineName = view.findViewById(R.id.vaccineName);
         String vaccineName = etVaccineName.getText().toString();
-        ApiVaccine apiVaccine = new ApiVaccine(this);
+        AdminVaccineHelper apiVaccine = new AdminVaccineHelper(this);
         Runnable next = new Runnable() {
             @Override
             public void run() {
@@ -139,7 +140,7 @@ public class AdminAddVaccineFragment extends Fragment {
 
 
     private void apiCallVaccine(){
-        apiVaccin = new ApiVaccine(this);
+        apiVaccin = new AdminVaccineHelper(this);
 
         Runnable vaccineRunnable = new Runnable() {
             @Override

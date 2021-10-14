@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.API.Model.Appointment_admin;
 
 import java.time.ZonedDateTime;
 

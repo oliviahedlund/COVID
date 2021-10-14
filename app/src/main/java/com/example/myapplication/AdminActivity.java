@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,12 +14,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.UI.AdminBooking.AdminAddCenterFragment;
+import com.example.myapplication.UI.AdminBooking.AdminAddVaccineFragment;
+import com.example.myapplication.UI.AdminBooking.AdminBookingRangeFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.R;
 import com.example.myapplication.UI.SettingsFragment;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {
