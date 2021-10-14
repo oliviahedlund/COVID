@@ -37,59 +37,6 @@ public class CenterVaccineHelper {
         this.fragment = fragment;
     }
 
-    public String getResponseID(){
-        return responseID;
-    }
-
-    public void API_postCenterVaccine(UserResponse user, String centerID, Vaccine vaccine, Runnable runnable){
-        List<Vaccine> vaccines = new ArrayList<Vaccine>();
-        vaccines.add(vaccine);
-        Call<String> call = ApiClient.getUserService().postCenterVaccine(user.getToken(), centerID, vaccines);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()) {
-                    responseID = response.body().toString();
-                    new Handler().postDelayed(runnable,600);
-
-                }else{
-                    System.out.println("could not add center");
-                    com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                System.out.println(t.getLocalizedMessage());
-                com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
-            }
-        });
-    }
-
-    public void API_postCenter(UserResponse user, Center bodyCenter, Runnable runnable){
-        Call<String> call = ApiClient.getUserService().postCenter(user.getToken(), bodyCenter);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()) {
-                    responseID = response.body().toString();
-                    new Handler().postDelayed(runnable,600);
-                }else{
-                    com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                com.example.myapplication.LoadingAnimation.dismissLoadingAnimation();
-                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
-            }
-        });
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void API_getCenters(Activity activity, UserResponse user, Runnable runnable){
         Call<List<Center>> call = ApiClient.getUserService().getCenters(user.getToken());
@@ -98,9 +45,7 @@ public class CenterVaccineHelper {
             public void onResponse(Call<List<Center>> call, Response<List<Center>> response) {
                 if (response.isSuccessful()) {
                     centers = response.body();
-
                     new Handler().postDelayed(runnable,600);
-
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
                     new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
@@ -109,7 +54,6 @@ public class CenterVaccineHelper {
 
             @Override
             public void onFailure(Call<List<Center>> call, Throwable t) {
-                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
@@ -168,6 +112,56 @@ public class CenterVaccineHelper {
         });
     }
 
+    public void API_postCenter(UserResponse user, Center bodyCenter, Runnable runnable){
+        Call<String> call = ApiClient.getUserService().postCenter(user.getToken(), bodyCenter);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    responseID = response.body().toString();
+                    new Handler().postDelayed(runnable,600);
+                }else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_postCenterVaccine(UserResponse user, String centerID, Vaccine vaccine, Runnable runnable){
+        List<Vaccine> vaccines = new ArrayList<Vaccine>();
+        vaccines.add(vaccine);
+        Call<String> call = ApiClient.getUserService().postCenterVaccine(user.getToken(), centerID, vaccines);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    responseID = response.body().toString();
+                    new Handler().postDelayed(runnable,600);
+
+                }else{
+                    System.out.println("could not add center");
+                    LoadingAnimation.dismissLoadingAnimation();
+                    new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                System.out.println(t.getLocalizedMessage());
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
     public String [] getCenters(){
         String [] centerArray = new String[centers.size()];
         for (int i = 0; i < centers.size(); i++) {
@@ -200,5 +194,9 @@ public class CenterVaccineHelper {
 
     public String getVaccineName() {
         return vaccine.getVaccineName();
+    }
+
+    public String getResponseID(){
+        return responseID;
     }
 }

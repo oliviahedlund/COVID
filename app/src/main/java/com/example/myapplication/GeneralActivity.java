@@ -14,17 +14,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.UI.GenericMessageFragment;
+import com.example.myapplication.UI.FAQ;
 import com.example.myapplication.UI.SettingsFragment;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
-import com.example.myapplication.UI.UserAppointment.Appointment_make;
-import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
-import com.example.myapplication.UI.UserAppointment.Appointment_questionnaire;
 import com.example.myapplication.UI.User_profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 

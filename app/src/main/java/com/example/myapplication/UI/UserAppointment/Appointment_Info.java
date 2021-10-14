@@ -107,23 +107,21 @@ public class Appointment_Info extends Fragment {
         bookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment newFragment;
                 if(user.isCanBook()){
-                    Appointment_make appointment_make = new Appointment_make();
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
+                    newFragment = new Appointment_make();
                 } else{
                     if(user.isGotFirstDose()){
-                        GenericMessageFragment genericMessageFragment = new GenericMessageFragment(getResources().getString(R.string.contactAdmin));
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, genericMessageFragment).commit();
+                        newFragment = new GenericMessageFragment(getResources().getString(R.string.contactAdmin));
                     } else{
                         if(user.getQuestionare() == null){
-                            Appointment_questionnaire appointment_questionnaire = new Appointment_questionnaire();
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_questionnaire).commit();
+                            newFragment = new Appointment_questionnaire();
                         } else{
-                            GenericMessageFragment genericMessageFragment = new GenericMessageFragment("Admin has to book for you or allow you to book, please contact admin");
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, genericMessageFragment).commit();
+                            newFragment = new GenericMessageFragment("Admin has to book for you or allow you to book, please contact admin");
                         }
                     }
                 }
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
             }
         });
         layout.setVisibility(View.VISIBLE);
@@ -172,9 +170,9 @@ public class Appointment_Info extends Fragment {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
         String formattedString = user.getAppointment().getTime().format(formatter);
 
-        center.setText("Center: " + centerName);
-        vaccine.setText("Vaccine: " + vaccineName);
-        date.setText("Date: " + formattedString);
+        center.setText("Center: \t\t" + centerName);
+        vaccine.setText("Vaccine: \t" + vaccineName);
+        date.setText("Date: \t\t\t\t" + formattedString);
         textViewGroup.setVisibility(View.VISIBLE);
     }
 
