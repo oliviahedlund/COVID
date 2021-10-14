@@ -169,7 +169,7 @@ public class Appointment_Info extends Fragment {
         TextView vaccine = (TextView) view.findViewById(R.id.appointmentInfoVaccine);
         TextView date = (TextView) view.findViewById(R.id.appointmentInfoDate);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
         String formattedString = user.getAppointment().getTime().format(formatter);
 
         center.setText("Center: " + centerName);
