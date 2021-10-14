@@ -10,6 +10,30 @@ public class PostRangeRequest {
     private int timePerAppointmentMinutes;
     private String centerId;
 
+    public int getAllowedAgeGroups() {
+        return allowedAgeGroups;
+    }
+
+    public int getAllowedDaysOfWeek() {
+        return allowedDaysOfWeek;
+    }
+
+    public int getTimePerAppointmentMinutes() {
+        return timePerAppointmentMinutes;
+    }
+
+    public String getCenterId() {
+        return centerId;
+    }
+
+    public ZonedDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
+    public ZonedDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
     public void setStartDateTime(ZonedDateTime startDateTime) {
         this.startDateTime = startDateTime;
     }

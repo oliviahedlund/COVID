@@ -29,12 +29,8 @@ public class AdminBookingHelper {
         this.fragment = fragment;
     }
 
-    public ZonedDateTime convertTimeToAPIString(int[] date){
-        //date[1] = date[1]-1; //because januari = 0
+    public ZonedDateTime convertTimeToZoneDateTime(int[] date){
         ZonedDateTime appointmentDateTime = LocalDateTime.of(date[0], date[1], date[2], date[3], date[4], 0).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
-        //Calendar calendar = Calendar.getInstance();
-        //calendar.set(date[0],date[1],date[2],date[3],date[4],00);
-        //SimpleDateFormat apiFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
         return appointmentDateTime;
     }
@@ -50,7 +46,7 @@ public class AdminBookingHelper {
                     new Handler().postDelayed(runnable,600);
                 }else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment).createAlertWindow("Missing information or conflicting range may exist, try another one");
+                    new AlertWindow(fragment).createAlertWindow(activity.getResources().getString(R.string.conflictRange));
                 }
 
             }

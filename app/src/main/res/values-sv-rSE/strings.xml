@@ -119,7 +119,7 @@
     </string-array>
 
     <!--Appointment making-->
-    <string name="center">Centret</string>
+    <string name="center">Center</string>
     <string name="vaccine">Vaccin</string>
     <string name="time">Tid</string>
     <string name="confirm">Klar</string>
@@ -393,5 +393,15 @@
 
     <string name="emptyQuestionnaire">Du har inte fyllt i en hälsodeklaration</string>
     <string name="emptyAppointment">Du har ingen bokning just nu</string>
+    <string name="noCenter">Inget center valt</string>
+    <string name="noAges">Inga åldersgrupper valda</string>
+    <string name="noDays">Inga dagar valda</string>
+    <string name="appShort">Tidsbokning för kort</string>
+    <string name="notInt">Minut-input felaktig</string>
+    <string name="startEndDate">Ej korrekt start- och/eller slutdatum</string>
+    <string name="endDateAfter">Slutdatum måste vara efter startdatum</string>
+    <string name="startFuture">Startdatum måste vara i framtiden</string>
+    <string name="conflictRange">Intervall ej tillagt: Ett motstridande intervall kan finnas, prova ett annat</string>
+    <string name="rangeAdd">Intervall tillagt</string>
 </resources>
 

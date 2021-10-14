@@ -16,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -35,7 +36,6 @@ import java.util.regex.Pattern;
 
 public class AdminBookingRangeFragment extends Fragment {
 
-    private AutoCompleteTextView center;
     private View view;
     private String[] centers;
     private String[] age;
@@ -47,7 +47,7 @@ public class AdminBookingRangeFragment extends Fragment {
     private int centerPosition;
     private int agePosition;
     private PostRangeRequest postRangeRequest;
-    List<EditText> editTexts;
+    List<EditText> editTextsDate;
     AdminBookingHelper adminBookingAPI;
 
 
@@ -62,6 +62,9 @@ public class AdminBookingRangeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_admin_booking_range, container, false);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+
+        agePosition=-1;
+        centerPosition=-1;
 
         apiCallCenter();
         setupCheckboxes();
@@ -84,26 +87,20 @@ public class AdminBookingRangeFragment extends Fragment {
 
     }
 
-    private ZonedDateTime convertDateInputToString(int startIndex){
-        int[] dateList = new int[5];
-        for (int i = 0; i < 5; i++) {
-            dateList[i] = Integer.parseInt(editTexts.get(startIndex+i).getText().toString());
-        }
-        return adminBookingAPI.convertTimeToAPIString(dateList);
 
-    }
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void postAppointmentRange(){
-        LoadingAnimation.startLoadingAnimation(getActivity());
         adminBookingAPI = new AdminBookingHelper(this);
 
-        EditText etMinutes = view.findViewById(R.id.appMinutes);
-        Pattern minPattern = Pattern.compile("[0-9]*");
-        Matcher mat = minPattern.matcher(etMinutes.getText().toString());
-        if(!mat.matches()){
-            System.out.println("Minutes not integer");
+        if(!validInput()){
             return;
         }
+        LoadingAnimation.startLoadingAnimation(getActivity());
+
+        TextView errorMsg= view.findViewById(R.id.errorMsg);
+        errorMsg.setText("");
+
+        EditText etMinutes = view.findViewById(R.id.appMinutes);
         int minutes = Integer.parseInt(etMinutes.getText().toString());
 
         postRangeRequest = new PostRangeRequest();
@@ -111,8 +108,8 @@ public class AdminBookingRangeFragment extends Fragment {
         postRangeRequest.setAllowedAgeGroups(getAgeCoding());
         postRangeRequest.setAllowedDaysOfWeek(getCheckedWeekdays());
         postRangeRequest.setTimePerAppointmentMinutes(minutes);
-        postRangeRequest.setStartDateTime(convertDateInputToString(0));
-        postRangeRequest.setEndDateTime(convertDateInputToString(5));
+        postRangeRequest.setStartDateTime(convertDateInputToZonedDateTime(0));
+        postRangeRequest.setEndDateTime(convertDateInputToZonedDateTime(5));
 
         Runnable next = new Runnable() {
             @Override
@@ -120,15 +117,71 @@ public class AdminBookingRangeFragment extends Fragment {
                 LoadingAnimation.dismissLoadingAnimation();
                 Fragment newFragment = new AdminBookingRangeFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
-                new AlertWindow(AdminBookingRangeFragment.this).createAlertWindow("Range added");
+                new AlertWindow(AdminBookingRangeFragment.this).createAlertWindow(getActivity().getResources().getString(R.string.rangeAdd));
             }
         };
-
         adminBookingAPI.PostBookingRange(getActivity(), user, postRangeRequest, next);
     }
 
+    private boolean validInput() {
+        TextView errorMsg = view.findViewById(R.id.errorMsg);
+        if(centerPosition==-1){
+            errorMsg.setText(R.string.noCenter);
+            return false;
+        }
+        if(agePosition==-1){
+            errorMsg.setText(R.string.noAges);
+            return false;
+        }
+
+        if(getCheckedWeekdays()==-1){
+            errorMsg.setText(R.string.noDays);
+            return false;
+        }
+        EditText etMinutes = view.findViewById(R.id.appMinutes);
+        try{
+            int min = Integer.parseInt(etMinutes.getText().toString());
+            if(min<5){
+                errorMsg.setText(R.string.appShort);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            errorMsg.setText(R.string.notInt);
+            return false;
+        }
+        ZonedDateTime sd;
+        ZonedDateTime ed;
+        try{
+            sd = convertDateInputToZonedDateTime(0);
+            ed = convertDateInputToZonedDateTime(5);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorMsg.setText(R.string.startEndDate);
+            return false;
+        }
+        if(ed.compareTo(sd)<=0){
+            errorMsg.setText(R.string.endDateAfter);
+            return false;
+        }
+        if(sd.compareTo(ZonedDateTime.now())<=0){
+            errorMsg.setText(R.string.startFuture);
+            return false;
+        }
+        return true;
+    }
+
+    private ZonedDateTime convertDateInputToZonedDateTime(int startIndex){
+        int[] dateList = new int[5];
+        for (int i = 0; i < 5; i++) {
+            dateList[i] = Integer.parseInt(editTextsDate.get(startIndex+i).getText().toString());
+        }
+        return adminBookingAPI.convertTimeToZoneDateTime(dateList);
+
+    }
+
     private int getAgeCoding(){
-        int[] ageConverter = {-1,1,2,4,8,16,0};
+        int[] ageConverter = {-1,1,2,4,8,16};
         return ageConverter[agePosition];
     }
 
@@ -153,8 +206,6 @@ public class AdminBookingRangeFragment extends Fragment {
     }
 
     private void setupDropdown(){
-        agePosition = 6;
-
         centers = centerVaccineHelper.getCenters();
         age = getResources().getStringArray(R.array.Age);
 
@@ -199,24 +250,24 @@ public class AdminBookingRangeFragment extends Fragment {
 
     //Switches focus to next editText when max characters have been typed
     private void setupTimeTexts(){
-        editTexts = new ArrayList<EditText>();
-        editTexts.add(view.findViewById(R.id.startYear));
-        editTexts.add(view.findViewById(R.id.startMonth));
-        editTexts.add(view.findViewById(R.id.startDay));
-        editTexts.add(view.findViewById(R.id.startHour));
-        editTexts.add(view.findViewById(R.id.startMinute));
-        editTexts.add(view.findViewById(R.id.endYear));
-        editTexts.add(view.findViewById(R.id.endMonth));
-        editTexts.add(view.findViewById(R.id.endDay));
-        editTexts.add(view.findViewById(R.id.endHour));
-        editTexts.add(view.findViewById(R.id.endMinute));
+        editTextsDate = new ArrayList<EditText>();
+        editTextsDate.add(view.findViewById(R.id.startYear));
+        editTextsDate.add(view.findViewById(R.id.startMonth));
+        editTextsDate.add(view.findViewById(R.id.startDay));
+        editTextsDate.add(view.findViewById(R.id.startHour));
+        editTextsDate.add(view.findViewById(R.id.startMinute));
+        editTextsDate.add(view.findViewById(R.id.endYear));
+        editTextsDate.add(view.findViewById(R.id.endMonth));
+        editTextsDate.add(view.findViewById(R.id.endDay));
+        editTextsDate.add(view.findViewById(R.id.endHour));
+        editTextsDate.add(view.findViewById(R.id.endMinute));
 
         int indexStartYear = 0;
         int indexEndYear = 5;
         int yearLength = 4;
         int generalLength = 2;
 
-        for (EditText currTextView : editTexts) {
+        for (EditText currTextView : editTextsDate) {
             currTextView.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -226,12 +277,12 @@ public class AdminBookingRangeFragment extends Fragment {
                 }
                 @Override
                 public void afterTextChanged(Editable s) {
-                    if(currTextView == editTexts.get(indexStartYear)) {
+                    if(currTextView == editTextsDate.get(indexStartYear)) {
                         if (s.length() == yearLength) {
                             nextTextView().requestFocus();
                         }
                     }
-                    else if(currTextView == editTexts.get(indexEndYear)){
+                    else if(currTextView == editTextsDate.get(indexEndYear)){
                         if(s.length() == yearLength){
                             nextTextView().requestFocus();
                         }
@@ -245,12 +296,12 @@ public class AdminBookingRangeFragment extends Fragment {
 
                 public EditText nextTextView() {
                     int i;
-                    for (i = 0; i < editTexts.size() - 1; i++) {
-                        if (editTexts.get(i) == currTextView) {
-                            return editTexts.get(i + 1);
+                    for (i = 0; i < editTextsDate.size() - 1; i++) {
+                        if (editTextsDate.get(i) == currTextView) {
+                            return editTextsDate.get(i + 1);
                         }
                     }
-                    return editTexts.get(i);
+                    return editTextsDate.get(i);
                 }
             });
         }

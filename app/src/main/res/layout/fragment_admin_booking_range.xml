@@ -11,8 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/generate"
-        android:textSize="@dimen/title"
-        android:paddingBottom="@dimen/mediumPadding" />
+        android:textSize="@dimen/title" />
+
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/red" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"

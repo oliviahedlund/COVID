@@ -62,6 +62,17 @@
     <string name="startdate">Startdate</string>
     <string name="enddate">Enddate</string>
     <string name="publishTimes">Publish Times</string>
+    <!--admin sched: error messages-->
+    <string name="noCenter">No center chosen</string>
+    <string name="noAges">No ages chosen</string>
+    <string name="noDays">No days chosen</string>
+    <string name="appShort">Appointment time to short</string>
+    <string name="notInt">Minutes input incorrect</string>
+    <string name="startEndDate">Not valid start and/or end date </string>
+    <string name="endDateAfter">End date must be after start date</string>
+    <string name="startFuture">"Start date must be in the future"</string>
+    <string name="rangeAdd">Range added</string>
+    <string name="conflictRange">Range not added: a conflicting range may exist, try other one</string>
 
     <!--add centers-->
     <string name="addCenters">Add New Centers</string>
