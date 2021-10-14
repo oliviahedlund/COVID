@@ -252,7 +252,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fillAppointment(){
         appointment = new AppointmentRequest();
-        appointmentDateTime = LocalDateTime.of(LocalDate.of(year, month, day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
+        appointmentDateTime = LocalDateTime.of(LocalDate.of(year, (month+1), day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
         appointment.setTime(appointmentDateTime);
         appointment.setCenterId(selectedCenter);
         appointment.setVaccineId(selectedVaccine);
