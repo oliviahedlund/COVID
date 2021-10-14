@@ -223,7 +223,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         month = monthOfYear;
         day = dayOfMonth;
 
-        dateButton.setText(year + "-" + month + "-" + day);
+        dateButton.setText(day + "-" + (month + 1) + "-" + year);
 
         setupTimes(year, month, day);
     }
@@ -248,8 +248,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             }
         });
     }
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fillAppointment(){
