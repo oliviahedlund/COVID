@@ -53,7 +53,6 @@ public class DashboardGeneric_Admin extends Fragment {
     private String[] AllCenters;
     private String[] AllCenterCounties;
     //private List<UserInfo> userInfo = new ArrayList<UserInfo>();
-
     View view;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
