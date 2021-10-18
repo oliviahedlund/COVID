@@ -1,14 +1,15 @@
 package com.example.myapplication.UI.Covid_Passport;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,11 +30,14 @@ import com.example.myapplication.R;
  */
 public class covidPassportFragment extends Fragment {
     private String id;
-    private String fullname;
+    private String fullName;
     private String birthDate;
     private TextView userName;
     private TextView userBirthDate;
-    //private ImageView qr;
+    private Button scanner;
+
+    private UserResponse user;
+    private View view;
 
     public covidPassportFragment() {
         // Required empty public constructor
@@ -44,37 +48,43 @@ public class covidPassportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         GeneralActivity activity = (GeneralActivity) getActivity();
-        UserResponse user = activity.getUserData();
-        View view = inflater.inflate(R.layout.fragment_covid_passport, container, false);
-        //set string to user id,birth date and full name
+        user = activity.getUserData();
+        view = inflater.inflate(R.layout.fragment_covid_passport, container, false);
+
+        makeQRCode();
+        return view;
+    }
+
+    public void setupScanner(){
+        scanner = (Button) view.findViewById(R.id.scanner);
+        scanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    public void makeQRCode(){
         id = user.getId();
         birthDate = user.getBirthDate();
-        fullname = user.getFirstName() +" "+ user.getLastName();
+        fullName = user.getFirstName() +" "+ user.getLastName();
         userName = (TextView) view.findViewById(R.id.name);
-        userName.setText(fullname);
+        userName.setText(fullName);
         userBirthDate = (TextView) view.findViewById(R.id.birth_date);
         userBirthDate.setText(birthDate.substring(0,10));
 
         if(!id.isEmpty()){
-            //initialize multiformatwriter
             MultiFormatWriter writer = new MultiFormatWriter();
             try {
                 BitMatrix matrix = writer.encode(id, BarcodeFormat.QR_CODE, 350, 350);
-                //initialize barcode encoder
                 BarcodeEncoder encoder = new BarcodeEncoder();
-                //initialize bitmap
                 Bitmap bitmap = encoder.createBitmap(matrix);
-                //set bitmap on imageView
                 ImageView qr = view.findViewById(R.id.qr_output);
                 qr.setImageBitmap(bitmap);
             } catch (WriterException e) {
                 e.printStackTrace();
             }
         }
-
-        // Inflate the layout for this fragment
-        return view;
     }
-
-
 }
