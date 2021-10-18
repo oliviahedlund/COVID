@@ -18,6 +18,7 @@ import android.widget.Toast;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.myapplication.API.Model.Admin.UserInfo;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -49,6 +50,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private String[] AllCenterCounties;
     private List<Center> allCenters1;
     private List<Center> allCenters2 = new ArrayList<>();
+    private String[] DefaultListview = new String[]{"No booked appointments"};
     View view;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -59,6 +61,7 @@ public class DashboardGeneric_Admin extends Fragment {
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
         getAppointmentApi();
+        getNumberOfUsersApi();
         setupDropdownMenus();
         return view;
     }
@@ -93,6 +96,7 @@ public class DashboardGeneric_Admin extends Fragment {
                                 Object CountyItem = parent.getItemAtPosition(pos);
                                 System.out.println(CountyItem.toString());     //prints the text in spinner item.
                                 getCenters(CountyItem.toString(),Center_dropdown);
+                                setupListView(DefaultListview,0 );
                             }
                         });
                         LoadingAnimation.startLoadingAnimation(getActivity());
@@ -118,9 +122,10 @@ public class DashboardGeneric_Admin extends Fragment {
     }
     private void getAppointments(String centerID){
     String[] SortedAppointment = new String[appointmentResponse.size()];
-
         for(int i=0; i<appointmentResponse.size(); i++){
             if(appointmentResponse.get(i).getCenterId().equals(centerID)){
+                System.out.println(appointmentResponse.get(i).getTime());
+                System.out.println("index:" + i);
                 SortedAppointment[i] = appointmentResponse.get(i).getTime();
             }
         }
@@ -140,6 +145,7 @@ public class DashboardGeneric_Admin extends Fragment {
             Center_dropdown.setAdapter(adapterCenter);
             return;
         }
+        /*
         ArrayList<String> Centers = new ArrayList<String>();// sätt till enbart {}
         Centers.add("Choose centerr");
         for(int i=0; i< AllCenterCounties.length ;i++) { //sorts the centers depending on county
@@ -147,6 +153,8 @@ public class DashboardGeneric_Admin extends Fragment {
                 Centers.add(AllCenters[i]);
             }
         }
+
+         */
         allCenters1 = cvh.getCentersObjects();
         for(int i = 0; i < AllCenters.length; i++){
             if(allCenters1.get(i).getCenterCounty().equals(county)){
@@ -165,6 +173,38 @@ public class DashboardGeneric_Admin extends Fragment {
     /*private void getUserInfoApi(){
         Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
     }*/
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void getNumberOfUsersApi(){ //JESPER HJÄÄÄÄÄLP***************************************
+        Call<Integer> NumberOfUsersCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
+        appointmentResponseCall.enqueue(new Callback<List<AppointmentResponse>>() {
+            @RequiresApi(api = Build.VERSION_CODES.O) // OLD - Delete
+            @Override
+            public void onResponse(Call<List<AppointmentResponse>> call, Response<List<AppointmentResponse>> response) {
+                //errorhandling
+                if (response.isSuccessful()) {
+                    appointmentResponse = response.body(); //i userResponse ligger all information om användaren
+                    if(appointmentResponse.size() > 0) {
+                        System.out.println("Size: " + appointmentResponse.size());
+                        System.out.println("ID: " + appointmentResponse.get(0).getId());
+                        System.out.println("User ID: " + appointmentResponse.get(0).getUserId());
+                        System.out.println("Center ID: " + appointmentResponse.get(0).getCenterId());
+                        System.out.println("Vaccine ID: " + appointmentResponse.get(0).getVaccineId());
+                        System.out.println("Time: " + appointmentResponse.get(0).getTime());
+                        System.out.println("Length: " + appointmentResponse.get(0).getLength());
+                    }
+                    else System.out.println("Empty appointmentResponse");
+                }else{
+                    Toast.makeText(activity,"Appointments error", Toast.LENGTH_LONG).show();
+                    System.out.println("Fail - else");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<AppointmentResponse>> call, Throwable t) {
+                Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
+            }
+        });
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getAppointmentApi(){
@@ -184,7 +224,6 @@ public class DashboardGeneric_Admin extends Fragment {
                         System.out.println("Vaccine ID: " + appointmentResponse.get(0).getVaccineId());
                         System.out.println("Time: " + appointmentResponse.get(0).getTime());
                         System.out.println("Length: " + appointmentResponse.get(0).getLength());
-
                     }
                     else System.out.println("Empty appointmentResponse");
                 }else{
@@ -208,8 +247,8 @@ public class DashboardGeneric_Admin extends Fragment {
         DashboardGeneric_Cell[] cells = new DashboardGeneric_Cell[appointmentResponse.size()];//appointmentResponse.size()
 
         //for loop that adds times from api call to a list
-        for(int i =0; i<appointmentResponse.size(); i++){ //appointmentResponse.size()
-            cells[i] = new DashboardGeneric_Cell(appointmentResponse.get(i).getTime()); //appointmentResponse.get(i).getTime()
+        for(int i =0; i<size; i++){ //appointmentResponse.size()
+            cells[i] = new DashboardGeneric_Cell(SortedAppointments[i]); //appointmentResponse.get(i).getTime()
             System.out.println("cells :"+ cells[i]);
             app_list.add(cells[i]);
         }
