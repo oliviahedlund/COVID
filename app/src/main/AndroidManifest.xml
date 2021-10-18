@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Admin.AdminActivity"
+            android:name=".AdminActivity"
             android:exported="true" />
         <activity
             android:name=".GeneralActivity"

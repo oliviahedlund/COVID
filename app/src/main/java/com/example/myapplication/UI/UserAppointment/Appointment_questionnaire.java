@@ -54,7 +54,6 @@ public class Appointment_questionnaire extends Fragment {
     private Button confirmButton;
     private Button cancelButton;
 
-
     public Appointment_questionnaire() {
         // Required empty public constructor
     }
@@ -84,15 +83,6 @@ public class Appointment_questionnaire extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    public void fillQuestionnaireRequest() {
-        questionnaireRequest = new QuestionnaireRequest();
-        questionnaireRequest.setNeededHelpDuetoVax((answers[0] == 0));
-        questionnaireRequest.setTraveledInLast14Days((answers[1] == 0));
-        questionnaireRequest.setAllergicToVax((answers[2] == 0));
-        questionnaireRequest.setHasBloodProblems((answers[3] == 0));
-        questionnaireRequest.setPregnant((answers[4] == 0));
-    }
-
     public void setupButtons(){
         confirmButton = view.findViewById(R.id.confirmQuestionnaire);
         confirmButton.setOnClickListener(new View.OnClickListener() {
@@ -100,21 +90,17 @@ public class Appointment_questionnaire extends Fragment {
             @Override
             public void onClick(View view) {
                 if(isAllAnswered()){
-                    /*if(matchRejectCondition()){
-                        new AlertWindow(getFragment()).createAlertWindow("Sorry, you are not allowed to book an appointment!");
-                    } else {*/
-                        fillQuestionnaireRequest();
-                        newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), questionnaireRequest);
-                        newQuestionnaireHelper.API_sendNewQuestionnaire(user, new Runnable() {
-                            @Override
-                            public void run() {
-                                LoadingAnimation.dismissLoadingAnimation();
-                                Appointment_make appointment_make = new Appointment_make();
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
-                            }
-                        });
-                        LoadingAnimation.startLoadingAnimation(getActivity());
-                    //}
+                    fillQuestionnaireRequest();
+                    newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), questionnaireRequest);
+                    newQuestionnaireHelper.API_sendNewQuestionnaire(user, new Runnable() {
+                        @Override
+                        public void run() {
+                            LoadingAnimation.dismissLoadingAnimation();
+                            Appointment_make appointment_make = new Appointment_make();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
+                        }
+                    });
+                    LoadingAnimation.startLoadingAnimation(getActivity());
                 } else{
                     Toast.makeText(getActivity(),"Please answer all the questions", Toast.LENGTH_SHORT).show();
                 }
@@ -129,6 +115,7 @@ public class Appointment_questionnaire extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
             }
         });
+        cancelButton.setVisibility(View.GONE);
     }
 
     public boolean isAllAnswered(){
@@ -140,15 +127,13 @@ public class Appointment_questionnaire extends Fragment {
         return true;
     }
 
-    public boolean matchRejectCondition(){
-        return isAllYes();
-    }
-
-    public boolean isAllYes(){
-        for(int i = 0; i < array.length; i++){
-            if(answers[i] == 1) return false;
-        }
-        return true;
+    public void fillQuestionnaireRequest() {
+        questionnaireRequest = new QuestionnaireRequest();
+        questionnaireRequest.setNeededHelpDuetoVax((answers[0] == 0));
+        questionnaireRequest.setTraveledInLast14Days((answers[1] == 0));
+        questionnaireRequest.setIsAllergicToVax((answers[2] == 0));
+        questionnaireRequest.setHasBloodProblems((answers[3] == 0));
+        questionnaireRequest.setIsPregnant((answers[4] == 0));
     }
 
     public Fragment getFragment(){return this;}

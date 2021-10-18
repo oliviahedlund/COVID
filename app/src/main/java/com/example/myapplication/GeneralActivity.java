@@ -6,18 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.SettingsFragment;
-import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
+import com.example.myapplication.UI.FAQ;
+import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 import com.example.myapplication.UI.User_profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -64,18 +67,19 @@ public class GeneralActivity extends AppCompatActivity {
     public UserResponse getUserData(){
         return user;
     }
-   /* private String setUserToken(String response){
-        return this.token = response;
-    }
 
-    public String getUserToken(){
-        return token;
-    }*/
 
     //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
+            //hide keyboard if it is visible when menu is clicked
+            try  {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+
+            }
             return super.onOptionsItemSelected(item);
         }
         return true;
@@ -127,8 +131,8 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = new Covid_Tracking_dashboardFragment();
                         break;
                     case R.id.booking:
-                        newFragment = new Appointment_makeCancel();
-                        break;
+                        newFragment = new Appointment_Info(); break;
+
                     case R.id.nav_covidpassport:
                         newFragment = new covidPassportFragment();
                         break;
@@ -139,6 +143,9 @@ public class GeneralActivity extends AppCompatActivity {
                         //getUserData(); om man anropar denna funktion kan man skicka med det som returneras in i nästa vy med hjälp av intent.putextra så som i main activity
                         newFragment = new ProfileFragment();
                         break;
+                    case R.id.nav_FAQ:
+                        newFragment = new FAQ();
+                        break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }
@@ -147,5 +154,9 @@ public class GeneralActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public Activity getGeneralActivity(){
+        return this;
     }
 }

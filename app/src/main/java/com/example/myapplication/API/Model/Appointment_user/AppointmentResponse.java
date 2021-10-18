@@ -1,6 +1,8 @@
 package com.example.myapplication.API.Model.Appointment_user;
 
-public class AppointmentResponse {
+import java.io.Serializable;
+
+public class AppointmentResponse implements Serializable {
     private String id;
 
     public String getId() {

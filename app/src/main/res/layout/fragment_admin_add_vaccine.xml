@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/mediumPadding"
-    tools:context=".Admin.AdminAddVaccineFragment" >
+    tools:context=".UI.AdminBooking.AdminAddVaccineFragment" >
 
     <TextView
         android:id="@+id/textView19"
@@ -28,12 +28,13 @@
             android:textSize="@dimen/mediumText" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/vaccineName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:imeOptions="actionDone"
+            android:inputType="text" />
     </LinearLayout>
 
     <Button
@@ -41,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/smallPadding"
-        android:text="@string/addVaccine" />
+        android:text="@string/addVaccine"
+        android:imeOptions="actionDone"/>
 
     <View
         android:layout_width="match_parent"
@@ -113,18 +115,20 @@
             android:textSize="@dimen/mediumText" />
 
         <EditText
-            android:id="@+id/editTextNumber3"
+            android:id="@+id/vaccineAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="4"
-            android:inputType="number" />
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btnAddVacToCenter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/smallPadding"
-        android:text="@string/addVaccineCenter" />
+        android:text="@string/addVaccineCenter"
+        android:imeOptions="actionDone"/>
 
 </LinearLayout>

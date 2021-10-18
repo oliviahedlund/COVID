@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Helpers;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -8,18 +8,19 @@ import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.User.UserRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.ApiClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserApiHelper {
+public class UserLoginHelper {
     private UserResponse userResponse;
     private Activity activity;
     private boolean successful;
     private String loginToken;
 
-    public UserApiHelper(Activity activity){
+    public UserLoginHelper(Activity activity){
         this.activity = activity;
     }
     public UserResponse getUserResponse(){
@@ -43,19 +44,19 @@ public class UserApiHelper {
 
                 if (response.isSuccessful()) {
                     successful=true;
-                    //Toast.makeText(MainActivity.this, "ok, got user", Toast.LENGTH_LONG).show();
                     userResponse = response.body(); //i userResponse ligger all information om användaren
                     userResponse.setToken(bearerToken);
-                    new Handler().postDelayed(runnable,600);
 
                 }else{
                     Toast.makeText(activity,"user Failed", Toast.LENGTH_LONG).show();
                 }
+                new Handler().postDelayed(runnable,600);
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                new Handler().postDelayed(runnable,600);
             }
         });
 
@@ -77,6 +78,7 @@ public class UserApiHelper {
 
                 } else {
                     Toast.makeText(activity, "Login Failed", Toast.LENGTH_LONG).show();
+                    new Handler().postDelayed(runnable,600);
                 }
 
             }
@@ -84,6 +86,7 @@ public class UserApiHelper {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(activity, "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                new Handler().postDelayed(runnable,600);
             }
         });
     }

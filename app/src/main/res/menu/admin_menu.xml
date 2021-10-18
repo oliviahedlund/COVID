@@ -14,7 +14,6 @@
             android:id="@+id/nav_quest"
             android:icon="@drawable/ic_questionnaire"
             android:title="@string/quest" />
-
         <item
             android:id="@+id/nav_sched"
             android:icon="@drawable/ic_clock"
@@ -27,10 +26,6 @@
             android:id="@+id/nav_addVaccin"
             android:icon="@drawable/ic_vaccine"
             android:title="@string/addVaccineMenu" />
-        <item
-            android:id="@+id/nav_covidpassport"
-            android:icon="@drawable/ic_covid_passport"
-            android:title="@string/passport" />
     </group>
     <group
         android:id="@+id/menu_bottom"

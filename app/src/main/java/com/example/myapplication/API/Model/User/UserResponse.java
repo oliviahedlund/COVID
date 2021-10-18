@@ -1,6 +1,10 @@
 package com.example.myapplication.API.Model.User;
 
+import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
+import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
+
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 public class UserResponse implements Serializable {
     private String email;
@@ -16,6 +20,69 @@ public class UserResponse implements Serializable {
     private String id;
     private Boolean isAdmin;
     private String token;
+    private boolean canBook;
+    private boolean gotFirstDose;
+    private boolean gotSecondDose;
+    private ZonedDateTime firstDoseDate;
+    private ZonedDateTime secondDoseDate;
+    private AppointmentRequest appointment;
+    private QuestionnaireRequest questionare;
+
+    public boolean isCanBook() {
+        return canBook;
+    }
+
+    public void setCanBook(boolean canBook) {
+        this.canBook = canBook;
+    }
+
+    public boolean isGotFirstDose() {
+        return gotFirstDose;
+    }
+
+    public void setGotFirstDose(boolean gotFirstDose) {
+        this.gotFirstDose = gotFirstDose;
+    }
+
+    public boolean isGotSecondDose() {
+        return gotSecondDose;
+    }
+
+    public void setGotSecondDose(boolean gotSecondDose) {
+        this.gotSecondDose = gotSecondDose;
+    }
+
+    public ZonedDateTime getFirstDoseDate() {
+        return firstDoseDate;
+    }
+
+    public void setFirstDoseDate(ZonedDateTime firstDoseDate) {
+        this.firstDoseDate = firstDoseDate;
+    }
+
+    public ZonedDateTime getSecondDoseDate() {
+        return secondDoseDate;
+    }
+
+    public void setSecondDoseDate(ZonedDateTime secondDoseDate) {
+        this.secondDoseDate = secondDoseDate;
+    }
+
+    public AppointmentRequest getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(AppointmentRequest appointment) {
+        this.appointment = appointment;
+    }
+
+    public QuestionnaireRequest getQuestionare() {
+        return questionare;
+    }
+
+    public void setQuestionare(QuestionnaireRequest questionare) {
+        this.questionare = questionare;
+    }
 
     public String getToken() {
         return token;
@@ -121,3 +188,5 @@ public class UserResponse implements Serializable {
         isAdmin = admin;
     }
 }
+
+

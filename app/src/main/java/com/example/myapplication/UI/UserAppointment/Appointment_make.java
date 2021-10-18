@@ -2,8 +2,6 @@ package com.example.myapplication.UI.UserAppointment;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,35 +14,20 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
-import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
-import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
-import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.Helpers.DateTimeHelper;
-import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
-import com.example.myapplication.Helpers.NewAppointmentHelper;
-import com.example.myapplication.Helpers.NewQuestionnaireHelper;
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.RegisterActivity;
-import com.example.myapplication.UI.AlertWindow;
-import com.example.myapplication.ApiClient;
+import com.example.myapplication.Helpers.AppointmentHelper;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class Appointment_make extends Fragment implements DatePickerDialog.OnDateSetListener {
@@ -73,14 +56,15 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     private CenterVaccineHelper centerVaccineHelper;
     private DateTimeHelper dateTimeHelper;
-    private NewAppointmentHelper newAppointmentHelper;
-    private NewQuestionnaireHelper newQuestionnaireHelper;
+    private AppointmentHelper appointmentHelper;
+
     private String selectedCenter;
     private String selectedVaccine;
     private Calendar [] allowedDays;
 
-    private QuestionnaireRequest questionnaireRequest;
 
+    public Appointment_make(){
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -98,7 +82,6 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 LoadingAnimation.dismissLoadingAnimation();
             }
         });
-
         LoadingAnimation.startLoadingAnimation(this.getActivity());
 
         setupButtons();
@@ -121,17 +104,28 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                if(center == NOT_DEFINED || month == NOT_DEFINED || year == NOT_DEFINED){
-                    Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
-                } else {
-                    newAppointmentHelper = new NewAppointmentHelper(getFragment(), appointment);
-                    newAppointmentHelper.API_sendNewAppointment(user, new Runnable() {
+                if(user.getAppointment() == null){
+                    appointmentHelper = new AppointmentHelper(getFragment());
+                    appointmentHelper.API_sendNewAppointment(user, new Runnable() {
                         @Override
                         public void run() {
                             LoadingAnimation.dismissLoadingAnimation();
+                            Appointment_Info info = new Appointment_Info();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, info).commit();
                         }
-                    });
+                    }, appointment);
 
+                    LoadingAnimation.startLoadingAnimation(getActivity());
+                } else {
+                    appointmentHelper = new AppointmentHelper(getFragment());
+                    appointmentHelper.API_updateAppointment(user, new Runnable() {
+                        @Override
+                        public void run() {
+                            LoadingAnimation.dismissLoadingAnimation();
+                            Appointment_Info info = new Appointment_Info();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, info).commit();
+                        }
+                    }, appointment);
 
                     LoadingAnimation.startLoadingAnimation(getActivity());
                 }
@@ -145,6 +139,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
             }
         });
+        cancelButton.setVisibility(View.GONE);
     }
 
     public void setupCenters() {
@@ -228,7 +223,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         month = monthOfYear;
         day = dayOfMonth;
 
-        dateButton.setText(year + "-" + month + "-" + day);
+        dateButton.setText(day + "-" + (month + 1) + "-" + year);
 
         setupTimes(year, month, day);
     }
@@ -254,11 +249,10 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         });
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fillAppointment(){
         appointment = new AppointmentRequest();
-        appointmentDateTime = LocalDateTime.of(LocalDate.of(year, month, day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
+        appointmentDateTime = LocalDateTime.of(LocalDate.of(year, (month+1), day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
         appointment.setTime(appointmentDateTime);
         appointment.setCenterId(selectedCenter);
         appointment.setVaccineId(selectedVaccine);

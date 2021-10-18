@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -10,16 +10,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication.SettingsFragment;
+import com.example.myapplication.UI.AdminBooking.AdminAddCenterFragment;
+import com.example.myapplication.UI.AdminBooking.AdminAddVaccineFragment;
+import com.example.myapplication.UI.AdminBooking.AdminBookingRangeFragment;
+import com.example.myapplication.UI.AdminBooking.AdminQuestionnaireFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.UI.SettingsFragment;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 //import com.example.myapplication.UI.SettingsFragment;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {
@@ -68,6 +72,13 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
+            //hide keyboard if it is visible when menu is clicked
+            try  {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+
+            }
             return super.onOptionsItemSelected(item);
         }
         return true;
@@ -115,9 +126,6 @@ public class AdminActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_quest:
                         newFragment = new AdminQuestionnaireFragment();
-                        break;
-                    case R.id.nav_covidpassport:
-                        newFragment = new covidPassportFragment();
                         break;
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();

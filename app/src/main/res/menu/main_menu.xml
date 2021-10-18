@@ -10,9 +10,6 @@
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_dashboard"
             android:title="@string/dashboard" />
-        <item
-            android:icon="@drawable/ic_messages"
-            android:title="@string/messages" />
 
         <item
             android:id="@+id/booking"
@@ -23,6 +20,7 @@
             android:icon="@drawable/ic_covid_passport"
             android:title="@string/passport" />
         <item
+            android:id="@+id/nav_FAQ"
             android:icon="@drawable/ic_faq"
             android:title="@string/faq" />
     </group>

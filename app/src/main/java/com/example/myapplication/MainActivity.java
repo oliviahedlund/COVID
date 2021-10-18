@@ -6,19 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.Admin.AdminActivity;
+import com.example.myapplication.Helpers.UserLoginHelper;
 import com.example.myapplication.Helpers.LanguageHelper;
-//import com.example.myapplication.Booking.BookingRequest;
-//import com.example.myapplication.Booking.BookingResponse;
+import com.example.myapplication.UI.LoadingAnimation;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginButton;
@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private String loginToken;
     private ImageButton languageButton1;
     private TextView languageButton2;
-    private UserApiHelper userApiHelper;
+    private UserLoginHelper userLoginHelper;
+    private TextView errorText;
 
     private UserResponse userResponse;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //check default language before creating view
         checkDefaultLanguage();
         setContentView(R.layout.activity_main);
-        userApiHelper = new UserApiHelper(this);
+        userLoginHelper = new UserLoginHelper(this);
 
         setupButtons();
 
@@ -119,21 +120,22 @@ public class MainActivity extends AppCompatActivity {
         Runnable next = new Runnable() {
             @Override
             public void run() {
-                if(userApiHelper.callSuccessful()){
+                if(userLoginHelper.callSuccessful()){
                     startUserActivity();
                 }
                 else{
+                    errorText.setText("wrong email or parrsord");
                     System.out.println("Hantera fel");
                 }
                 LoadingAnimation.dismissLoadingAnimation();
             }
         };
 
-        userApiHelper.CallLoginApi(this, loginRequest, next);
+        userLoginHelper.CallLoginApi(this, loginRequest, next);
     }
 
     public void startUserActivity(){
-        userResponse = userApiHelper.getUserResponse();
+        userResponse = userLoginHelper.getUserResponse();
         Intent i;
 
         if (userResponse.getAdmin()) {
@@ -153,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.textView5);
         languageButton1 = findViewById(R.id.imageButton);
         languageButton2 = findViewById(R.id.textView16);
+        errorText = findViewById(R.id.errorText1);
 
         //Find Edit Text for user email and password
         userEmail = findViewById(R.id.editTextTextEmailAddress3);
@@ -162,12 +165,21 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(userEmail.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                //initialize patterns for email and password
+                Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+                Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$"); //one digit+lower+upper
+                //initialize matchers for the patterns for email and password
+                Matcher mat_email = emailPattern.matcher(userEmail.getText().toString());
+                Matcher mat_passw = passwordPattern.matcher(userPassword.getText().toString());
+                //check if email and password matches required patterns
+                if(mat_email.matches()) {
+                    //Toast.makeText(MainActivity.this, "Username / Password Required", Toast.LENGTH_LONG).show();
+                    if(mat_passw.matches()){
+                        login();
+                    }
+                    else{ errorText.setText("Invalid password"); }
                 }
-                else{
-                    login();
-                }
+                else{ errorText.setText("Invalid E-mail address"); }
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {

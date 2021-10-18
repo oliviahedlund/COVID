@@ -55,27 +55,6 @@
             android:textColor="@color/black"
             app:backgroundTint="@color/white"
             app:elevation="0dp" />
-        <Button
-            android:id="@+id/testbutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Call API" />
-        <Button
-            android:id="@+id/testbutton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Get days and time" />
-        <Button
-            android:id="@+id/testbutton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Admin add range" />
-
-        <Button
-            android:id="@+id/testButton4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Admin get center" />
 
 
     </LinearLayout>
