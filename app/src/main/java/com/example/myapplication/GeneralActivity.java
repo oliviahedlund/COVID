@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
+import com.example.myapplication.UI.Covid_Passport.CovidPassportFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
 import com.example.myapplication.UI.FAQ;
 import com.example.myapplication.UI.SettingsFragment;
@@ -134,7 +134,7 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = new Appointment_Info(); break;
 
                     case R.id.nav_covidpassport:
-                        newFragment = new covidPassportFragment();
+                        newFragment = new CovidPassportFragment();
                         break;
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
