@@ -1,5 +1,8 @@
 package com.example.myapplication.API.Model.User;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRespFull;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
@@ -8,7 +11,7 @@ import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 
 import java.util.List;
 
-public class FullUserResponse {
+public class FullUserResponse implements Parcelable {
 
     private boolean isAdmin;
     private String id;
@@ -172,5 +175,15 @@ public class FullUserResponse {
 
     public void setAppointment(AppointmentRespFull appointment) {
         this.appointment = appointment;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

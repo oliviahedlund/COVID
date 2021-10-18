@@ -30,6 +30,7 @@ public class NewQuestionnaireHelper {
     private Fragment fragment;
     private QuestionnaireRequest questionnaireRequest;
     private List<FullUserResponse> resp;
+    private FullUserResponse retrievedUser;
 
     public NewQuestionnaireHelper(Fragment fragment, QuestionnaireRequest questionnaireRequest){
         this.fragment = fragment;
@@ -72,6 +73,8 @@ public class NewQuestionnaireHelper {
         return resp;
     }
 
+    public FullUserResponse getRetrievedUser(){ return retrievedUser;}
+
     public FullUserResponse [] getListResp(List<FullUserResponse> response){
         ArrayList<FullUserResponse> respBuffer = new ArrayList<FullUserResponse>();
         for(FullUserResponse person: response){
@@ -107,6 +110,37 @@ public class NewQuestionnaireHelper {
 
             @Override
             public void onFailure(Call<List<FullUserResponse>> call, Throwable t) {
+                Log.d("haha fail", "" + t);
+                //LoadingAnimation.dismissLoadingAnimation();
+                //new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_getUserFromEmail(UserResponse user,String email, Runnable runnable){
+        System.out.println("MAILEN ÄR: " + email);
+        Call<FullUserResponse> call = ApiClient.getUserService().getUserFromEmailAPI(user.getToken(), email);
+        call.enqueue(new Callback<FullUserResponse>() {
+            @Override
+            public void onResponse(Call<FullUserResponse> call, Response <FullUserResponse> response) {
+                if(response.isSuccessful()){
+                    retrievedUser = response.body();
+                    new Handler().postDelayed(runnable, 600);
+                }
+                else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    try {
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
+                    } catch (IOException e) {
+                        new AlertWindow(fragment).createAlertWindow("Unknown error");
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FullUserResponse> call, Throwable t) {
                 Log.d("haha fail", "" + t);
                 //LoadingAnimation.dismissLoadingAnimation();
                 //new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));

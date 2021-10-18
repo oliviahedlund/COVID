@@ -6,30 +6,40 @@
     android:orientation="vertical"
     android:id="@+id/container_quest">
 
+    <TextView
+        android:id="@+id/searchEmailText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search email"
+        android:textSize="@dimen/largeText"
+        android:textColor="@color/black"/>
 
+    <EditText
+        android:id="@+id/searchEmailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/Get_quest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="get quest" />
+        android:text="search" />
 
-    <FrameLayout
-        android:id="@+id/container_quest_admin"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="182dp"
-        app:layout_constraintBottom_toTopOf="@id/Get_quest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
+        android:layout_height="wrap_content"
+        android:text="Users with non-approved questionnares"
+        android:textSize="@dimen/largeText"
+        android:textColor="@color/black"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
-        <ListView
-            android:id="@+id/listViewQuest"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="lista"
-            android:clickable="true"/>
-    </FrameLayout>
+    <ListView
+        android:id="@+id/listViewQuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="lista" />
 
 
 </LinearLayout>

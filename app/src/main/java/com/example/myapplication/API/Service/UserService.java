@@ -77,4 +77,7 @@ public interface UserService {
 
         @GET("/api/User/Manage/Questionare/")
         Call<List<FullUserResponse>>getIncorrectQuest(@Header("Authorization")String authHeader);
+
+        @GET("/api/User/Manage/GetUserByEmail/")
+        Call<FullUserResponse> getUserFromEmailAPI(@Header("Authorization") String authHeader, @Query("emailUser") String emailUser);
 }
