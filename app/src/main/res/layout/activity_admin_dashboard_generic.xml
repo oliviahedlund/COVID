@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    tools:context=".covidPassportFragment">
+    >
 
 
 
@@ -44,11 +44,17 @@
         android:background="@android:drawable/btn_dropdown"
         android:layout_toRightOf="@id/spinner2"
         android:spinnerMode="dropdown"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number of users: "
+        android:id="@+id/NumberOfUsers"
+        />
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/list" />
+
 
 </LinearLayout>
 

@@ -28,13 +28,13 @@ public class CenterVaccineHelper {
     private int selectedCenter;
     private Fragment fragment;
 
-    public CenterVaccineHelper(Fragment fragment){
+    public CenterVaccineHelper(Fragment fragment) {
         this.fragment = fragment;
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_getCenters(Activity activity, UserResponse user, Runnable runnable){
+    public void API_getCenters(Activity activity, UserResponse user, Runnable runnable) {
         Call<List<Center>> call = ApiClient.getUserService().getCenters(user.getToken());
         call.enqueue(new Callback<List<Center>>() {
             @Override
@@ -42,9 +42,9 @@ public class CenterVaccineHelper {
                 if (response.isSuccessful()) {
                     centers = response.body();
 
-                    new Handler().postDelayed(runnable,600);
+                    new Handler().postDelayed(runnable, 600);
 
-                }else{
+                } else {
                     LoadingAnimation.dismissLoadingAnimation();
                     new AlertWindow(fragment).createAlertWindow(response.errorBody().toString());
                 }
@@ -52,55 +52,69 @@ public class CenterVaccineHelper {
 
             @Override
             public void onFailure(Call<List<Center>> call, Throwable t) {
-                Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
 
-    public String [] getCenters(){
+    public String[] getCenters() {
         ArrayList<String> centerBuffer = new ArrayList<String>();
-        for(Center center: centers){
-            if(center != null) centerBuffer.add(center.getCenterName());
+        for (Center center : centers) {
+            if (center != null) centerBuffer.add(center.getCenterName());
         }
 
-        String [] centerArray = new String[centerBuffer.size()];
+        String[] centerArray = new String[centerBuffer.size()];
         centerArray = centerBuffer.toArray(centerArray);
 
         return centerArray;
     }
 
-    public String [] getCenterCounty(){
+    public String[] getCenterCounty() {
         ArrayList<String> countyBuffer = new ArrayList<String>();
-        for(Center center: centers){
-            if(center != null) countyBuffer.add(center.getCenterCounty());
+        for (Center center : centers) {
+            if (center != null) countyBuffer.add(center.getCenterCounty());
         }
 
-        String [] countyArray = new String[countyBuffer.size()];
+        String[] countyArray = new String[countyBuffer.size()];
         countyArray = countyBuffer.toArray(countyArray);
 
         return countyArray;
     }
 
-    public String [] getVaccines(int center){
+    public String[] getVaccines(int center) {
         ArrayList<String> vaccineBuffer = new ArrayList<String>();
-        for(Vaccine vaccine: centers.get(center).getVaccines()){
-            if(vaccine != null) vaccineBuffer.add(vaccine.getVaccineName());
+        for (Vaccine vaccine : centers.get(center).getVaccines()) {
+            if (vaccine != null) vaccineBuffer.add(vaccine.getVaccineName());
         }
 
-        String [] vaccineArray = new String[vaccineBuffer.size()];
+        String[] vaccineArray = new String[vaccineBuffer.size()];
         vaccineArray = vaccineBuffer.toArray(vaccineArray);
 
         return vaccineArray;
     }
 
-    public String getSelectedCenter(int center){
+    public String getSelectedCenter(int center) {
         selectedCenter = center;
         return centers.get(center).getCenterId();
     }
 
-    public String getSelectedVaccine(int vaccine){
+    public String getSelectedVaccine(int vaccine) {
         return centers.get(selectedCenter).getVaccines().get(vaccine).getVaccineId();
     }
+
+
+    public List<Center> getCentersObjects() {
+        return centers;
+    }
+
+    public String [] getCentersNames(List<Center> centers){
+        String [] centerArray = new String[centers.size()];
+        for (int i = 0; i < centers.size(); i++) {
+            centerArray[i] = centers.get(i).getCenterName();
+        }
+        return centerArray;
+    }
+
 }
