@@ -15,13 +15,14 @@ import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.LoadingAnimation;
 
+import java.io.Serializable;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdminVaccineHelper {
+public class AdminVaccineHelper implements Serializable {
     private List<Vaccine> vaccineResponse;
     String responseID;
     private Fragment fragment;

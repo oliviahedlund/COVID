@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;

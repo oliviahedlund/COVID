@@ -249,7 +249,7 @@
         </item>
         <item>
             What about a private party in a home or in a garden?
-            \n\nCovid-19 is spread by close contact and often in a home environment. For private gatherings, such as parties, the individual responsibility according to the Swedish Communicable Diseases Act applies, as well as the Swedish Public Health Agency\'s <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">general advice and recommendations</a> based on the duty of protection. One of the recommendations from 1 July is that you should take infection control measures if you meet people outside the immediate area. This is done, for example, by meeting outdoors in small groups and avoiding being close to each other for a long time in small spaces. Private parties in homes and gardens are not covered by legally binding rules that can be supervised. For vaccinated people, the same rules apply as for others.
+            \n\nCovid-19 is spread by close contact and often in a home environment. For private gatherings, such as parties, the individual responsibility according to the Swedish Communicable Diseases Act applies, as well as the Swedish Public Health Agency\'s <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/skydda-dig-och-andra/rekommendationer-for-att-minska-spridningen-av-covid-19/">general advice and recommendations</a> based on the duty of protection. One of the recommendations from 1 July is that you should take infection control measures if you meet people outside the immediate area. This is done, for example, by meeting outdoors in small groups and avoiding being close to each other for a long time in small spaces. Private parties in homes and gardens are not covered by legally binding rules that can be supervised. For vaccinated people, the same rules apply as for others.
         </item>
     </string-array>
 
@@ -279,7 +279,7 @@
         </item>
         <item>
             Which people should be tested for ongoing covid-19 infection?
-            \n\nThe testing is always based on local and regional guidelines. The Swedish Public Health Agency recommends that adults and children and young people of school age, including preschool class who have <a href = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/om-sjukdomen-och-smittspridning/om-viruset-och-sjukdomen/?exp=80112#_80112">covid-19 symptoms</a> are tested to see if they have an ongoing infection.
+            \n\nThe testing is always based on local and regional guidelines. The Swedish Public Health Agency recommends that adults and children and young people of school age, including preschool class who have <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/om-sjukdomen-och-smittspridning/om-viruset-och-sjukdomen/?exp=80112#_80112">covid-19 symptoms</a> are tested to see if they have an ongoing infection.
             \nWe also recommend that testing takes place during infection tracking. The testing can then be relevant regardless of symptoms.
             \nIn a situation where the number of suspected cases exceeds the health service\'s capacity for testing, the region may decide on temporary adjustments in the guidelines for testing.
         </item>
@@ -422,5 +422,6 @@
             \nIf you need more support, you can turn to healthcare. There are also guides you can call. Read more about <a href="https://www.1177.se/Stockholm/liv--halsa/psykisk-halsa/sorg-nar-nagon-har-dott/">grief, how it can express itself and how you can handle it on 1177.se</a>.
         </item>
     </string-array>
+
 
 </resources>

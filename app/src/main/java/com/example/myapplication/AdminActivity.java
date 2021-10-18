@@ -14,13 +14,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.API.Model.Appointment_user.Center;
+import com.example.myapplication.API.Model.Appointment_user.Vaccine;
+import com.example.myapplication.Helpers.AdminVaccineHelper;
+import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.UI.AdminBooking.AdminAddCenterFragment;
 import com.example.myapplication.UI.AdminBooking.AdminAddVaccineFragment;
 import com.example.myapplication.UI.AdminBooking.AdminBookingRangeFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
+import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.SettingsFragment;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.UI.ValidateAppointmentsFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -32,11 +40,14 @@ public class AdminActivity extends AppCompatActivity {
     private TextView userEmail;
     private Covid_Tracking_dashboardFragment dashFragment;
     private UserResponse user;
+    private CenterVaccineHelper centerVaccineHelper;
+    private AdminVaccineHelper vaccineHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_admin);
 
         //gets userinfo
@@ -46,6 +57,22 @@ public class AdminActivity extends AppCompatActivity {
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
+
+            Runnable next2 = new Runnable() {
+                @Override
+                public void run() {
+                    LoadingAnimation.dismissLoadingAnimation();
+                }
+            };
+            Runnable next1 = new Runnable() {
+                @Override
+                public void run() {
+                    callVaccine(next2);
+                }
+            };
+
+            LoadingAnimation.startLoadingAnimation(this);
+            callCenter(next1);
         }
 
         //Setup Menu Bar
@@ -56,6 +83,27 @@ public class AdminActivity extends AppCompatActivity {
         setUpNavigationView();
 
     }
+
+    public CenterVaccineHelper getCenterVaccineHelper() {
+        return centerVaccineHelper;
+    }
+
+    public AdminVaccineHelper getVaccineHelper() {
+        return vaccineHelper;
+    }
+
+    public void callCenter(Runnable runnable){
+        centerVaccineHelper = new CenterVaccineHelper(getSupportFragmentManager().findFragmentById(R.id.frameAdmin));
+        centerVaccineHelper.API_getCenters(this, user, runnable);
+
+    }
+
+    public void callVaccine(Runnable runnable){
+        vaccineHelper = new AdminVaccineHelper(getSupportFragmentManager().findFragmentById(R.id.frameAdmin));
+        vaccineHelper.API_getVaccine(this, user, runnable);
+    }
+
+
     private UserResponse setUserData(UserResponse response){
         return this.user = response;
     }
@@ -119,6 +167,9 @@ public class AdminActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
                         newFragment = new Covid_Tracking_dashboardFragment();
+                        break;
+                    case R.id.nav_validate:
+                        newFragment = new ValidateAppointmentsFragment();
                         break;
                         /*
                     case R.id.nav_quest:

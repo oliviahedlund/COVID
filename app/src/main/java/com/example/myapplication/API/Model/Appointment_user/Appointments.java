@@ -1,16 +1,10 @@
 package com.example.myapplication.API.Model.Appointment_user;
 
-import com.example.myapplication.API.Model.User.UserRequest;
-
-import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public class AppointmentRequest implements Serializable {
-
+public class Appointments {
     private String id;
     private String userId;
-    private String firstName;
-    private String lastName;
     private ZonedDateTime time;
     private int length;
     private String centerId;
@@ -63,5 +57,6 @@ public class AppointmentRequest implements Serializable {
     public void setVaccineId(String vaccineId) {
         this.vaccineId = vaccineId;
     }
+
 
 }

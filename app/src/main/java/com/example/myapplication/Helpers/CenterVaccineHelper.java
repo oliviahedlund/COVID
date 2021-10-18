@@ -17,6 +17,7 @@ import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CenterVaccineHelper {
+public class CenterVaccineHelper implements Serializable {
     private List<Center> centers;
     private Center center;
     private Vaccine vaccine;
