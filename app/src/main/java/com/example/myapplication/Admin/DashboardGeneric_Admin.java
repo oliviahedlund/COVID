@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
+import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Admin.AdminActivity;
 import com.example.myapplication.ApiClient;
@@ -52,7 +53,11 @@ public class DashboardGeneric_Admin extends Fragment {
     private CenterVaccineHelper cvh ;
     private String[] AllCenters;
     private String[] AllCenterCounties;
+    private List<Center> allCenters1;
+    private List<Center> allCenters2 = new ArrayList<>();;
     //private List<UserInfo> userInfo = new ArrayList<UserInfo>();
+
+
     View view;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -107,8 +112,12 @@ public class DashboardGeneric_Admin extends Fragment {
         Center_dropdown.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
-                        Object CenterItem = parent.getItemAtPosition(pos);
-                        System.out.println(CenterItem.toString());     //prints the text in spinner item.
+                        if(allCenters2.size()==0){}
+                        else{
+                            String centerID = allCenters2.get(pos).getCenterId();
+                            Object CenterItem = parent.getItemAtPosition(pos);
+                            System.out.println(CenterItem.toString());     //prints the text in spinner item.
+                        }
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
@@ -134,10 +143,14 @@ public class DashboardGeneric_Admin extends Fragment {
                 Centers.add(AllCenters[i]);
             }
         }
-        String[] array = new String[Centers.size()];
-        array = Centers.toArray(array);
-        setCenter(array,Center_dropdown);
-    }// end of getCenter
+        allCenters1 = cvh.getCentersObjects();
+        for(int i = 0; i < AllCenters.length; i++){
+            if(allCenters1.get(i).getCenterCounty().equals(county)){
+                allCenters2.add(allCenters1.get(i));
+            }
+        }
+        setCenter(cvh.getCentersNames(allCenters2),Center_dropdown);
+    }
 
     private void setCenter(String[] Centers,Spinner Center_dropdown){
         System.out.println("Center Set");
@@ -196,6 +209,9 @@ public class DashboardGeneric_Admin extends Fragment {
             System.out.println("cells :"+ cells[i]);
             app_list.add(cells[i]);
         }
+        // DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
+        //app_list.add(matt0);
+
         //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(AppAdapter);
