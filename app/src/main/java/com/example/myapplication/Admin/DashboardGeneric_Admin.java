@@ -41,12 +41,6 @@ public class DashboardGeneric_Admin extends Fragment {
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
     private String[] CenterItems = new String[]{"Choose center"};
     private String[] MonthItems = new String[]{"Choose month","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Okt","Nov","Dec"};
-    private String id;
-    private String userId;
-    private String centerId;
-    private String vaccineId;
-    private String time;
-    private int length;
     private AdminActivity activity;
     private UserResponse user;
     private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
@@ -54,10 +48,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private String[] AllCenters;
     private String[] AllCenterCounties;
     private List<Center> allCenters1;
-    private List<Center> allCenters2 = new ArrayList<>();;
-    //private List<UserInfo> userInfo = new ArrayList<UserInfo>();
-
-
+    private List<Center> allCenters2 = new ArrayList<>();
     View view;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -111,17 +102,30 @@ public class DashboardGeneric_Admin extends Fragment {
                 });
         Center_dropdown.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
-                        if(allCenters2.size()==0){}
-                        else{
-                            String centerID = allCenters2.get(pos).getCenterId();
-                            Object CenterItem = parent.getItemAtPosition(pos);
-                            System.out.println(CenterItem.toString());     //prints the text in spinner item.
-                        }
-                    }
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
+                  public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
+                      if(allCenters2.size()==0){}
+                      else{
+                          String centerID = allCenters2.get(pos).getCenterId(); //get the ID of the chosen center
+                          Object CenterItem = parent.getItemAtPosition(pos);
+                          System.out.println(CenterItem.toString());     //prints the text in spinner item.
+                          System.out.println(centerID);
+                          getAppointments(centerID);
+                      }
+                  }
+                  public void onNothingSelected(AdapterView<?> parent) {
+                  }
                 });
+    }
+    private void getAppointments(String centerID){
+    String[] SortedAppointment = new String[appointmentResponse.size()];
+
+        for(int i=0; i<appointmentResponse.size(); i++){
+            if(appointmentResponse.get(i).getCenterId().equals(centerID)){
+                SortedAppointment[i] = appointmentResponse.get(i).getTime();
+            }
+        }
+
+        setupListView(SortedAppointment,SortedAppointment.length);
     }
 
     private Fragment getFragment(){
@@ -180,7 +184,7 @@ public class DashboardGeneric_Admin extends Fragment {
                         System.out.println("Vaccine ID: " + appointmentResponse.get(0).getVaccineId());
                         System.out.println("Time: " + appointmentResponse.get(0).getTime());
                         System.out.println("Length: " + appointmentResponse.get(0).getLength());
-                        setupListView();
+
                     }
                     else System.out.println("Empty appointmentResponse");
                 }else{
@@ -196,7 +200,7 @@ public class DashboardGeneric_Admin extends Fragment {
         });
     }
 
-    private void setupListView() { // sets up list view with booked appointments depending on the filter
+    private void setupListView(String[] SortedAppointments,int size) { // sets up list view with booked appointments depending on the filter
         appointments = (ListView) view.findViewById(R.id.list);
         String name;
         //makes an arraylist of custom datatype
