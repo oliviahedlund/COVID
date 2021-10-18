@@ -54,33 +54,19 @@ public class DashboardGeneric_Admin extends Fragment {
     private String[] AllCenterCounties;
     //private List<UserInfo> userInfo = new ArrayList<UserInfo>();
 
-
     View view;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.activity_admin_dashboard_generic, container, false);
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
         getAppointmentApi();
-        /*
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) { //pauses the thread for 10 sec, to get api call -- funka fan inte
-            e.printStackTrace();
-        }
-         */
         setupDropdownMenus();
-        // setupListView();
-
-        // Inflate the layout for this fragment
         return view;
     }
-
-
 
     private void setupDropdownMenus(){ // sets up the dropdown menues
         //Setup spinners
@@ -104,7 +90,6 @@ public class DashboardGeneric_Admin extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så centers sorteras och blir displayade beroende på county
                         cvh = new CenterVaccineHelper(getFragment());
                         cvh.API_getCenters(getActivity(), user, new Runnable() {
-
                             @Override
                             public void run() {
                                 AllCenters = cvh.getCenters();
@@ -116,7 +101,6 @@ public class DashboardGeneric_Admin extends Fragment {
                             }
                         });
                         LoadingAnimation.startLoadingAnimation(getActivity());
-
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
@@ -124,10 +108,8 @@ public class DashboardGeneric_Admin extends Fragment {
         Center_dropdown.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
-
                         Object CenterItem = parent.getItemAtPosition(pos);
                         System.out.println(CenterItem.toString());     //prints the text in spinner item.
-
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
@@ -137,8 +119,8 @@ public class DashboardGeneric_Admin extends Fragment {
     private Fragment getFragment(){
         return this;
     }
-    private void getCenters(String county,Spinner Center_dropdown){
 
+    private void getCenters(String county,Spinner Center_dropdown){
         if(county.equals("Choose county")){
             System.out.println("Default choice (choose county)");
             CenterItems = new String[]{"Choose center"};
@@ -146,92 +128,38 @@ public class DashboardGeneric_Admin extends Fragment {
             Center_dropdown.setAdapter(adapterCenter);
             return;
         }
-
         ArrayList<String> Centers = new ArrayList<String>();// sätt till enbart {}
         Centers.add("Choose centerr");
         for(int i=0; i< AllCenterCounties.length ;i++) { //sorts the centers depending on county
             if (AllCenterCounties[i].equals(county)) {
                 Centers.add(AllCenters[i]);
             }
-
         }
         String[] array = new String[Centers.size()];
         array = Centers.toArray(array);
-        /*
-        int j=0;
-        String[] Centers = new String[AllCenters.length+1];// sätt till enbart {}
-        Centers[0] = "Choose centerr";
-        for(int i=0; i< AllCenters.length ;i++){ //sorts the centers depending on county
-            if(AllCenterCounties[i].equals(county)) {
-                System.out.println("hej jesper");
-                Centers[j] = AllCenters[i];
-                j++;
-            }
-
-
-        }
-        */
-
         setCenter(array,Center_dropdown);
-        // String[] Centers = new String[]{"Choose center"};
-        /*
-        switch(county){
-            case "Blekinge":
-            case "Dalarna":
-            case "Gotland":
-            case "Gävleborg":
-            case "Halland":
-            case "Jämtland":
-            case "Jönköping":
-            case "Kalmar":
-            case "Kronoberg":
-            case "Norrbotten":
-            case "Skåne":
-            case "Stockholm":
-            case "Södermansland":
-            case "Uppsala":
-            case "Värmland":
-            case "Västerbotten":
-            case "Västernorrland":
-            case "Västmanland":
-            case "Västra Götaland":
-            case "Örebro":
-            case "Östergötland":
-                return new String[]{"Center", "Center 1", "Center 2"};
-            default:
-                return new String[]{"Center"};
-        }
-
-         */
     }// end of getCenter
 
     private void setCenter(String[] Centers,Spinner Center_dropdown){
         System.out.println("Center Set");
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
         Center_dropdown.setAdapter(adapterCenter);
-
     }
 
     /*private void getUserInfoApi(){
         Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
     }*/
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getAppointmentApi(){
         Call<List<AppointmentResponse>> appointmentResponseCall = ApiClient.getUserService().getAllAppointments(user.getToken(), false);
         appointmentResponseCall.enqueue(new Callback<List<AppointmentResponse>>() {
-
             @RequiresApi(api = Build.VERSION_CODES.O) // OLD - Delete
             @Override
             public void onResponse(Call<List<AppointmentResponse>> call, Response<List<AppointmentResponse>> response) {
-
                 //errorhandling
                 if (response.isSuccessful()) {
                     appointmentResponse = response.body(); //i userResponse ligger all information om användaren
-
-                    //appointmentResponse.get(10).getTime(); //Returnerar Id:t på 11e tiden
                     if(appointmentResponse.size() > 0) {
                         System.out.println("Size: " + appointmentResponse.size());
                         System.out.println("ID: " + appointmentResponse.get(0).getId());
@@ -242,34 +170,26 @@ public class DashboardGeneric_Admin extends Fragment {
                         System.out.println("Length: " + appointmentResponse.get(0).getLength());
                         setupListView();
                     }
-                    else{
-                        System.out.println("Empty appointmentResponse");
-                    }
+                    else System.out.println("Empty appointmentResponse");
                 }else{
                     Toast.makeText(activity,"Appointments error", Toast.LENGTH_LONG).show();
                     System.out.println("Fail - else");
                 }
             }
-
             @Override
             public void onFailure(Call<List<AppointmentResponse>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
             }
         });
-
-    }//end of getAppointment
-
+    }
 
     private void setupListView() { // sets up list view with booked appointments depending on the filter
         appointments = (ListView) view.findViewById(R.id.list);
         String name;
-
         //makes an arraylist of custom datatype
         ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
         DashboardGeneric_Cell[] cells = new DashboardGeneric_Cell[appointmentResponse.size()];//appointmentResponse.size()
-
-        //  System.out.println("Size: " + appointmentResponse.size());
 
         //for loop that adds times from api call to a list
         for(int i =0; i<appointmentResponse.size(); i++){ //appointmentResponse.size()
@@ -277,12 +197,8 @@ public class DashboardGeneric_Admin extends Fragment {
             System.out.println("cells :"+ cells[i]);
             app_list.add(cells[i]);
         }
-        // DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
-        //app_list.add(matt0);
-
         //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(AppAdapter);
-    }// end of setUpListView
-
-}//end of class
+    }
+}
