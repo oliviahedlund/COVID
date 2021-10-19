@@ -149,7 +149,7 @@ public class GeneralActivity extends AppCompatActivity {
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
                 mDrawerLayout.closeDrawers();
                 return true;
             }
