@@ -51,12 +51,12 @@ public class DashboardGeneric_Admin extends Fragment {
     private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
     private int userNumberResponse;
     private CenterVaccineHelper cvh ;
-    private String[] AllCenters;
-    private String[] AllCenterCounties;
-    private String[] Centers;
+    private String[] AllCenters; //unused?
+    private String[] AllCenterCounties; //unused?
+    private String[] Centers;   //for function SetCenters
     private List<Center> allCenters1;
     private List<Center> allCenters2 = new ArrayList<>();
-    private String[] DefaultListview = new String[]{"No booked appointments"};
+    private String[] DefaultListview = new String[]{"No booked appointments"}; //default settings for listview
     View view;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -86,7 +86,7 @@ public class DashboardGeneric_Admin extends Fragment {
         County_dropdown.setAdapter(adapterCounty);
         Center_dropdown.setAdapter(adapterCenter);
         Date_dropdown.setAdapter(adapterDate);
-        County_dropdown.setOnItemSelectedListener(
+        County_dropdown.setOnItemSelectedListener( //listener for county spinner
                 new AdapterView.OnItemSelectedListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så centers sorteras och blir displayade beroende på county
@@ -94,14 +94,14 @@ public class DashboardGeneric_Admin extends Fragment {
                         cvh.API_getCenters(getActivity(), user, new Runnable() {
                             @Override
                             public void run() {
-                                allCenters2 = new ArrayList<>();
-                                AllCenters = cvh.getCenters();
-                                AllCenterCounties = cvh.getCenterCounty();
+                                allCenters2 = new ArrayList<>(); //wipe the array from previously chosen county
+                                AllCenters = cvh.getCenters();  //unused?
+                                AllCenterCounties = cvh.getCenterCounty();//unused?
                                 LoadingAnimation.dismissLoadingAnimation();
                                 Object CountyItem = parent.getItemAtPosition(pos);
                                 System.out.println(CountyItem.toString());     //prints the text in spinner item.
-                                getCenters(CountyItem.toString(),Center_dropdown);
-                                setupListView(DefaultListview,0 );
+                                getCenters(CountyItem.toString(),Center_dropdown); //sorts centers depending on county
+                                setupListView(DefaultListview,0 );            //sets up listview with default settings
                             }
                         });
                         LoadingAnimation.startLoadingAnimation(getActivity());
@@ -109,7 +109,7 @@ public class DashboardGeneric_Admin extends Fragment {
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
-        Center_dropdown.setOnItemSelectedListener(
+        Center_dropdown.setOnItemSelectedListener(  //listener for center spinner
             new AdapterView.OnItemSelectedListener() {
               @RequiresApi(api = Build.VERSION_CODES.O)
               public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
@@ -160,14 +160,6 @@ public class DashboardGeneric_Admin extends Fragment {
             }
         }
         Centers = cvh.getCentersNames(allCenters2);
-        for(int i=0; i<Centers.length;i++){
-            System.out.println("i");
-            System.out.println("i: "+i);
-            System.out.println(Centers[i]);
-            System.out.println("i");
-            System.out.println("i");
-
-        }
         setCenter(Center_dropdown);
     }
 
