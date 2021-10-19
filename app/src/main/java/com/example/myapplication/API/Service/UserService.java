@@ -1,6 +1,7 @@
 package com.example.myapplication.API.Service;
 
 import com.example.myapplication.API.Model.Admin.UserInfo;
+import com.example.myapplication.API.Model.Admin.UserNumberResponse;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Date_Time;
@@ -50,6 +51,8 @@ public interface UserService {
         @GET("/api/User/Manage")
         Call<UserInfo> getUserInfoAll(@Header("Authorization") String authHeader, @Query("UserId") String UserId);
 
+        @GET("/api/User/Admin")
+        Call<List<UserNumberResponse>> numberOfUsersCall(@Header("Authorization") String authHeader);
 
 
 }

@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.myapplication.API.Model.Admin.UserInfo;
+import com.example.myapplication.API.Model.Admin.UserNumberResponse;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -48,6 +49,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private AdminActivity activity;
     private UserResponse user;
     private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
+    private List<UserNumberResponse> userNumberResponse;
     private CenterVaccineHelper cvh ;
     private String[] AllCenters;
     private String[] AllCenterCounties;
@@ -64,7 +66,7 @@ public class DashboardGeneric_Admin extends Fragment {
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
         getAppointmentApi();
-      //  getNumberOfUsersApi();
+        //getUserNumberApi();
         setupDropdownMenus();
         return view;
     }
@@ -181,41 +183,33 @@ public class DashboardGeneric_Admin extends Fragment {
     /*private void getUserInfoApi(){
         Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
     }*/
-    /*
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void getNumberOfUsersApi(){ //JESPER HJÄÄÄÄÄLP***************************************
-        Call<Integer> NumberOfUsersCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
-        appointmentResponseCall.enqueue(new Callback<List<AppointmentResponse>>() {
-            @RequiresApi(api = Build.VERSION_CODES.O) // OLD - Delete
+    private void getUserNumberApi(){
+        Call<List<UserNumberResponse>> UserNumberCall = ApiClient.getUserService().numberOfUsersCall(user.getToken());
+        UserNumberCall.enqueue(new Callback<List<UserNumberResponse>>(){
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onResponse(Call<List<AppointmentResponse>> call, Response<List<AppointmentResponse>> response) {
+            public void onResponse(Call<List<UserNumberResponse>> call, Response<List<UserNumberResponse>> response) {
                 //errorhandling
                 if (response.isSuccessful()) {
-                    appointmentResponse = response.body(); //i userResponse ligger all information om användaren
-                    if(appointmentResponse.size() > 0) {
-                        System.out.println("Size: " + appointmentResponse.size());
-                        System.out.println("ID: " + appointmentResponse.get(0).getId());
-                        System.out.println("User ID: " + appointmentResponse.get(0).getUserId());
-                        System.out.println("Center ID: " + appointmentResponse.get(0).getCenterId());
-                        System.out.println("Vaccine ID: " + appointmentResponse.get(0).getVaccineId());
-                        System.out.println("Time: " + appointmentResponse.get(0).getTime());
-                        System.out.println("Length: " + appointmentResponse.get(0).getLength());
+                    userNumberResponse = response.body(); //i userResponse ligger all information om användaren
+                    if(userNumberResponse.size() > 0) {
+
                     }
                     else System.out.println("Empty appointmentResponse");
-                }else{
-                    Toast.makeText(activity,"Appointments error", Toast.LENGTH_LONG).show();
+                }else{ //Unsuccessful response
+                    Toast.makeText(activity,"Number of users error", Toast.LENGTH_LONG).show();
                     System.out.println("Fail - else");
                 }
             }
             @Override
-            public void onFailure(Call<List<AppointmentResponse>> call, Throwable t) {
+            public void onFailure(Call<List<UserNumberResponse>> call, Throwable t) {
                 Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
             }
         });
     }
-
-     */
 
     private void NumberOfUsers(int UsersRegistered){ //sets textview to the number of users registered (from getNumberOfUsersApi)
         nrOfUsers = (TextView) view.findViewById(R.id.NumberOfUsers);
