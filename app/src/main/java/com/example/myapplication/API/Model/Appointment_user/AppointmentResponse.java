@@ -1,11 +1,13 @@
 package com.example.myapplication.API.Model.Appointment_user;
 
+import java.time.ZonedDateTime;
+
 public class AppointmentResponse {
     private String id;
     private String userId;
     private String centerId;
     private String vaccineId;
-    private String time;
+    private ZonedDateTime time;
     private int length;
 
     //Get functions
@@ -21,7 +23,7 @@ public class AppointmentResponse {
     public String getVaccineId() {
         return vaccineId;
     }
-    public String getTime() {
+    public ZonedDateTime getTime() {
         return time;
     }
     public int getLength() {

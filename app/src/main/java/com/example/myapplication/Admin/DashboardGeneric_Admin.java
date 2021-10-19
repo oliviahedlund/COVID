@@ -28,6 +28,7 @@ import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.LoadingAnimation;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class DashboardGeneric_Admin extends Fragment {
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
         getAppointmentApi();
-        getNumberOfUsersApi();
+      //  getNumberOfUsersApi();
         setupDropdownMenus();
         return view;
     }
@@ -106,6 +107,7 @@ public class DashboardGeneric_Admin extends Fragment {
                 });
         Center_dropdown.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
+                  @RequiresApi(api = Build.VERSION_CODES.O)
                   public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
                       if(allCenters2.size()==0){}
                       else{
@@ -120,15 +122,19 @@ public class DashboardGeneric_Admin extends Fragment {
                   }
                 });
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void getAppointments(String centerID){
-    String[] SortedAppointment = new String[appointmentResponse.size()];
+        List<String> array = new ArrayList<String>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
         for(int i=0; i<appointmentResponse.size(); i++){
             if(appointmentResponse.get(i).getCenterId().equals(centerID)){
                 System.out.println(appointmentResponse.get(i).getTime());
                 System.out.println("index:" + i);
-                SortedAppointment[i] = appointmentResponse.get(i).getTime();
+                array.add(appointmentResponse.get(i).getTime().format(formatter));
             }
         }
+        String [] SortedAppointment = new String[array.size()];
+        SortedAppointment = array.toArray(SortedAppointment);
 
         setupListView(SortedAppointment,SortedAppointment.length);
     }
@@ -173,6 +179,7 @@ public class DashboardGeneric_Admin extends Fragment {
     /*private void getUserInfoApi(){
         Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
     }*/
+    /*
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getNumberOfUsersApi(){ //JESPER HJÄÄÄÄÄLP***************************************
         Call<Integer> NumberOfUsersCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
@@ -205,6 +212,8 @@ public class DashboardGeneric_Admin extends Fragment {
             }
         });
     }
+
+     */
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getAppointmentApi(){
