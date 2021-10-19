@@ -61,14 +61,13 @@ public class QRScanner extends Fragment {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
                         userAPIHelper.API_isFullyDosed(user, new Runnable() {
                             @Override
                             public void run() {
                                 if(userAPIHelper.isFullyDosed()){
-                                    new AlertWindow(QRScanner.this).createAlertWindow("This user is fully vaccinated!");
+                                    new AlertWindow(QRScanner.this).createAlertWindow(QRScanner.this.getResources().getString(R.string.fullyVaccinated));
                                 } else {
-                                    new AlertWindow(QRScanner.this).createAlertWindow("This user is not fully vaccinated!");
+                                    new AlertWindow(QRScanner.this).createAlertWindow(QRScanner.this.getResources().getString(R.string.notFullyVaccinated));
                                 }
                                 LoadingAnimation.dismissLoadingAnimation();
                             }
@@ -133,16 +132,16 @@ public class QRScanner extends Fragment {
     }
 
     public void showPermissionRationale(final PermissionToken token){
-        new AlertDialog.Builder(getContext()).setTitle("Camera permission").
-                setMessage("Please allow this permission to enable camera for scanning.").
-                setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(getContext()).setTitle(QRScanner.this.getResources().getString(R.string.cameraPermissionTitle)).
+                setMessage(QRScanner.this.getResources().getString(R.string.cameraPermissionMessage)).
+                setPositiveButton(QRScanner.this.getResources().getString(R.string.allow), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         token.continuePermissionRequest();
                         dialogInterface.dismiss();
                     }
                 }).
-                setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                setNegativeButton(QRScanner.this.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         token.cancelPermissionRequest();
@@ -158,16 +157,16 @@ public class QRScanner extends Fragment {
     }
 
     public void handlePermanentDeniedPermission(){
-        new AlertDialog.Builder(getContext()).setTitle("Camera permission").
-                setMessage("Please allow this permission from app settings page.").
-                setPositiveButton("Go to settings", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(getContext()).setTitle(QRScanner.this.getResources().getString(R.string.cameraPermissionTitle)).
+                setMessage(QRScanner.this.getResources().getString(R.string.cameraPermissionSettings)).
+                setPositiveButton(QRScanner.this.getResources().getString(R.string.goToSettingsButton), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         openSettings();
                         dialogInterface.dismiss();
                     }
                 }).
-                setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                setNegativeButton(QRScanner.this.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

@@ -423,6 +423,15 @@
         </item>
     </string-array>
 
+    <string name="fullyVaccinated">Yes, this user is fully vaccinated!</string>
+    <string name="notFullyVaccinated">Sorry, this user is not fully vaccinated!</string>
+    <string name="cameraPermissionTitle">Camera permission</string>
+    <string name="cameraPermissionMessage">Please allow this permission to enable camera for scanning.</string>
+    <string name="cameraPermissionSettings">Please allow this permission from app settings page.</string>
+    <string name="goToSettingsButton">Go to settings</string>
+    <string name="allow">Allow</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
