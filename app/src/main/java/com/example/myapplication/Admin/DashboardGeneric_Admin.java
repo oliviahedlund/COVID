@@ -66,7 +66,8 @@ public class DashboardGeneric_Admin extends Fragment {
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
         getAppointmentApi();
-        //getUserNumberApi();
+        getUserNumberApi();
+        NumberOfUsers(2);
         setupDropdownMenus();
         return view;
     }
@@ -98,7 +99,7 @@ public class DashboardGeneric_Admin extends Fragment {
                                 AllCenterCounties = cvh.getCenterCounty();
                                 LoadingAnimation.dismissLoadingAnimation();
                                 Object CountyItem = parent.getItemAtPosition(pos);
-                                System.out.println(CountyItem.toString());     //prints the text in spinner item.
+                                //System.out.println(CountyItem.toString());     //prints the text in spinner item.
                                 getCenters(CountyItem.toString(),Center_dropdown);
                                 setupListView(DefaultListview,0 );
                             }
@@ -149,7 +150,7 @@ public class DashboardGeneric_Admin extends Fragment {
 
     private void getCenters(String county,Spinner Center_dropdown){
         if(county.equals("Choose county")){
-            System.out.println("Default choice (choose county)");
+            //System.out.println("Default choice (choose county)");
             CenterItems = new String[]{"Choose center"};
             ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
             Center_dropdown.setAdapter(adapterCenter);
@@ -175,7 +176,7 @@ public class DashboardGeneric_Admin extends Fragment {
     }
 
     private void setCenter(String[] Centers,Spinner Center_dropdown){
-        System.out.println("Center Set");
+       // System.out.println("Center Set");
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
         Center_dropdown.setAdapter(adapterCenter);
     }
@@ -192,16 +193,18 @@ public class DashboardGeneric_Admin extends Fragment {
             @Override
             public void onResponse(Call<List<UserNumberResponse>> call, Response<List<UserNumberResponse>> response) {
                 //errorhandling
+                System.out.println("HEJEHEHEJEJEJEH**************************************");
                 if (response.isSuccessful()) {
                     userNumberResponse = response.body(); //i userResponse ligger all information om användaren
                     if(userNumberResponse.size() > 0) {
-
                     }
                     else System.out.println("Empty appointmentResponse");
                 }else{ //Unsuccessful response
                     Toast.makeText(activity,"Number of users error", Toast.LENGTH_LONG).show();
                     System.out.println("Fail - else");
                 }
+
+
             }
             @Override
             public void onFailure(Call<List<UserNumberResponse>> call, Throwable t) {
@@ -228,13 +231,15 @@ public class DashboardGeneric_Admin extends Fragment {
                 if (response.isSuccessful()) {
                     appointmentResponse = response.body(); //i userResponse ligger all information om användaren
                     if(appointmentResponse.size() > 0) {
-                        System.out.println("Size: " + appointmentResponse.size());
+                       /* System.out.println("Size: " + appointmentResponse.size());
                         System.out.println("ID: " + appointmentResponse.get(0).getId());
                         System.out.println("User ID: " + appointmentResponse.get(0).getUserId());
                         System.out.println("Center ID: " + appointmentResponse.get(0).getCenterId());
                         System.out.println("Vaccine ID: " + appointmentResponse.get(0).getVaccineId());
                         System.out.println("Time: " + appointmentResponse.get(0).getTime());
                         System.out.println("Length: " + appointmentResponse.get(0).getLength());
+
+                        */
                     }
                     else System.out.println("Empty appointmentResponse");
                 }else{
