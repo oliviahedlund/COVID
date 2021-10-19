@@ -53,6 +53,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private CenterVaccineHelper cvh ;
     private String[] AllCenters;
     private String[] AllCenterCounties;
+    private String[] Centers;
     private List<Center> allCenters1;
     private List<Center> allCenters2 = new ArrayList<>();
     private String[] DefaultListview = new String[]{"No booked appointments"};
@@ -95,11 +96,12 @@ public class DashboardGeneric_Admin extends Fragment {
                         cvh.API_getCenters(getActivity(), user, new Runnable() {
                             @Override
                             public void run() {
+                                allCenters2 = new ArrayList<>();
                                 AllCenters = cvh.getCenters();
                                 AllCenterCounties = cvh.getCenterCounty();
                                 LoadingAnimation.dismissLoadingAnimation();
                                 Object CountyItem = parent.getItemAtPosition(pos);
-                                //System.out.println(CountyItem.toString());     //prints the text in spinner item.
+                                System.out.println(CountyItem.toString());     //prints the text in spinner item.
                                 getCenters(CountyItem.toString(),Center_dropdown);
                                 setupListView(DefaultListview,0 );
                             }
@@ -116,9 +118,9 @@ public class DashboardGeneric_Admin extends Fragment {
                       if(allCenters2.size()==0){}
                       else{
                           String centerID = allCenters2.get(pos).getCenterId(); //get the ID of the chosen center
-                          Object CenterItem = parent.getItemAtPosition(pos);
-                          System.out.println(CenterItem.toString());     //prints the text in spinner item.
-                          System.out.println(centerID);
+                          //Object CenterItem = parent.getItemAtPosition(pos);
+                          //System.out.println(CenterItem.toString());     //prints the text in spinner item.
+                          //System.out.println(centerID);
                           getAppointments(centerID);
                       }
                   }
@@ -133,14 +135,11 @@ public class DashboardGeneric_Admin extends Fragment {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
         for(int i=0; i<appointmentResponse.size(); i++){
             if(appointmentResponse.get(i).getCenterId().equals(centerID)){
-                System.out.println(appointmentResponse.get(i).getTime());
-                System.out.println("index:" + i);
                 array.add(appointmentResponse.get(i).getTime().format(formatter));
             }
         }
         String [] SortedAppointment = new String[array.size()];
         SortedAppointment = array.toArray(SortedAppointment);
-
         setupListView(SortedAppointment,SortedAppointment.length);
     }
 
@@ -156,29 +155,34 @@ public class DashboardGeneric_Admin extends Fragment {
             Center_dropdown.setAdapter(adapterCenter);
             return;
         }
-        /*
-        ArrayList<String> Centers = new ArrayList<String>();// sätt till enbart {}
-        Centers.add("Choose centerr");
-        for(int i=0; i< AllCenterCounties.length ;i++) { //sorts the centers depending on county
-            if (AllCenterCounties[i].equals(county)) {
-                Centers.add(AllCenters[i]);
-            }
-        }
 
-         */
         allCenters1 = cvh.getCentersObjects();
         for(int i = 0; i < AllCenters.length; i++){
             if(allCenters1.get(i).getCenterCounty().equals(county)){
                 allCenters2.add(allCenters1.get(i));
             }
         }
-        setCenter(cvh.getCentersNames(allCenters2),Center_dropdown);
+        Centers = cvh.getCentersNames(allCenters2);
+        for(int i=0; i<Centers.length;i++){
+            System.out.println("i");
+            System.out.println("i: "+i);
+            System.out.println(Centers[i]);
+            System.out.println("i");
+            System.out.println("i");
+
+        }
+        setCenter(Center_dropdown);
     }
 
-    private void setCenter(String[] Centers,Spinner Center_dropdown){
+    private void setCenter(Spinner Center_dropdown){
        // System.out.println("Center Set");
+        if(Centers.length==0){
+            Centers = new String[]{"Choose center"};
+        }
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
         Center_dropdown.setAdapter(adapterCenter);
+        Centers = new String[]{};
+
     }
 
     /*private void getUserInfoApi(){
