@@ -10,6 +10,7 @@ import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -33,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
 
     private UserResponse userResponse;
 
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        } else{
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
         i.putExtra("userInfo", userResponse);
         startActivity(i);
-        finish(); //clears page from history
+//        finish(); //clears page from history
     }
 
     private void setupButtons(){

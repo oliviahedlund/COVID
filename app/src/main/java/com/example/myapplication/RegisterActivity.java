@@ -37,6 +37,19 @@ public class RegisterActivity extends AppCompatActivity {
     EditText userCity;
     EditText userCounty;
 
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            finish();
+            return;
+        } else{
+            Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

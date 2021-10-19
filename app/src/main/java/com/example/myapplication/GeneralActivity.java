@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.CovidPassportFragment;
@@ -37,6 +39,23 @@ public class GeneralActivity extends AppCompatActivity {
     private Covid_Tracking_dashboardFragment dashFragment;
     //private String token;
 
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() == 1){
+            if(backPressedTime + 2000 > System.currentTimeMillis()){
+                finish();
+                return;
+            } else{
+                Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        } else{
+            super.onBackPressed();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +68,7 @@ public class GeneralActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).addToBackStack(null).commit();
         }
 
         //Setup Menu Bar
@@ -149,7 +168,15 @@ public class GeneralActivity extends AppCompatActivity {
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
+
+                if(getSupportFragmentManager().getBackStackEntryCount() > 1){
+                    for(int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++){
+                        getSupportFragmentManager().popBackStack();
+                    }
+                } else{
+                    getSupportFragmentManager().popBackStack();
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).addToBackStack(null).commit();
                 mDrawerLayout.closeDrawers();
                 return true;
             }
