@@ -23,7 +23,11 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.Helpers.UserAPIHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.AlertWindow;
+import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
@@ -37,7 +41,8 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 public class QRScanner extends Fragment {
     private CodeScanner mCodeScanner;
-    private PermissionToken permissionToken1;
+    private UserResponse user;
+    private UserAPIHelper userAPIHelper;
 
     @Nullable
     @Override
@@ -45,6 +50,9 @@ public class QRScanner extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         final Activity activity = getActivity();
         View view = inflater.inflate(R.layout.fragment_qr_scanner, container, false);
+        user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+        userAPIHelper = new UserAPIHelper(QRScanner.this);
+
         CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(activity, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
@@ -53,7 +61,19 @@ public class QRScanner extends Fragment {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                        userAPIHelper.API_isFullyDosed(user, new Runnable() {
+                            @Override
+                            public void run() {
+                                if(userAPIHelper.isFullyDosed()){
+                                    new AlertWindow(QRScanner.this).createAlertWindow("This user is fully vaccinated!");
+                                } else {
+                                    new AlertWindow(QRScanner.this).createAlertWindow("This user is not fully vaccinated!");
+                                }
+                                LoadingAnimation.dismissLoadingAnimation();
+                            }
+                        });
+                        LoadingAnimation.startLoadingAnimation(QRScanner.this.getActivity());
                     }
                 });
             }

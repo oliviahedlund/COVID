@@ -25,6 +25,8 @@ public class UserAPIHelper {
     private Fragment fragment;
     private UserResponse userResponse;
 
+    private Boolean FullyDosed;
+
     public UserAPIHelper(Fragment fragment){
         this.fragment = fragment;
     }
@@ -55,9 +57,42 @@ public class UserAPIHelper {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
-                Log.d("haha ", "" + t);
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_isFullyDosed(UserResponse user, Runnable runnable){
+        Call<Boolean> call = ApiClient.getUserService().isFullyDosed(user.getToken(), user.getId());
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful()){
+                    FullyDosed = response.body();
+
+                    new Handler().postDelayed(runnable, 600);
+                }
+                else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    try {
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
+                    } catch (IOException e) {
+                        new AlertWindow(fragment).createAlertWindow("Unknown error");
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
+    public Boolean isFullyDosed() {
+        return FullyDosed;
     }
 }

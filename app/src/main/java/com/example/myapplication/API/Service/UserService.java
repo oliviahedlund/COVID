@@ -35,6 +35,9 @@ public interface UserService {
         @GET("/api/User/")
         Call<UserResponse> getUser(@Header("Authorization") String authHeader);
 
+        @GET("/api/User/QR")
+        Call<Boolean> isFullyDosed(@Header("Authorization") String authHeader, @Query("UserId") String userID);
+
         @GET("/api/Appointments/Booking/")
         Call<List<Date_Time>> getDateTimes(@Header("Authorization") String authHeader, @Query("center") String center);
 
