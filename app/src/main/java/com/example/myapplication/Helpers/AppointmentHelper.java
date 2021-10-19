@@ -36,7 +36,6 @@ public class AppointmentHelper {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
-                    user.setAppointment(appointment);
                     user.getAppointment().setId(response.body());
                     new Handler().postDelayed(runnable, 600);
                 }

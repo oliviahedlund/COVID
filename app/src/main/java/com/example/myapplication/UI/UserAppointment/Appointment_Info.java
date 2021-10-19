@@ -46,27 +46,7 @@ public class Appointment_Info extends Fragment {
         centerVaccineHelper = new CenterVaccineHelper(getFragment());
         LoadingAnimation.startLoadingAnimation(getActivity());
 
-        if(user.getAppointment() != null){
-            centerVaccineHelper.API_getCenterName(getActivity(), user, new Runnable() {
-                @Override
-                public void run() {
-                    centerName = centerVaccineHelper.getCenterName();
-                    centerVaccineHelper.API_getVaccineName(getActivity(), user, new Runnable() {
-                        @Override
-                        public void run() {
-                            vaccineName = centerVaccineHelper.getVaccineName();
-                            LoadingAnimation.dismissLoadingAnimation();
-                            showViewLogics();
-                        }
-                    });
-                }
-            });
-        } else{
-            LoadingAnimation.dismissLoadingAnimation();
-            showViewLogics();
-        }
 
-        /* No need to get user again..
         UserAPIHelper userAPIHelper = new UserAPIHelper(this);
         userAPIHelper.API_getUser(user, new Runnable() {
             @Override
@@ -96,7 +76,6 @@ public class Appointment_Info extends Fragment {
         });
         LoadingAnimation.startLoadingAnimation(getActivity());
 
-         */
 
         return view;
     }
