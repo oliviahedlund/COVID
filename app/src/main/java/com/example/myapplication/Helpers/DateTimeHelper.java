@@ -14,9 +14,7 @@ import com.example.myapplication.ApiClient;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
-import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -29,13 +27,15 @@ import retrofit2.Response;
 
 public class DateTimeHelper {
     private ArrayList<ZonedDateTime> zonedDateTimeArrayList;
-    private List<Date_Time> dateTimes;
+    private List<Date_Time> dateTimesFromAPI;
+    private List<Date_Time> selectedTimes;
     private Fragment fragment;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public DateTimeHelper(Fragment fragment){
         this.fragment = fragment;
         zonedDateTimeArrayList = new ArrayList<ZonedDateTime>();
+        selectedTimes = new ArrayList<Date_Time>();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -46,9 +46,9 @@ public class DateTimeHelper {
             @Override
             public void onResponse(Call<List<Date_Time>> call, Response<List<Date_Time>> response) {
                 if (response.isSuccessful()) {
-                    dateTimes = response.body();
-                    for (int i = 0; i < dateTimes.size(); i++) {
-                        zonedDateTimeArrayList.add(dateTimes.get(i).getTime());
+                    dateTimesFromAPI = response.body();
+                    for (int i = 0; i < dateTimesFromAPI.size(); i++) {
+                        zonedDateTimeArrayList.add(dateTimesFromAPI.get(i).getTime());
                     }
                     new Handler().postDelayed(
                         runnable,600);
@@ -82,10 +82,13 @@ public class DateTimeHelper {
                 hour = zonedDateTimeArrayList.get(i).getHour();
                 minute = zonedDateTimeArrayList.get(i).getMinute();
 
+                selectedTimes.add(dateTimesFromAPI.get(i));
+
                 if(minute < 10){
                     times.add(hour + " : 0" + minute);
-                } else
+                } else{
                     times.add(hour + " : " + minute);
+                }
             }
         }
 
@@ -111,10 +114,10 @@ public class DateTimeHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public LocalTime getSelectedTime(int time){
-        return dateTimes.get(time).getTime().toLocalTime();
+        return selectedTimes.get(time).getTime().toLocalTime();
     }
 
     public int getLength(int time){
-        return dateTimes.get(time).getLength();
+        return dateTimesFromAPI.get(time).getLength();
     }
 }
