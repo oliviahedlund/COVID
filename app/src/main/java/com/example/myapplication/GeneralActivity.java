@@ -46,7 +46,6 @@ public class GeneralActivity extends AppCompatActivity {
         if(getSupportFragmentManager().getBackStackEntryCount() == 1){
             if(backPressedTime + 2000 > System.currentTimeMillis()){
                 finish();
-                return;
             } else{
                 Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
             }
@@ -169,14 +168,7 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }
 
-                if(getSupportFragmentManager().getBackStackEntryCount() > 1){
-                    for(int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++){
-                        getSupportFragmentManager().popBackStack();
-                    }
-                } else{
-                    getSupportFragmentManager().popBackStack();
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
                 mDrawerLayout.closeDrawers();
                 return true;
             }

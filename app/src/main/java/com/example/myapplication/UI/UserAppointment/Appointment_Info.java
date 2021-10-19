@@ -121,7 +121,7 @@ public class Appointment_Info extends Fragment {
                         }
                     }
                 }
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
             }
         });
         layout.setVisibility(View.VISIBLE);
