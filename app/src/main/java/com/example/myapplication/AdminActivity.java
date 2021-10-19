@@ -57,31 +57,34 @@ public class AdminActivity extends AppCompatActivity {
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
-
-            Runnable next2 = new Runnable() {
-                @Override
-                public void run() {
-                    LoadingAnimation.dismissLoadingAnimation();
-                }
-            };
-            Runnable next1 = new Runnable() {
-                @Override
-                public void run() {
-                    callVaccine(next2);
-                }
-            };
-
-            LoadingAnimation.startLoadingAnimation(this);
-            callCenter(next1);
         }
+
+        getCentersAndVaccine();
 
         //Setup Menu Bar
         setupMenuBar();
 
-
         //Setup Navigation Drawer
         setUpNavigationView();
 
+    }
+
+    private void getCentersAndVaccine() {
+        Runnable next2 = new Runnable() {
+            @Override
+            public void run() {
+                LoadingAnimation.dismissLoadingAnimation();
+            }
+        };
+        Runnable next1 = new Runnable() {
+            @Override
+            public void run() {
+                callVaccine(next2);
+            }
+        };
+
+        LoadingAnimation.startLoadingAnimation(this);
+        callCenter(next1);
     }
 
     public CenterVaccineHelper getCenterVaccineHelper() {

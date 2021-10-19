@@ -36,6 +36,9 @@ public interface UserService {
         @GET("/api/User/")
         Call<UserResponse> getUser(@Header("Authorization") String authHeader);
 
+        @GET("/api/User/Manage")
+        Call<UserResponse> getUserById(@Header("Authorization") String authHeader,@Query("UserId") String userId);
+
 
         // APPOINTMENTS  //
         @GET("/api/Appointments/Booking/")
@@ -58,6 +61,12 @@ public interface UserService {
 
         @GET("/api/Appointments/Booking/Manage/Extra")
         Call<List<AppointmentRequest>> getAppointments(@Header("Authorization") String authHeader, @Query("GetPrior") Boolean getPrior);
+
+        @POST("/api/Appointments/Booking/Manage/Extra")
+        Call<Void> postValidation(@Header("Authorization") String authHeader, @Query("AppointmentId") String appointmentId);
+
+        @DELETE("/api/Appointments/Booking/Manage")
+        Call<Void> cancelAppointment(@Header("Authorization") String authHeader, @Query("UserId") String userId);
 
 
         // CENTER //

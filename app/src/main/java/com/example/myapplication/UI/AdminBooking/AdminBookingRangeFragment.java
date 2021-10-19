@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.AdminActivity;
+import com.example.myapplication.Helpers.TimeFormatHelper;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.Helpers.AdminBookingHelper;
@@ -83,11 +84,28 @@ public class AdminBookingRangeFragment extends Fragment {
         if(!validInput()){
             return;
         }
-        LoadingAnimation.startLoadingAnimation(getActivity());
-
         TextView errorMsg= view.findViewById(R.id.errorMsg);
         errorMsg.setText("");
 
+        LoadingAnimation.startLoadingAnimation(getActivity());
+
+        setupRangeRequest();
+
+        Runnable onPostResponse = new Runnable() {
+            @Override
+            public void run() {
+                LoadingAnimation.dismissLoadingAnimation();
+                Fragment newFragment = new AdminBookingRangeFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                new AlertWindow(AdminBookingRangeFragment.this).createAlertWindow(getActivity().getResources().getString(R.string.rangeAdd));
+            }
+        };
+        adminBookingAPI.PostBookingRange(getActivity(), user, postRangeRequest, onPostResponse);
+
+
+    }
+
+    private void setupRangeRequest() {
         EditText etMinutes = view.findViewById(R.id.appMinutes);
         int minutes = Integer.parseInt(etMinutes.getText().toString());
 
@@ -98,17 +116,6 @@ public class AdminBookingRangeFragment extends Fragment {
         postRangeRequest.setTimePerAppointmentMinutes(minutes);
         postRangeRequest.setStartDateTime(convertDateInput(0));
         postRangeRequest.setEndDateTime(convertDateInput(5));
-
-        Runnable next = new Runnable() {
-            @Override
-            public void run() {
-                LoadingAnimation.dismissLoadingAnimation();
-                Fragment newFragment = new AdminBookingRangeFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
-                new AlertWindow(AdminBookingRangeFragment.this).createAlertWindow(getActivity().getResources().getString(R.string.rangeAdd));
-            }
-        };
-        adminBookingAPI.PostBookingRange(getActivity(), user, postRangeRequest, next);
     }
 
     private boolean validInput() {
@@ -164,7 +171,7 @@ public class AdminBookingRangeFragment extends Fragment {
         for (int i = 0; i < 5; i++) {
             dateList[i] = Integer.parseInt(editTextsDate.get(startIndex+i).getText().toString());
         }
-        return adminBookingAPI.convertTimeToZoneDateTime(dateList);
+        return TimeFormatHelper.convertTimeToZoneDateTime(dateList);
 
     }
 

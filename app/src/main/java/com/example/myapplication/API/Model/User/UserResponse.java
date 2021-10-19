@@ -11,7 +11,7 @@ public class UserResponse implements Serializable {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String birthDate;
+    private ZonedDateTime birthDate;
     private String address;
     private String address2;
     private String city;
@@ -116,11 +116,11 @@ public class UserResponse implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getBirthDate() {
+    public ZonedDateTime getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(ZonedDateTime birthDate) {
         this.birthDate = birthDate;
     }
 

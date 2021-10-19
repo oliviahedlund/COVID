@@ -1,7 +1,6 @@
 package com.example.myapplication.UI.Covid_Passport;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.GeneralActivity;
+import com.example.myapplication.Helpers.TimeFormatHelper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -21,6 +21,8 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import com.example.myapplication.R;
+
+import java.time.ZonedDateTime;
 
 /*
  * A simple {@link Fragment} subclass.
@@ -30,7 +32,7 @@ import com.example.myapplication.R;
 public class covidPassportFragment extends Fragment {
     private String id;
     private String fullname;
-    private String birthDate;
+    private ZonedDateTime birthDate;
     private TextView userName;
     private TextView userBirthDate;
     //private ImageView qr;
@@ -53,7 +55,7 @@ public class covidPassportFragment extends Fragment {
         userName = (TextView) view.findViewById(R.id.name);
         userName.setText(fullname);
         userBirthDate = (TextView) view.findViewById(R.id.birth_date);
-        userBirthDate.setText(birthDate.substring(0,10));
+        userBirthDate.setText(TimeFormatHelper.yearMonthDay(birthDate));
 
         if(!id.isEmpty()){
             //initialize multiformatwriter

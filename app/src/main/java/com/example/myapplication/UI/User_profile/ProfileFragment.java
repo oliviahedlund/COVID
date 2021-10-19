@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.Helpers.TimeFormatHelper;
 import com.example.myapplication.R;
 
 
@@ -44,7 +45,7 @@ public class ProfileFragment extends Fragment {
        pPhone.setText(": " + response.getPhoneNumber());
 
        TextView pBirth = (TextView) view.findViewById(R.id.profileBirth);
-       pBirth.setText(": " + response.getBirthDate().substring(0,10));
+       pBirth.setText(": " + TimeFormatHelper.yearMonthDay(response.getBirthDate()));
 
        TextView pAdress = (TextView) view.findViewById(R.id.profileAdress);
        pAdress.setText(": " + response.getAddress());

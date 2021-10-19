@@ -26,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CenterVaccineHelper implements Serializable {
+public class CenterVaccineHelper {
     private List<Center> centers;
     private Center center;
     private Vaccine vaccine;
@@ -187,6 +187,15 @@ public class CenterVaccineHelper implements Serializable {
 
     public String getSelectedVaccine(int vaccine){
         return centers.get(selectedCenter).getVaccines().get(vaccine).getVaccineId();
+    }
+
+    public String getCenterNameFromId(String id){
+        for (Center c: centers) {
+            if(id.equals(c.getCenterId())){
+                return c.getCenterName();
+            }
+        }
+        return null;
     }
 
     public String getCenterName() {

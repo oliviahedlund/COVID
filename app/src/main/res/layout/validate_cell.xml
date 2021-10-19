@@ -25,7 +25,6 @@
             android:paddingEnd="@dimen/mediumPadding">
 
             <TextView
-                android:id="@+id/textView36"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -33,7 +32,6 @@
                 android:textAlignment="textEnd" />
 
             <TextView
-                android:id="@+id/textView37"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -41,11 +39,16 @@
                 android:textAlignment="textEnd" />
 
             <TextView
-                android:id="@+id/textView32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Name:"
+                android:textAlignment="textEnd" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Birthdate:"
                 android:textAlignment="textEnd" />
 
         </LinearLayout>
@@ -73,6 +76,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="*Olivia Hedlund*" />
+
+            <TextView
+                android:id="@+id/tvBirthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*1999-08-31*" />
         </LinearLayout>
 
     </LinearLayout>

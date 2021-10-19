@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
-import com.example.myapplication.Helpers.TimeStringHelper;
+import com.example.myapplication.Helpers.TimeFormatHelper;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -41,6 +41,10 @@ public class ValidateAppointmentAdapter extends RecyclerView.Adapter<ValidateApp
         return appointmentIdList.get(index);
     }
 
+    public AppointmentRequest getAppointment(int index){
+        return array.get(index);
+    }
+
     public void setAll(boolean bool){
         for (int i = 0; i < validateCellList.size(); i++) {
             validateCellList.get(i).checkBox.setChecked(bool);
@@ -60,9 +64,10 @@ public class ValidateAppointmentAdapter extends RecyclerView.Adapter<ValidateApp
         validateCellList.add(position,holder);
         appointmentIdList.add(position,array.get(position).getId());
 
-        holder.appointment.setText(TimeStringHelper.yearMonthDayTime(array.get(position).getTime()));
-        holder.center.setText(array.get(position).getCenterId());
-        holder.name.setText(array.get(position).getUserId());
+        holder.appointment.setText(TimeFormatHelper.yearMonthDayTime(array.get(position).getTime()));
+        holder.center.setText(array.get(position).getCenterName());
+        holder.name.setText(array.get(position).getUserOfAppointment().getFirstName() + " " + array.get(position).getUserOfAppointment().getLastName());
+        holder.birthDate.setText(TimeFormatHelper.yearMonthDay(array.get(position).getUserOfAppointment().getBirthDate()));
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -83,6 +88,7 @@ public class ValidateAppointmentAdapter extends RecyclerView.Adapter<ValidateApp
         TextView appointment;
         TextView center;
         TextView name;
+        TextView birthDate;
         CheckBox checkBox;
 
         public ValidateCell(@NonNull View itemView) {
@@ -90,6 +96,7 @@ public class ValidateAppointmentAdapter extends RecyclerView.Adapter<ValidateApp
             appointment = itemView.findViewById(R.id.tvAppointment);
             center = itemView.findViewById(R.id.tvCenter);
             name = itemView.findViewById(R.id.tvName);
+            birthDate = itemView.findViewById(R.id.tvBirthDate);
             checkBox = itemView.findViewById(R.id.checkBox);
             itemView.setOnClickListener(this);
 
