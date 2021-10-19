@@ -49,7 +49,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private AdminActivity activity;
     private UserResponse user;
     private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
-    private List<UserNumberResponse> userNumberResponse;
+    private int userNumberResponse;
     private CenterVaccineHelper cvh ;
     private String[] AllCenters;
     private String[] AllCenterCounties;
@@ -68,7 +68,6 @@ public class DashboardGeneric_Admin extends Fragment {
         user = activity.getUserData();
         getAppointmentApi();
         getUserNumberApi();
-        NumberOfUsers(2);
         setupDropdownMenus();
         return view;
     }
@@ -87,7 +86,6 @@ public class DashboardGeneric_Admin extends Fragment {
         County_dropdown.setAdapter(adapterCounty);
         Center_dropdown.setAdapter(adapterCenter);
         Date_dropdown.setAdapter(adapterDate);
-
         County_dropdown.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -112,21 +110,22 @@ public class DashboardGeneric_Admin extends Fragment {
                     }
                 });
         Center_dropdown.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-                  @RequiresApi(api = Build.VERSION_CODES.O)
-                  public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
-                      if(allCenters2.size()==0){}
-                      else{
-                          String centerID = allCenters2.get(pos).getCenterId(); //get the ID of the chosen center
-                          //Object CenterItem = parent.getItemAtPosition(pos);
-                          //System.out.println(CenterItem.toString());     //prints the text in spinner item.
-                          //System.out.println(centerID);
-                          getAppointments(centerID);
-                      }
+            new AdapterView.OnItemSelectedListener() {
+              @RequiresApi(api = Build.VERSION_CODES.O)
+              public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) { // här ska funktion kallas på så att appointments sorteras och displayas beroende på center
+                  if(allCenters2.size()==0){}
+                  else{
+                      String centerID = allCenters2.get(pos).getCenterId(); //get the ID of the chosen center
+                      //Object CenterItem = parent.getItemAtPosition(pos);
+                      //System.out.println(CenterItem.toString());     //prints the text in spinner item.
+                      //System.out.println(centerID);
+                      getAppointments(centerID);
                   }
-                  public void onNothingSelected(AdapterView<?> parent) {
-                  }
-                });
+              }
+              public void onNothingSelected(AdapterView<?> parent) {
+              }
+            }
+        );
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -149,13 +148,11 @@ public class DashboardGeneric_Admin extends Fragment {
 
     private void getCenters(String county,Spinner Center_dropdown){
         if(county.equals("Choose county")){
-            //System.out.println("Default choice (choose county)");
             CenterItems = new String[]{"Choose center"};
             ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
             Center_dropdown.setAdapter(adapterCenter);
             return;
         }
-
         allCenters1 = cvh.getCentersObjects();
         for(int i = 0; i < AllCenters.length; i++){
             if(allCenters1.get(i).getCenterCounty().equals(county)){
@@ -175,14 +172,12 @@ public class DashboardGeneric_Admin extends Fragment {
     }
 
     private void setCenter(Spinner Center_dropdown){
-       // System.out.println("Center Set");
         if(Centers.length==0){
             Centers = new String[]{"Choose center"};
         }
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
         Center_dropdown.setAdapter(adapterCenter);
         Centers = new String[]{};
-
     }
 
     /*private void getUserInfoApi(){
@@ -191,37 +186,35 @@ public class DashboardGeneric_Admin extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getUserNumberApi(){
-        Call<List<UserNumberResponse>> UserNumberCall = ApiClient.getUserService().numberOfUsersCall(user.getToken());
-        UserNumberCall.enqueue(new Callback<List<UserNumberResponse>>(){
+        Call<Integer> UserNumberCall = ApiClient.getUserService().numberOfUsersCall(user.getToken()); //Förbi här kommer vi
+        UserNumberCall.enqueue(new Callback<Integer>(){
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onResponse(Call<List<UserNumberResponse>> call, Response<List<UserNumberResponse>> response) {
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
                 //errorhandling
-                System.out.println("HEJEHEHEJEJEJEH**************************************");
                 if (response.isSuccessful()) {
                     userNumberResponse = response.body(); //i userResponse ligger all information om användaren
-                    if(userNumberResponse.size() > 0) {
+                    if(userNumberResponse > 0) {
+                        System.out.println("userNumberResponse = " + userNumberResponse);
+                        NumberOfUsers(userNumberResponse);
                     }
                     else System.out.println("Empty appointmentResponse");
                 }else{ //Unsuccessful response
                     Toast.makeText(activity,"Number of users error", Toast.LENGTH_LONG).show();
                     System.out.println("Fail - else");
                 }
-
-
             }
             @Override
-            public void onFailure(Call<List<UserNumberResponse>> call, Throwable t) {
+            public void onFailure(Call<Integer> call, Throwable t) {
                 Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
             }
         });
     }
 
-    private void NumberOfUsers(int UsersRegistered){ //sets textview to the number of users registered (from getNumberOfUsersApi)
+    private void NumberOfUsers(int UsersRegistered){ //sets textview to the number of users registered (from getUserNumberApi)
         nrOfUsers = (TextView) view.findViewById(R.id.NumberOfUsers);
-        nrOfUsers.setText("Number of Users: "+UsersRegistered);
-
+        nrOfUsers.setText("Number of Users: " + UsersRegistered);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -235,15 +228,6 @@ public class DashboardGeneric_Admin extends Fragment {
                 if (response.isSuccessful()) {
                     appointmentResponse = response.body(); //i userResponse ligger all information om användaren
                     if(appointmentResponse.size() > 0) {
-                       /* System.out.println("Size: " + appointmentResponse.size());
-                        System.out.println("ID: " + appointmentResponse.get(0).getId());
-                        System.out.println("User ID: " + appointmentResponse.get(0).getUserId());
-                        System.out.println("Center ID: " + appointmentResponse.get(0).getCenterId());
-                        System.out.println("Vaccine ID: " + appointmentResponse.get(0).getVaccineId());
-                        System.out.println("Time: " + appointmentResponse.get(0).getTime());
-                        System.out.println("Length: " + appointmentResponse.get(0).getLength());
-
-                        */
                     }
                     else System.out.println("Empty appointmentResponse");
                 }else{
@@ -265,7 +249,6 @@ public class DashboardGeneric_Admin extends Fragment {
         //makes an arraylist of custom datatype
         ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
         DashboardGeneric_Cell[] cells = new DashboardGeneric_Cell[appointmentResponse.size()];//appointmentResponse.size()
-
         //for loop that adds times from api call to a list
         for(int i =0; i<size; i++){ //appointmentResponse.size()
             cells[i] = new DashboardGeneric_Cell(SortedAppointments[i]); //appointmentResponse.get(i).getTime()
@@ -274,7 +257,6 @@ public class DashboardGeneric_Admin extends Fragment {
         }
         // DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
         //app_list.add(matt0);
-
         //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(AppAdapter);
