@@ -118,6 +118,6 @@ public class DateTimeHelper {
     }
 
     public int getLength(int time){
-        return dateTimesFromAPI.get(time).getLength();
+        return selectedTimes.get(time).getLength();
     }
 }
