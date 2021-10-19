@@ -50,8 +50,6 @@ public interface UserService {
         @GET("/api/User/Manage")
         Call<UserInfo> getUserInfoAll(@Header("Authorization") String authHeader, @Query("UserId") String UserId);
 
-        @GET("/api/User/Admin")
-        Call<Integer> NumberOfUsersCall(@Header("Authorization") String authHeader, @Query("UserId") String UserId);
 
 
 }

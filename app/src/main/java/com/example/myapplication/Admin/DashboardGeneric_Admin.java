@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ import retrofit2.Response;
 
 public class DashboardGeneric_Admin extends Fragment {
     private ListView appointments;
+    private TextView nrOfUsers;
     private String[] CountyItems = new String[]{"Choose county","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
             "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala",
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
@@ -68,8 +70,7 @@ public class DashboardGeneric_Admin extends Fragment {
     }
 
     private void setupDropdownMenus(){ // sets up the dropdown menues
-        //Setup spinners
-        Spinner County_dropdown = (Spinner) view.findViewById(R.id.spinner1);
+        Spinner County_dropdown = (Spinner) view.findViewById(R.id.spinner1); //set up spinners
         Spinner Center_dropdown = (Spinner) view.findViewById(R.id.spinner2);
         Spinner Date_dropdown = (Spinner) view.findViewById(R.id.spinner3);
 
@@ -122,6 +123,7 @@ public class DashboardGeneric_Admin extends Fragment {
                   }
                 });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getAppointments(String centerID){
         List<String> array = new ArrayList<String>();
@@ -215,8 +217,14 @@ public class DashboardGeneric_Admin extends Fragment {
 
      */
 
+    private void NumberOfUsers(int UsersRegistered){ //sets textview to the number of users registered (from getNumberOfUsersApi)
+        nrOfUsers = (TextView) view.findViewById(R.id.NumberOfUsers);
+        nrOfUsers.setText("Number of Users: "+UsersRegistered);
+
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void getAppointmentApi(){
+    private void getAppointmentApi(){ //calls Api for all booked appointments in the database
         Call<List<AppointmentResponse>> appointmentResponseCall = ApiClient.getUserService().getAllAppointments(user.getToken(), false);
         appointmentResponseCall.enqueue(new Callback<List<AppointmentResponse>>() {
             @RequiresApi(api = Build.VERSION_CODES.O) // OLD - Delete
