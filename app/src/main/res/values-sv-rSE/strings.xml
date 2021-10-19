@@ -412,5 +412,6 @@
     <string name="cameraPermissionSettings">Vänligen tillåt detta tillstånd från sidan med appinställningar.</string>
     <string name="goToSettingsButton">Gå till inställningar</string>
     <string name="allow">Tillåt</string>
+    <string name="scan">Skanna</string>
 </resources>
 

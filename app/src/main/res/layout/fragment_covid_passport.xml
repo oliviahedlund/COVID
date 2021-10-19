@@ -14,7 +14,7 @@
         android:id="@+id/scanner"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="Scan"
+        android:text="@string/scan"
         android:textSize="25sp"
         app:backgroundTint="#3F51B5"
         />

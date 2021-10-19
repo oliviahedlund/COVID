@@ -430,6 +430,7 @@
     <string name="cameraPermissionSettings">Please allow this permission from app settings page.</string>
     <string name="goToSettingsButton">Go to settings</string>
     <string name="allow">Allow</string>
+    <string name="scan">Scan</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
