@@ -76,7 +76,7 @@ public class CovidPassportFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 QRScanner qrScanner = new QRScanner();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, qrScanner).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, qrScanner).addToBackStack(null).commit();
             }
         });
     }
