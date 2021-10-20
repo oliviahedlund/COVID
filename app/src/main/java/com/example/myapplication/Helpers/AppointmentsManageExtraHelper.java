@@ -90,7 +90,7 @@ public class AppointmentsManageExtraHelper {
                 }
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment).createAlertWindow("Get Appointments Failed");
+                    new AlertWindow(fragment).createAlertWindow(fragment.getString(R.string.getAppFail));
 
                 }
             }
@@ -113,7 +113,7 @@ public class AppointmentsManageExtraHelper {
                 }
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
-                    new AlertWindow(fragment).createAlertWindow("Set Validation Failed");
+                    new AlertWindow(fragment).createAlertWindow(fragment.getString(R.string.setValidFail));
                 }
             }
 

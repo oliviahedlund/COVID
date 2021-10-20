@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,9 +15,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
+import com.example.myapplication.UI.Covid_Passport.CovidPassportFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
 import com.example.myapplication.UI.FAQ;
 import com.example.myapplication.UI.SettingsFragment;
@@ -37,6 +39,22 @@ public class GeneralActivity extends AppCompatActivity {
     private Covid_Tracking_dashboardFragment dashFragment;
     //private String token;
 
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() == 1){
+            if(backPressedTime + 2000 > System.currentTimeMillis()){
+                finish();
+            } else{
+                Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        } else{
+            super.onBackPressed();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +67,7 @@ public class GeneralActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).addToBackStack(null).commit();
         }
 
         //Setup Menu Bar
@@ -113,7 +131,6 @@ public class GeneralActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(MainActivity.class);
                 finish();
             }
         });
@@ -134,7 +151,7 @@ public class GeneralActivity extends AppCompatActivity {
                         newFragment = new Appointment_Info(); break;
 
                     case R.id.nav_covidpassport:
-                        newFragment = new covidPassportFragment();
+                        newFragment = new CovidPassportFragment();
                         break;
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
@@ -149,6 +166,7 @@ public class GeneralActivity extends AppCompatActivity {
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
                 mDrawerLayout.closeDrawers();
                 return true;

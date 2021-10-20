@@ -5,6 +5,7 @@
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
     <string name="dateOfBirth">Födelsedag</string>
+    <string name="unknownError">Okänt fel</string>
 
     <!--not used?-->
     <string name="generate">Generera tillgängliga tider</string>
@@ -58,6 +59,34 @@
     <string name="startdate">Startdatum</string>
     <string name="enddate">Slutdatum</string>
     <string name="publishTimes">Publicera Tider</string>
+    <!--admin sched: error messages-->
+    <string name="noCenter">Inget center valt</string>
+    <string name="noAges">Inga åldersgrupper valda</string>
+    <string name="noDays">Inga dagar valda</string>
+    <string name="appShort">Tidsbokning för kort</string>
+    <string name="notInt">Minut-input felaktig</string>
+    <string name="startEndDate">Ej korrekt start- och/eller slutdatum</string>
+    <string name="endDateAfter">Slutdatum måste vara efter startdatum</string>
+    <string name="startFuture">Startdatum måste vara i framtiden</string>
+    <string name="rangeAdd">Intervall tillagt</string>
+    <string name="conflictRange">Intervall ej tillagt: Ett motstridande intervall kan finnas, prova ett annat</string>
+
+    <!--admin validate-->
+    <string name="validTitle">Bokningsuppföljning</string>
+    <string name="checkAll">Markera alla</string>
+    <string name="uncheckAll">Avmarkera alla</string>
+    <string name="allCenters">Alla center</string>
+    <string name="appValid">Bokningar bekräftade</string>
+    <string name="appInvalid">Bokningar ogiltigförklarade</string>
+    <string name="getAppFail">Hämtning av bokningar misslyckades</string>
+    <string name="setValidFail">Bekräftning av bokningar misslyckades</string>
+    <string name="appointmentSemi">Tidsbokning:</string>
+    <string name="nameSemi">Namn:</string>
+    <string name="birthSemi">Födelsedatum:</string>
+    <string name="nothingToShow">Inget att visa</string>
+    <string name="validate">Bekräfta bokningar</string>
+    <string name="invalidate">Ogiltigförklara bokningar</string>
+
 
     <!--add centers-->
     <string name="addCenters">Lägg till nya center</string>
@@ -124,6 +153,7 @@
     <string name="time">Tid</string>
     <string name="confirm">Klar</string>
     <string name="cancel">Avbryt</string>
+    <string name="reset">Gör Om</string>
     <string name="chooseDate">Välj ett datum</string>
     <string name="chooseDay">välj en dag</string>
 
@@ -393,15 +423,15 @@
 
     <string name="emptyQuestionnaire">Du har inte fyllt i en hälsodeklaration</string>
     <string name="emptyAppointment">Du har ingen bokning just nu</string>
-    <string name="noCenter">Inget center valt</string>
-    <string name="noAges">Inga åldersgrupper valda</string>
-    <string name="noDays">Inga dagar valda</string>
-    <string name="appShort">Tidsbokning för kort</string>
-    <string name="notInt">Minut-input felaktig</string>
-    <string name="startEndDate">Ej korrekt start- och/eller slutdatum</string>
-    <string name="endDateAfter">Slutdatum måste vara efter startdatum</string>
-    <string name="startFuture">Startdatum måste vara i framtiden</string>
-    <string name="conflictRange">Intervall ej tillagt: Ett motstridande intervall kan finnas, prova ett annat</string>
-    <string name="rangeAdd">Intervall tillagt</string>
+
+    <string name="fullyVaccinated">Yes, this user is fully vaccinated!Ja, användaren är fullt vaccinerad!</string>
+    <string name="notFullyVaccinated">Oj, användare är inte fullt vaccinerad!</string>
+
+    <string name="cameraPermissionTitle">Kamera tillstånd</string>
+    <string name="cameraPermissionMessage">Vänligen tillåt detta tillstånd för att aktivera kamera för skanning.</string>
+    <string name="cameraPermissionSettings">Vänligen tillåt detta tillstånd från sidan med appinställningar.</string>
+    <string name="goToSettingsButton">Gå till inställningar</string>
+    <string name="allow">Tillåt</string>
+    <string name="scan">Skanna</string>
 </resources>
 

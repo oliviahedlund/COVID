@@ -28,27 +28,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Appointment:"
+                android:text="@string/appointmentSemi"
                 android:textAlignment="textEnd" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Center:"
+                android:text="@string/centerSemi"
                 android:textAlignment="textEnd" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name:"
+                android:text="@string/nameSemi"
                 android:textAlignment="textEnd" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Birthdate:"
+                android:text="@string/birthSemi"
                 android:textAlignment="textEnd" />
 
         </LinearLayout>

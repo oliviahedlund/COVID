@@ -5,19 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Covid_Passport.covidPassportFragment">
+    tools:context=".UI.Covid_Passport.CovidPassportFragment"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center_horizontal"
-    tools:context=".covidPassportFragment">
+    android:gravity="center_horizontal">
 
     <Button
+        android:id="@+id/scanner"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="Vaccine Passport"
+        android:text="@string/scan"
         android:textSize="25sp"
         app:backgroundTint="#3F51B5"
-
         />
 
 

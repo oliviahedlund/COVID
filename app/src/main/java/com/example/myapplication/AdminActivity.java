@@ -137,6 +137,7 @@ public class AdminActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void setUpNavigationView() {
@@ -154,8 +155,6 @@ public class AdminActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

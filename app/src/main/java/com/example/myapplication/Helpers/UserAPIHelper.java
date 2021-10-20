@@ -29,6 +29,8 @@ public class UserAPIHelper {
     private UserResponse[] userResponseList;
     private int counter;
 
+    private Boolean FullyDosed;
+
     public UserAPIHelper(Fragment fragment){
         this.fragment = fragment;
         counter = 0;
@@ -64,7 +66,7 @@ public class UserAPIHelper {
                     try {
                         new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
                     } catch (IOException e) {
-                        new AlertWindow(fragment).createAlertWindow("Unknown error");
+                        new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.unknownError));
                         e.printStackTrace();
                     }
                 }
@@ -84,14 +86,13 @@ public class UserAPIHelper {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
-                    System.out.println("can book response");
                 }
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
                     try {
                         new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
                     } catch (IOException e) {
-                        new AlertWindow(fragment).createAlertWindow("Unknown error");
+                        new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.unknownError));
                         e.printStackTrace();
                     }
                 }
@@ -116,12 +117,41 @@ public class UserAPIHelper {
                 if(response.isSuccessful()){
                     counter = counter+1;
                     userResponseList[index] = response.body();
-                    System.out.println("Response recieved");
 
                     //when all users have been retrieved, to do next:
                     if(counter == userResponseList.length) {
                         new Handler().postDelayed(runnable, 600);
                     }
+                }
+                else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    try {
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
+                    } catch (IOException e) {
+                        new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.unknownError));
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void API_isFullyDosed(UserResponse user, Runnable runnable){
+        Call<Boolean> call = ApiClient.getUserService().isFullyDosed(user.getToken(), user.getId());
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful()){
+                    FullyDosed = response.body();
+
+                    new Handler().postDelayed(runnable, 600);
                 }
                 else{
                     LoadingAnimation.dismissLoadingAnimation();
@@ -135,12 +165,14 @@ public class UserAPIHelper {
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<Boolean> call, Throwable t) {
                 LoadingAnimation.dismissLoadingAnimation();
-                Log.d("haha ", "" + t);
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
     }
 
+    public Boolean isFullyDosed() {
+        return FullyDosed;
+    }
 }

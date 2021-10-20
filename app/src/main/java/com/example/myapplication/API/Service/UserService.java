@@ -36,6 +36,9 @@ public interface UserService {
         @GET("/api/User/")
         Call<UserResponse> getUser(@Header("Authorization") String authHeader);
 
+        @GET("/api/User/QR")
+        Call<Boolean> isFullyDosed(@Header("Authorization") String authHeader, @Query("UserId") String userID);
+
         @GET("/api/User/Manage")
         Call<UserResponse> getUserById(@Header("Authorization") String authHeader,@Query("UserId") String userId);
 
@@ -81,7 +84,7 @@ public interface UserService {
 
         @POST("/api/Center")
         Call<String> postCenter(@Header("Authorization") String authHeader, @Body Center center);
-
+        
         @POST("/api/Center/Vaccines")
         Call<String> postCenterVaccine(@Header("Authorization") String authHeader, @Query("center") String centerID, @Body List<Vaccine> vaccines);
 

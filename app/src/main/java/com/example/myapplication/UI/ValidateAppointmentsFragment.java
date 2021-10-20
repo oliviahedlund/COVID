@@ -72,7 +72,7 @@ public class ValidateAppointmentsFragment extends Fragment {
 
     private void setupCenterDropdown() {
         String[] centers = new String[centerVaccineHelper.getCenters().length+1];
-        centers[0] = "All centers";
+        centers[0] = getActivity().getResources().getString(R.string.allCenters);
         String[] centerTemp = centerVaccineHelper.getCenters();
         for (int i = 0; i < centerTemp.length; i++) {
             centers[i+1] = centerTemp[i];
@@ -164,8 +164,11 @@ public class ValidateAppointmentsFragment extends Fragment {
     private void setupEmptyView(){
         TextView noAppointments = view.findViewById(R.id.noAppointments);
         noAppointments.setVisibility(View.VISIBLE);
+
         Button validateButton = view.findViewById(R.id.validateButton);
         validateButton.setClickable(false);
+        Button invalidateButton = view.findViewById(R.id.invalidateButton);
+        invalidateButton.setClickable(false);
         CheckBox checkAll = view.findViewById(R.id.checkBoxAll);
         checkAll.setClickable(false);
 
@@ -178,8 +181,9 @@ public class ValidateAppointmentsFragment extends Fragment {
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validationProcess();
-
+                if(!getCheckedList().isEmpty()) {
+                    validationProcess();
+                }
             }
         });
 
@@ -187,7 +191,9 @@ public class ValidateAppointmentsFragment extends Fragment {
         invalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                invalidationProcess();
+                if(!getCheckedList().isEmpty()) {
+                    validationProcess();
+                }
             }
         });
     }
@@ -214,10 +220,10 @@ public class ValidateAppointmentsFragment extends Fragment {
     private void postChecked(boolean isValid, AppointmentRequest appointment, int size){
         String msg;
         if(isValid){
-            msg = "Appointments Validated";
+            msg = getActivity().getResources().getString(R.string.appValid);
         }
         else {
-            msg = "Appointments Invalidated";
+            msg = getActivity().getResources().getString(R.string.appInvalid);
         }
 
         Runnable onResponse = new Runnable() {
@@ -274,10 +280,10 @@ public class ValidateAppointmentsFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 adapter.setAll(isChecked);
                 if(isChecked){
-                    checkBoxAll.setText("Uncheck all");
+                    checkBoxAll.setText(R.string.uncheckAll);
                 }
                 else{
-                    checkBoxAll.setText("Check all");
+                    checkBoxAll.setText(R.string.checkAll);
                 }
             }
         });

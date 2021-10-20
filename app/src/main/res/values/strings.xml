@@ -5,6 +5,8 @@
     <string name="no">No</string>
     <string name="Email" translatable="false">Email</string>
     <string name="dateOfBirth">Date of Birth</string>
+    <string name="unknownError">Unknown error</string>
+
 
     <!--not used?-->
     <string name="generate">Generate avalible times</string>
@@ -74,6 +76,24 @@
     <string name="rangeAdd">Range added</string>
     <string name="conflictRange">Range not added: a conflicting range may exist, try other one</string>
 
+    <!--admin validate-->
+    <string name="validTitle">Appointment Follow-Up</string>
+    <string name="checkAll">Check all</string>
+    <string name="uncheckAll">Uncheck all</string>
+    <string name="allCenters">All centers</string>
+    <string name="appValid">Appointments validated</string>
+    <string name="appInvalid">Appointments invalidated</string>
+    <string name="getAppFail">Get appointments failed</string>
+    <string name="setValidFail">Set validation failed</string>
+    <string name="appointmentSemi">Appointment:</string>
+    <string name="centerSemi" translatable="false">Center:</string>
+    <string name="nameSemi">Name:</string>
+    <string name="birthSemi">Birthdate:</string>
+    <string name="nothingToShow">Nothing to show</string>
+    <string name="validate">Validate Appointments</string>
+    <string name="invalidate">Invalidate Appointments</string>
+
+
     <!--add centers-->
     <string name="addCenters">Add New Centers</string>
     <string name="centerName">Center Name:</string>
@@ -140,6 +160,7 @@
     <string name="time">Time</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
     <string name="chooseDate">Choose a date</string>
     <string name="chooseDay">Choose a day</string>
 
@@ -423,5 +444,13 @@
         </item>
     </string-array>
 
+    <string name="fullyVaccinated">Yes, this user is fully vaccinated!</string>
+    <string name="notFullyVaccinated">Sorry, this user is not fully vaccinated!</string>
+    <string name="cameraPermissionTitle">Camera permission</string>
+    <string name="cameraPermissionMessage">Please allow this permission to enable camera for scanning.</string>
+    <string name="cameraPermissionSettings">Please allow this permission from app settings page.</string>
+    <string name="goToSettingsButton">Go to settings</string>
+    <string name="allow">Allow</string>
+    <string name="scan">Scan</string>
 
 </resources>

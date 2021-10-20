@@ -13,11 +13,23 @@
 
 
     <TextView
+        android:id="@+id/noAppointments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/nothingToShow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <TextView
         android:id="@+id/textView22"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/smallPadding"
-        android:text="Validate Appointment Followtrough"
+        android:text="@string/validTitle"
         android:textSize="@dimen/title"
         app:layout_constraintBottom_toTopOf="@id/checkBoxAll"
         app:layout_constraintEnd_toStartOf="@id/recViewValidate"
@@ -29,7 +41,7 @@
         android:id="@+id/checkBoxAll"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Check all"
+        android:text="@string/checkAll"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintEnd_toStartOf="@id/centerDropDown"
@@ -60,17 +72,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/noAppointments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nothing to show"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/validateButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkBoxAll" />
-
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
@@ -95,7 +96,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Validate Appointments"
+        android:text="@string/validate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/invalidateButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +107,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Invalidate appointments"
+        android:text="@string/invalidate"
         app:backgroundTint="@color/mdtp_light_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
