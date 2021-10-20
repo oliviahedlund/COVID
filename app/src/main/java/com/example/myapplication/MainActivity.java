@@ -139,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     errorText.setText("wrong email or parrsord");
                     System.out.println("Hantera fel");
+                    LoadingAnimation.dismissLoadingAnimation();
                 }
-                LoadingAnimation.dismissLoadingAnimation();
             }
         };
 
@@ -158,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         i.putExtra("userInfo", userResponse);
+        LoadingAnimation.dismissLoadingAnimation();
         startActivity(i);
+        userEmail.setText("");
+        userPassword.setText("");
 //        finish(); //clears page from history
     }
 
