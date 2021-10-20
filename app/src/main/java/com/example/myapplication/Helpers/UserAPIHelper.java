@@ -78,6 +78,34 @@ public class UserAPIHelper {
         });
     }
 
+    public void API_manageUser(UserResponse user, String userId, boolean canBook){
+        Call<Void> call = ApiClient.getUserService().manageUser(user.getToken(), userId, canBook);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    System.out.println("can book response");
+                }
+                else{
+                    LoadingAnimation.dismissLoadingAnimation();
+                    try {
+                        new AlertWindow(fragment).createAlertWindow(response.errorBody().string());
+                    } catch (IOException e) {
+                        new AlertWindow(fragment).createAlertWindow("Unknown error");
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                LoadingAnimation.dismissLoadingAnimation();
+                new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
+            }
+        });
+    }
+
+
     //gets a user from ID and puts it in a list at a given index position
     //must first init list size: initUserListSize
     public void API_getUsersById(UserResponse user, int index, String userId, Runnable runnable){

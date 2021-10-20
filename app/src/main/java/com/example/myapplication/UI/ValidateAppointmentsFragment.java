@@ -200,18 +200,18 @@ public class ValidateAppointmentsFragment extends Fragment {
 
     }
 
-    private List<String> getCheckedList(){
+    private List<AppointmentRequest> getCheckedList(){
         boolean[] valList = adapter.getCheckedList();
-        List<String> checkedAppointments = new ArrayList<String>();
+        List<AppointmentRequest> checkedAppointments = new ArrayList<AppointmentRequest>();
         for (int i = 0; i < valList.length; i++) {
             if(valList[i]){
-                checkedAppointments.add(adapter.getAppointment(i).getUserId());
+                checkedAppointments.add(adapter.getAppointment(i));
             }
         }
         return checkedAppointments;
     }
 
-    private void postChecked(boolean isValid, String id, int size){
+    private void postChecked(boolean isValid, AppointmentRequest appointment, int size){
         String msg;
         if(isValid){
             msg = "Appointments Validated";
@@ -231,11 +231,14 @@ public class ValidateAppointmentsFragment extends Fragment {
         };
 
         if(isValid){
-            manageExtraHelper.API_postValidation(user, onResponse, id);
+            manageExtraHelper.API_postValidation(user, onResponse, appointment.getId());
+
+            //borde dock räcka med validate..
+            userAPIHelper.API_manageUser(user, appointment.getUserId(), true);
         }
         else{
             AdminBookingHelper adminBookingHelper = new AdminBookingHelper(this);
-            adminBookingHelper.API_CancelAppointment(user, id, onResponse);
+            adminBookingHelper.API_CancelAppointment(user, appointment.getUserId(), onResponse);
         }
 
     }
@@ -243,34 +246,19 @@ public class ValidateAppointmentsFragment extends Fragment {
     private void invalidationProcess() {
         LoadingAnimation.startLoadingAnimation(getActivity());
         //create list with appointment-id's to invalidate
-        List<String> invalidAppointments = getCheckedList();
+        List<AppointmentRequest> invalidAppointments = getCheckedList();
 
         counter=0;
         for (int i = 0; i < invalidAppointments.size(); i++) {
             postChecked(false, invalidAppointments.get(i), invalidAppointments.size());
         }
     }
-/*
-    private void postInvalidation(String id, int size){
-        Runnable onResponse = new Runnable() {
-            @Override
-            public void run() {
-                counter = counter+1;
-                if(counter==size){
-                    reloadFragment("Appointments invalidated");
-                }
 
-            }
-        };
-        AdminBookingHelper adminBookingHelper = new AdminBookingHelper(this);
-        adminBookingHelper.API_CancelAppointment(user, id, onResponse);
-    }
-*/
     private void validationProcess(){
         LoadingAnimation.startLoadingAnimation(getActivity());
 
         //create list with appointment-id's to validate
-        List<String> validAppointments = getCheckedList();
+        List<AppointmentRequest> validAppointments = getCheckedList();
 
         //post validation and wait for counter to be == size to reload fragment
         counter=0;
@@ -278,21 +266,7 @@ public class ValidateAppointmentsFragment extends Fragment {
             postChecked(true, validAppointments.get(i), validAppointments.size());
         }
     }
-/*
-    private void postValidation(String id, int size){
-        Runnable onResponse = new Runnable() {
-            @Override
-            public void run() {
-                counter = counter+1;
-                if(counter==size){
-                    reloadFragment("Appointments validated");
-                }
 
-            }
-        };
-        manageExtraHelper.API_postValidation(user, onResponse, id);
-    }
-*/
     private void setupCheckbox() {
         checkBoxAll = view.findViewById(R.id.checkBoxAll);
         checkBoxAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

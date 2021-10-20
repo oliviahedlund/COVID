@@ -39,6 +39,9 @@ public interface UserService {
         @GET("/api/User/Manage")
         Call<UserResponse> getUserById(@Header("Authorization") String authHeader,@Query("UserId") String userId);
 
+        @PUT("/api/User/Manage")
+        Call<Void> manageUser(@Header("Authorization") String authHeader,@Query("UserId") String userId, @Body boolean canBook);
+
 
         // APPOINTMENTS  //
         @GET("/api/Appointments/Booking/")

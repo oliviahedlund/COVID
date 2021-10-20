@@ -74,7 +74,6 @@ public class Appointment_Info extends Fragment {
                 }
             }
         });
-        LoadingAnimation.startLoadingAnimation(getActivity());
 
 
         return view;
@@ -116,7 +115,8 @@ public class Appointment_Info extends Fragment {
                     newFragment = new Appointment_make();
                 } else{
                     if(user.isGotFirstDose()){
-                        newFragment = new GenericMessageFragment(getResources().getString(R.string.contactAdmin));
+                        newFragment = new Appointment_make();
+                        //newFragment = new GenericMessageFragment(getResources().getString(R.string.contactAdmin));
                     } else{
                         if(user.getQuestionare() == null){
                             newFragment = new Appointment_questionnaire();
