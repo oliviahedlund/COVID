@@ -131,7 +131,6 @@ public class GeneralActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(MainActivity.class);
                 finish();
             }
         });

@@ -103,8 +103,6 @@ public class AdminActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

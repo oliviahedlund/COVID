@@ -140,6 +140,7 @@
     <string name="time">Time</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
     <string name="chooseDate">Choose a date</string>
     <string name="chooseDay">Choose a day</string>
 

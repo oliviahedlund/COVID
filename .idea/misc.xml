@@ -14,7 +14,7 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/alertwindow.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_CenterDate.xml" value="0.1" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_center_date.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_center_date.xml" value="0.1" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_day_time.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_info.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/appointment_info_listview.xml" value="0.25" />
@@ -27,9 +27,7 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/dropdown_item.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/fragment_covid_passport.xml" value="0.25" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/fragment_qr_scanner.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/generic_message.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/list_group.xml" value="0.24682971014492755" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/listview_item.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/nav_header.xml" value="0.253125" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/popup_window.xml" value="0.253125" />

@@ -124,6 +124,7 @@
     <string name="time">Tid</string>
     <string name="confirm">Klar</string>
     <string name="cancel">Avbryt</string>
+    <string name="reset">Gör Om</string>
     <string name="chooseDate">Välj ett datum</string>
     <string name="chooseDay">välj en dag</string>
 
