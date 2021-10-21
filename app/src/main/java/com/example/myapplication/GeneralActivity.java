@@ -5,7 +5,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -45,6 +44,7 @@ public class GeneralActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(getSupportFragmentManager().getBackStackEntryCount() == 1){
             if(backPressedTime + 2000 > System.currentTimeMillis()){
+                startActivity(new Intent(GeneralActivity.this, MainActivity.class));
                 finish();
             } else{
                 Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
@@ -103,11 +103,6 @@ public class GeneralActivity extends AppCompatActivity {
         return true;
     }
 
-    private void openActivity(Class _act){
-        Intent intent = new Intent(this, _act);
-        startActivity(intent);
-    }
-
     private void setupMenuBar(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -131,6 +126,7 @@ public class GeneralActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(GeneralActivity.this, MainActivity.class));
                 finish();
             }
         });

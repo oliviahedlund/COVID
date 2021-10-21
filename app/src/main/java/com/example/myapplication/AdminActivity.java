@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
@@ -42,12 +43,26 @@ public class AdminActivity extends AppCompatActivity {
     private UserResponse user;
     private CenterVaccineHelper centerVaccineHelper;
     private AdminVaccineHelper vaccineHelper;
+    private long backPressedTime;
 
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() == 1){
+            if(backPressedTime + 2000 > System.currentTimeMillis()){
+                startActivity(new Intent(AdminActivity.this, MainActivity.class));
+                finish();
+            } else{
+                Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        } else{
+            super.onBackPressed();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_admin);
 
         //gets userinfo
@@ -56,7 +71,7 @@ public class AdminActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             dashFragment = new Covid_Tracking_dashboardFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).addToBackStack(null).commit();
         }
 
         getCentersAndVaccine();
@@ -155,6 +170,8 @@ public class AdminActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(AdminActivity.this, MainActivity.class));
+
                 finish();
             }
         });

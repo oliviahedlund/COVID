@@ -160,9 +160,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("userInfo", userResponse);
         LoadingAnimation.dismissLoadingAnimation();
         startActivity(i);
-        userEmail.setText("");
-        userPassword.setText("");
-//        finish(); //clears page from history
+        finish(); //clears page from history
     }
 
     private void setupButtons(){
