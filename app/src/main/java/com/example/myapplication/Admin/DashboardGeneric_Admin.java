@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 
 
 import android.view.View;
@@ -48,7 +50,8 @@ public class DashboardGeneric_Admin extends Fragment {
     private String[] MonthItems = new String[]{"Choose month","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Okt","Nov","Dec"};
     private AdminActivity activity;
     private UserResponse user;
-    private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
+    private List<AppointmentResponse> appointmentResponse = new ArrayList<>();
+    List<String> UserIDarray;
     private UserInfo userInfo;
     private int userNumberResponse;
     private CenterVaccineHelper cvh ;
@@ -102,7 +105,7 @@ public class DashboardGeneric_Admin extends Fragment {
                                 Object CountyItem = parent.getItemAtPosition(pos);
                                 System.out.println(CountyItem.toString());     //prints the text in spinner item.
                                 getCenters(CountyItem.toString(),Center_dropdown); //sorts centers depending on county
-                                setupListView(DefaultListview,0 );            //sets up listview with default settings
+                                setupListView(DefaultListview,0);            //sets up listview with default settings
                             }
                         });
                         LoadingAnimation.startLoadingAnimation(getActivity());
@@ -131,15 +134,17 @@ public class DashboardGeneric_Admin extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getAppointments(String centerID){
-        List<String> array = new ArrayList<String>();
+        List<String> Appointmentarray = new ArrayList<>();
+        UserIDarray = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
         for(int i=0; i<appointmentResponse.size(); i++){
             if(appointmentResponse.get(i).getCenterId().equals(centerID)){
-                array.add(appointmentResponse.get(i).getTime().format(formatter));
+                UserIDarray.add(appointmentResponse.get(i).getUserId());
+                Appointmentarray.add(appointmentResponse.get(i).getTime().format(formatter));
             }
         }
-        String [] SortedAppointment = new String[array.size()];
-        SortedAppointment = array.toArray(SortedAppointment);
+        String [] SortedAppointment = new String[Appointmentarray.size()];
+        SortedAppointment = Appointmentarray.toArray(SortedAppointment);
         setupListView(SortedAppointment,SortedAppointment.length);
     }
 
@@ -258,14 +263,13 @@ public class DashboardGeneric_Admin extends Fragment {
 
     private void setupListView(String[] SortedAppointments,int size) { // sets up list view with booked appointments depending on the filter
         appointments = (ListView) view.findViewById(R.id.list);
-        String name;
         //makes an arraylist of custom datatype
         ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
         DashboardGeneric_Cell[] cells = new DashboardGeneric_Cell[appointmentResponse.size()];//appointmentResponse.size()
         //for loop that adds times from api call to a list
-        for(int i =0; i<size; i++){ //appointmentResponse.size()
+        for(int i =0; i<size; i++){
             cells[i] = new DashboardGeneric_Cell(SortedAppointments[i]); //appointmentResponse.get(i).getTime()
-            System.out.println("cells :"+ cells[i]);
+            //System.out.println("cells :"+ cells[i]);
             app_list.add(cells[i]);
         }
         // DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
@@ -273,5 +277,13 @@ public class DashboardGeneric_Admin extends Fragment {
         //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(AppAdapter);
+        appointments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                System.out.println("user id: "+UserIDarray.get(pos));
+                //getUserInfoApi(UserIDarray.get(pos));
+
+            }
+        });
     }
 }
