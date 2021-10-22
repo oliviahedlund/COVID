@@ -24,6 +24,10 @@ public class UserInfo {
         return isAdmin;
     }
 
+    public String getId(){
+        return id;
+    }
+
     public String getEmail() {
         return email;
     }
