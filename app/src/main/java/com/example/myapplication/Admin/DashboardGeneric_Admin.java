@@ -49,6 +49,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private AdminActivity activity;
     private UserResponse user;
     private List<AppointmentResponse> appointmentResponse = new ArrayList<AppointmentResponse>();
+    private UserInfo userInfo;
     private int userNumberResponse;
     private CenterVaccineHelper cvh ;
     private String[] AllCenters; //unused?
@@ -78,9 +79,9 @@ public class DashboardGeneric_Admin extends Fragment {
         Spinner Date_dropdown = (Spinner) view.findViewById(R.id.spinner3);
 
         //Show string array on spinners
-        ArrayAdapter<String> adapterCounty = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, CountyItems);
-        ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, /*getCenters(County_dropdown.getSelectedItem().toString())*/ CenterItems);
-        ArrayAdapter<String> adapterDate = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, MonthItems);
+        ArrayAdapter<String> adapterCounty = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, CountyItems);
+        ArrayAdapter<String> adapterCenter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, /*getCenters(County_dropdown.getSelectedItem().toString())*/ CenterItems);
+        ArrayAdapter<String> adapterDate = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, MonthItems);
 
         //Set array adapter on spinners
         County_dropdown.setAdapter(adapterCounty);
@@ -172,20 +173,40 @@ public class DashboardGeneric_Admin extends Fragment {
         Centers = new String[]{};
     }
 
-    /*private void getUserInfoApi(){
-        Call<UserInfo> userInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), appointmentResponse.get(0).getUserId());
-    }*/
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void getUserInfoApi(String id){
+        Call<UserInfo> UserInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), id);
+        UserInfoCall.enqueue(new Callback<UserInfo>() {
+            @Override
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                if(response.isSuccessful()) {
+                    userInfo = response.body();
+                    System.out.println("userInfo.getId() = " + userInfo.getId());
+                    if (!userInfo.getId().equals("")) System.out.println("Veri good work yes");
+                    else System.out.println("Empty userInfo");
+                }else{//Unsuccessful response
+                    Toast.makeText(activity,"UserInfo error", Toast.LENGTH_LONG).show();
+                    System.out.println("Fail - else");
+                }
+            }
+            @Override
+            public void onFailure(Call<UserInfo> call, Throwable t) {
+                Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
+            }
+        });
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getUserNumberApi(){
-        Call<Integer> UserNumberCall = ApiClient.getUserService().numberOfUsersCall(user.getToken()); //Förbi här kommer vi
+        Call<Integer> UserNumberCall = ApiClient.getUserService().numberOfUsersCall(user.getToken());
         UserNumberCall.enqueue(new Callback<Integer>(){
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 //errorhandling
                 if (response.isSuccessful()) {
-                    userNumberResponse = response.body(); //i userResponse ligger all information om användaren
+                    userNumberResponse = response.body(); //i userNumberResponse ligger all information om användaren
                     if(userNumberResponse > 0) {
                         System.out.println("userNumberResponse = " + userNumberResponse);
                         NumberOfUsers(userNumberResponse);
