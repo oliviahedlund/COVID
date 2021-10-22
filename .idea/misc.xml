@@ -48,6 +48,7 @@
         <entry key="app/src/main/res/layout/covid_tracking_dropdown_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/covid_tracking_fragment_dashboard.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/dashboard_generic_adapter_view.xml" value="0.2504528985507246" />
         <entry key="app/src/main/res/layout/fragment_admin_dashboard.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_admin_new_questionnaires.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/fragment_admin_quest_messages.xml" value="0.29583333333333334" />
