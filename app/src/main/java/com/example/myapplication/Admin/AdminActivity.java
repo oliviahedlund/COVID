@@ -37,20 +37,15 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
         //gets userinfo
         Intent i = getIntent();
         user = (UserResponse) i.getSerializableExtra("userInfo");
-
         if(savedInstanceState == null) {
             dashFragment = new DashboardGeneric_Admin();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
-
         //Setup Menu Bar
         setupMenuBar();
-
-
         //Setup Navigation Drawer
         setUpNavigationView();
 

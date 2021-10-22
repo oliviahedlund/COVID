@@ -41,27 +41,23 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardGeneric_Admin extends Fragment {
-    private ListView appointments;
-    private TextView nrOfUsers;
-    private String[] CountyItems = new String[]{"Choose county","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
+    private final String[] CountyItems = new String[]{"Choose county","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
             "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala",
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
+    private final String[] MonthItems = new String[]{"Choose month","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Okt","Nov","Dec"};
+    private final String[] DefaultListview = new String[]{"No booked appointments"}; //default settings for listview
     private String[] CenterItems = new String[]{"Choose center"};
-    private String[] MonthItems = new String[]{"Choose month","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Okt","Nov","Dec"};
+    private String[] Centers;   //for function SetCenters
+    private List<AppointmentResponse> appointmentResponse = new ArrayList<>();
+    private List<Center> allCenters2 = new ArrayList<>();
+    private List<String> UserIdArray;
     private AdminActivity activity;
     private UserResponse user;
-    private List<AppointmentResponse> appointmentResponse = new ArrayList<>();
-    List<String> UserIDarray;
     private UserInfo userInfo;
+    private CenterVaccineHelper cvh;
     private int userNumberResponse;
-    private CenterVaccineHelper cvh ;
-    private String[] AllCenters; //unused?
-    private String[] AllCenterCounties; //unused?
-    private String[] Centers;   //for function SetCenters
-    private List<Center> allCenters1;
-    private List<Center> allCenters2 = new ArrayList<>();
-    private String[] DefaultListview = new String[]{"No booked appointments"}; //default settings for listview
-    View view;
+
+    public View view;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -99,8 +95,8 @@ public class DashboardGeneric_Admin extends Fragment {
                             @Override
                             public void run() {
                                 allCenters2 = new ArrayList<>(); //wipe the array from previously chosen county
-                                AllCenters = cvh.getCenters();  //unused?
-                                AllCenterCounties = cvh.getCenterCounty();//unused?
+                                //AllCenters = cvh.getCenters();  //unused?
+                                //AllCenterCounties = cvh.getCenterCounty();//unused?
                                 LoadingAnimation.dismissLoadingAnimation();
                                 Object CountyItem = parent.getItemAtPosition(pos);
                                 System.out.println(CountyItem.toString());     //prints the text in spinner item.
@@ -135,11 +131,11 @@ public class DashboardGeneric_Admin extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void getAppointments(String centerID){
         List<String> Appointmentarray = new ArrayList<>();
-        UserIDarray = new ArrayList<>();
+        UserIdArray = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
         for(int i=0; i<appointmentResponse.size(); i++){
             if(appointmentResponse.get(i).getCenterId().equals(centerID)){
-                UserIDarray.add(appointmentResponse.get(i).getUserId());
+                UserIdArray.add(appointmentResponse.get(i).getUserId());
                 Appointmentarray.add(appointmentResponse.get(i).getTime().format(formatter));
             }
         }
@@ -159,8 +155,8 @@ public class DashboardGeneric_Admin extends Fragment {
             Center_dropdown.setAdapter(adapterCenter);
             return;
         }
-        allCenters1 = cvh.getCentersObjects();
-        for(int i = 0; i < AllCenters.length; i++){
+        List<Center> allCenters1 = cvh.getCentersObjects();
+        for(int i = 0; i < cvh.getCenters().length; i++){
             if(allCenters1.get(i).getCenterCounty().equals(county)){
                 allCenters2.add(allCenters1.get(i));
             }
@@ -231,7 +227,7 @@ public class DashboardGeneric_Admin extends Fragment {
     }
 
     private void NumberOfUsers(int UsersRegistered){ //sets textview to the number of users registered (from getUserNumberApi)
-        nrOfUsers = (TextView) view.findViewById(R.id.NumberOfUsers);
+        TextView nrOfUsers = (TextView) view.findViewById(R.id.NumberOfUsers);
         nrOfUsers.setText("Number of Users: " + UsersRegistered);
     }
 
@@ -262,12 +258,12 @@ public class DashboardGeneric_Admin extends Fragment {
     }
 
     private void setupListView(String[] SortedAppointments,int size) { // sets up list view with booked appointments depending on the filter
-        appointments = (ListView) view.findViewById(R.id.list);
+        ListView appointments = (ListView) view.findViewById(R.id.list);
         //makes an arraylist of custom datatype
         ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
         DashboardGeneric_Cell[] cells = new DashboardGeneric_Cell[appointmentResponse.size()];//appointmentResponse.size()
         //for loop that adds times from api call to a list
-        for(int i =0; i<size; i++){
+        for(int i=0; i<size; i++){
             cells[i] = new DashboardGeneric_Cell(SortedAppointments[i]); //appointmentResponse.get(i).getTime()
             //System.out.println("cells :"+ cells[i]);
             app_list.add(cells[i]);
@@ -280,9 +276,8 @@ public class DashboardGeneric_Admin extends Fragment {
         appointments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                System.out.println("user id: "+UserIDarray.get(pos));
+                System.out.println("user id: "+ UserIdArray.get(pos));
                 //getUserInfoApi(UserIDarray.get(pos));
-
             }
         });
     }
