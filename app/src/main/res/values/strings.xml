@@ -453,4 +453,6 @@
     <string name="allow">Allow</string>
     <string name="scan">Scan</string>
 
+    <string name="county">County</string>
+
 </resources>

@@ -433,5 +433,7 @@
     <string name="goToSettingsButton">Gå till inställningar</string>
     <string name="allow">Tillåt</string>
     <string name="scan">Skanna</string>
+
+    <string name="county">Region</string>
 </resources>
 
