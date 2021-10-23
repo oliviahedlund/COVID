@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.CovidPassportFragment;
-import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment;
 import com.example.myapplication.UI.FAQ;
 import com.example.myapplication.UI.SettingsFragment;

@@ -107,8 +107,8 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.listViewInCovidTracking);
 
-        Covid_Tracking_ListViewAdapter adapter = new Covid_Tracking_ListViewAdapter(this.getContext(), 0, listViewItems);
-        listView.setAdapter(adapter);
+        // Covid_Tracking_ListViewAdapter adapter = new Covid_Tracking_ListViewAdapter(this.getContext(), 0, listViewItems);
+        // listView.setAdapter(adapter);
     }
 
 

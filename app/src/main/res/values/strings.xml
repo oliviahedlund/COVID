@@ -115,6 +115,7 @@
     <string name="dose">Dose</string>
     <string name="totalCases">Total cases: </string>
     <string name="totalDeaths">Total deaths: </string>
+    <string name="totalIntensive">Total intensive: </string>
     <string name="totalDistri">Total distributed doses: </string>
     <string name="totalAdmini">Total administered doses: </string>
     <string name="vs">Dose 1 vs Dose 2: </string>
@@ -454,5 +455,7 @@
     <string name="scan">Scan</string>
 
     <string name="county">County</string>
+    <string name="sweden">Sweden</string>
+
 
 </resources>

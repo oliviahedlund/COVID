@@ -7,11 +7,19 @@ public class Cases {
     private ZonedDateTime lastRetrived;
     private List<CaseStat> caseStats;
 
-    public String [] getCountyNames(){
-        String [] buffer = new String[caseStats.size()];
-        for(int i = 0; i < caseStats.size(); i++){
-            buffer[i] = caseStats.get(i).getCountyName();
-        }
-        return buffer;
+    public ZonedDateTime getLastRetrived() {
+        return lastRetrived;
+    }
+
+    public void setLastRetrived(ZonedDateTime lastRetrived) {
+        this.lastRetrived = lastRetrived;
+    }
+
+    public List<CaseStat> getCaseStats() {
+        return caseStats;
+    }
+
+    public void setCaseStats(List<CaseStat> caseStats) {
+        this.caseStats = caseStats;
     }
 }

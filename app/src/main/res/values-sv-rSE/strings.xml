@@ -108,6 +108,7 @@
     <string name="dose">Dos</string>
     <string name="totalCases">Antal fall:</string>
     <string name="totalDeaths">Antal dödsfall:</string>
+    <string name="totalIntensive">Antal intensiv: </string>
     <string name="totalDistri">Antal distribuerade doser:</string>
     <string name="totalAdmini">Antal administrerade doser:</string>
     <string name="vs">Dos 1 vs Dos 2:</string>
@@ -435,5 +436,6 @@
     <string name="scan">Skanna</string>
 
     <string name="county">Region</string>
+    <string name="sweden">Sverige</string>
 </resources>
 

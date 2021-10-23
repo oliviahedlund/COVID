@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_dashboard"
-        android:name="com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment"
+        android:name="com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment"
         android:label="Dashboard"
         tools:layout="@layout/covid_tracking_fragment_dashboard" />
     <fragment
