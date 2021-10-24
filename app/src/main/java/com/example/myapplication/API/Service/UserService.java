@@ -5,6 +5,8 @@ import com.example.myapplication.API.Model.Appointment_user.Date_Time;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
+import com.example.myapplication.API.Model.Covid_tracking.Cases;
+import com.example.myapplication.API.Model.Covid_tracking.VaxStock;
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
@@ -98,6 +100,13 @@ public interface UserService {
 
         @POST("/api/Vaccine")
         Call<String> postVaccine(@Header("Authorization") String authHeader, @Query("vaccineName") String vaccineName);
+
+        // STATISTICS //
+        @GET("/api/Statistics/Case")
+        Call<Cases> getCases(@Header("Authorization") String authHeader);
+
+        @GET("/api/Statistics/Stock")
+        Call<VaxStock> getVaxStock(@Header("Authorization") String authHeader);
 
 
 

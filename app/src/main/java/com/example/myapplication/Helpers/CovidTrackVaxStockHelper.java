@@ -8,8 +8,8 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.API.Model.Covid_tracking.CaseStat;
-import com.example.myapplication.API.Model.Covid_tracking.Cases;
+import com.example.myapplication.API.Model.Covid_tracking.StockStat;
+import com.example.myapplication.API.Model.Covid_tracking.VaxStock;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.R;
@@ -22,24 +22,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CovidTrackCaseHelper {
-    private Cases cases;
-    private List<CaseStat> caseStats;
+public class CovidTrackVaxStockHelper {
+    private VaxStock vaxStock;
+    private List<StockStat> stockStats;
     private Fragment fragment;
 
-    public CovidTrackCaseHelper(Fragment fragment) {
+    public CovidTrackVaxStockHelper(Fragment fragment) {
         this.fragment = fragment;
     }
 
-    public void API_getCases(Activity activity, UserResponse user, Runnable runnable){
-        Call<Cases> call = ApiClient.getUserService().getCases(user.getToken());
-        call.enqueue(new Callback<Cases>() {
+    public void API_getVaxStock(Activity activity, UserResponse user, Runnable runnable){
+        Call<VaxStock> call = ApiClient.getUserService().getVaxStock(user.getToken());
+        call.enqueue(new Callback<VaxStock>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onResponse(Call<Cases> call, Response<Cases> response) {
+            public void onResponse(Call<VaxStock> call, Response<VaxStock> response) {
                 if (response.isSuccessful()) {
-                    cases = response.body();
-                    caseStats = cases.getCaseStats();
+                    vaxStock = response.body();
+                    stockStats = vaxStock.getStockStats();
 
                     new Handler().postDelayed(
                             runnable,600);
@@ -50,7 +50,7 @@ public class CovidTrackCaseHelper {
             }
 
             @Override
-            public void onFailure(Call<Cases> call, Throwable t) {
+            public void onFailure(Call<VaxStock> call, Throwable t) {
                 Toast.makeText(activity,"Throwable "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 LoadingAnimation.dismissLoadingAnimation();
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
@@ -59,31 +59,31 @@ public class CovidTrackCaseHelper {
     }
 
     public String [] getCountyNames(){
-        String [] buffer = new String[caseStats.size()];
-        for(int i = 0; i < caseStats.size(); i++){
-            buffer[i] = caseStats.get(i).getCountyName();
+        String [] buffer = new String[stockStats.size()];
+        for(int i = 0; i < stockStats.size(); i++){
+            buffer[i] = stockStats.get(i).getCountyName();
         }
         return buffer;
     }
 
     public int [] getFilteredDataSet(int selectedCounty){
-        CaseStat buffer = caseStats.get(selectedCounty);
-        return new int[]{buffer.getTotalCaseCount(), buffer.getTotalIntensiveCareCount(), buffer.getTotalDeathCount()};
+        StockStat buffer = stockStats.get(selectedCounty);
+        return new int[]{buffer.getAmount()};
     }
 
-    public Cases getCases() {
-        return cases;
+    public VaxStock getVaxStock() {
+        return vaxStock;
     }
 
-    public void setCases(Cases cases) {
-        this.cases = cases;
+    public void setVaxStock(VaxStock vaxStock) {
+        this.vaxStock = vaxStock;
     }
 
-    public List<CaseStat> getCaseStats() {
-        return caseStats;
+    public List<StockStat> getStockStats() {
+        return stockStats;
     }
 
-    public void setCaseStats(List<CaseStat> caseStats) {
-        this.caseStats = caseStats;
+    public void setStockStats(List<StockStat> stockStats) {
+        this.stockStats = stockStats;
     }
 }

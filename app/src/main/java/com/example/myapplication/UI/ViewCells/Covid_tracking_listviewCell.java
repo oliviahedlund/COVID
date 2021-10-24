@@ -6,7 +6,7 @@ public class Covid_tracking_listviewCell {
 
     public Covid_tracking_listviewCell(String label, String data) {
         this.label = label;
-        this.data = null;
+        this.data = data;
     }
 
     public String getLabel() {

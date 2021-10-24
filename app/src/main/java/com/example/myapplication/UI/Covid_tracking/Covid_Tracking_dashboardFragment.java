@@ -13,14 +13,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
-import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
-import com.example.myapplication.UI.Adapter.Covid_Tracking_ListViewAdapter;
-
-import java.util.ArrayList;
-
 
 public class Covid_Tracking_dashboardFragment extends Fragment {
     private String[] locations;
@@ -32,7 +26,7 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
     private AutoCompleteTextView productFilter;
     private AutoCompleteTextView doseFilter;
 
-    private ArrayList<Covid_Tracking_ListViewCell> listViewItems = new ArrayList<Covid_Tracking_ListViewCell>();
+//    private ArrayList<Covid_Tracking_ListViewCell> listViewItems = new ArrayList<Covid_Tracking_ListViewCell>();
     private ListView listView;
 
     private Button filterButton;
@@ -93,17 +87,17 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
         Covid_Tracking_ListViewCell totalDeaths = new Covid_Tracking_ListViewCell("3", getResources().getString(R.string.totalDeaths), R.drawable.ic_virus);
         Covid_Tracking_ListViewCell vs = new Covid_Tracking_ListViewCell("4", getResources().getString(R.string.vs), R.drawable.ic_virus);
 */
-        Covid_Tracking_ListViewCell totalDistri = new Covid_Tracking_ListViewCell("0", getResources().getString(R.string.totalDistri));
-        Covid_Tracking_ListViewCell totalAdmini = new Covid_Tracking_ListViewCell("1", getResources().getString(R.string.totalAdmini));
-        Covid_Tracking_ListViewCell totalCases = new Covid_Tracking_ListViewCell("2", getResources().getString(R.string.totalCases));
-        Covid_Tracking_ListViewCell totalDeaths = new Covid_Tracking_ListViewCell("3", getResources().getString(R.string.totalDeaths));
-        Covid_Tracking_ListViewCell vs = new Covid_Tracking_ListViewCell("4", getResources().getString(R.string.vs));
-
-        listViewItems.add(totalDistri);
-        listViewItems.add(totalAdmini);
-        listViewItems.add(totalCases);
-        listViewItems.add(totalDeaths);
-        listViewItems.add(vs);
+//        Covid_Tracking_ListViewCell totalDistri = new Covid_Tracking_ListViewCell("0", getResources().getString(R.string.totalDistri));
+//        Covid_Tracking_ListViewCell totalAdmini = new Covid_Tracking_ListViewCell("1", getResources().getString(R.string.totalAdmini));
+//        Covid_Tracking_ListViewCell totalCases = new Covid_Tracking_ListViewCell("2", getResources().getString(R.string.totalCases));
+//        Covid_Tracking_ListViewCell totalDeaths = new Covid_Tracking_ListViewCell("3", getResources().getString(R.string.totalDeaths));
+//        Covid_Tracking_ListViewCell vs = new Covid_Tracking_ListViewCell("4", getResources().getString(R.string.vs));
+//
+//        listViewItems.add(totalDistri);
+//        listViewItems.add(totalAdmini);
+//        listViewItems.add(totalCases);
+//        listViewItems.add(totalDeaths);
+//        listViewItems.add(vs);
 
         listView = (ListView) view.findViewById(R.id.listViewInCovidTracking);
 
@@ -135,7 +129,7 @@ public class Covid_Tracking_dashboardFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Log.d("selected", String.valueOf(locationFilter.getText()));
                 Log.d("int", String.valueOf(position));
-                ArrayList<Covid_Tracking_ListViewCell> updatedListView = new ArrayList<Covid_Tracking_ListViewCell>();
+//                ArrayList<Covid_Tracking_ListViewCell> updatedListView = new ArrayList<Covid_Tracking_ListViewCell>();
 
             }
         });

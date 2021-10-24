@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.ViewCells.Covid_tracking_listviewCell;
 
@@ -42,7 +41,6 @@ public class Covid_Tracking_ListViewAdapter extends ArrayAdapter<Covid_tracking_
         } else {
             data.setText(item.getData());
         }
-
 
         return convertView;
     }
