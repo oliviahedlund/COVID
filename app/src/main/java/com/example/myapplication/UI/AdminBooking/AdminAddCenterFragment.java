@@ -31,10 +31,10 @@ import java.util.List;
 
 public class AdminAddCenterFragment extends Fragment {
     private EditText centerName;
-    private EditText centerAddress;
+    //private EditText centerAddress; ////
     private EditText amount;
     private String center;
-    private String centerAdd;
+    //private String centerAdd;
     private String number;
     private int value;
     private UserResponse user;
@@ -43,8 +43,11 @@ public class AdminAddCenterFragment extends Fragment {
     private AdminVaccineHelper apiVaccin;
     private CenterVaccineHelper centerVaccineHelper;
     private String[] vaccines;
-    int vaccinePosition;
+    private String[] counties;
+    private int vaccinePosition;
+    private String choosenCounty;
     private AutoCompleteTextView vaccineFilter;
+    private AutoCompleteTextView countyFilter;
     private AdminActivity adminActivity;
 
 
@@ -74,8 +77,10 @@ public class AdminAddCenterFragment extends Fragment {
 
     private void setupDropdown(){
         vaccines = apiVaccin.getVaccines();
+        counties = getResources().getStringArray(R.array.counties);
 
         vaccineFilter = (AutoCompleteTextView) view.findViewById(R.id.generateVaccin);
+        countyFilter = (AutoCompleteTextView) view.findViewById(R.id.generateCounty);
 
         Simple_DropdownAdapter vaccineAdapter = new Simple_DropdownAdapter(getContext(), R.layout.simple_dropdown_item, vaccines);
         vaccineFilter.setAdapter(vaccineAdapter);
@@ -83,6 +88,15 @@ public class AdminAddCenterFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 vaccinePosition = position;
+            }
+        });
+
+        Simple_DropdownAdapter countyAdapter = new Simple_DropdownAdapter(getContext(), R.layout.simple_dropdown_item, counties);
+        countyFilter.setAdapter(countyAdapter);
+        countyFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                choosenCounty = counties[position];
             }
         });
 
@@ -118,7 +132,7 @@ public class AdminAddCenterFragment extends Fragment {
 
     private void setup(){
         centerName = view.findViewById(R.id.centerName);
-        centerAddress = view.findViewById(R.id.centerAddress);
+        //centerAddress = view.findViewById(R.id.centerAddress);////
         amount = view.findViewById(R.id.vaccineAmount);
 
         btn = view.findViewById(R.id.button7);
@@ -134,13 +148,13 @@ public class AdminAddCenterFragment extends Fragment {
 
     private Center setupBodyCenter(){
         center = centerName.getEditableText().toString();
-        centerAdd = centerAddress.getEditableText().toString();
-        if(center.equals("") || centerAdd.equals("")){
+        //centerAdd = centerAddress.getEditableText().toString(); ///
+        if(center.equals("")){
             return null;
         }
         Center bodyCenter = new Center();
         bodyCenter.setCenterName(center);
-        bodyCenter.setCenterCounty(centerAdd);
+        bodyCenter.setCenterCounty(choosenCounty);
 
         List<Vaccine> vaccineList = new ArrayList<Vaccine>();
         vaccineList = setupBodyVaccine();

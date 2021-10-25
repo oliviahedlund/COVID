@@ -198,6 +198,30 @@
         <item>Sa</item>
     </string-array>
 
+    <string-array name="counties">
+        <item>Blekinge</item>
+        <item>Dalarna</item>
+        <item>Gotland</item>
+        <item>Gävleborg</item>
+        <item>Halland</item>
+        <item>Jämtland</item>
+        <item>Jönköping</item>
+        <item>Kalmar</item>
+        <item>Kronoberg</item>
+        <item>Norrbotten</item>
+        <item>Skåne</item>
+        <item>Stockholm</item>
+        <item>Södermanland</item>
+        <item>Uppsala</item>
+        <item>Värmland</item>
+        <item>Västerbotten</item>
+        <item>Västernorrland</item>
+        <item>Västmanland</item>
+        <item>Västra Götaland</item>
+        <item>Örebro</item>
+        <item>Östergötland</item>
+    </string-array>
+
     //FAQ
     <string name="FAQ_app">FAQExpandableListView</string>
     <string name="group1">Information on general advice and recommendations</string>

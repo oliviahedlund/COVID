@@ -33,33 +33,29 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="text"
-            android:imeOptions="actionNext"
-            android:nextFocusForward="@+id/centerAddress" />
+            android:imeOptions="actionDone" />
 
 
     </LinearLayout>
 
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="@dimen/smallPadding"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:hint="@string/County"
+        android:textColorHint="@color/beige">
 
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/generateCounty"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/smallPadding"
-            android:text="@string/centerCounty"
-            android:textSize="@dimen/mediumText" />
+            android:inputType="none"
+            android:text="@string/County"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/centerAddress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="text"
-            android:imeOptions="actionDone"/>
-    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"

@@ -72,6 +72,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2387416668269345" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/admin_add_center.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/alertwindow.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/appointment.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/appointment_center_date.xml" value="0.2375" />
