@@ -29,7 +29,7 @@ public class SettingsFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_settings, container, false);
+        view = inflater.inflate(R.layout.settings, container, false);
 
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
 

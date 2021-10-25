@@ -49,7 +49,7 @@ public class AdminAddVaccineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_admin_add_vaccine, container, false);
+        view = inflater.inflate(R.layout.admin_add_vaccine, container, false);
         Intent i = getActivity().getIntent();
         user = (UserResponse) i.getSerializableExtra("userInfo");
 

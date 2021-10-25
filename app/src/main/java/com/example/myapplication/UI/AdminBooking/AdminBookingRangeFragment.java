@@ -61,7 +61,7 @@ public class AdminBookingRangeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_admin_booking_range, container, false);
+        view = inflater.inflate(R.layout.admin_booking_range, container, false);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
         adminActivity = (AdminActivity) getActivity();
         centerVaccineHelper = adminActivity.getCenterVaccineHelper();

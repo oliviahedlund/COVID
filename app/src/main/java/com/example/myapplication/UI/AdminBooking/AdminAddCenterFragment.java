@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.myapplication.AdminActivity;
-import com.example.myapplication.Helpers.UserAPIHelper;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
@@ -57,7 +56,7 @@ public class AdminAddCenterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_admin_add_center, container, false);
+        view = inflater.inflate(R.layout.admin_add_center, container, false);
 
         adminActivity = (AdminActivity) getActivity();
         centerVaccineHelper = adminActivity.getCenterVaccineHelper();

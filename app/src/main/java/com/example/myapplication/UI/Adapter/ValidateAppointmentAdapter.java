@@ -55,7 +55,7 @@ public class ValidateAppointmentAdapter extends RecyclerView.Adapter<ValidateApp
     @Override
     public ValidateCell onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.validate_cell, parent, false);
+        View view = inflater.inflate(R.layout.admin_validate_cell, parent, false);
         return new ValidateCell(view);
     }
 

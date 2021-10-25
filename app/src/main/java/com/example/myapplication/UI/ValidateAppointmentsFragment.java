@@ -17,7 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
-import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.AdminActivity;
 import com.example.myapplication.Helpers.AdminBookingHelper;
@@ -54,7 +53,7 @@ public class ValidateAppointmentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_validate_appointments, container, false);
+        view = inflater.inflate(R.layout.admin_validate_appointments, container, false);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
 
         adminActivity = (AdminActivity) getActivity();
