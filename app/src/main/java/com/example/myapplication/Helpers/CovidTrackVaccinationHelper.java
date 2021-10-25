@@ -18,6 +18,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class CovidTrackVaccinationHelper {
     private Vaccination vaccinationStats;
     private List<CountyVaxStat> countyVaxStats;
     private List<UptakeStat> uptakeStats;
-
+    private DecimalFormat df = new DecimalFormat("###.####");
 
     public CovidTrackVaccinationHelper(Fragment fragment) {
         this.fragment = fragment;
@@ -71,19 +72,20 @@ public class CovidTrackVaccinationHelper {
                     return new String[]{String.valueOf(countyVaxStats.get(i).getPopulation())
                             , String.valueOf(countyVaxStats.get(i).getMinFirstDoseAmount())
                             , String.valueOf(countyVaxStats.get(i).getFullVaccinationAmount())
-                            , String.valueOf(countyVaxStats.get(i).getMinFirstDoseRation())
-                            , String.valueOf(countyVaxStats.get(i).getFullVaccinationRatio())};
+                            , String.valueOf(df.format(countyVaxStats.get(i).getMinFirstDoseRation()))
+                            , String.valueOf(df.format(countyVaxStats.get(i).getFullVaccinationRatio()))};
                 }
             }
         }
         else {
+
             for(int i = 0; i < uptakeStats.size(); i++){
-                if(String.valueOf(uptakeStats.get(i).getYear()).equals(dataSet[0])
-                && String.valueOf(uptakeStats.get(i).getWeek()).equals(dataSet[1])
-                && uptakeStats.get(i).getCountyName().equals(dataSet[2])
-                && String.valueOf(uptakeStats.get(i).getDoseType()).equals(dataSet[3])){
+                if(String.valueOf(uptakeStats.get(i).getYear()).equals(dataSet[0].split(fragment.getResources().getString(R.string.week))[0].trim())
+                && String.valueOf(uptakeStats.get(i).getWeek()).equals(dataSet[0].split(fragment.getResources().getString(R.string.week))[1].trim())
+                && uptakeStats.get(i).getCountyName().equals(dataSet[1])
+                && String.valueOf(uptakeStats.get(i).getDoseType()).equals(dataSet[2])){
                     return new String[]{String.valueOf(uptakeStats.get(i).getVaccinatedAmount())
-                            , String.valueOf(uptakeStats.get(i).getVaccinatedRatio())};
+                            , String.valueOf(df.format(uptakeStats.get(i).getVaccinatedRatio()))};
                 }
             }
         }
@@ -132,38 +134,21 @@ public class CovidTrackVaccinationHelper {
         return countyNames.toArray(buffer);
 
     }
-    public String [] getWeek(){
-        List<String> weekList = new ArrayList<String>();
-        weekList.add(String.valueOf(uptakeStats.get(0).getWeek()));
-        for(int i = 0 ,j = 0; i < uptakeStats.size(); i++){
-            if(!String.valueOf(uptakeStats.get(i).getWeek()).equals(weekList.get(j))){
-                weekList.add(String.valueOf(uptakeStats.get(i).getWeek()));
-                j++;
+
+
+    public String [] getYearWeek(){
+        List<String> list = new ArrayList<String>();
+        list.add(String.valueOf(uptakeStats.get(0).getYear()) + " " + fragment.getResources().getString(R.string.week) + " " + String.valueOf(uptakeStats.get(0).getWeek()));
+        for(int i = 0; i < uptakeStats.size(); i++){
+            if(!list.contains(String.valueOf(uptakeStats.get(i).getYear()) + " " + fragment.getResources().getString(R.string.week) + " " + String.valueOf(uptakeStats.get(i).getWeek()))){
+                list.add(String.valueOf(uptakeStats.get(i).getYear()) + " " + fragment.getResources().getString(R.string.week) + " " + String.valueOf(uptakeStats.get(i).getWeek()));
             }
         }
 
-        String [] buffer = new String[weekList.size()];
-        return weekList.toArray(buffer);
+        String [] buffer = new String[list.size()];
+        return list.toArray(buffer);
 
     }
-
-    public String [] getYear(){
-        List<String> yearList = new ArrayList<String>();
-        yearList.add(String.valueOf(uptakeStats.get(0).getYear()));
-        for(int i = 0 ,j = 0; i < uptakeStats.size(); i++){
-            if(!String.valueOf(uptakeStats.get(i).getYear()).equals(yearList.get(j))){
-                yearList.add(String.valueOf(uptakeStats.get(i).getYear()));
-                j++;
-            }
-        }
-
-        String [] buffer = new String[yearList.size()];
-        return yearList.toArray(buffer);
-    }
-
-
-
-
 
     public List<CountyVaxStat> getCountyVaxStats() {
         return countyVaxStats;

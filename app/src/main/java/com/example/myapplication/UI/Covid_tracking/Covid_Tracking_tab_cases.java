@@ -105,14 +105,6 @@ public class Covid_Tracking_tab_cases extends Fragment {
     }
 
     private void setupFilter(){
-//        applyFilterButton = (Button) view.findViewById(R.id.applyFilterButton);
-//        applyFilterButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                updateListView(selectedCounty);
-//            }
-//        });
-
         resetFilterButton = (Button) view.findViewById(R.id.resetFilterButton);
         resetFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,22 +114,6 @@ public class Covid_Tracking_tab_cases extends Fragment {
             }
         });
 
-//        filterButton = (Button) view.findViewById(R.id.filterButton);
-//        filterTabs = (LinearLayout) view.findViewById(R.id.filterTabs);
-//
-//        filterButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(filterHidden == true){
-//                    filterHidden = false;
-//                    showFilter();
-//                } else{
-//                    filterHidden = true;
-//                    hideFilter();
-//                }
-//            }
-//        });
-
         countyFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -146,14 +122,4 @@ public class Covid_Tracking_tab_cases extends Fragment {
             }
         });
     }
-
-//    private void hideFilter() {
-//        filterTabs.setVisibility(View.GONE);
-//        filterButton.setText("FILTER");
-//    }
-//
-//    private void showFilter(){
-//        filterTabs.setVisibility(View.VISIBLE);
-//        filterButton.setText("HIDE");
-//    }
 }

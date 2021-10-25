@@ -3,6 +3,7 @@ package com.example.myapplication.Helpers;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -41,6 +42,8 @@ public class CovidTrackCaseHelper {
                     cases = response.body();
                     caseStats = cases.getCaseStats();
 
+                    caseStats.add(CaseStatForSweden());
+
                     new Handler().postDelayed(
                             runnable,600);
                 }else{
@@ -56,6 +59,25 @@ public class CovidTrackCaseHelper {
                 new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
+    }
+
+    private CaseStat CaseStatForSweden(){
+        int totalCaseCount = 0;
+        int totalIntensiveCareCount = 0;
+        int totalDeathCount = 0;
+
+        for(int i = 0; i < caseStats.size(); i++){
+            totalCaseCount = totalCaseCount + caseStats.get(i).getTotalCaseCount();
+            totalIntensiveCareCount = totalIntensiveCareCount + caseStats.get(i).getTotalIntensiveCareCount();
+            totalDeathCount = totalDeathCount + caseStats.get(i).getTotalDeathCount();
+        }
+
+        CaseStat buffer = new CaseStat();
+        buffer.setCountyName(fragment.getResources().getString(R.string.sweden));
+        buffer.setTotalCaseCount(totalCaseCount);
+        buffer.setTotalIntensiveCareCount(totalIntensiveCareCount);
+        buffer.setTotalDeathCount(totalDeathCount);
+        return buffer;
     }
 
     public String [] getCountyNames(){

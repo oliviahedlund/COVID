@@ -456,6 +456,9 @@
 
     <string name="county">County</string>
     <string name="sweden">Sweden</string>
+    <string name="week">Week</string>
+    <string name="year">Year</string>
+    <string name="yearWeek">Year-Week</string>
 
 
 </resources>

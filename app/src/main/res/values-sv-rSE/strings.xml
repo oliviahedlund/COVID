@@ -437,5 +437,8 @@
 
     <string name="county">Region</string>
     <string name="sweden">Sverige</string>
+    <string name="week">Vecka</string>
+    <string name="year">År</string>
+    <string name="yearWeek">År-Vecka</string>
 </resources>
 

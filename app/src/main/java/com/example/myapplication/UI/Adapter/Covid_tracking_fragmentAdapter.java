@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_cases;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_vaccinationStats;
+import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_vaccinationStats_cumulative;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_vaxStock;
 import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
 
@@ -27,6 +28,9 @@ public class Covid_tracking_fragmentAdapter extends FragmentStateAdapter {
             case 2:
                 fragment = new Covid_Tracking_tab_vaccinationStats();
                 break;
+            case 3:
+                fragment = new Covid_Tracking_tab_vaccinationStats_cumulative();
+                break;
             default: fragment = new Covid_Tracking_tab_cases();
         }
         return fragment;
@@ -34,6 +38,6 @@ public class Covid_tracking_fragmentAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }
