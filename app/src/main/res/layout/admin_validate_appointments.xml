@@ -9,7 +9,7 @@
     android:layout_marginTop="@dimen/smallPadding"
     android:layout_marginBottom="@dimen/smallPadding"
     android:orientation="vertical"
-    tools:context=".UI.ValidateAppointmentsFragment">
+    tools:context=".UI.AdminBooking.ValidateAppointmentsFragment">
 
 
     <TextView

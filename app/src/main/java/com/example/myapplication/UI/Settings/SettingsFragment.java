@@ -1,4 +1,4 @@
-package com.example.myapplication.UI;
+package com.example.myapplication.UI.Settings;
 
 import android.content.Context;
 import android.os.Bundle;

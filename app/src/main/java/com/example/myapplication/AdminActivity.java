@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.API.Model.Appointment_user.Center;
-import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.Helpers.AdminVaccineHelper;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.UI.AdminBooking.AdminAddCenterFragment;
@@ -24,12 +22,10 @@ import com.example.myapplication.UI.AdminBooking.AdminAddVaccineFragment;
 import com.example.myapplication.UI.AdminBooking.AdminBookingRangeFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
 import com.example.myapplication.UI.LoadingAnimation;
-import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.UI.Settings.SettingsFragment;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.UI.ValidateAppointmentsFragment;
+import com.example.myapplication.UI.AdminBooking.ValidateAppointmentsFragment;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
