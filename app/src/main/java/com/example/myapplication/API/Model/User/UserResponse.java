@@ -1,5 +1,7 @@
 package com.example.myapplication.API.Model.User;
 
+import android.os.Parcelable;
+
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
 

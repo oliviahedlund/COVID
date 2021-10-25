@@ -1,6 +1,9 @@
 package com.example.myapplication.API.Model.Admin;
 
-public class UserInfo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class UserInfo implements Parcelable {
     private boolean isAdmin;
     private String id;
     private String email;
@@ -155,5 +158,15 @@ public class UserInfo {
 
     public void setSecondDoseDate(String secondDoseDate) {
         this.secondDoseDate = secondDoseDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

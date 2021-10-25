@@ -30,6 +30,7 @@ import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Admin.AdminActivity;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.Helpers.DashboardGenericHelper;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.LoadingAnimation;
 
@@ -56,6 +57,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private UserInfo userInfo;
     private CenterVaccineHelper cvh;
     private int userNumberResponse;
+    private DashboardGenericHelper dgh;
 
     public View view;
 
@@ -231,29 +233,7 @@ public class DashboardGeneric_Admin extends Fragment {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void getUserInfoApi(String id){
-        Call<UserInfo> UserInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), id);
-        UserInfoCall.enqueue(new Callback<UserInfo>() {
-            @Override
-            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
-                if(response.isSuccessful()) {
-                    userInfo = response.body();
-                    System.out.println("userInfo.getId() = " + userInfo.getId());
-                    if (!userInfo.getId().equals("")) System.out.println("Veri good work yes");
-                    else System.out.println("Empty userInfo");
-                }else{//Unsuccessful response
-                    Toast.makeText(activity,"UserInfo error", Toast.LENGTH_LONG).show();
-                    System.out.println("Fail - else");
-                }
-            }
-            @Override
-            public void onFailure(Call<UserInfo> call, Throwable t) {
-                Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
-            }
-        });
-    }
+
 
     private void setupListView(String[] SortedAppointments,int size) { // sets up list view with booked appointments depending on the filter
         ListView appointments = (ListView) view.findViewById(R.id.list);
@@ -263,11 +243,8 @@ public class DashboardGeneric_Admin extends Fragment {
         //for loop that adds times from api call to a list
         for(int i=0; i<size; i++){
             cells[i] = new DashboardGeneric_Cell(SortedAppointments[i]); //appointmentResponse.get(i).getTime()
-            //System.out.println("cells :"+ cells[i]);
             app_list.add(cells[i]);
         }
-        // DashboardGeneric_Cell matt0 = new DashboardGeneric_Cell("12:00");
-        //app_list.add(matt0);
         //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(AppAdapter);
@@ -275,13 +252,23 @@ public class DashboardGeneric_Admin extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 System.out.println("user id: "+UserIdArray.get(pos));
-                getUserInfoApi(UserIdArray.get(pos));
-                DashboardGeneric_UserInfo dashFragment = new DashboardGeneric_UserInfo();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, dashFragment).commit();
-
+                dgh = new DashboardGenericHelper(getFragment());
+                dgh.getUserInfoApi(user,UserIdArray.get(pos), new Runnable() {
+                    @Override
+                    public void run() {
+                        LoadingAnimation.dismissLoadingAnimation();
+                        DashboardGeneric_UserInfo dashFragment = new DashboardGeneric_UserInfo();
+                        Bundle bundle = new Bundle();
+                        userInfo = dgh.getUserInfo();
+                        System.out.println("userinfo: "+userInfo.getFirstName());
+                        bundle.putParcelable("userInfo", userInfo); // Key, value
+                        dashFragment.setArguments(bundle);
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, dashFragment).commit();
+                    }
+                });
+                LoadingAnimation.startLoadingAnimation(getActivity());
             }
         });
     }
 
-    public UserInfo getUserInfo(){return userInfo;} //called from DashboardGeneric_UserInfo
 }
