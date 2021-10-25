@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
@@ -44,7 +45,6 @@ public class DashboardGeneric_Admin extends Fragment {
     private final String[] CountyItems = new String[]{"Choose county","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
             "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala",
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
-    private final String[] MonthItems = new String[]{"Choose month","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Okt","Nov","Dec"};
     private final String[] DefaultListview = new String[]{"No booked appointments"}; //default settings for listview
     private String[] CenterItems = new String[]{"Choose center"};
     private String[] Centers;   //for function SetCenters
@@ -75,17 +75,14 @@ public class DashboardGeneric_Admin extends Fragment {
     private void setupDropdownMenus(){ // sets up the dropdown menues
         Spinner County_dropdown = (Spinner) view.findViewById(R.id.spinner1); //set up spinners
         Spinner Center_dropdown = (Spinner) view.findViewById(R.id.spinner2);
-        Spinner Date_dropdown = (Spinner) view.findViewById(R.id.spinner3);
 
         //Show string array on spinners
         ArrayAdapter<String> adapterCounty = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, CountyItems);
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, /*getCenters(County_dropdown.getSelectedItem().toString())*/ CenterItems);
-        ArrayAdapter<String> adapterDate = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item, MonthItems);
 
         //Set array adapter on spinners
         County_dropdown.setAdapter(adapterCounty);
         Center_dropdown.setAdapter(adapterCenter);
-        Date_dropdown.setAdapter(adapterDate);
         County_dropdown.setOnItemSelectedListener( //listener for county spinner
                 new AdapterView.OnItemSelectedListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -169,33 +166,9 @@ public class DashboardGeneric_Admin extends Fragment {
         if(Centers.length==0){
             Centers = new String[]{"Choose center"};
         }
-        ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
+        ArrayAdapter<String> adapterCenter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
         Center_dropdown.setAdapter(adapterCenter);
         Centers = new String[]{};
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void getUserInfoApi(String id){
-        Call<UserInfo> UserInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), id);
-        UserInfoCall.enqueue(new Callback<UserInfo>() {
-            @Override
-            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
-                if(response.isSuccessful()) {
-                    userInfo = response.body();
-                    System.out.println("userInfo.getId() = " + userInfo.getId());
-                    if (!userInfo.getId().equals("")) System.out.println("Veri good work yes");
-                    else System.out.println("Empty userInfo");
-                }else{//Unsuccessful response
-                    Toast.makeText(activity,"UserInfo error", Toast.LENGTH_LONG).show();
-                    System.out.println("Fail - else");
-                }
-            }
-            @Override
-            public void onFailure(Call<UserInfo> call, Throwable t) {
-                Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
-            }
-        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -257,6 +230,31 @@ public class DashboardGeneric_Admin extends Fragment {
         });
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void getUserInfoApi(String id){
+        Call<UserInfo> UserInfoCall = ApiClient.getUserService().getUserInfoAll(user.getToken(), id);
+        UserInfoCall.enqueue(new Callback<UserInfo>() {
+            @Override
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                if(response.isSuccessful()) {
+                    userInfo = response.body();
+                    System.out.println("userInfo.getId() = " + userInfo.getId());
+                    if (!userInfo.getId().equals("")) System.out.println("Veri good work yes");
+                    else System.out.println("Empty userInfo");
+                }else{//Unsuccessful response
+                    Toast.makeText(activity,"UserInfo error", Toast.LENGTH_LONG).show();
+                    System.out.println("Fail - else");
+                }
+            }
+            @Override
+            public void onFailure(Call<UserInfo> call, Throwable t) {
+                Toast.makeText(activity,"Throwable " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                System.out.println("Fail - onFailure: " + t.getLocalizedMessage());
+            }
+        });
+    }
+
     private void setupListView(String[] SortedAppointments,int size) { // sets up list view with booked appointments depending on the filter
         ListView appointments = (ListView) view.findViewById(R.id.list);
         //makes an arraylist of custom datatype
@@ -274,11 +272,16 @@ public class DashboardGeneric_Admin extends Fragment {
         DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(AppAdapter);
         appointments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                System.out.println("user id: "+ UserIdArray.get(pos));
-                //getUserInfoApi(UserIDarray.get(pos));
+                System.out.println("user id: "+UserIdArray.get(pos));
+                getUserInfoApi(UserIdArray.get(pos));
+                DashboardGeneric_UserInfo dashFragment = new DashboardGeneric_UserInfo();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, dashFragment).commit();
+
             }
         });
     }
+
+    public UserInfo getUserInfo(){return userInfo;} //called from DashboardGeneric_UserInfo
 }
