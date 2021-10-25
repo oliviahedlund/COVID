@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.AdminActivity;
-import com.example.myapplication.Helpers.TimeFormatHelper;
+import com.example.myapplication.Helpers.StringFormatHelper;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.Helpers.AdminBookingHelper;
@@ -171,7 +171,7 @@ public class AdminBookingRangeFragment extends Fragment {
         for (int i = 0; i < 5; i++) {
             dateList[i] = Integer.parseInt(editTextsDate.get(startIndex+i).getText().toString());
         }
-        return TimeFormatHelper.convertTimeToZoneDateTime(dateList);
+        return StringFormatHelper.convertTimeToZoneDateTime(dateList);
 
     }
 

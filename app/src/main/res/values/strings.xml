@@ -3,7 +3,7 @@
     <string name="app_name">Covid tracker</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="Email" translatable="false">Email</string>
+    <string name="Email">E-mail</string>
     <string name="dateOfBirth">Date of Birth</string>
     <string name="unknownError">Unknown error</string>
 
@@ -170,11 +170,15 @@
 
     <string name="contactAdmin">You cannot book a second dose. Contact an admin</string>
 
+    <string name="yourAppointmentInfo">Your Appointment Info</string>
     <string name="cancelAppointment">Cancel appointment</string>
     <string name="rebookAppointment">Rebook appointment</string>
     <string name="bookAppointment">Book appointment</string>
     <string name="emptyQuestionnaire">You have not filled out a questionnaire</string>
     <string name="emptyAppointment">You do not have any appointment at this moment</string>
+    <string name="firstDoseDate">First dose date</string>
+    <string name="secondDoseDate">Second dose date</string>
+
     <string-array name="Age">
         <item>All ages</item>
         <item>18 +</item>
@@ -192,11 +196,6 @@
         <item>Th</item>
         <item>Fr</item>
         <item>Sa</item>
-    </string-array>
-
-    <string-array name="Centers">
-        <item>CCC - hardcoded</item>
-        <item>Löfbergs Arena - hardcoded</item>
     </string-array>
 
     //FAQ

@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.GeneralActivity;
-import com.example.myapplication.Helpers.TimeFormatHelper;
+import com.example.myapplication.Helpers.StringFormatHelper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -75,7 +75,7 @@ public class CovidPassportFragment extends Fragment {
         userName = (TextView) view.findViewById(R.id.name);
         userName.setText(fullName);
         userBirthDate = (TextView) view.findViewById(R.id.birth_date);
-        userBirthDate.setText(TimeFormatHelper.yearMonthDay(birthDate));
+        userBirthDate.setText(StringFormatHelper.yearMonthDay(birthDate));
 
         if(!id.isEmpty()){
             MultiFormatWriter writer = new MultiFormatWriter();

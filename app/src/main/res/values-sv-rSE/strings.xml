@@ -4,6 +4,7 @@
     <string name="app_name">Covid tracker</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
+    <string name="Email">E-post</string>
     <string name="dateOfBirth">Födelsedag</string>
     <string name="unknownError">Okänt fel</string>
 
@@ -417,12 +418,14 @@
         </item>
     </string-array>
 
+    <string name="yourAppointmentInfo">Din bokningsinformation</string>
     <string name="cancelAppointment">Ställ in bokning</string>
     <string name="rebookAppointment">Gör om bokning</string>
     <string name="bookAppointment">Gör en bokning</string>
-
     <string name="emptyQuestionnaire">Du har inte fyllt i en hälsodeklaration</string>
     <string name="emptyAppointment">Du har ingen bokning just nu</string>
+    <string name="firstDoseDate">Datum för första dosen</string>
+    <string name="secondDoseDate">Datum för andra dosen</string>
 
     <string name="fullyVaccinated">Yes, this user is fully vaccinated!Ja, användaren är fullt vaccinerad!</string>
     <string name="notFullyVaccinated">Oj, användare är inte fullt vaccinerad!</string>

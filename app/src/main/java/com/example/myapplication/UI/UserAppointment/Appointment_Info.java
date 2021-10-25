@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Helpers.AppointmentHelper;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
-import com.example.myapplication.Helpers.TimeFormatHelper;
+import com.example.myapplication.Helpers.StringFormatHelper;
 import com.example.myapplication.Helpers.UserAPIHelper;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.AppointmentInfoListViewAdapter;
@@ -24,9 +24,6 @@ import com.example.myapplication.UI.GenericMessageFragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.ViewCells.AppointmentInfo_ListViewCell;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -114,14 +111,14 @@ public class Appointment_Info extends Fragment {
     }
     private void setupFirstDoseDate(){
         TextView firstDose = view.findViewById(R.id.firstDoseDate);
-        String displayDate = TimeFormatHelper.yearMonthDayTime(user.getFirstDoseDate());
-        firstDose.setText("First dose date: "+displayDate);
+        String displayDate = StringFormatHelper.yearMonthDayTime(user.getFirstDoseDate());
+        firstDose.setText(getString(R.string.firstDoseDate)+": "+displayDate);
         firstDose.setVisibility(View.VISIBLE);
     }
     private void setupSecondDoseDate(){
         TextView firstDose = view.findViewById(R.id.secondDoseDate);
-        String displayDate = TimeFormatHelper.yearMonthDayTime(user.getSecondDoseDate());
-        firstDose.setText("Second dose date: "+displayDate);
+        String displayDate = StringFormatHelper.yearMonthDayTime(user.getSecondDoseDate());
+        firstDose.setText(getString(R.string.secondDoseDate)+": "+displayDate);
         firstDose.setVisibility(View.VISIBLE);
     }
 

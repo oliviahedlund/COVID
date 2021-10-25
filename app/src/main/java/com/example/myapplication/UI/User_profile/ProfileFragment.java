@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.Helpers.TimeFormatHelper;
+import com.example.myapplication.Helpers.StringFormatHelper;
 import com.example.myapplication.R;
 
 
@@ -23,10 +23,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        // Inflate the layout for this fragment
         UserResponse user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
-        //GeneralActivity activity = (GeneralActivity) getActivity();
-        //UserResponse user = activity.getUserData();
         setupData(user, view);
         return view;
     }
@@ -42,10 +39,10 @@ public class ProfileFragment extends Fragment {
        pEmail.setText(": " + response.getEmail());
 
        TextView pPhone = (TextView) view.findViewById(R.id.profilePhone);
-       pPhone.setText(": " + response.getPhoneNumber());
+       pPhone.setText(": " + StringFormatHelper.phoneNumber(response.getPhoneNumber()));
 
        TextView pBirth = (TextView) view.findViewById(R.id.profileBirth);
-       pBirth.setText(": " + TimeFormatHelper.yearMonthDay(response.getBirthDate()));
+       pBirth.setText(": " + StringFormatHelper.yearMonthDay(response.getBirthDate()));
 
        TextView pAdress = (TextView) view.findViewById(R.id.profileAdress);
        pAdress.setText(": " + response.getAddress());
@@ -54,7 +51,7 @@ public class ProfileFragment extends Fragment {
        pCity.setText(": " + response.getCity());
 
        TextView pZip = (TextView) view.findViewById(R.id.profileZip);
-       pZip.setText(": " + response.getPostalCode());
+       pZip.setText(": " + StringFormatHelper.zipCode(response.getPostalCode()));
 
        TextView pCounty = (TextView) view.findViewById(R.id.profileCounty);
        pCounty.setText(": " + response.getDistrict());

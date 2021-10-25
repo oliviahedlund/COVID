@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
-import com.example.myapplication.Helpers.TimeFormatHelper;
+import com.example.myapplication.Helpers.StringFormatHelper;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -64,10 +64,10 @@ public class ValidateAppointmentAdapter extends RecyclerView.Adapter<ValidateApp
         validateCellList.add(position,holder);
         appointmentIdList.add(position,array.get(position).getId());
 
-        holder.appointment.setText(TimeFormatHelper.yearMonthDayTime(array.get(position).getTime()));
+        holder.appointment.setText(StringFormatHelper.yearMonthDayTime(array.get(position).getTime()));
         holder.center.setText(array.get(position).getCenterName());
         holder.name.setText(array.get(position).getUserOfAppointment().getFirstName() + " " + array.get(position).getUserOfAppointment().getLastName());
-        holder.birthDate.setText(TimeFormatHelper.yearMonthDay(array.get(position).getUserOfAppointment().getBirthDate()));
+        holder.birthDate.setText(StringFormatHelper.yearMonthDay(array.get(position).getUserOfAppointment().getBirthDate()));
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
