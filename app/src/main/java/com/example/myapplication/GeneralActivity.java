@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.CovidPassportFragment;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.UI.FAQ;
+import com.example.myapplication.UI.FAQ.FAQ;
 import com.example.myapplication.UI.SettingsFragment;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 import com.example.myapplication.UI.User_profile.ProfileFragment;
