@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Helpers.AppointmentHelper;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.Helpers.TimeFormatHelper;
 import com.example.myapplication.Helpers.UserAPIHelper;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.AppointmentInfoListViewAdapter;
@@ -81,6 +82,14 @@ public class Appointment_Info extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void showViewLogics(){
+        if(user.isGotFirstDose()){
+            setupFirstDoseDate();
+        }
+        if(user.isGotSecondDose()){
+            setupSecondDoseDate();
+            return;
+        }
+
         if(user.getAppointment() != null && user.getQuestionare() != null){
             setupFilledQuestionnaire();
             setupFilledAppointment();
@@ -102,6 +111,18 @@ public class Appointment_Info extends Fragment {
             setupEmptyAppointment();
             setupBookButton();
         }
+    }
+    private void setupFirstDoseDate(){
+        TextView firstDose = view.findViewById(R.id.firstDoseDate);
+        String displayDate = TimeFormatHelper.yearMonthDayTime(user.getFirstDoseDate());
+        firstDose.setText("First dose date: "+displayDate);
+        firstDose.setVisibility(View.VISIBLE);
+    }
+    private void setupSecondDoseDate(){
+        TextView firstDose = view.findViewById(R.id.secondDoseDate);
+        String displayDate = TimeFormatHelper.yearMonthDayTime(user.getSecondDoseDate());
+        firstDose.setText("Second dose date: "+displayDate);
+        firstDose.setVisibility(View.VISIBLE);
     }
 
     private void setupBookButton(){

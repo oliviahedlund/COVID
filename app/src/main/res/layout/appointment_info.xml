@@ -42,6 +42,20 @@
                 android:text="@string/emptyQuestionnaire"
                 />
         </LinearLayout>
+        <TextView
+            android:id="@+id/firstDoseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/secondDoseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:visibility="gone"/>
         <LinearLayout
             android:id="@+id/emptyAppointmentGroup"
             android:layout_width="match_parent"
