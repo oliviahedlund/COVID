@@ -23,6 +23,13 @@ public class StringFormatHelper {
         return appointmentDateTime;
     }
 
+    public static String formatDate(String date){
+        StringBuilder formattedNumber = new StringBuilder(date);
+        //1999-08-31
+        formattedNumber.insert(6, '-');
+        formattedNumber.insert(4, '-');
+        return formattedNumber.toString();
+    }
     public static String phoneNumber(String phoneNumber){
         StringBuilder formattedNumber = new StringBuilder(phoneNumber);
         //070-111 22 33
