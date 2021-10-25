@@ -6,10 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_cases;
+import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_vaccinationStats;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_vaxStock;
 import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
 
 public class Covid_tracking_fragmentAdapter extends FragmentStateAdapter {
+
     public Covid_tracking_fragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
@@ -17,13 +19,17 @@ public class Covid_tracking_fragmentAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        Fragment fragment;
         switch (position){
             case 1:
-                return new Covid_Tracking_tab_vaxStock();
+                fragment = new Covid_Tracking_tab_vaxStock();
+                break;
             case 2:
-                return new Appointment_makeCancel();
+                fragment = new Covid_Tracking_tab_vaccinationStats();
+                break;
+            default: fragment = new Covid_Tracking_tab_cases();
         }
-        return new Covid_Tracking_tab_cases();
+        return fragment;
     }
 
     @Override

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Covid_tracking.Covid_Tracking_tab_vaccinationStats">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:id="@+id/filterTabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:boxStrokeColor="@color/black"
+                android:textColorHint="@color/beige">
+                <AutoCompleteTextView
+                    android:id="@+id/countyFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/county"
+                    android:textColor="@color/black"
+                    android:inputType="none"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:boxStrokeColor="@color/black"
+                android:textColorHint="@color/beige">
+                <AutoCompleteTextView
+                    android:id="@+id/ageGroupFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/ageGroup"
+                    android:textColor="@color/black"
+                    android:inputType="none"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+            <Button
+                android:id="@+id/applyFilterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply filter"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="40dp"
+                />
+            <Button
+                android:id="@+id/resetFilterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset filter"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="30dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/filterTabs1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:boxStrokeColor="@color/black"
+                android:textColorHint="@color/beige">
+                <AutoCompleteTextView
+                    android:id="@+id/yearFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Week"
+                    android:textColor="@color/black"
+                    android:inputType="none"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:boxStrokeColor="@color/black"
+                android:textColorHint="@color/beige">
+                <AutoCompleteTextView
+                    android:id="@+id/weekFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Year"
+                    android:textColor="@color/black"
+                    android:inputType="none"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/filterTabs2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:boxStrokeColor="@color/black"
+                android:textColorHint="@color/beige">
+                <AutoCompleteTextView
+                    android:id="@+id/countyFilter1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/county"
+                    android:textColor="@color/black"
+                    android:inputType="none"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:boxStrokeColor="@color/black"
+                android:textColorHint="@color/beige">
+                <AutoCompleteTextView
+                    android:id="@+id/doseFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/dose"
+                    android:textColor="@color/black"
+                    android:inputType="none"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            android:gravity="center">
+            <Button
+                android:id="@+id/applyFilterButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply filter"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="40dp"
+                />
+            <Button
+                android:id="@+id/resetFilterButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset filter"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="30dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
