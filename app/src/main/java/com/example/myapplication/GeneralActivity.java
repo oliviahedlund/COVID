@@ -14,12 +14,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
-import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.UI.FAQ;
-import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.UI.Covid_Passport.CovidPassportFragment;
+import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment;
+import com.example.myapplication.UI.FAQ.FAQ;
+import com.example.myapplication.UI.Settings.SettingsFragment;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 import com.example.myapplication.UI.User_profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -34,8 +35,25 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView userEmail;
     private UserResponse user;
 
-    private Covid_Tracking_dashboardFragment dashFragment;
+    private Covid_Tracking_tabs_fragment dashFragment;
     //private String token;
+
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() == 1){
+            if(backPressedTime + 2000 > System.currentTimeMillis()){
+                startActivity(new Intent(GeneralActivity.this, MainActivity.class));
+                finish();
+            } else{
+                Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        } else{
+            super.onBackPressed();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +66,8 @@ public class GeneralActivity extends AppCompatActivity {
         //token = (String) i.getStringExtra("token");
 
         if(savedInstanceState == null) {
-            dashFragment = new Covid_Tracking_dashboardFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).commit();
+            dashFragment = new Covid_Tracking_tabs_fragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).addToBackStack(null).commit();
         }
 
         //Setup Menu Bar
@@ -85,11 +103,6 @@ public class GeneralActivity extends AppCompatActivity {
         return true;
     }
 
-    private void openActivity(Class _act){
-        Intent intent = new Intent(this, _act);
-        startActivity(intent);
-    }
-
     private void setupMenuBar(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -113,7 +126,7 @@ public class GeneralActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(MainActivity.class);
+                startActivity(new Intent(GeneralActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -128,13 +141,13 @@ public class GeneralActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        newFragment = new Covid_Tracking_dashboardFragment();
+                        newFragment = new Covid_Tracking_tabs_fragment();
                         break;
                     case R.id.booking:
                         newFragment = new Appointment_Info(); break;
 
                     case R.id.nav_covidpassport:
-                        newFragment = new covidPassportFragment();
+                        newFragment = new CovidPassportFragment();
                         break;
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
@@ -149,6 +162,7 @@ public class GeneralActivity extends AppCompatActivity {
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frame);
                 }
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame, newFragment).commit();
                 mDrawerLayout.closeDrawers();
                 return true;

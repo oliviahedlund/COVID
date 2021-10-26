@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.Helpers.AppointmentHelper;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.Helpers.StringFormatHelper;
 import com.example.myapplication.Helpers.UserAPIHelper;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.AppointmentInfoListViewAdapter;
@@ -23,9 +24,6 @@ import com.example.myapplication.UI.GenericMessageFragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.ViewCells.AppointmentInfo_ListViewCell;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -43,6 +41,9 @@ public class Appointment_Info extends Fragment {
 
         view = inflater.inflate(R.layout.appointment_info, container, false);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+        centerVaccineHelper = new CenterVaccineHelper(getFragment());
+        LoadingAnimation.startLoadingAnimation(getActivity());
+
 
         UserAPIHelper userAPIHelper = new UserAPIHelper(this);
         userAPIHelper.API_getUser(user, new Runnable() {
@@ -71,13 +72,21 @@ public class Appointment_Info extends Fragment {
                 }
             }
         });
-        LoadingAnimation.startLoadingAnimation(getActivity());
+
 
         return view;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void showViewLogics(){
+        if(user.isGotFirstDose()){
+            setupFirstDoseDate();
+        }
+        if(user.isGotSecondDose()){
+            setupSecondDoseDate();
+            return;
+        }
+
         if(user.getAppointment() != null && user.getQuestionare() != null){
             setupFilledQuestionnaire();
             setupFilledAppointment();
@@ -99,6 +108,18 @@ public class Appointment_Info extends Fragment {
             setupEmptyAppointment();
             setupBookButton();
         }
+    }
+    private void setupFirstDoseDate(){
+        TextView firstDose = view.findViewById(R.id.firstDoseDate);
+        String displayDate = StringFormatHelper.yearMonthDayTime(user.getFirstDoseDate());
+        firstDose.setText(getString(R.string.firstDoseDate)+": "+displayDate);
+        firstDose.setVisibility(View.VISIBLE);
+    }
+    private void setupSecondDoseDate(){
+        TextView firstDose = view.findViewById(R.id.secondDoseDate);
+        String displayDate = StringFormatHelper.yearMonthDayTime(user.getSecondDoseDate());
+        firstDose.setText(getString(R.string.secondDoseDate)+": "+displayDate);
+        firstDose.setVisibility(View.VISIBLE);
     }
 
     private void setupBookButton(){

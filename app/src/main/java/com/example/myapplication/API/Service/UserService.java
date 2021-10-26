@@ -5,6 +5,9 @@ import com.example.myapplication.API.Model.Appointment_user.Date_Time;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
+import com.example.myapplication.API.Model.Covid_tracking.Cases;
+import com.example.myapplication.API.Model.Covid_tracking.Vaccination;
+import com.example.myapplication.API.Model.Covid_tracking.VaxStock;
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
@@ -27,6 +30,7 @@ import retrofit2.http.Query;
 
 public interface UserService {
 
+        // USER //
         @POST("/api/Authenticate/login/")
         Call<LoginResponse> userLogin(@Body LoginRequest loginRequest);
 
@@ -36,41 +40,65 @@ public interface UserService {
         @GET("/api/User/")
         Call<UserResponse> getUser(@Header("Authorization") String authHeader);
 
+        @GET("/api/User/QR")
+        Call<Boolean> isFullyDosed(@Header("Authorization") String authHeader, @Query("UserId") String userID);
+
+        @GET("/api/User/Manage")
+        Call<UserResponse> getUserById(@Header("Authorization") String authHeader,@Query("UserId") String userId);
+
+        @PUT("/api/User/Manage")
+        Call<Void> manageUser(@Header("Authorization") String authHeader,@Query("UserId") String userId, @Body boolean canBook);
+
+
+        // APPOINTMENTS  //
         @GET("/api/Appointments/Booking/")
         Call<List<Date_Time>> getDateTimes(@Header("Authorization") String authHeader, @Query("center") String center);
 
         @POST("/api/Appointments/Booking/")
-        Call<Void> postNewAppointments(@Header("Authorization") String authHeader, @Body AppointmentRequest appointmentRequest);
+        Call<String> postNewAppointments(@Header("Authorization") String authHeader, @Body AppointmentRequest appointmentRequest);
 
         @PUT("/api/Appointments/Booking/")
-        Call<Void> updateAppointments(@Header("Authorization") String authHeader, @Body AppointmentRequest appointmentRequest);
+        Call<String> updateAppointments(@Header("Authorization") String authHeader, @Body AppointmentRequest appointmentRequest);
 
         @DELETE("/api/Appointments/Booking/")
         Call<Void> deleteAppointment_user(@Header("Authorization") String authHeader);
 
+        @POST("/api/Appointments/range/")
+        Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);
+
+        @POST("/api/Questionare")
+        Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
+
+        @GET("/api/Appointments/Booking/Manage/Extra")
+        Call<List<AppointmentRequest>> getAppointments(@Header("Authorization") String authHeader, @Query("GetPrior") Boolean getPrior);
+
+        @POST("/api/Appointments/Booking/Manage/Extra")
+        Call<Void> postValidation(@Header("Authorization") String authHeader, @Query("AppointmentId") String appointmentId);
+
+        @DELETE("/api/Appointments/Booking/Manage")
+        Call<Void> cancelAppointment(@Header("Authorization") String authHeader, @Query("UserId") String userId);
+
+
+        // CENTER //
         @GET("/api/Center")
         Call<List<Center>> getCenters(@Header("Authorization") String authHeader);
 
         @GET("/api/Center/{centerId}")
         Call<Center> getCenterName(@Header("Authorization") String authHeader, @Path("centerId") String centerId);
 
-        @GET("/api/Vaccine/{vaccineId}")
-        Call<Vaccine> getVaccineName(@Header("Authorization") String authHeader, @Path("vaccineId") String vaccineId);
-
-        @POST("/api/Questionare")
-        Call<Void> postNewQuestionnaire(@Header("Authorization") String authHeader, @Body QuestionnaireRequest questionnaireRequest);
-
-        @POST("/api/Appointments/range/")
-        Call<String> setRange(@Header("Authorization") String authHeader, @Body PostRangeRequest postRangeRequest);
-
         @POST("/api/Center")
         Call<String> postCenter(@Header("Authorization") String authHeader, @Body Center center);
 
-        @GET("/api/Vaccine")
-        Call<List<Vaccine>> getVaccines(@Header("Authorization") String authHeader);
-
         @POST("/api/Center/Vaccines")
         Call<String> postCenterVaccine(@Header("Authorization") String authHeader, @Query("center") String centerID, @Body List<Vaccine> vaccines);
+
+
+        // VACCINE //
+        @GET("/api/Vaccine/{vaccineId}")
+        Call<Vaccine> getVaccineName(@Header("Authorization") String authHeader, @Path("vaccineId") String vaccineId);
+
+        @GET("/api/Vaccine")
+        Call<List<Vaccine>> getVaccines(@Header("Authorization") String authHeader);
 
         @POST("/api/Vaccine")
         Call<String> postVaccine(@Header("Authorization") String authHeader, @Query("vaccineName") String vaccineName);
@@ -83,4 +111,16 @@ public interface UserService {
 
         @PUT("/api/Questionare/Manage/")
         Call<Void> updateQuest(@Header("Authorization") String authHeader, @Query("UserId") String userId, @Body QuestionnaireRequest questionnaireRequest);
+        // STATISTICS //
+        @GET("/api/Statistics/Case")
+        Call<Cases> getCases(@Header("Authorization") String authHeader);
+
+        @GET("/api/Statistics/Stock")
+        Call<VaxStock> getVaxStock(@Header("Authorization") String authHeader);
+
+        @GET("/api/Statistics/Vaccination")
+        Call<Vaccination> getVaccinationStats(@Header("Authorization") String authHeader);
+
+
+
 }

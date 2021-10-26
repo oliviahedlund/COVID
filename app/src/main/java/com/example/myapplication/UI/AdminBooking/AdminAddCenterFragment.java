@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.myapplication.AdminActivity;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
@@ -29,25 +30,25 @@ import java.util.List;
 
 
 public class AdminAddCenterFragment extends Fragment {
-    private Button importVaccine;
     private EditText centerName;
-    private EditText centerAddress;
-    private EditText vaccine;
+    //private EditText centerAddress; ////
     private EditText amount;
     private String center;
-    private String centerAdd;
-    private String vaccineName;
+    //private String centerAdd;
     private String number;
     private int value;
     private UserResponse user;
-    private String centers;
     private Button btn;
     private View view;
     private AdminVaccineHelper apiVaccin;
     private CenterVaccineHelper centerVaccineHelper;
     private String[] vaccines;
-    int vaccinePosition;
+    private String[] counties;
+    private int vaccinePosition;
+    private String choosenCounty;
     private AutoCompleteTextView vaccineFilter;
+    private AutoCompleteTextView countyFilter;
+    private AdminActivity adminActivity;
 
 
     public AdminAddCenterFragment() {
@@ -58,36 +59,28 @@ public class AdminAddCenterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_admin_add_center, container, false);
-        vaccinePosition=-1; //inizialize if not chosen
+        view = inflater.inflate(R.layout.admin_add_center, container, false);
 
+        adminActivity = (AdminActivity) getActivity();
+        centerVaccineHelper = adminActivity.getCenterVaccineHelper();
+        apiVaccin = adminActivity.getVaccineHelper();
+
+        vaccinePosition=-1; //inizialize if not chosen
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
-        centerVaccineHelper = new CenterVaccineHelper(this);
-        apiCallVaccine();
+
+        setupDropdown();
         setup();
 
         return view;
     }
 
-    private void apiCallVaccine(){
-        LoadingAnimation.startLoadingAnimation(getActivity());
-        apiVaccin = new AdminVaccineHelper(this);
-
-        Runnable next = new Runnable() {
-            @Override
-            public void run() {
-                setupDropdown();
-            }
-        };
-        apiVaccin.API_getVaccine(getActivity(), user, next);
-    }
-
-
 
     private void setupDropdown(){
         vaccines = apiVaccin.getVaccines();
+        counties = getResources().getStringArray(R.array.counties);
 
         vaccineFilter = (AutoCompleteTextView) view.findViewById(R.id.generateVaccin);
+        countyFilter = (AutoCompleteTextView) view.findViewById(R.id.generateCounty);
 
         Simple_DropdownAdapter vaccineAdapter = new Simple_DropdownAdapter(getContext(), R.layout.simple_dropdown_item, vaccines);
         vaccineFilter.setAdapter(vaccineAdapter);
@@ -95,6 +88,15 @@ public class AdminAddCenterFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 vaccinePosition = position;
+            }
+        });
+
+        Simple_DropdownAdapter countyAdapter = new Simple_DropdownAdapter(getContext(), R.layout.simple_dropdown_item, counties);
+        countyFilter.setAdapter(countyAdapter);
+        countyFilter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                choosenCounty = counties[position];
             }
         });
 
@@ -106,10 +108,16 @@ public class AdminAddCenterFragment extends Fragment {
         Runnable next = new Runnable() {
             @Override
             public void run() {
-                LoadingAnimation.dismissLoadingAnimation();
-                Fragment newFragment = new AdminAddCenterFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
-                new AlertWindow(AdminAddCenterFragment.this).createAlertWindow("Center added");
+                adminActivity.callCenter(new Runnable() {
+                    @Override
+                    public void run() {
+                        LoadingAnimation.dismissLoadingAnimation();
+                        Fragment newFragment = new AdminAddCenterFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                        new AlertWindow(AdminAddCenterFragment.this).createAlertWindow("Center added");
+                    }
+                });
+
             }
         };
 
@@ -124,7 +132,7 @@ public class AdminAddCenterFragment extends Fragment {
 
     private void setup(){
         centerName = view.findViewById(R.id.centerName);
-        centerAddress = view.findViewById(R.id.centerAddress);
+        //centerAddress = view.findViewById(R.id.centerAddress);////
         amount = view.findViewById(R.id.vaccineAmount);
 
         btn = view.findViewById(R.id.button7);
@@ -140,13 +148,13 @@ public class AdminAddCenterFragment extends Fragment {
 
     private Center setupBodyCenter(){
         center = centerName.getEditableText().toString();
-        centerAdd = centerAddress.getEditableText().toString();
-        if(center.equals("") || centerAdd.equals("")){
+        //centerAdd = centerAddress.getEditableText().toString(); ///
+        if(center.equals("")){
             return null;
         }
         Center bodyCenter = new Center();
         bodyCenter.setCenterName(center);
-        bodyCenter.setCenterCounty(centerAdd);
+        bodyCenter.setCenterCounty(choosenCounty);
 
         List<Vaccine> vaccineList = new ArrayList<Vaccine>();
         vaccineList = setupBodyVaccine();

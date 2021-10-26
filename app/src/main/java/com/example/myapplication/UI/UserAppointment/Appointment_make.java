@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -21,6 +20,7 @@ import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.google.android.material.textfield.TextInputLayout;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.time.LocalDate;
@@ -37,13 +37,16 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     private ZonedDateTime appointmentDateTime;
     private AppointmentRequest appointment;
 
+    private TextInputLayout chooseCenter;
+    private TextInputLayout chooseVaccine;
+    private TextInputLayout chooseTime;
     private AutoCompleteTextView centerDropdown;
     private AutoCompleteTextView vaccineDropdown;
     private AutoCompleteTextView timeDropdown;
 
     private Button dateButton;
     private Button confirmButton;
-    private Button cancelButton;
+    private Button resetButton;
 
     private int center = NOT_DEFINED;
     private int vaccine = NOT_DEFINED;
@@ -73,6 +76,10 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
         view = inflater.inflate(R.layout.appointment_center_date, container, false);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+
+        chooseCenter = (TextInputLayout) view.findViewById(R.id.chooseCenterParent);
+        chooseVaccine = (TextInputLayout) view.findViewById(R.id.chooseVaccineParent);
+        chooseTime = (TextInputLayout) view.findViewById(R.id.chooseTimeParent);
 
         centerVaccineHelper = new CenterVaccineHelper(this);
         centerVaccineHelper.API_getCenters(getActivity(), user, new Runnable(){
@@ -131,15 +138,14 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
                 }
             }
         });
-        cancelButton = (Button) view.findViewById(R.id.cancelCenterDate);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        resetButton = (Button) view.findViewById(R.id.resetCenterDate);
+        resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Appointment_makeCancel appointmentFragment = new Appointment_makeCancel();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
+                Appointment_make appointment_make = new Appointment_make();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
             }
         });
-        cancelButton.setVisibility(View.GONE);
     }
 
     public void setupCenters() {
@@ -153,6 +159,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 center = position;
                 selectedCenter = centerVaccineHelper.getSelectedCenter(center);
+                chooseCenter.setEnabled(false);
                 setupVaccines();
             }
         });
@@ -160,6 +167,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     public void setupVaccines(){
         vaccineDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseVaccine);
+        vaccineDropdown.setEnabled(true);
         Simple_DropdownAdapter vaccineAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, centerVaccineHelper.getVaccines(center));
 
         vaccineDropdown.setAdapter(vaccineAdapter);
@@ -167,6 +175,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                chooseVaccine.setEnabled(false);
                 vaccine = position;
                 selectedVaccine = centerVaccineHelper.getSelectedVaccine(vaccine);
                 dateButton.setEnabled(true);
@@ -219,6 +228,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onDateSet(DatePickerDialog view, int yearValue, int monthOfYear, int dayOfMonth) {
+        dateButton.setEnabled(false);
         year = yearValue;
         month = monthOfYear;
         day = dayOfMonth;
@@ -237,12 +247,14 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         buffer.set(Calendar.DAY_OF_MONTH, day);
 
         timeDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseTime);
+        chooseTime.setEnabled(true);
         Simple_DropdownAdapter timeAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, dateTimeHelper.getTimes(buffer));
 
         timeDropdown.setAdapter(timeAdapter);
         timeDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                confirmButton.setEnabled(true);
                 selectedTime = position;
                 fillAppointment();
             }

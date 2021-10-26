@@ -17,6 +17,7 @@ import android.widget.EditText;
 
 import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.example.myapplication.AdminActivity;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.Helpers.AdminVaccineHelper;
@@ -38,6 +39,7 @@ public class AdminAddVaccineFragment extends Fragment {
     CenterVaccineHelper centerVaccineHelper;
     private int centerPosition;
     private int vaccinePosition;
+    private AdminActivity adminActivity;
 
     public AdminAddVaccineFragment() {
         // Required empty public constructor
@@ -47,12 +49,15 @@ public class AdminAddVaccineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_admin_add_vaccine, container, false);
+        view = inflater.inflate(R.layout.admin_add_vaccine, container, false);
         Intent i = getActivity().getIntent();
         user = (UserResponse) i.getSerializableExtra("userInfo");
 
-        apiCallCenter();
+        adminActivity = (AdminActivity) getActivity();
+        centerVaccineHelper = adminActivity.getCenterVaccineHelper();
+        apiVaccin = adminActivity.getVaccineHelper();
+
+        setupDropdown();
         setupButtons();
 
         return view;
@@ -60,25 +65,35 @@ public class AdminAddVaccineFragment extends Fragment {
 
     private void postVaccineAPI(){
         LoadingAnimation.startLoadingAnimation(getActivity());
+
         EditText etVaccineName = view.findViewById(R.id.vaccineName);
         String vaccineName = etVaccineName.getText().toString();
         AdminVaccineHelper apiVaccine = new AdminVaccineHelper(this);
+
         Runnable next = new Runnable() {
             @Override
             public void run() {
-                LoadingAnimation.dismissLoadingAnimation();
-                Fragment newFragment = new AdminAddVaccineFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
-                new AlertWindow(AdminAddVaccineFragment.this).createAlertWindow("Vaccine added");
+                adminActivity.callVaccine(new Runnable() {
+                    @Override
+                    public void run() {
+                        LoadingAnimation.dismissLoadingAnimation();
+                        Fragment newFragment = new AdminAddVaccineFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                        new AlertWindow(AdminAddVaccineFragment.this).createAlertWindow("Vaccine added");
+
+                    }
+                });
 
             }
         };
+
         apiVaccine.API_postVaccine(user ,vaccineName, next);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void postCenterVaccineAPI(){
         LoadingAnimation.startLoadingAnimation(getActivity());
+
         String centerID = centerVaccineHelper.getSelectedCenter(centerPosition);
         Vaccine vaccine = apiVaccin.getVaccine(vaccinePosition);
 
@@ -93,10 +108,16 @@ public class AdminAddVaccineFragment extends Fragment {
         Runnable next = new Runnable() {
             @Override
             public void run() {
-                LoadingAnimation.dismissLoadingAnimation();
-                Fragment newFragment = new AdminAddVaccineFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
-                new AlertWindow(AdminAddVaccineFragment.this).createAlertWindow("Vaccine added to center");
+                adminActivity.callCenter(new Runnable() {
+                    @Override
+                    public void run() {
+                        LoadingAnimation.dismissLoadingAnimation();
+                        Fragment newFragment = new AdminAddVaccineFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                        new AlertWindow(AdminAddVaccineFragment.this).createAlertWindow("Vaccine added to center");
+
+                    }
+                });
 
             }
         };
@@ -124,37 +145,9 @@ public class AdminAddVaccineFragment extends Fragment {
 
 
     }
-    private void apiCallCenter(){
-        LoadingAnimation.startLoadingAnimation(getActivity());
-        centerVaccineHelper = new CenterVaccineHelper(this);
-
-        Runnable centerRunnable = new Runnable() {
-            @Override
-            public void run() {
-                apiCallVaccine();
-            }
-        };
-        centerVaccineHelper.API_getCenters(getActivity(), user, centerRunnable);
-
-    }
-
-
-    private void apiCallVaccine(){
-        apiVaccin = new AdminVaccineHelper(this);
-
-        Runnable vaccineRunnable = new Runnable() {
-            @Override
-            public void run() {
-                setupDropdown();
-            }
-        };
-        apiVaccin.API_getVaccine(getActivity(), user, vaccineRunnable);
-    }
-
 
 
     private void setupDropdown(){
-        //centers = getResources().getStringArray(R.array.Centers);
         centers = centerVaccineHelper.getCenters();
         vaccines = apiVaccin.getVaccines();
 

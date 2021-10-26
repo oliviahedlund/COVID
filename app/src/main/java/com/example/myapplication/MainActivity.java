@@ -10,6 +10,7 @@ import android.widget.CheckBox;  //will be excluded
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -17,6 +18,9 @@ import com.example.myapplication.Helpers.UserLoginHelper;
 import com.example.myapplication.Helpers.LanguageHelper;
 import com.example.myapplication.UI.LoadingAnimation;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,6 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
     private UserResponse userResponse;
 
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        } else{
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,30 +64,27 @@ public class MainActivity extends AppCompatActivity {
 
 ////////////// Dummy Login /////////////////////
         Button testB = findViewById(R.id.dummyLoginButton);
-        CheckBox isAdmin = findViewById(R.id.checkBox);
         testB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i;
-                if(isAdmin.isChecked()){
-                    i = new Intent(MainActivity.this, AdminActivity.class);
-                }
-                else{i = new Intent(MainActivity.this, GeneralActivity.class);}
+                Intent i = new Intent(MainActivity.this, GeneralActivity.class);
                 UserResponse dummyUserResponse = new UserResponse();
                 dummyUserResponse.setEmail("dummy@test.com");
                 dummyUserResponse.setFirstName("Dummy");
                 dummyUserResponse.setLastName("Dumdum");
                 dummyUserResponse.setPhoneNumber("0701234567");
-                dummyUserResponse.setBirthDate("19990412");
+                ZonedDateTime temp = ZonedDateTime.now();
+                temp = LocalDateTime.of(1999, 04, 20, 0, 0, 0).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
+                dummyUserResponse.setBirthDate(temp);
                 dummyUserResponse.setAddress("Dummystreet 12");
                 dummyUserResponse.setCity("Dumtown");
                 dummyUserResponse.setDistrict("Dummiton");
                 dummyUserResponse.setPostalCode("77777");
                 dummyUserResponse.setId("0");
                 dummyUserResponse.setAdmin(false);
-                System.out.println("USER ID: "+ userResponse.getId());
+                System.out.println("USER ID: "+ dummyUserResponse.getId());
                 String dummyToken = " ";
-                i.putExtra("userInfo", (Serializable) dummyUserResponse);
+                i.putExtra("userInfo", dummyUserResponse);
                 i.putExtra("token", loginToken);
                 startActivity(i);
                 finish(); //clears page from history
@@ -85,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userEmail = findViewById(R.id.editTextTextEmailAddress3);
                 userPassword = findViewById(R.id.editTextTextPassword2);
-                userEmail.setText("olivia@gmail.com");
+                userEmail.setText("user1@mail.com");
                 userPassword.setText("Citron123");
             }
         });
@@ -127,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     errorText.setText("wrong email or parrsord");
                     System.out.println("Hantera fel");
+                    LoadingAnimation.dismissLoadingAnimation();
                 }
-                LoadingAnimation.dismissLoadingAnimation();
             }
         };
 
@@ -146,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         i.putExtra("userInfo", userResponse);
+        LoadingAnimation.dismissLoadingAnimation();
         startActivity(i);
         finish(); //clears page from history
     }

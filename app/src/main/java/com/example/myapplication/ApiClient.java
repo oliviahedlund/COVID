@@ -30,6 +30,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
+    private static UserService userService;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private static Retrofit getRetrofit(){
 
@@ -67,7 +69,9 @@ public class ApiClient {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static UserService getUserService(){
-        UserService userService = getRetrofit().create(UserService.class);
+        if(userService == null){
+            userService = getRetrofit().create(UserService.class);
+        }
 
         return userService;
     }

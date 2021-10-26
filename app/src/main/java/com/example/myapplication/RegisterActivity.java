@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.API.Model.Register.RegisterRequest;
 import com.example.myapplication.API.Model.Register.RegisterResponse;
+import com.example.myapplication.Helpers.StringFormatHelper;
+import com.example.myapplication.UI.LoadingAnimation;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,23 +27,42 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
     final int AGE_REQUIREMENT = 18000;
 
-    EditText userFirstName;
-    EditText userLastName;
-    EditText userEmail;
-    EditText userPassword;
-    EditText userRepeatPassword;
-    EditText userPhone;
-    EditText userDate;
-    EditText userStreet;
-    EditText userZip;
-    EditText userCity;
-    EditText userCounty;
+    private EditText userFirstName;
+    private EditText userLastName;
+    private EditText userEmail;
+    private EditText userPassword;
+    private EditText userRepeatPassword;
+    private EditText userPhone;
+    private EditText userDate;
+    private EditText userStreet;
+    private EditText userZip;
+    private EditText userCity;
+    private EditText userCounty;
+
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            finish();
+            return;
+        } else{
+            Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        setupEditTexts();
+        setupRegButton();
+
+    }
+
+    private void setupEditTexts(){
         userFirstName = findViewById(R.id.editTextTextPersonName3);
         userLastName = findViewById(R.id.editTextTextPersonName4);
         userEmail = findViewById(R.id.editTextTextEmailAddress3);
@@ -53,52 +74,43 @@ public class RegisterActivity extends AppCompatActivity {
         userZip = findViewById(R.id.editTextNumber);
         userCity = findViewById(R.id.editTextTextPersonName);
         userCounty = findViewById(R.id.editTextTextPersonName2);
+    }
 
+    private RegisterRequest setupRegRequest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setEmail(userEmail.getText().toString());
+        registerRequest.setPassword(userPassword.getText().toString());
+        registerRequest.setAddress(userStreet.getText().toString());
+        registerRequest.setBirthDate(StringFormatHelper.formatDate(userDate.getText().toString()));
+        registerRequest.setCity(userCity.getText().toString());
+        registerRequest.setDistrict(userCounty.getText().toString());
+        registerRequest.setFirstName(userFirstName.getText().toString());
+        registerRequest.setLastName(userLastName.getText().toString());
+        registerRequest.setPhoneNumber(userPhone.getText().toString());
+        registerRequest.setPostalCode(userZip.getText().toString());
+        return registerRequest;
+    }
 
-        Button registerbutton = findViewById(R.id.button2);
+    private void setupRegButton(){
+        Button registerButton = findViewById(R.id.button2);
 
-        registerbutton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if(validate_registration()) {
-                    RegisterRequest registerRequest = new RegisterRequest();
-                    registerRequest.setEmail(userEmail.getText().toString());
-                    registerRequest.setPassword(userPassword.getText().toString());
-                    registerRequest.setAddress(userStreet.getText().toString());
-                    //registerRequest.setAddress2("adress2test");
-                    registerRequest.setBirthDate(changeDate(userDate.getText().toString()));
-                    registerRequest.setCity(userCity.getText().toString());
-                    registerRequest.setDistrict(userCounty.getText().toString());
-                    registerRequest.setFirstName(userFirstName.getText().toString());
-                    registerRequest.setLastName(userLastName.getText().toString());
-                    registerRequest.setPhoneNumber(userPhone.getText().toString());
-                    registerRequest.setPostalCode(userZip.getText().toString());
-                    registerUser(registerRequest);
-
+                    LoadingAnimation.startLoadingAnimation(RegisterActivity.this);
+                    registerUser(setupRegRequest());
                 }
-               
+
                 else{
                     System.out.println("onClick error");
                 }
-
             }
         });
     }
 
-    //changes date-string from YYYYMMDD to YYYY-MM-DD
-    private String changeDate(String _date){
-        String newString = new String();
-        for(int i=0; i<8; i++){
-            if(i==4||i==6){
-                newString += "-";
-            }
-            newString += _date.charAt(i);
-        }
-        return newString;
-    }
-
-    private boolean validate(TextView text, EditText input, Pattern pattern, String id){
+    private boolean validate_input(TextView text, EditText input, Pattern pattern, String id){
         Matcher mat = pattern.matcher(input.getText().toString());
         System.out.println("Input: " + input);
         if(mat.matches()){
@@ -177,42 +189,35 @@ public class RegisterActivity extends AppCompatActivity {
         TextView city = findViewById(R.id.textView11);
         TextView county = findViewById(R.id.textView12);
 
-        Pattern namePattern = Pattern.compile("[A-Za-z_ ]{1,30}");
+        Pattern namePattern = Pattern.compile("^[A-ZÅÄÖ]?[a-zåäö]{1,30}(?:-[A-ZÅÄÖ][a-zåäö]{1,30})?$"); //ex. Lars-Åke
         Pattern emailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$"); //one digit+lower+upper
-        //Pattern passwordPattern = Pattern.compile("[\\x00-\\x7F]{8,20}"); //all ascii - 8-20 symbols - stor bokstav & siffra
         Pattern phonePattern = Pattern.compile("[0-9]{10,11}");
         Pattern datePattern = Pattern.compile("[0-9]{8}");
-        Pattern streetPattern = Pattern.compile("[A-Za-z0-9_ ]{4,30}");
+        Pattern streetPattern = Pattern.compile("[A-ZÅÄÖa-zåäö0-9_ ]{4,30}");
         Pattern zipPattern = Pattern.compile("[0-9]{5}");
-        Pattern cityCountyPattern = Pattern.compile("[A-Za-z]{2,15}");
+        Pattern cityCountyPattern = Pattern.compile("[A-Za-zÅÄÖåäö]{2,15}");
 
         if(
-                validate(firstName, userFirstName, namePattern, "userFirstName") &&
-                validate(lastName, userLastName, namePattern, "userLastName") &&
-                validate(email, userEmail, emailPattern, "email") &&
-                validate(password, userPassword, passwordPattern, "userPassword") &&
+                validate_input(firstName, userFirstName, namePattern, "userFirstName") &&
+                validate_input(lastName, userLastName, namePattern, "userLastName") &&
+                validate_input(email, userEmail, emailPattern, "email") &&
+                validate_input(password, userPassword, passwordPattern, "userPassword") &&
                 repeat_password(userRepeatPassword.getText().toString(), userPassword.getText().toString(), repeatPassword) &&
-                validate(phone, userPhone, phonePattern, "userPhone") &&
+                validate_input(phone, userPhone, phonePattern, "userPhone") &&
                 validate_date(date, userDate, datePattern) &&
-                validate(street, userStreet, streetPattern, "userStreet") &&
-                validate(zip, userZip, zipPattern, "userZip") &&
-                validate(city, userCity, cityCountyPattern, "userCity") &&
-                validate(county, userCounty, cityCountyPattern, "userCounty")
+                validate_input(street, userStreet, streetPattern, "userStreet") &&
+                validate_input(zip, userZip, zipPattern, "userZip") &&
+                validate_input(city, userCity, cityCountyPattern, "userCity") &&
+                validate_input(county, userCounty, cityCountyPattern, "userCounty")
 
         ){
-            openActivity(MainActivity.class);
             return true;
         }
         else{
             System.out.println("validate error");
             return false;
         }
-    }
-
-    public void openActivity(Class _act){
-        Intent intent = new Intent(this, _act);
-        startActivity(intent);
     }
 
     public void registerUser(RegisterRequest registerRequest){
@@ -223,11 +228,14 @@ public class RegisterActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     String message = "succesful registration";
                     Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-                    openActivity(MainActivity.class);
+                    LoadingAnimation.dismissLoadingAnimation();
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     String message = "unable to register";
                     Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                    LoadingAnimation.dismissLoadingAnimation();
                 }
             }
 
@@ -235,6 +243,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 String message = t.getLocalizedMessage();
                 Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                LoadingAnimation.dismissLoadingAnimation();
             }
         });
     }

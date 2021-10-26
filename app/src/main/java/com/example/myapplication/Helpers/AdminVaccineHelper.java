@@ -15,6 +15,7 @@ import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.LoadingAnimation;
 
+import java.io.Serializable;
 import java.util.List;
 
 import retrofit2.Call;

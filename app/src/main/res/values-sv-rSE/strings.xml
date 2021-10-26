@@ -4,7 +4,9 @@
     <string name="app_name">Covid tracker</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
+    <string name="Email">E-post</string>
     <string name="dateOfBirth">Födelsedag</string>
+    <string name="unknownError">Okänt fel</string>
 
     <!--not used?-->
     <string name="generate">Generera tillgängliga tider</string>
@@ -69,6 +71,34 @@
     <string name="startdate">Startdatum</string>
     <string name="enddate">Slutdatum</string>
     <string name="publishTimes">Publicera Tider</string>
+    <!--admin sched: error messages-->
+    <string name="noCenter">Inget center valt</string>
+    <string name="noAges">Inga åldersgrupper valda</string>
+    <string name="noDays">Inga dagar valda</string>
+    <string name="appShort">Tidsbokning för kort</string>
+    <string name="notInt">Minut-input felaktig</string>
+    <string name="startEndDate">Ej korrekt start- och/eller slutdatum</string>
+    <string name="endDateAfter">Slutdatum måste vara efter startdatum</string>
+    <string name="startFuture">Startdatum måste vara i framtiden</string>
+    <string name="rangeAdd">Intervall tillagt</string>
+    <string name="conflictRange">Intervall ej tillagt: Ett motstridande intervall kan finnas, prova ett annat</string>
+
+    <!--admin validate-->
+    <string name="validTitle">Bokningsuppföljning</string>
+    <string name="checkAll">Markera alla</string>
+    <string name="uncheckAll">Avmarkera alla</string>
+    <string name="allCenters">Alla center</string>
+    <string name="appValid">Bokningar bekräftade</string>
+    <string name="appInvalid">Bokningar ogiltigförklarade</string>
+    <string name="getAppFail">Hämtning av bokningar misslyckades</string>
+    <string name="setValidFail">Bekräftning av bokningar misslyckades</string>
+    <string name="appointmentSemi">Tidsbokning:</string>
+    <string name="nameSemi">Namn:</string>
+    <string name="birthSemi">Födelsedatum:</string>
+    <string name="nothingToShow">Inget att visa</string>
+    <string name="validate">Bekräfta bokningar</string>
+    <string name="invalidate">Ogiltigförklara bokningar</string>
+
 
     <!--add centers-->
     <string name="addCenters">Lägg till nya center</string>
@@ -89,7 +119,9 @@
     <string name="product">Produkt</string>
     <string name="dose">Dos</string>
     <string name="totalCases">Antal fall:</string>
+    <string name="totalAmount">Antal vaccin: </string>
     <string name="totalDeaths">Antal dödsfall:</string>
+    <string name="totalIntensive">Antal intensiv: </string>
     <string name="totalDistri">Antal distribuerade doser:</string>
     <string name="totalAdmini">Antal administrerade doser:</string>
     <string name="vs">Dos 1 vs Dos 2:</string>
@@ -135,6 +167,7 @@
     <string name="time">Tid</string>
     <string name="confirm">Klar</string>
     <string name="cancel">Avbryt</string>
+    <string name="reset">Gör Om</string>
     <string name="chooseDate">Välj ett datum</string>
     <string name="chooseDay">välj en dag</string>
 
@@ -398,21 +431,48 @@
         </item>
     </string-array>
 
+    <string name="yourAppointmentInfo">Din bokningsinformation</string>
     <string name="cancelAppointment">Ställ in bokning</string>
     <string name="rebookAppointment">Gör om bokning</string>
     <string name="bookAppointment">Gör en bokning</string>
-
     <string name="emptyQuestionnaire">Du har inte fyllt i en hälsodeklaration</string>
     <string name="emptyAppointment">Du har ingen bokning just nu</string>
-    <string name="noCenter">Inget center valt</string>
-    <string name="noAges">Inga åldersgrupper valda</string>
-    <string name="noDays">Inga dagar valda</string>
-    <string name="appShort">Tidsbokning för kort</string>
-    <string name="notInt">Minut-input felaktig</string>
-    <string name="startEndDate">Ej korrekt start- och/eller slutdatum</string>
-    <string name="endDateAfter">Slutdatum måste vara efter startdatum</string>
-    <string name="startFuture">Startdatum måste vara i framtiden</string>
-    <string name="conflictRange">Intervall ej tillagt: Ett motstridande intervall kan finnas, prova ett annat</string>
-    <string name="rangeAdd">Intervall tillagt</string>
+    <string name="firstDoseDate">Datum för första dosen</string>
+    <string name="secondDoseDate">Datum för andra dosen</string>
+
+    <string name="fullyVaccinated">Yes, this user is fully vaccinated!Ja, användaren är fullt vaccinerad!</string>
+    <string name="notFullyVaccinated">Oj, användare är inte fullt vaccinerad!</string>
+
+    <string name="cameraPermissionTitle">Kamera tillstånd</string>
+    <string name="cameraPermissionMessage">Vänligen tillåt detta tillstånd för att aktivera kamera för skanning.</string>
+    <string name="cameraPermissionSettings">Vänligen tillåt detta tillstånd från sidan med appinställningar.</string>
+    <string name="goToSettingsButton">Gå till inställningar</string>
+    <string name="allow">Tillåt</string>
+    <string name="scan">Skanna</string>
+
+    <string name="county">Region</string>
+    <string name="sweden">Sverige</string>
+    <string name="week">Vecka</string>
+    <string name="year">År</string>
+    <string name="yearWeek">År-Vecka</string>
+    <string name="population">Befolkning: </string>
+    <string name="minFirstDoseAmount">Antal minst första dos: </string>
+    <string name="minFirstDoseRatio">Andel minst första dos: </string>
+    <string name="fullVaccinationAmount">Antal fullt vaccinerade: </string>
+    <string name="fullVaccinationRatio">Andel fullt vaccinerade: </string>
+    <string name="cumulativeVaccinatedAmount">Antal kumulativ vaccinerade: </string>
+    <string name="cumulativeVaccinatedRatio">Andel kumulativ vaccinerade: </string>
+    <string name="applyFilter">Sätt Filter</string>
+    <string name="resetFilter">Gör Om</string>
+    <string name="cases">Fall</string>
+    <string name="Stock">Lager</string>
+    <string name="Stats1">Stats 1</string>
+    <string name="Stats2">Stats 2</string>
+    <string name="coronaTracking">Corona Utveckling</string>
+    <string name="vaccineStock">Vaccin Lager Status</string>
+    <string name="statsVaccinated">Stats: Vaccinerade</string>
+    <string name="statsVaccinatedCumulative">Stats: Vaccinerade (kumulativ)</string>
+
+
 </resources>
 

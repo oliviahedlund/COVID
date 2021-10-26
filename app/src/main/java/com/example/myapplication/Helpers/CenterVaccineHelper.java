@@ -17,6 +17,7 @@ import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -186,6 +187,15 @@ public class CenterVaccineHelper {
 
     public String getSelectedVaccine(int vaccine){
         return centers.get(selectedCenter).getVaccines().get(vaccine).getVaccineId();
+    }
+
+    public String getCenterNameFromId(String id){
+        for (Center c: centers) {
+            if(id.equals(c.getCenterId())){
+                return c.getCenterName();
+            }
+        }
+        return null;
     }
 
     public String getCenterName() {
