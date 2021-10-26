@@ -20,7 +20,6 @@ import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.UI.AdminBooking.AdminAddCenterFragment;
 import com.example.myapplication.UI.AdminBooking.AdminAddVaccineFragment;
 import com.example.myapplication.UI.AdminBooking.AdminBookingRangeFragment;
-import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tab_cases;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.Settings.SettingsFragment;
