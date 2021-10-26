@@ -108,7 +108,9 @@
     <string name="product">Produkt</string>
     <string name="dose">Dos</string>
     <string name="totalCases">Antal fall:</string>
+    <string name="totalAmount">Antal vaccin: </string>
     <string name="totalDeaths">Antal dödsfall:</string>
+    <string name="totalIntensive">Antal intensiv: </string>
     <string name="totalDistri">Antal distribuerade doser:</string>
     <string name="totalAdmini">Antal administrerade doser:</string>
     <string name="vs">Dos 1 vs Dos 2:</string>
@@ -436,5 +438,20 @@
     <string name="goToSettingsButton">Gå till inställningar</string>
     <string name="allow">Tillåt</string>
     <string name="scan">Skanna</string>
+
+    <string name="county">Region</string>
+    <string name="sweden">Sverige</string>
+    <string name="week">Vecka</string>
+    <string name="year">År</string>
+    <string name="yearWeek">År-Vecka</string>
+    <string name="population">Befolkning: </string>
+    <string name="minFirstDoseAmount">Antal minst första dos: </string>
+    <string name="minFirstDoseRatio">Andel minst första dos: </string>
+    <string name="fullVaccinationAmount">Antal fullt vaccinerade: </string>
+    <string name="fullVaccinationRatio">Andel fullt vaccinerade: </string>
+    <string name="cumulativeVaccinatedAmount">Antal kumulativ vaccinerade: </string>
+    <string name="cumulativeVaccinatedRatio">Andel kumulativ vaccinerade: </string>
+    <string name="applyFilter">Sätt Filter</string>
+    <string name="resetFilter">Gör Om</string>
 </resources>
 

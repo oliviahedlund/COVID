@@ -114,7 +114,9 @@
     <string name="product">Product</string>
     <string name="dose">Dose</string>
     <string name="totalCases">Total cases: </string>
+    <string name="totalAmount">Total amount: </string>
     <string name="totalDeaths">Total deaths: </string>
+    <string name="totalIntensive">Total intensive: </string>
     <string name="totalDistri">Total distributed doses: </string>
     <string name="totalAdmini">Total administered doses: </string>
     <string name="vs">Dose 1 vs Dose 2: </string>
@@ -475,5 +477,20 @@
     <string name="goToSettingsButton">Go to settings</string>
     <string name="allow">Allow</string>
     <string name="scan">Scan</string>
+
+    <string name="county">County</string>
+    <string name="sweden">Sweden</string>
+    <string name="week">Week</string>
+    <string name="year">Year</string>
+    <string name="yearWeek">Year-Week</string>
+    <string name="population">Population: </string>
+    <string name="minFirstDoseAmount">At least first dose amount: </string>
+    <string name="minFirstDoseRatio">At least first dose ratio: </string>
+    <string name="fullVaccinationAmount">Full vaccination amount: </string>
+    <string name="fullVaccinationRatio">Full vaccination ratio: </string>
+    <string name="cumulativeVaccinatedAmount">Cumulative vaccinated amount: </string>
+    <string name="cumulativeVaccinatedRatio">Cumulative vaccinated ratio: </string>
+    <string name="applyFilter">Apply Filter</string>
+    <string name="resetFilter">Reset Filter</string>
 
 </resources>

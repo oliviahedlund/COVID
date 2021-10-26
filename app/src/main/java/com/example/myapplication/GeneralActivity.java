@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.Covid_Passport.CovidPassportFragment;
-import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.UI.FAQ.FAQ;
-import com.example.myapplication.UI.Settings.SettingsFragment;
+import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment;
+import com.example.myapplication.UI.FAQ;
+import com.example.myapplication.UI.SettingsFragment;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 import com.example.myapplication.UI.User_profile.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -35,7 +35,7 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView userEmail;
     private UserResponse user;
 
-    private Covid_Tracking_dashboardFragment dashFragment;
+    private Covid_Tracking_tabs_fragment dashFragment;
     //private String token;
 
     private long backPressedTime;
@@ -66,7 +66,7 @@ public class GeneralActivity extends AppCompatActivity {
         //token = (String) i.getStringExtra("token");
 
         if(savedInstanceState == null) {
-            dashFragment = new Covid_Tracking_dashboardFragment();
+            dashFragment = new Covid_Tracking_tabs_fragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frame, dashFragment).addToBackStack(null).commit();
         }
 
@@ -141,7 +141,7 @@ public class GeneralActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        newFragment = new Covid_Tracking_dashboardFragment();
+                        newFragment = new Covid_Tracking_tabs_fragment();
                         break;
                     case R.id.booking:
                         newFragment = new Appointment_Info(); break;
