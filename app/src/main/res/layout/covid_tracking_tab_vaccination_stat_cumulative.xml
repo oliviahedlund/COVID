@@ -91,16 +91,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/applyFilter"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 />
             <Button
                 android:id="@+id/resetFilterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/resetFilter"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 />
         </LinearLayout>
 

@@ -26,7 +26,7 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_fragment_dashboard.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_cases.xml" value="0.264" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_vaccination_stat.xml" value="0.1" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_vaccination_stat.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_vaccination_stat_cumulative.xml" value="0.1" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_vaxstock.xml" value="0.23641304347826086" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tabs_fragment.xml" value="0.128125" />
@@ -77,7 +77,6 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2387416668269345" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/admin_add_center.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/alertwindow.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/appointment.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/appointment_center_date.xml" value="0.2375" />
@@ -101,15 +100,12 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_quest_no_new.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.19805194805194806" />
-        <entry key="app/src/main/res/layout/generic_message.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/loading_animation.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/layout/menu_header.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/questionnaire_admin_messages.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/questionnaire_cell.xml" value="0.25" />
         <entry key="app/src/main/res/layout/questionnaire_fragment.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/simple_dropdown_item.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/layout/validate_cell.xml" value="0.2375" />
         <entry key="app/src/main/res/menu/admin_menu.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3260416666666667" />
