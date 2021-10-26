@@ -13,6 +13,7 @@
         <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_dash.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/layout/display_userinfo_admin_dashboardgeneric.xml" value="0.264" />
         <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/layout/faq.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/linda/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_dashboard.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/linda/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_dash.xml" value="0.16666666666666666" />
@@ -39,6 +40,8 @@
         <entry key="app/src/main/res/drawable/ic_splash.xml" value="0.259375" />
         <entry key="app/src/main/res/drawable/ic_virus.xml" value="0.2609375" />
         <entry key="app/src/main/res/drawable/image_logo_background.xml" value="0.259375" />
+        <entry key="app/src/main/res/layout/activity_admin.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_admin_dashboard_generic.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_dash.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2387416668269345" />
@@ -47,6 +50,8 @@
         <entry key="app/src/main/res/layout/covid_tracking_dropdown_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/covid_tracking_fragment_dashboard.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/dashboard_generic_adapter_view.xml" value="0.2504528985507246" />
+        <entry key="app/src/main/res/layout/display_userinfo_admin_dashboardgeneric.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_admin_dashboard.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_admin_new_questionnaires.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/fragment_admin_quest_messages.xml" value="0.29583333333333334" />

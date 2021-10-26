@@ -12,6 +12,12 @@
     >
 
 
+    <Button
+        android:id="@+id/BackButton"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Back" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +51,5 @@
         android:layout_height="fill_parent"
         android:visibility="gone"
         />
-
-
 
 </LinearLayout>

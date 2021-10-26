@@ -25,12 +25,6 @@ public class UserInfo implements Parcelable {
     private String secondDoseDate;
     private QuestionnaireRequest questionare;
 
-
-
-
-
-
-
     //Get functions
     public boolean isAdmin() {
         return isAdmin;

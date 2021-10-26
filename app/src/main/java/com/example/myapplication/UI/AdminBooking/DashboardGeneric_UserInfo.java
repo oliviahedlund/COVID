@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,10 +25,11 @@ import java.util.ArrayList;
 
 public class DashboardGeneric_UserInfo extends Fragment {
     private UserInfo user;
-    private TextView Firstname;
-    private TextView Lastname;
-    private TextView Birthdate;
-    private TextView Doses;
+    private TextView firstName;
+    private TextView lastName;
+    private TextView birthdate;
+    private TextView doses;
+    private Button backButton;
     View view;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,49 +43,48 @@ public class DashboardGeneric_UserInfo extends Fragment {
         }
         setUpTextViews();
         setupFilledQuestionnaire();
-
         return view;
     }
 
-
     private void setUpTextViews(){
-        Firstname = (TextView) view.findViewById(R.id.Firstname);
-        Lastname = (TextView) view.findViewById(R.id.Lastname);
-        Birthdate = (TextView) view.findViewById(R.id.Birthdate);
-        Doses = (TextView) view.findViewById(R.id.NrOfDoses);
-
-
-        Firstname.setText(Firstname.getText()+": "+user.getFirstName());
-        Lastname.setText(Lastname.getText()+": "+user.getLastName());
+        backButton = (Button) view.findViewById(R.id.BackButton);
+        firstName = (TextView) view.findViewById(R.id.Firstname);
+        lastName = (TextView) view.findViewById(R.id.Lastname);
+        birthdate = (TextView) view.findViewById(R.id.Birthdate);
+        doses = (TextView) view.findViewById(R.id.NrOfDoses);
+        firstName.setText(firstName.getText()+": " + user.getFirstName());
+        lastName.setText(lastName.getText()+": " + user.getLastName());
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
-
-        Birthdate.setText(Birthdate.getText()+": "+user.getBirthDate());
-        Doses.setText(Doses.getText()+": "+user.getFirstDoseDate());
+        birthdate.setText(birthdate.getText()+": " + user.getBirthDate());
+        doses.setText(doses.getText()+": " + user.getFirstDoseDate());
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                DashboardGeneric_Admin dashFragment = new DashboardGeneric_Admin();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, dashFragment).commit();
+            }
+        });
     }
 
     private void setupFilledQuestionnaire() {
         if (user.getQuestionare() != null) {
             ArrayList<AppointmentInfo_ListViewCell> listViewItems = new ArrayList<AppointmentInfo_ListViewCell>();
             ListView listView;
-
             String[] labelArray = getResources().getStringArray(R.array.questions);
             String[] answerArray = new String[]{
-                    user.getQuestionare().getNeededHelpDuetoVax() ? getString(R.string.yes) : getString(R.string.no),
-                    user.getQuestionare().getTraveledInLast14Days() ? getString(R.string.yes) : getString(R.string.no),
-                    user.getQuestionare().getIsAllergicToVax() ? getString(R.string.yes) : getString(R.string.no),
-                    user.getQuestionare().getHasBloodProblems() ? getString(R.string.yes) : getString(R.string.no),
-                    user.getQuestionare().getIsPregnant() ? getString(R.string.yes) : getString(R.string.no),
+                user.getQuestionare().getNeededHelpDuetoVax() ? getString(R.string.yes) : getString(R.string.no),
+                user.getQuestionare().getTraveledInLast14Days() ? getString(R.string.yes) : getString(R.string.no),
+                user.getQuestionare().getIsAllergicToVax() ? getString(R.string.yes) : getString(R.string.no),
+                user.getQuestionare().getHasBloodProblems() ? getString(R.string.yes) : getString(R.string.no),
+                user.getQuestionare().getIsPregnant() ? getString(R.string.yes) : getString(R.string.no),
             };
-
             for (int i = 0; i < labelArray.length; i++) {
                 listViewItems.add(new AppointmentInfo_ListViewCell(labelArray[i], answerArray[i]));
             }
-
             listView = (ListView) view.findViewById(R.id.QuestionnaireListView);
             AppointmentInfoListViewAdapter adapter = new AppointmentInfoListViewAdapter(this.getContext(), 0, listViewItems);
             listView.setAdapter(adapter);
             listView.setVisibility(View.VISIBLE);
         }
     }
-
 }

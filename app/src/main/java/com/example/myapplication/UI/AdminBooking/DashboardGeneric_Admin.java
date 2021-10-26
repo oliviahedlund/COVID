@@ -55,12 +55,12 @@ public class DashboardGeneric_Admin extends Fragment {
     private List<AppointmentResponse> appointmentResponse = new ArrayList<>();
     private List<Center> allCenters2 = new ArrayList<>();
     private List<String> UserIdArray;
+    private DashboardGenericHelper dgh;
+    private CenterVaccineHelper cvh;
     private AdminActivity activity;
     private UserResponse user;
     private UserInfo userInfo;
-    private CenterVaccineHelper cvh;
     private int userNumberResponse;
-    private DashboardGenericHelper dgh;
 
     public View view;
 
@@ -235,13 +235,11 @@ public class DashboardGeneric_Admin extends Fragment {
         });
     }
 
-
-
-
-    private void setupListView(String[] SortedAppointments,int size) { // sets up list view with booked appointments depending on the filter
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void setupListView(String[] SortedAppointments, int size) { // sets up list view with booked appointments depending on the filter
         ListView appointments = (ListView) view.findViewById(R.id.list);
         //makes an arraylist of custom datatype
-        ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<DashboardGeneric_Cell>();
+        ArrayList<DashboardGeneric_Cell> app_list  = new ArrayList<>();
         DashboardGeneric_Cell[] cells = new DashboardGeneric_Cell[appointmentResponse.size()];//appointmentResponse.size()
         //for loop that adds times from api call to a list
         for(int i=0; i<size; i++){
@@ -251,26 +249,23 @@ public class DashboardGeneric_Admin extends Fragment {
         //creates and sets custom adapter to the listview
         DashboardGeneric_Adapter AppAdapter = new DashboardGeneric_Adapter(this.getContext(), 0, app_list);
         appointments.setAdapter(AppAdapter);
-        appointments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                System.out.println("user id: "+UserIdArray.get(pos));
-                dgh = new DashboardGenericHelper(getFragment());
-                dgh.getUserInfoApi(user,UserIdArray.get(pos), new Runnable() {
-                    @Override
-                    public void run() {
-                        LoadingAnimation.dismissLoadingAnimation();
-                        DashboardGeneric_UserInfo dashFragment = new DashboardGeneric_UserInfo();
-                        Bundle bundle = new Bundle();
-                        userInfo = dgh.getUserInfo();
-                        System.out.println("userinfo: "+userInfo.getFirstName());
-                        bundle.putParcelable("userInfo", userInfo); // Key, value
-                        dashFragment.setArguments(bundle);
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, dashFragment).commit();
-                    }
-                });
-                LoadingAnimation.startLoadingAnimation(getActivity());
-            }
+        appointments.setOnItemClickListener((adapterView, view, pos, l) -> {
+            System.out.println("user id: " + UserIdArray.get(pos));
+            dgh = new DashboardGenericHelper(getFragment());
+            dgh.getUserInfoApi(user,UserIdArray.get(pos), new Runnable() {
+                @Override
+                public void run() {
+                    LoadingAnimation.dismissLoadingAnimation();
+                    DashboardGeneric_UserInfo dashFragment = new DashboardGeneric_UserInfo();
+                    Bundle bundle = new Bundle();
+                    userInfo = dgh.getUserInfo();
+                    System.out.println("userinfo: " + userInfo.getFirstName());
+                    bundle.putParcelable("userInfo", userInfo); // Key, value
+                    dashFragment.setArguments(bundle);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, dashFragment).commit();
+                }
+            });
+            LoadingAnimation.startLoadingAnimation(getActivity());
         });
     }
 
