@@ -52,6 +52,17 @@
     <string name="addCenterMenu">+ Add Center</string>
     <string name="addVaccineMenu">+ Add Vaccine</string>
 
+    <!--Questionnaire admin-->
+    <string name="notFilled">User has not filled out questionnaire</string>
+    <string name="back">Back</string>
+    <string name="approve">Approve</string>
+    <string name="searchEmail">Search user by email:</string>
+    <string name="search">Search User</string>
+    <string name="userNotApproved">Users with not approved questionnaires</string>
+    <string name="questInfo">Questionnaire Information</string>
+    <string name="noUsers">All users have approved questionnaires</string>
+    <string name="userInfoQuest">User Information</string>
+
 
     <!--admin scheduling-->
     <string name="chooseCenter">Center</string>
