@@ -16,6 +16,7 @@ import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;

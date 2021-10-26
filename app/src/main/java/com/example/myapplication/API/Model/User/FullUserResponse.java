@@ -33,6 +33,7 @@ public class FullUserResponse implements Parcelable {
     private QuestionnaireRequest questionare;
     private AppointmentRespFull appointment;
 
+
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -184,6 +185,21 @@ public class FullUserResponse implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeByte((byte) (isAdmin ? 1 : 0));
+        parcel.writeString(id);
+        parcel.writeString(email);
+        parcel.writeString(firstName);
+        parcel.writeString(lastName);
+        parcel.writeString(phoneNumber);
+        parcel.writeString(birthDate);
+        parcel.writeString(address);
+        parcel.writeString(city);
+        parcel.writeString(disctrict);
+        parcel.writeString(postalCode);
+        parcel.writeString(firstDoseDate);
+        parcel.writeString(secondDoseDate);
+        parcel.writeByte((byte) (canBook ? 1 : 0));
+        parcel.writeByte((byte) (gotFirstDose ? 1 : 0));
+        parcel.writeByte((byte) (gotSecondDose ? 1 : 0));
     }
 }

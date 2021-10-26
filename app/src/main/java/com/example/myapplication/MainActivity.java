@@ -17,6 +17,7 @@ import com.example.myapplication.Helpers.UserLoginHelper;
 import com.example.myapplication.Helpers.LanguageHelper;
 import com.example.myapplication.UI.LoadingAnimation;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 dummyUserResponse.setAdmin(false);
                 System.out.println("USER ID: "+ userResponse.getId());
                 String dummyToken = " ";
-                i.putExtra("userInfo", dummyUserResponse);
+                i.putExtra("userInfo", (Serializable) dummyUserResponse);
                 i.putExtra("token", loginToken);
                 startActivity(i);
                 finish(); //clears page from history

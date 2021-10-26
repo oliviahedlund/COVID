@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.myapplication.API.Model.User.FullUserResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -39,6 +40,7 @@ public class AdminQuestionnaireFragment extends Fragment {
     private FullUserResponse userClicked;
     private EditText userEmailEditText;
     private String userEmail;
+    private View view;
 
     public AdminQuestionnaireFragment() {
         // Required empty public constructor
@@ -49,8 +51,7 @@ public class AdminQuestionnaireFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-    Fragment currentFragment;
-    View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,21 +59,11 @@ public class AdminQuestionnaireFragment extends Fragment {
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
         view = inflater.inflate(R.layout.admin_incorrect_quest_fragment, container, false);
         userClicked = new FullUserResponse();
-        /*AdminNewQuestionnaires newFragment = new AdminNewQuestionnaires();
-        currentFragment = newFragment;
-        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frameAdminQ, newFragment).commit();*/
-
-        //setUpBottomButtons();
         LoadingAnimation.startLoadingAnimation(getActivity());
-
         setup();
         setUpButtons();
-
-
         return view;
     }
-
-
 
     public Fragment getFragment(){return this;}
 
@@ -84,14 +75,21 @@ public class AdminQuestionnaireFragment extends Fragment {
             public void run() {
                 userList = newQuestionnaireHelper.getResp();
                 userArray = newQuestionnaireHelper.getListResp(userList);
-                System.out.println(userArray[0].getFirstName());
-                setupDropdown();
+                if(userArray.length!=0) {
+                    setupDropdown();
+                }
+                else{
+                    TextView noUsers = view.findViewById(R.id.noList);
+                    noUsers.setVisibility(View.VISIBLE);
+                    LoadingAnimation.dismissLoadingAnimation();
+                }
             }
         });
-
     }
 
     private void setupDropdown(){
+        TextView userNotApp = view.findViewById(R.id.userNotApp);
+        userNotApp.setVisibility(View.VISIBLE);
         names = new ArrayList<>();
         for(int i = 0; i<userArray.length; i++){
             names.add(userArray[i].getFirstName() + " " + userArray[i].getLastName());
@@ -110,16 +108,21 @@ public class AdminQuestionnaireFragment extends Fragment {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String testar = parent.getItemAtPosition(position).toString();
-                System.out.println(testar);
                 findSelectedUser(testar);
-                Fragment newFragment = new Admin_see_user_quest();
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("userInfo", userClicked); // Key, value
-                newFragment.setArguments(bundle);
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
+                changeFragment(true);
             }
         });
+    }
+
+    private void changeFragment(Boolean flag){
+        Fragment newFragment = new Admin_see_user_quest();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("userInfo", userClicked); // Key, value
+        bundle.putString("adminToken", user.getToken());
+        bundle.putBoolean("flag",flag);
+        newFragment.setArguments(bundle);
+
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
     }
 
     private void findSelectedUser(String name){
@@ -132,28 +135,25 @@ public class AdminQuestionnaireFragment extends Fragment {
         userClicked.setEmail(userArray[i].getEmail());
         userClicked.setAppointment(userArray[i].getAppointment());
         userClicked.setQuestionare(userArray[i].getQuestionare());
-        System.out.println(userClicked.getEmail());
-
+        userClicked.setId(userArray[i].getId());
     }
 
 
     private void setUpButtons(){
         Button get_quest = view.findViewById(R.id.Get_quest);
         userEmailEditText = view.findViewById(R.id.searchEmailEditText);
-        //System.out.println("MAILEN INNAN ÄR:" + userEmail);
 
         get_quest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    //Get incorrect quetionnares
-                    //newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), null);
-
-                     userEmail = userEmailEditText.getEditableText().toString();
-                    newQuestionnaireHelper.API_getUserFromEmail(user, userEmail, new Runnable() {
+                    //Get user info
+                    LoadingAnimation.startLoadingAnimation(getActivity());
+                    userEmail = userEmailEditText.getEditableText().toString();
+                    newQuestionnaireHelper.API_getUserFromEmail(user.getToken(), userEmail, new Runnable() {
                         @Override
                         public void run() {
                             userClicked = newQuestionnaireHelper.getRetrievedUser();
-                            System.out.println(userClicked.getFirstName());
+                            changeFragment(false);
                         }
                     });
             }

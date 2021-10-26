@@ -47,6 +47,17 @@
     <string name="addCenterMenu">+ Lägg till center</string>
     <string name="addVaccineMenu">+ Lägg till vaccin</string>
 
+    <!--Questionnaire admin-->
+    <string name="notFilled">Användaren har inte fyllt i något formulär</string>
+    <string name="back">Tillbaka</string>
+    <string name="approve">Godkänn</string>
+    <string name="searchEmail">Sök användare via mail:</string>
+    <string name="search">Sök användare</string>
+    <string name="userNotApproved">Användare utan godkända formulär</string>
+    <string name="questInfo">Formulär Information</string>
+    <string name="noUsers">Alla användare har godkända formulär</string>
+    <string name="userInfoQuest">Användarinformation</string>
+
     <!--admin scheduling-->
     <string name="chooseCenter">Center</string>
     <string name="chooseAge">Åldersgrupp</string>
