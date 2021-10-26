@@ -1,5 +1,6 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.UI.AdminBooking;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,12 +8,18 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.R;
 import com.example.myapplication.API.Model.Admin.UserInfo;
-import com.example.myapplication.Admin.DashboardGeneric_Admin;
+import com.example.myapplication.UI.Adapter.AppointmentInfoListViewAdapter;
+import com.example.myapplication.UI.AdminBooking.DashboardGeneric_Admin;
+import com.example.myapplication.UI.ViewCells.AppointmentInfo_ListViewCell;
+
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 public class DashboardGeneric_UserInfo extends Fragment {
@@ -30,10 +37,10 @@ public class DashboardGeneric_UserInfo extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             user = bundle.getParcelable("userInfo"); // Key
-            System.out.println("NUUUU" + user.getFirstName());
+            System.out.println("NUUUU " + user.getFirstName());
         }
         setUpTextViews();
-
+        setupFilledQuestionnaire();
 
         return view;
     }
@@ -45,10 +52,13 @@ public class DashboardGeneric_UserInfo extends Fragment {
         Birthdate = (TextView) view.findViewById(R.id.Birthdate);
         Doses = (TextView) view.findViewById(R.id.NrOfDoses);
 
-        Firstname.setText(user.getFirstName());
-        Lastname.setText(user.getLastName());
-        Birthdate.setText(user.getBirthDate());
-        Doses.setText(user.getFirstDoseDate());
+
+        Firstname.setText(Firstname.getText()+": "+user.getFirstName());
+        Lastname.setText(Lastname.getText()+": "+user.getLastName());
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
+
+        Birthdate.setText(Birthdate.getText()+": "+user.getBirthDate());
+        Doses.setText(Doses.getText()+": "+user.getFirstDoseDate());
     }
 
     private void setupFilledQuestionnaire() {

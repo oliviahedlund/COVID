@@ -453,5 +453,15 @@
     <string name="cumulativeVaccinatedRatio">Andel kumulativ vaccinerade: </string>
     <string name="applyFilter">Sätt Filter</string>
     <string name="resetFilter">Gör Om</string>
+
+
+    <!--Dashboard Generic+-->
+    <string name="ScheduledAppointments">Bokade tider </string>
+    <string name="NrOfUsers_DG">Antal använare:  </string>
+
+    <string name="Firstname_userinfo">Förnamn </string>
+    <string name="Lastname_userinfo">Efternamn </string>
+    <string name="Bdate_userinfo">Födelsedag </string>
+    <string name="FirstDose_userinfo">Datum för första dosen </string>
 </resources>
 

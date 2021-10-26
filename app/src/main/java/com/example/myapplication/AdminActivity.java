@@ -1,12 +1,14 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +22,8 @@ import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.UI.AdminBooking.AdminAddCenterFragment;
 import com.example.myapplication.UI.AdminBooking.AdminAddVaccineFragment;
 import com.example.myapplication.UI.AdminBooking.AdminBookingRangeFragment;
+import com.example.myapplication.UI.AdminBooking.AdminQuestionnaireFragment;
+import com.example.myapplication.UI.AdminBooking.DashboardGeneric_Admin;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.Settings.SettingsFragment;
@@ -56,6 +60,7 @@ public class AdminActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +85,7 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void getCentersAndVaccine() {
         Runnable next2 = new Runnable() {
             @Override
@@ -88,6 +94,7 @@ public class AdminActivity extends AppCompatActivity {
             }
         };
         Runnable next1 = new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void run() {
                 callVaccine(next2);
@@ -106,12 +113,14 @@ public class AdminActivity extends AppCompatActivity {
         return vaccineHelper;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void callCenter(Runnable runnable){
         centerVaccineHelper = new CenterVaccineHelper(getSupportFragmentManager().findFragmentById(R.id.frameAdmin));
         centerVaccineHelper.API_getCenters(this, user, runnable);
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void callVaccine(Runnable runnable){
         vaccineHelper = new AdminVaccineHelper(getSupportFragmentManager().findFragmentById(R.id.frameAdmin));
         vaccineHelper.API_getVaccine(this, user, runnable);
@@ -181,7 +190,7 @@ public class AdminActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        newFragment = new Covid_Tracking_tabs_fragment();
+                        newFragment = new DashboardGeneric_Admin();
                         break;
                     case R.id.nav_validate:
                         newFragment = new ValidateAppointmentsFragment();

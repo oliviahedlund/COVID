@@ -493,4 +493,18 @@
     <string name="applyFilter">Apply Filter</string>
     <string name="resetFilter">Reset Filter</string>
 
+
+    <!--Dashboard Generic+-->
+    <string name="ScheduledAppointments">Scheduled Appointments </string>
+    <string name="NrOfUsers_DG">Number of users:  </string>
+
+    <string name="Firstname_userinfo">Firstname </string>
+    <string name="Lastname_userinfo">Lastname </string>
+    <string name="Bdate_userinfo">Birthdate </string>
+    <string name="FirstDose_userinfo">First dose date </string>
+
+
+
+
+
 </resources>

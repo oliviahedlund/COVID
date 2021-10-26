@@ -16,7 +16,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scheduled appointments"
+        android:text="@string/ScheduledAppointments"
         android:textSize="20sp"
         app:backgroundTint="#3F51B5" />
 
@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Number of users: "
+        android:text="@string/NrOfUsers_DG"
         android:id="@+id/NumberOfUsers"
         />
     <ListView

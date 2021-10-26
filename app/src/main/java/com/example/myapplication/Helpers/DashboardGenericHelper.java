@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.API.Model.Admin.UserInfo;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.Admin.AdminActivity;
+import com.example.myapplication.AdminActivity;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.UI.LoadingAnimation;
 

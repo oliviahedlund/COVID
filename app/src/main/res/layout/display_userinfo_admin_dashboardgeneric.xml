@@ -16,43 +16,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Förnamn"
+        android:text="@string/Firstname_userinfo"
         android:id="@+id/Firstname"
         android:textSize="20sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Efternamn"
+        android:text="@string/Lastname_userinfo"
         android:id="@+id/Lastname"
         android:textSize="20sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Birthdate"
+        android:text="@string/Bdate_userinfo"
         android:id="@+id/Birthdate"
         android:textSize="20sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dose"
+        android:text="@string/FirstDose_userinfo"
         android:id="@+id/NrOfDoses"
-        android:textSize="20sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="questionair"
-        android:id="@+id/questionair"
         android:textSize="20sp"/>
 
     <ListView
         android:id="@+id/QuestionnaireListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:visibility="gone"
-        >
-    </ListView>
+        />
+
 
 
 </LinearLayout>

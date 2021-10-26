@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.UI.AdminBooking;
 
 public class DashboardGeneric_Cell {
     private String AppTime;

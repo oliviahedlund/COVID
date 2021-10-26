@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication.UI.AdminBooking;
 
 import android.content.Intent;
 import android.os.Build;
@@ -27,11 +27,14 @@ import com.example.myapplication.API.Model.Admin.UserNumberResponse;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.Admin.AdminActivity;
+import com.example.myapplication.AdminActivity;
+import com.example.myapplication.UI.AdminBooking.DashboardGeneric_UserInfo;
 import com.example.myapplication.ApiClient;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
 import com.example.myapplication.Helpers.DashboardGenericHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.AdminBooking.DashboardGeneric_Adapter;
+import com.example.myapplication.UI.AdminBooking.DashboardGeneric_Cell;
 import com.example.myapplication.UI.LoadingAnimation;
 
 import java.time.format.DateTimeFormatter;
