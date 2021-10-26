@@ -36,8 +36,8 @@ public class Appointment_makeCancel extends Fragment{
         makeAppointmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Appointment_questionnaire appointmentQuestionnaire = new Appointment_questionnaire();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentQuestionnaire).commit();
+                Appointment_make appointment_make = new Appointment_make();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
             }
         });
     }

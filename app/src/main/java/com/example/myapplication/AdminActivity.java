@@ -1,4 +1,4 @@
-package com.example.myapplication.Admin;
+package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -10,15 +10,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_dashboardFragment;
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.R;
-import com.example.myapplication.UI.SettingsFragment;
+import com.example.myapplication.Helpers.AdminVaccineHelper;
+import com.example.myapplication.Helpers.CenterVaccineHelper;
+import com.example.myapplication.UI.AdminBooking.AdminAddCenterFragment;
+import com.example.myapplication.UI.AdminBooking.AdminAddVaccineFragment;
+import com.example.myapplication.UI.AdminBooking.AdminBookingRangeFragment;
+import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment;
+import com.example.myapplication.UI.LoadingAnimation;
+import com.example.myapplication.UI.Settings.SettingsFragment;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.UI.Covid_Passport.covidPassportFragment;
+import com.example.myapplication.UI.AdminBooking.ValidateAppointmentsFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {
@@ -31,25 +37,86 @@ public class AdminActivity extends AppCompatActivity {
     private TextView userEmail;
     private DashboardGeneric_Admin dashFragment;
     private UserResponse user;
+    private CenterVaccineHelper centerVaccineHelper;
+    private AdminVaccineHelper vaccineHelper;
+    private long backPressedTime;
 
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() == 1){
+            if(backPressedTime + 2000 > System.currentTimeMillis()){
+                startActivity(new Intent(AdminActivity.this, MainActivity.class));
+                finish();
+            } else{
+                Toast.makeText(getBaseContext(), "Press back again to exit to login screen", Toast.LENGTH_SHORT).show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        } else{
+            super.onBackPressed();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
         //gets userinfo
         Intent i = getIntent();
         user = (UserResponse) i.getSerializableExtra("userInfo");
+
         if(savedInstanceState == null) {
             dashFragment = new DashboardGeneric_Admin();
             getSupportFragmentManager().beginTransaction().add(R.id.frameAdmin, dashFragment).commit();
         }
+
+        getCentersAndVaccine();
+
         //Setup Menu Bar
         setupMenuBar();
+
         //Setup Navigation Drawer
         setUpNavigationView();
 
     }
+
+    private void getCentersAndVaccine() {
+        Runnable next2 = new Runnable() {
+            @Override
+            public void run() {
+                LoadingAnimation.dismissLoadingAnimation();
+            }
+        };
+        Runnable next1 = new Runnable() {
+            @Override
+            public void run() {
+                callVaccine(next2);
+            }
+        };
+
+        LoadingAnimation.startLoadingAnimation(this);
+        callCenter(next1);
+    }
+
+    public CenterVaccineHelper getCenterVaccineHelper() {
+        return centerVaccineHelper;
+    }
+
+    public AdminVaccineHelper getVaccineHelper() {
+        return vaccineHelper;
+    }
+
+    public void callCenter(Runnable runnable){
+        centerVaccineHelper = new CenterVaccineHelper(getSupportFragmentManager().findFragmentById(R.id.frameAdmin));
+        centerVaccineHelper.API_getCenters(this, user, runnable);
+
+    }
+
+    public void callVaccine(Runnable runnable){
+        vaccineHelper = new AdminVaccineHelper(getSupportFragmentManager().findFragmentById(R.id.frameAdmin));
+        vaccineHelper.API_getVaccine(this, user, runnable);
+    }
+
 
     private UserResponse setUserData(UserResponse response){
         return this.user = response;
@@ -58,10 +125,18 @@ public class AdminActivity extends AppCompatActivity {
     public UserResponse getUserData(){
         return user;
     }
+
     //opens drawer menu when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
+            //hide keyboard if it is visible when menu is clicked
+            try  {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+
+            }
             return super.onOptionsItemSelected(item);
         }
         return true;
@@ -73,6 +148,7 @@ public class AdminActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void setUpNavigationView() {
@@ -90,8 +166,8 @@ public class AdminActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(AdminActivity.this, MainActivity.class));
+
                 finish();
             }
         });
@@ -105,16 +181,26 @@ public class AdminActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        newFragment = new Covid_Tracking_dashboardFragment();
+                        newFragment = new Covid_Tracking_tabs_fragment();
                         break;
+                    case R.id.nav_validate:
+                        newFragment = new ValidateAppointmentsFragment();
+                        break;
+                        /*
                     case R.id.nav_quest:
                         newFragment = new AdminQuestionnaireFragment();
-                        break;
-                    case R.id.nav_covidpassport:
-                        newFragment = new covidPassportFragment();
-                        break;
+                        break;*/
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
+                        break;
+                    case R.id.nav_sched:
+                        newFragment = new AdminBookingRangeFragment();
+                        break;
+                    case R.id.nav_addCenter:
+                        newFragment = new AdminAddCenterFragment();
+                        break;
+                    case R.id.nav_addVaccin:
+                        newFragment = new AdminAddVaccineFragment();
                         break;
                     default:
                         newFragment = getSupportFragmentManager().findFragmentById(R.id.frameAdmin);

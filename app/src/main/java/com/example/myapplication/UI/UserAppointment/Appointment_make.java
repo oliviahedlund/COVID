@@ -2,49 +2,32 @@ package com.example.myapplication.UI.UserAppointment;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
-import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
-import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
-import com.example.myapplication.API.Model.Register.RegisterResponse;
 import com.example.myapplication.Helpers.DateTimeHelper;
-import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.Helpers.CenterVaccineHelper;
-import com.example.myapplication.Helpers.NewAppointmentHelper;
-import com.example.myapplication.Helpers.NewQuestionnaireHelper;
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.RegisterActivity;
-import com.example.myapplication.UI.AlertWindow;
-import com.example.myapplication.ApiClient;
+import com.example.myapplication.Helpers.AppointmentHelper;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.API.Model.User.UserResponse;
+import com.google.android.material.textfield.TextInputLayout;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class Appointment_make extends Fragment implements DatePickerDialog.OnDateSetListener {
@@ -54,13 +37,16 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     private ZonedDateTime appointmentDateTime;
     private AppointmentRequest appointment;
 
+    private TextInputLayout chooseCenter;
+    private TextInputLayout chooseVaccine;
+    private TextInputLayout chooseTime;
     private AutoCompleteTextView centerDropdown;
     private AutoCompleteTextView vaccineDropdown;
     private AutoCompleteTextView timeDropdown;
 
     private Button dateButton;
     private Button confirmButton;
-    private Button cancelButton;
+    private Button resetButton;
 
     private int center = NOT_DEFINED;
     private int vaccine = NOT_DEFINED;
@@ -73,7 +59,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     private CenterVaccineHelper centerVaccineHelper;
     private DateTimeHelper dateTimeHelper;
-    private NewAppointmentHelper newAppointmentHelper;
+    private AppointmentHelper appointmentHelper;
 
     private String selectedCenter;
     private String selectedVaccine;
@@ -90,6 +76,10 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
         view = inflater.inflate(R.layout.appointment_center_date, container, false);
         user = (UserResponse) getActivity().getIntent().getSerializableExtra("userInfo");
+
+        chooseCenter = (TextInputLayout) view.findViewById(R.id.chooseCenterParent);
+        chooseVaccine = (TextInputLayout) view.findViewById(R.id.chooseVaccineParent);
+        chooseTime = (TextInputLayout) view.findViewById(R.id.chooseTimeParent);
 
         centerVaccineHelper = new CenterVaccineHelper(this);
         centerVaccineHelper.API_getCenters(getActivity(), user, new Runnable(){
@@ -121,28 +111,39 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                if(center == NOT_DEFINED || month == NOT_DEFINED || year == NOT_DEFINED){
-                    Toast.makeText(getContext(), "Please fill out the form completely", Toast.LENGTH_LONG).show();
-                } else {
-                    newAppointmentHelper = new NewAppointmentHelper(getFragment(), appointment);
-                    newAppointmentHelper.API_sendNewAppointment(user, new Runnable() {
+                if(user.getAppointment() == null){
+                    appointmentHelper = new AppointmentHelper(getFragment());
+                    appointmentHelper.API_sendNewAppointment(user, new Runnable() {
                         @Override
                         public void run() {
                             LoadingAnimation.dismissLoadingAnimation();
+                            Appointment_Info info = new Appointment_Info();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, info).commit();
                         }
-                    });
+                    }, appointment);
 
+                    LoadingAnimation.startLoadingAnimation(getActivity());
+                } else {
+                    appointmentHelper = new AppointmentHelper(getFragment());
+                    appointmentHelper.API_updateAppointment(user, new Runnable() {
+                        @Override
+                        public void run() {
+                            LoadingAnimation.dismissLoadingAnimation();
+                            Appointment_Info info = new Appointment_Info();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, info).commit();
+                        }
+                    }, appointment);
 
                     LoadingAnimation.startLoadingAnimation(getActivity());
                 }
             }
         });
-        cancelButton = (Button) view.findViewById(R.id.cancelCenterDate);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        resetButton = (Button) view.findViewById(R.id.resetCenterDate);
+        resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Appointment_makeCancel appointmentFragment = new Appointment_makeCancel();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
+                Appointment_make appointment_make = new Appointment_make();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointment_make).commit();
             }
         });
     }
@@ -158,6 +159,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 center = position;
                 selectedCenter = centerVaccineHelper.getSelectedCenter(center);
+                chooseCenter.setEnabled(false);
                 setupVaccines();
             }
         });
@@ -165,6 +167,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
 
     public void setupVaccines(){
         vaccineDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseVaccine);
+        vaccineDropdown.setEnabled(true);
         Simple_DropdownAdapter vaccineAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, centerVaccineHelper.getVaccines(center));
 
         vaccineDropdown.setAdapter(vaccineAdapter);
@@ -172,6 +175,7 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                chooseVaccine.setEnabled(false);
                 vaccine = position;
                 selectedVaccine = centerVaccineHelper.getSelectedVaccine(vaccine);
                 dateButton.setEnabled(true);
@@ -224,11 +228,12 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onDateSet(DatePickerDialog view, int yearValue, int monthOfYear, int dayOfMonth) {
+        dateButton.setEnabled(false);
         year = yearValue;
         month = monthOfYear;
         day = dayOfMonth;
 
-        dateButton.setText(year + "-" + month + "-" + day);
+        dateButton.setText(day + "-" + (month + 1) + "-" + year);
 
         setupTimes(year, month, day);
     }
@@ -242,24 +247,24 @@ public class Appointment_make extends Fragment implements DatePickerDialog.OnDat
         buffer.set(Calendar.DAY_OF_MONTH, day);
 
         timeDropdown = (AutoCompleteTextView) view.findViewById(R.id.chooseTime);
+        chooseTime.setEnabled(true);
         Simple_DropdownAdapter timeAdapter = new Simple_DropdownAdapter(this.getContext(), R.layout.simple_dropdown_item, dateTimeHelper.getTimes(buffer));
 
         timeDropdown.setAdapter(timeAdapter);
         timeDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                confirmButton.setEnabled(true);
                 selectedTime = position;
                 fillAppointment();
             }
         });
     }
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fillAppointment(){
         appointment = new AppointmentRequest();
-        appointmentDateTime = LocalDateTime.of(LocalDate.of(year, month, day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
+        appointmentDateTime = LocalDateTime.of(LocalDate.of(year, (month+1), day), dateTimeHelper.getSelectedTime(selectedTime)).atZone(ZoneId.of("Europe/Stockholm")).withZoneSameInstant(ZoneId.of("UTC"));
         appointment.setTime(appointmentDateTime);
         appointment.setCenterId(selectedCenter);
         appointment.setVaccineId(selectedVaccine);

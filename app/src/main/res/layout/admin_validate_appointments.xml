@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/smallPadding"
+    android:layout_marginEnd="@dimen/smallPadding"
+    android:layout_marginTop="@dimen/smallPadding"
+    android:layout_marginBottom="@dimen/smallPadding"
+    android:orientation="vertical"
+    tools:context=".UI.AdminBooking.ValidateAppointmentsFragment">
+
+
+    <TextView
+        android:id="@+id/noAppointments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/nothingToShow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/smallPadding"
+        android:text="@string/validTitle"
+        android:textSize="@dimen/title"
+        app:layout_constraintBottom_toTopOf="@id/checkBoxAll"
+        app:layout_constraintEnd_toStartOf="@id/recViewValidate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <CheckBox
+        android:id="@+id/checkBoxAll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/checkAll"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintEnd_toStartOf="@id/centerDropDown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView22" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/centerDropDown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/smallPadding"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:hint="@string/center"
+        android:textColorHint="@color/beige"
+        app:layout_constraintBottom_toTopOf="@id/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/checkBoxAll"
+        app:layout_constraintTop_toBottomOf="@id/textView22">
+
+        <AutoCompleteTextView
+            android:id="@+id/generateCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text="@string/center"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@id/recViewValidate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkBoxAll" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewValidate"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/validateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line" />
+
+    <Button
+        android:id="@+id/validateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/validate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/invalidateButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recViewValidate" />
+
+    <Button
+        android:id="@+id/invalidateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/invalidate"
+        app:backgroundTint="@color/mdtp_light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/validateButton"
+        app:layout_constraintTop_toBottomOf="@id/recViewValidate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

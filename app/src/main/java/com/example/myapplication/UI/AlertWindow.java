@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 import com.example.myapplication.UI.UserAppointment.Appointment_makeCancel;
 
 public class AlertWindow {
@@ -38,8 +39,6 @@ public class AlertWindow {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                Appointment_makeCancel appointmentFragment = new Appointment_makeCancel();
-                fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, appointmentFragment).commit();
             }
         });
     }
