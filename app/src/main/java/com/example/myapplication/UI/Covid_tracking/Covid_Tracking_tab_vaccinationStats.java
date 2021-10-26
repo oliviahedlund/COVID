@@ -11,17 +11,14 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.API.Model.Covid_tracking.CaseStat;
 import com.example.myapplication.API.Model.Covid_tracking.CountyVaxStat;
-import com.example.myapplication.API.Model.Covid_tracking.UptakeStat;
 import com.example.myapplication.API.Model.User.UserResponse;
-import com.example.myapplication.Helpers.CovidTrackCaseHelper;
 import com.example.myapplication.Helpers.CovidTrackVaccinationHelper;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Covid_Tracking_ListViewAdapter;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.UI.LoadingAnimation;
-import com.example.myapplication.UI.ViewCells.Covid_tracking_listviewCell;
+import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +33,11 @@ public class Covid_Tracking_tab_vaccinationStats extends Fragment {
 
     private Covid_Tracking_ListViewAdapter adapter_countyStats;
 
-    private Covid_tracking_listviewCell population;
-    private Covid_tracking_listviewCell minFirstDoseAmount;
-    private Covid_tracking_listviewCell fullVaccinationAmount;
-    private Covid_tracking_listviewCell minFirstDoseRatio;
-    private Covid_tracking_listviewCell fullVaccinationRatio;
+    private Covid_Tracking_ListViewCell population;
+    private Covid_Tracking_ListViewCell minFirstDoseAmount;
+    private Covid_Tracking_ListViewCell fullVaccinationAmount;
+    private Covid_Tracking_ListViewCell minFirstDoseRatio;
+    private Covid_Tracking_ListViewCell fullVaccinationRatio;
 
     private String[] countyNames_countyStats;
     private String[] ageGroup;
@@ -53,7 +50,7 @@ public class Covid_Tracking_tab_vaccinationStats extends Fragment {
     private AutoCompleteTextView countyFilter_countyStats;
     private AutoCompleteTextView ageGroupFilter;
 
-    private ArrayList<Covid_tracking_listviewCell> listViewItems_countyStats = new ArrayList<Covid_tracking_listviewCell>();
+    private ArrayList<Covid_Tracking_ListViewCell> listViewItems_countyStats = new ArrayList<Covid_Tracking_ListViewCell>();
 
     private ListView listView_countyStats;
 
@@ -123,11 +120,11 @@ public class Covid_Tracking_tab_vaccinationStats extends Fragment {
 
         filteredDataSet_countyStats = covidTrackVaccinationHelper.getFilteredDataSet(selectedDataSet_countyStats);
 
-        population = new Covid_tracking_listviewCell(getResources().getString(R.string.population), String.valueOf(filteredDataSet_countyStats[0]));
-        minFirstDoseAmount = new Covid_tracking_listviewCell(getResources().getString(R.string.minFirstDoseAmount), String.valueOf(filteredDataSet_countyStats[1]));
-        fullVaccinationAmount = new Covid_tracking_listviewCell(getResources().getString(R.string.fullVaccinationAmount), String.valueOf(filteredDataSet_countyStats[2]));
-        minFirstDoseRatio = new Covid_tracking_listviewCell(getResources().getString(R.string.minFirstDoseRatio), String.valueOf(filteredDataSet_countyStats[3]));
-        fullVaccinationRatio = new Covid_tracking_listviewCell(getResources().getString(R.string.fullVaccinationRatio), String.valueOf(filteredDataSet_countyStats[4]));
+        population = new Covid_Tracking_ListViewCell(getResources().getString(R.string.population), String.valueOf(filteredDataSet_countyStats[0]));
+        minFirstDoseAmount = new Covid_Tracking_ListViewCell(getResources().getString(R.string.minFirstDoseAmount), String.valueOf(filteredDataSet_countyStats[1]));
+        fullVaccinationAmount = new Covid_Tracking_ListViewCell(getResources().getString(R.string.fullVaccinationAmount), String.valueOf(filteredDataSet_countyStats[2]));
+        minFirstDoseRatio = new Covid_Tracking_ListViewCell(getResources().getString(R.string.minFirstDoseRatio), String.valueOf(filteredDataSet_countyStats[3]));
+        fullVaccinationRatio = new Covid_Tracking_ListViewCell(getResources().getString(R.string.fullVaccinationRatio), String.valueOf(filteredDataSet_countyStats[4]));
 
         listViewItems_countyStats.clear();
         listViewItems_countyStats.add(population);

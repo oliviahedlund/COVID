@@ -19,7 +19,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.UI.Adapter.Covid_Tracking_ListViewAdapter;
 import com.example.myapplication.UI.LoadingAnimation;
-import com.example.myapplication.UI.ViewCells.Covid_tracking_listviewCell;
+import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +32,14 @@ public class Covid_Tracking_tab_cases extends Fragment {
     private int selectedCounty = FIRST_ON_LIST;
     private int [] filteredDataSet;
     private Covid_Tracking_ListViewAdapter adapter;
-    private Covid_tracking_listviewCell totalCaseCount;
-    private Covid_tracking_listviewCell totalIntensiveCareCount;
-    private Covid_tracking_listviewCell totalDeathCount;
+    private Covid_Tracking_ListViewCell totalCaseCount;
+    private Covid_Tracking_ListViewCell totalIntensiveCareCount;
+    private Covid_Tracking_ListViewCell totalDeathCount;
 
     private String[] countyNames;
     private CovidTrackCaseHelper covidTrackCaseHelper;
     private AutoCompleteTextView countyFilter;
-    private ArrayList<Covid_tracking_listviewCell> listViewItems = new ArrayList<Covid_tracking_listviewCell>();
+    private ArrayList<Covid_Tracking_ListViewCell> listViewItems = new ArrayList<Covid_Tracking_ListViewCell>();
     private ListView listView;
 
     private Button resetFilterButton;
@@ -89,9 +89,9 @@ public class Covid_Tracking_tab_cases extends Fragment {
     private void fillListViewItemList(int selectedCounty){
         filteredDataSet = covidTrackCaseHelper.getFilteredDataSet(selectedCounty);
 
-        totalCaseCount = new Covid_tracking_listviewCell(getResources().getString(R.string.totalCases), String.valueOf(filteredDataSet[0]));
-        totalIntensiveCareCount = new Covid_tracking_listviewCell(getResources().getString(R.string.totalIntensive), String.valueOf(filteredDataSet[1]));
-        totalDeathCount = new Covid_tracking_listviewCell(getResources().getString(R.string.totalDeaths), String.valueOf(filteredDataSet[2]));
+        totalCaseCount = new Covid_Tracking_ListViewCell(getResources().getString(R.string.totalCases), String.valueOf(filteredDataSet[0]));
+        totalIntensiveCareCount = new Covid_Tracking_ListViewCell(getResources().getString(R.string.totalIntensive), String.valueOf(filteredDataSet[1]));
+        totalDeathCount = new Covid_Tracking_ListViewCell(getResources().getString(R.string.totalDeaths), String.valueOf(filteredDataSet[2]));
 
         listViewItems.clear();
         listViewItems.add(totalCaseCount);

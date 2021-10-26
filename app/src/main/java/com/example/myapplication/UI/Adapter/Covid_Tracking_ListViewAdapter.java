@@ -10,21 +10,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UI.ViewCells.Covid_tracking_listviewCell;
+import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
 
 import java.util.ArrayList;
 
-public class Covid_Tracking_ListViewAdapter extends ArrayAdapter<Covid_tracking_listviewCell> {
-    private ArrayList<Covid_tracking_listviewCell> mData;
+public class Covid_Tracking_ListViewAdapter extends ArrayAdapter<Covid_Tracking_ListViewCell> {
+    private ArrayList<Covid_Tracking_ListViewCell> mData;
 
-    public Covid_Tracking_ListViewAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Covid_tracking_listviewCell> objects) {
+    public Covid_Tracking_ListViewAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Covid_Tracking_ListViewCell> objects) {
         super(context, resource, objects);
         mData = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Covid_tracking_listviewCell item = getItem(position);
+        Covid_Tracking_ListViewCell item = getItem(position);
 
 //        initialize the shape_cell view
         if(convertView == null){
@@ -45,7 +45,7 @@ public class Covid_Tracking_ListViewAdapter extends ArrayAdapter<Covid_tracking_
         return convertView;
     }
 
-    public ArrayList<Covid_tracking_listviewCell> getData(){
+    public ArrayList<Covid_Tracking_ListViewCell> getData(){
         return mData;
     }
 }
