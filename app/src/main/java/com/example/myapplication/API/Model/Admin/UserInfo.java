@@ -3,6 +3,8 @@ package com.example.myapplication.API.Model.Admin;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
+
 public class UserInfo implements Parcelable {
     private boolean isAdmin;
     private String id;
@@ -21,6 +23,13 @@ public class UserInfo implements Parcelable {
     private boolean gotSecondDose;
     private String firstDoseDate;
     private String secondDoseDate;
+    private QuestionnaireRequest questionare;
+
+
+
+
+
+
 
     //Get functions
     public boolean isAdmin() {
@@ -91,6 +100,8 @@ public class UserInfo implements Parcelable {
         return secondDoseDate;
     }
 
+    public QuestionnaireRequest getQuestionare() { return questionare; }
+
     //Set functions
     public void setAdmin(boolean admin) {
         isAdmin = admin;
@@ -159,6 +170,8 @@ public class UserInfo implements Parcelable {
     public void setSecondDoseDate(String secondDoseDate) {
         this.secondDoseDate = secondDoseDate;
     }
+
+    public void setQuestionare(QuestionnaireRequest questionare) { this.questionare = questionare; }
 
     @Override
     public int describeContents() {

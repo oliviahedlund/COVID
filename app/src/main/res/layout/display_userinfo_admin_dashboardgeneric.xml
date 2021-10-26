@@ -45,6 +45,14 @@
         android:id="@+id/questionair"
         android:textSize="20sp"/>
 
+    <ListView
+        android:id="@+id/QuestionnaireListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        >
+    </ListView>
 
 
 </LinearLayout>
