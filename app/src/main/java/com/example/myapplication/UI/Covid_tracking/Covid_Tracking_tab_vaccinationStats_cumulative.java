@@ -127,8 +127,8 @@ public class Covid_Tracking_tab_vaccinationStats_cumulative extends Fragment {
 
         filteredDataSet_uptakeStats = covidTrackVaccinationHelper.getFilteredDataSet(selectedDataSet_uptakeStats);
 
-        vaccinatedAmount = new Covid_tracking_listviewCell("Cumulative vaccinated amount: ", String.valueOf(filteredDataSet_uptakeStats[0]));
-        vaccinatedRatio = new Covid_tracking_listviewCell("Cumulative vaccinated ratio: ", String.valueOf(filteredDataSet_uptakeStats[1]));
+        vaccinatedAmount = new Covid_tracking_listviewCell(getResources().getString(R.string.cumulativeVaccinatedAmount), String.valueOf(filteredDataSet_uptakeStats[0]));
+        vaccinatedRatio = new Covid_tracking_listviewCell(getResources().getString(R.string.cumulativeVaccinatedRatio), String.valueOf(filteredDataSet_uptakeStats[1]));
 
         listViewItems_uptakeStats.clear();
         listViewItems_uptakeStats.add(vaccinatedAmount);

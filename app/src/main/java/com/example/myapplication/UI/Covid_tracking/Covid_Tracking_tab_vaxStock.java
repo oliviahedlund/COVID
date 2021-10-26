@@ -86,7 +86,7 @@ public class Covid_Tracking_tab_vaxStock extends Fragment {
     private void fillListViewItemList(int selectedCounty){
         filteredDataSet = covidTrackVaxStockHelper.getFilteredDataSet(selectedCounty);
 
-        amount = new Covid_tracking_listviewCell("Total amount: ", String.valueOf(filteredDataSet[0]));
+        amount = new Covid_tracking_listviewCell(getResources().getString(R.string.totalAmount), String.valueOf(filteredDataSet[0]));
 
         listViewItems.clear();
         listViewItems.add(amount);

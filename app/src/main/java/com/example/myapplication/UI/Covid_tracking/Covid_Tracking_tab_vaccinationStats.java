@@ -123,11 +123,11 @@ public class Covid_Tracking_tab_vaccinationStats extends Fragment {
 
         filteredDataSet_countyStats = covidTrackVaccinationHelper.getFilteredDataSet(selectedDataSet_countyStats);
 
-        population = new Covid_tracking_listviewCell("Population: ", String.valueOf(filteredDataSet_countyStats[0]));
-        minFirstDoseAmount = new Covid_tracking_listviewCell("At least first dose amount: ", String.valueOf(filteredDataSet_countyStats[1]));
-        fullVaccinationAmount = new Covid_tracking_listviewCell("Full vaccination amount: ", String.valueOf(filteredDataSet_countyStats[2]));
-        minFirstDoseRatio = new Covid_tracking_listviewCell("At least first dose ratio: ", String.valueOf(filteredDataSet_countyStats[3]));
-        fullVaccinationRatio = new Covid_tracking_listviewCell("Full vaccination ratio: ", String.valueOf(filteredDataSet_countyStats[4]));
+        population = new Covid_tracking_listviewCell(getResources().getString(R.string.population), String.valueOf(filteredDataSet_countyStats[0]));
+        minFirstDoseAmount = new Covid_tracking_listviewCell(getResources().getString(R.string.minFirstDoseAmount), String.valueOf(filteredDataSet_countyStats[1]));
+        fullVaccinationAmount = new Covid_tracking_listviewCell(getResources().getString(R.string.fullVaccinationAmount), String.valueOf(filteredDataSet_countyStats[2]));
+        minFirstDoseRatio = new Covid_tracking_listviewCell(getResources().getString(R.string.minFirstDoseRatio), String.valueOf(filteredDataSet_countyStats[3]));
+        fullVaccinationRatio = new Covid_tracking_listviewCell(getResources().getString(R.string.fullVaccinationRatio), String.valueOf(filteredDataSet_countyStats[4]));
 
         listViewItems_countyStats.clear();
         listViewItems_countyStats.add(population);

@@ -184,7 +184,7 @@ public class AdminActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.nav_dashboard:
-                        newFragment = new Covid_Tracking_tab_cases();
+                        newFragment = new Covid_Tracking_tabs_fragment();
                         break;
                     case R.id.nav_validate:
                         newFragment = new ValidateAppointmentsFragment();

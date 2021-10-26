@@ -51,7 +51,7 @@
                 android:id="@+id/resetFilterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reset filter"
+                android:text="@string/resetFilter"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="20dp"
                 />
