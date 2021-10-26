@@ -3,13 +3,9 @@ package com.example.myapplication.API.Model.User;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRespFull;
-import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
-import com.example.myapplication.API.Model.Appointment_user.Vaccine;
 
-import java.util.List;
 
 public class FullUserResponse implements Parcelable {
 
