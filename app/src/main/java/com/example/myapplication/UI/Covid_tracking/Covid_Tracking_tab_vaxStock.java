@@ -1,7 +1,6 @@
 package com.example.myapplication.UI.Covid_tracking;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Covid_Tracking_ListViewAdapter;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.UI.LoadingAnimation;
-import com.example.myapplication.UI.ViewCells.Covid_tracking_listviewCell;
+import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +30,12 @@ public class Covid_Tracking_tab_vaxStock extends Fragment {
     private int selectedCounty = FIRST_ON_LIST;
     private int [] filteredDataSet;
     private Covid_Tracking_ListViewAdapter adapter;
-    private Covid_tracking_listviewCell amount;
+    private Covid_Tracking_ListViewCell amount;
 
     private String[] countyNames;
     private CovidTrackVaxStockHelper covidTrackVaxStockHelper;
     private AutoCompleteTextView countyFilter;
-    private ArrayList<Covid_tracking_listviewCell> listViewItems = new ArrayList<Covid_tracking_listviewCell>();
+    private ArrayList<Covid_Tracking_ListViewCell> listViewItems = new ArrayList<Covid_Tracking_ListViewCell>();
     private ListView listView;
 
     private Button resetFilterButton;
@@ -86,7 +85,7 @@ public class Covid_Tracking_tab_vaxStock extends Fragment {
     private void fillListViewItemList(int selectedCounty){
         filteredDataSet = covidTrackVaxStockHelper.getFilteredDataSet(selectedCounty);
 
-        amount = new Covid_tracking_listviewCell(getResources().getString(R.string.totalAmount), String.valueOf(filteredDataSet[0]));
+        amount = new Covid_Tracking_ListViewCell(getResources().getString(R.string.totalAmount), String.valueOf(filteredDataSet[0]));
 
         listViewItems.clear();
         listViewItems.add(amount);

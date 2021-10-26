@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/ScheduledAppointments"
         android:textSize="20sp"
+        android:id="@+id/schedappButton"
         app:backgroundTint="#3F51B5" />
 
 

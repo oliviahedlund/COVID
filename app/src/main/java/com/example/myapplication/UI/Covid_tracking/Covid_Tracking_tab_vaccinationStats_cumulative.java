@@ -18,7 +18,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Covid_Tracking_ListViewAdapter;
 import com.example.myapplication.UI.Adapter.Simple_DropdownAdapter;
 import com.example.myapplication.UI.LoadingAnimation;
-import com.example.myapplication.UI.ViewCells.Covid_tracking_listviewCell;
+import com.example.myapplication.UI.ViewCells.Covid_Tracking_ListViewCell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,8 @@ public class Covid_Tracking_tab_vaccinationStats_cumulative extends Fragment {
 
     private Covid_Tracking_ListViewAdapter adapter_uptakeStats;
 
-    private Covid_tracking_listviewCell vaccinatedAmount;
-    private Covid_tracking_listviewCell vaccinatedRatio;
+    private Covid_Tracking_ListViewCell vaccinatedAmount;
+    private Covid_Tracking_ListViewCell vaccinatedRatio;
 
     private String[] countyNames_uptakeStats;
     private String[] yearWeek;
@@ -52,7 +52,7 @@ public class Covid_Tracking_tab_vaccinationStats_cumulative extends Fragment {
     private AutoCompleteTextView yearWeekFilter;
     private AutoCompleteTextView doseFilter;
 
-    private ArrayList<Covid_tracking_listviewCell> listViewItems_uptakeStats = new ArrayList<Covid_tracking_listviewCell>();
+    private ArrayList<Covid_Tracking_ListViewCell> listViewItems_uptakeStats = new ArrayList<Covid_Tracking_ListViewCell>();
 
     private ListView listView_uptakeStats;
 
@@ -127,8 +127,8 @@ public class Covid_Tracking_tab_vaccinationStats_cumulative extends Fragment {
 
         filteredDataSet_uptakeStats = covidTrackVaccinationHelper.getFilteredDataSet(selectedDataSet_uptakeStats);
 
-        vaccinatedAmount = new Covid_tracking_listviewCell(getResources().getString(R.string.cumulativeVaccinatedAmount), String.valueOf(filteredDataSet_uptakeStats[0]));
-        vaccinatedRatio = new Covid_tracking_listviewCell(getResources().getString(R.string.cumulativeVaccinatedRatio), String.valueOf(filteredDataSet_uptakeStats[1]));
+        vaccinatedAmount = new Covid_Tracking_ListViewCell(getResources().getString(R.string.cumulativeVaccinatedAmount), String.valueOf(filteredDataSet_uptakeStats[0]));
+        vaccinatedRatio = new Covid_Tracking_ListViewCell(getResources().getString(R.string.cumulativeVaccinatedRatio), String.valueOf(filteredDataSet_uptakeStats[1]));
 
         listViewItems_uptakeStats.clear();
         listViewItems_uptakeStats.add(vaccinatedAmount);

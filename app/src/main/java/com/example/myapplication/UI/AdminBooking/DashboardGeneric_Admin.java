@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -46,11 +47,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardGeneric_Admin extends Fragment {
-    private final String[] CountyItems = new String[]{"Choose county","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
+    private String[] CountyItems = new String[]{"Choose County","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
             "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala",
             "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
     private final String[] DefaultListview = new String[]{"No booked appointments"}; //default settings for listview
-    private String[] CenterItems = new String[]{"Choose center"};
+    private String[] CenterItems = new String[]{"Choose Center"};
     private String[] Centers;   //for function SetCenters
     private List<AppointmentResponse> appointmentResponse = new ArrayList<>();
     private List<Center> allCenters2 = new ArrayList<>();
@@ -61,6 +62,7 @@ public class DashboardGeneric_Admin extends Fragment {
     private UserResponse user;
     private UserInfo userInfo;
     private int userNumberResponse;
+    private Button SchedAPP;
 
     public View view;
 
@@ -71,6 +73,14 @@ public class DashboardGeneric_Admin extends Fragment {
         view = inflater.inflate(R.layout.activity_admin_dashboard_generic, container, false);
         activity = (AdminActivity) getActivity();
         user = activity.getUserData();
+        SchedAPP = (Button) view.findViewById(R.id.schedappButton);
+        if(SchedAPP.getText().equals("Bokade tider")){
+            CountyItems = new String[]{"Välj Län","Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland",
+                    "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm", "Södermanland", "Uppsala",
+                    "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland", "Örebro", "Östergötland"};
+           CenterItems = new String[]{"Välj Center"};
+        }
+
         getAppointmentApi();
         getUserNumberApi();
         setupDropdownMenus();
@@ -151,8 +161,14 @@ public class DashboardGeneric_Admin extends Fragment {
     }
 
     private void getCenters(String county,Spinner Center_dropdown){
-        if(county.equals("Choose county")){
-            CenterItems = new String[]{"Choose center"};
+        if(county.equals("Choose County")){
+            CenterItems = new String[]{"Choose Center"};
+            ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
+            Center_dropdown.setAdapter(adapterCenter);
+            return;
+        }
+        else if(county.equals("Välj Län")){
+            CenterItems = new String[]{"Välj Center"};
             ArrayAdapter<String> adapterCenter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,CenterItems);
             Center_dropdown.setAdapter(adapterCenter);
             return;
@@ -206,7 +222,8 @@ public class DashboardGeneric_Admin extends Fragment {
 
     private void NumberOfUsers(int UsersRegistered){ //sets textview to the number of users registered (from getUserNumberApi)
         TextView nrOfUsers = (TextView) view.findViewById(R.id.NumberOfUsers);
-        nrOfUsers.setText("Number of Users: " + UsersRegistered);
+        String UR = Integer.toString(UsersRegistered);
+        nrOfUsers.setText(nrOfUsers.getText() + UR);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

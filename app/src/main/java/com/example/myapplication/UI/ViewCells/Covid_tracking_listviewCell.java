@@ -1,10 +1,10 @@
 package com.example.myapplication.UI.ViewCells;
 
-public class Covid_tracking_listviewCell {
+public class Covid_Tracking_ListViewCell {
     private String label;
     private String data;
 
-    public Covid_tracking_listviewCell(String label, String data) {
+    public Covid_Tracking_ListViewCell(String label, String data) {
         this.label = label;
         this.data = data;
     }

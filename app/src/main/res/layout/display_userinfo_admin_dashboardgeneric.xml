@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Firstname_userinfo"
+        android:layout_gravity="bottom"
         android:id="@+id/Firstname"
         android:textSize="20sp"/>
 
@@ -30,18 +31,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Lastname_userinfo"
+        android:layout_gravity="bottom"
         android:id="@+id/Lastname"
         android:textSize="20sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Bdate_userinfo"
+        android:layout_gravity="bottom"
         android:id="@+id/Birthdate"
         android:textSize="20sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/FirstDose_userinfo"
+        android:layout_gravity="bottom"
         android:id="@+id/NrOfDoses"
         android:textSize="20sp"/>
 
