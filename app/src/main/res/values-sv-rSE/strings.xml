@@ -453,5 +453,15 @@
     <string name="cumulativeVaccinatedRatio">Andel kumulativ vaccinerade: </string>
     <string name="applyFilter">Sätt Filter</string>
     <string name="resetFilter">Gör Om</string>
+    <string name="cases">Fall</string>
+    <string name="Stock">Lager</string>
+    <string name="Stats1">Stats 1</string>
+    <string name="Stats2">Stats 2</string>
+    <string name="coronaTracking">Corona Utveckling</string>
+    <string name="vaccineStock">Vaccin Lager Status</string>
+    <string name="statsVaccinated">Stats: Vaccinerade</string>
+    <string name="statsVaccinatedCumulative">Stats: Vaccinerade (kumulativ)</string>
+
+
 </resources>
 

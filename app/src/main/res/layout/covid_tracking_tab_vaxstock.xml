@@ -12,14 +12,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/white">
-<!--        <Button-->
-<!--            android:id="@+id/filterButton"-->
-<!--            style="@style/Widget.MaterialComponents.Button.TextButton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="FILTER"-->
-<!--            android:textColor="@color/purple_700"-->
-<!--            android:textSize="16sp" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vaccineStock"
+                android:textSize="20sp"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/filterTabs"

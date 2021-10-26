@@ -492,5 +492,12 @@
     <string name="cumulativeVaccinatedRatio">Cumulative vaccinated ratio: </string>
     <string name="applyFilter">Apply Filter</string>
     <string name="resetFilter">Reset Filter</string>
-
+    <string name="cases">Cases</string>
+    <string name="Stock">Stock</string>
+    <string name="Stats1">Stats 1</string>
+    <string name="Stats2">Stats 2</string>
+    <string name="coronaTracking">Corona Tracking</string>
+    <string name="vaccineStock">Vaccine Stock status</string>
+    <string name="statsVaccinated">Stats: Vaccinated</string>
+    <string name="statsVaccinatedCumulative">Stats: Vaccinated (cumulative)</string>
 </resources>
