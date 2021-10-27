@@ -193,7 +193,7 @@ public class ValidateAppointmentsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!getCheckedList().isEmpty()) {
-                    validationProcess();
+                    invalidationProcess();
                 }
             }
         });
