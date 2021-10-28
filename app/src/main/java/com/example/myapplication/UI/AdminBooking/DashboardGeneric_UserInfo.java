@@ -67,10 +67,10 @@ public class DashboardGeneric_UserInfo extends Fragment {
         dose.setText(dose.getText()+": " + user.getAppointment().getTime().format(formatter1));
         birthdate.setText(birthdate.getText()+": " + user.getBirthDate().format(formatter2));
         if(user.isGotFirstDose()){
-            NrOfDoses.setText(NrOfDoses.getText() + "1");
+            NrOfDoses.setText(NrOfDoses.getText() + "2");
         }
         else{
-            NrOfDoses.setText(NrOfDoses.getText() + "2");
+            NrOfDoses.setText(NrOfDoses.getText() + "1");
         }
 
         //button on click listener
