@@ -49,12 +49,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/FirstDose_userinfo"
+        android:text="@string/Dose_userinfo"
         android:layout_gravity="bottom"
         android:paddingVertical="@dimen/activity_horizontal_margin"
-        android:id="@+id/NrOfDoses"
+        android:id="@+id/NrOfDoses1"
         android:textColor="@color/black"
         android:textSize="20sp"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"

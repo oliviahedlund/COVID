@@ -3,7 +3,11 @@ package com.example.myapplication.API.Model.Admin;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.API.Model.Appointment_user.AppointmentResponse;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
+
+import java.time.ZonedDateTime;
+import java.util.List;
 
 public class UserInfo implements Parcelable {
     private boolean isAdmin;
@@ -12,7 +16,7 @@ public class UserInfo implements Parcelable {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String birthDate;
+    private ZonedDateTime birthDate;
     private String address;
     private String address2;
     private String city;
@@ -21,9 +25,10 @@ public class UserInfo implements Parcelable {
     private boolean canBook;
     private boolean gotFirstDose;
     private boolean gotSecondDose;
-    private String firstDoseDate;
-    private String secondDoseDate;
+    private ZonedDateTime firstDoseDate;
+    private ZonedDateTime secondDoseDate;
     private QuestionnaireRequest questionare;
+    private AppointmentResponse appointment;
 
     //Get functions
     public boolean isAdmin() {
@@ -50,7 +55,7 @@ public class UserInfo implements Parcelable {
         return phoneNumber;
     }
 
-    public String getBirthDate() {
+    public ZonedDateTime getBirthDate() {
         return birthDate;
     }
 
@@ -86,15 +91,18 @@ public class UserInfo implements Parcelable {
         return gotSecondDose;
     }
 
-    public String getFirstDoseDate() {
+    public ZonedDateTime getFirstDoseDate() {
         return firstDoseDate;
     }
 
-    public String getSecondDoseDate() {
+    public ZonedDateTime getSecondDoseDate() {
         return secondDoseDate;
     }
 
     public QuestionnaireRequest getQuestionare() { return questionare; }
+
+    public AppointmentResponse getAppointment() { return appointment; }
+
 
     //Set functions
     public void setAdmin(boolean admin) {
@@ -121,7 +129,7 @@ public class UserInfo implements Parcelable {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(ZonedDateTime birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -157,23 +165,18 @@ public class UserInfo implements Parcelable {
         this.gotSecondDose = gotSecondDose;
     }
 
-    public void setFirstDoseDate(String firstDoseDate) {
-        this.firstDoseDate = firstDoseDate;
-    }
+    public void setFirstDoseDate(ZonedDateTime firstDoseDate) { this.firstDoseDate = firstDoseDate; }
 
-    public void setSecondDoseDate(String secondDoseDate) {
-        this.secondDoseDate = secondDoseDate;
-    }
+    public void setSecondDoseDate(ZonedDateTime secondDoseDate) { this.secondDoseDate = secondDoseDate; }
 
     public void setQuestionare(QuestionnaireRequest questionare) { this.questionare = questionare; }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+    public void setAppointment(AppointmentResponse appointment) { this.appointment = appointment; }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public int describeContents() { return 0; }
+    @Override
+    public void writeToParcel(Parcel parcel, int i) { }
 
-    }
+
 }

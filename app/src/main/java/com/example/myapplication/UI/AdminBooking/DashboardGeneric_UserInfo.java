@@ -28,10 +28,12 @@ public class DashboardGeneric_UserInfo extends Fragment {
     private TextView firstName;
     private TextView lastName;
     private TextView birthdate;
-    private TextView doses;
+    private TextView dose;
     private Button backButton;
+
     View view;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.display_userinfo_admin_dashboardgeneric, container, false);
@@ -46,17 +48,23 @@ public class DashboardGeneric_UserInfo extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setUpTextViews(){
+        //findview
         backButton = (Button) view.findViewById(R.id.BackButton);
         firstName = (TextView) view.findViewById(R.id.Firstname);
         lastName = (TextView) view.findViewById(R.id.Lastname);
         birthdate = (TextView) view.findViewById(R.id.Birthdate);
-        doses = (TextView) view.findViewById(R.id.NrOfDoses);
+        dose = (TextView) view.findViewById(R.id.NrOfDoses1);
+        //set text
         firstName.setText(firstName.getText()+": " + user.getFirstName());
         lastName.setText(lastName.getText()+": " + user.getLastName());
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
-        birthdate.setText(birthdate.getText()+": " + user.getBirthDate());
-        doses.setText(doses.getText()+": " + user.getFirstDoseDate());
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dose.setText(dose.getText()+": " + user.getAppointment().getTime().format(formatter1));
+        birthdate.setText(birthdate.getText()+": " + user.getBirthDate().format(formatter2));
+
+        //button on click listener
         backButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

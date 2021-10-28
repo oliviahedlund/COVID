@@ -9,7 +9,7 @@
 
 
     <!--not used?-->
-    <string name="generate">Generate avalible times</string>
+    <string name="generate">Generate available times</string>
 
     <!--LoginActivity-->
     <string name="login">Login</string>
@@ -40,7 +40,7 @@
     <string name="open" translatable="false">Open</string>
     <string name="close" translatable="false">Close</string>
     <string name="logout">Logout</string>
-    <string name="dashboard">Covid Tracking</string>
+    <string name="dashboard">Covid Tracker</string>
     <string name="messages">Messages</string>
     <string name="handleAppoint">Book/Cancel Appointment</string>
     <string name="passport">Digital Vaccin Passport</string>
@@ -501,7 +501,7 @@
     <string name="Firstname_userinfo">Firstname </string>
     <string name="Lastname_userinfo">Lastname </string>
     <string name="Bdate_userinfo">Birthdate </string>
-    <string name="FirstDose_userinfo">First dose date </string>
+    <string name="Dose_userinfo">Upcoming dose date </string>
 
 
 

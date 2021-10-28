@@ -462,6 +462,6 @@
     <string name="Firstname_userinfo">Förnamn </string>
     <string name="Lastname_userinfo">Efternamn </string>
     <string name="Bdate_userinfo">Födelsedag </string>
-    <string name="FirstDose_userinfo">Datum för första dosen </string>
+    <string name="Dose_userinfo">Datum för nästa dos </string>
 </resources>
 

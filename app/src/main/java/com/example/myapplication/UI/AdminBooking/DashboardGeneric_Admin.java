@@ -185,12 +185,15 @@ public class DashboardGeneric_Admin extends Fragment {
 
     private void setCenter(Spinner Center_dropdown){
         if(Centers.length==0){
-            if(SchedAPP.getText().equals("Scheduled Appointments"))
-            Centers = new String[]{"Choose Center"};
+            if(SchedAPP.getText().equals("Scheduled Appointments")){
+                Centers = new String[]{"Choose Center"};
+            }
+            else {
+               // System.out.println("Button name:" + SchedAPP.getText().toString());
+                Centers = new String[]{"Välj Center"};
+            }
         }
-        else{
-            Centers = new String[]{"Välj Center"};
-        }
+
         ArrayAdapter<String> adapterCenter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,Centers);
         Center_dropdown.setAdapter(adapterCenter);
         Centers = new String[]{};
