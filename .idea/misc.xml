@@ -25,8 +25,6 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_dropdown_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_fragment_dashboard.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.264" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/dropdown_item.xml" value="0.12360688956433637" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_listview_item.xml" value="0.264" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_cases.xml" value="0.1" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_vaccination_stat.xml" value="0.1" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/covid_tracking_tab_vaccination_stat_cumulative.xml" value="0.1" />
@@ -42,6 +40,7 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_cell_user.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_fragment.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_popup.xml" value="0.253125" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/admin_menu.xml" value="0.4" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/main_menu.xml" value="0.25" />
         <entry key="..\:/Users/Jesper/AndroidStudioProjects/Project COVID/app/src/main/res/layout/faq.xml" value="0.1703125" />
         <entry key="..\:/Users/jespe/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
