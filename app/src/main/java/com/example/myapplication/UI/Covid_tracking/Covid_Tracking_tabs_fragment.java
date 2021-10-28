@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
 
 import com.example.myapplication.R;
 import com.example.myapplication.UI.Adapter.Covid_tracking_fragmentAdapter;
@@ -34,10 +33,10 @@ public class Covid_Tracking_tabs_fragment extends Fragment {
         viewPager2.setOffscreenPageLimit(1);
         viewPager2.setAdapter(fragmentAdapter);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Cases"));
-        tabLayout.addTab(tabLayout.newTab().setText("Vaccine Stock"));
-        tabLayout.addTab(tabLayout.newTab().setText("Vaccination Stats 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Vaccination Stats 2"));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats1)));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats2)));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats3)));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats4)));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -24,6 +24,7 @@ import com.example.myapplication.UI.GenericMessageFragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.ViewCells.AppointmentInfo_ListViewCell;
 
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -90,7 +91,10 @@ public class Appointment_Info extends Fragment {
         if(user.getAppointment() != null && user.getQuestionare() != null){
             setupFilledQuestionnaire();
             setupFilledAppointment();
-            setupCancelRebookButtons();
+            if(user.getAppointment().getTime().compareTo(ZonedDateTime.now())>0) {
+                setupCancelRebookButtons();
+            }
+            //else wait for admin follow-through validation
         }
         if(user.getQuestionare() != null && user.getAppointment() == null){
             setupFilledQuestionnaire();

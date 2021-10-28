@@ -26,7 +26,21 @@
         android:layout_height="350dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
+        android:visibility="gone"
         />
+    <LinearLayout
+        android:id="@+id/qr_output_none"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:background="@drawable/custom_boarder"
+        android:gravity="center"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_boarder"
+            android:text="@string/notFullyVaccinated" />
+    </LinearLayout>
 
 
     <TextView

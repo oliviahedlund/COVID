@@ -14,12 +14,12 @@
             android:id="@+id/nav_validate"
             android:icon="@drawable/ic_validate_appointment"
             android:title="@string/validTitle" />
-        <!--
+
         <item
             android:id="@+id/nav_quest"
             android:icon="@drawable/ic_questionnaire"
             android:title="@string/quest" />
--->
+
         <item
             android:id="@+id/nav_sched"
             android:icon="@drawable/ic_clock"

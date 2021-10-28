@@ -27,6 +27,7 @@ import com.example.myapplication.UI.AdminBooking.DashboardGeneric_Admin;
 import com.example.myapplication.UI.Covid_tracking.Covid_Tracking_tabs_fragment;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.Settings.SettingsFragment;
+import com.example.myapplication.UI.AdminBooking.AdminQuestionnaireFragment;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.UI.AdminBooking.ValidateAppointmentsFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -195,10 +196,9 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_validate:
                         newFragment = new ValidateAppointmentsFragment();
                         break;
-                        /*
                     case R.id.nav_quest:
                         newFragment = new AdminQuestionnaireFragment();
-                        break;*/
+                        break;
                     case R.id.nav_settingsFragment:
                         newFragment = new SettingsFragment();
                         break;

@@ -1,5 +1,8 @@
 package com.example.myapplication.API.Model.User;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import android.os.Parcelable;
 
 import com.example.myapplication.API.Model.Appointment_user.AppointmentRequest;
@@ -8,7 +11,7 @@ import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public class UserResponse implements Serializable {
+public class UserResponse implements Serializable{
     private String email;
     private String firstName;
     private String lastName;
@@ -29,6 +32,7 @@ public class UserResponse implements Serializable {
     private ZonedDateTime secondDoseDate;
     private AppointmentRequest appointment;
     private QuestionnaireRequest questionare;
+
 
     public boolean isCanBook() {
         return canBook;
@@ -189,6 +193,7 @@ public class UserResponse implements Serializable {
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
     }
+
 }
 
 

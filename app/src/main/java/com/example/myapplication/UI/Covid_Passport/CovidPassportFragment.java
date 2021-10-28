@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -23,6 +24,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.example.myapplication.R;
 
 import java.time.ZonedDateTime;
+import java.util.Calendar;
 
 /*
  * A simple {@link Fragment} subclass.
@@ -36,6 +38,8 @@ public class CovidPassportFragment extends Fragment {
     private TextView userName;
     private TextView userBirthDate;
     private Button scanner;
+    private ImageView qr;
+    private LinearLayout message;
 
     private UserResponse user;
     private View view;
@@ -51,11 +55,31 @@ public class CovidPassportFragment extends Fragment {
         GeneralActivity activity = (GeneralActivity) getActivity();
         user = activity.getUserData();
         view = inflater.inflate(R.layout.fragment_covid_passport, container, false);
-
+        qr = (ImageView) view.findViewById(R.id.qr_output);
+        message = (LinearLayout) view.findViewById(R.id.qr_output_none);
+        ifFullyVaccinated();
         setupScanner();
-        makeQRCode();
+
         return view;
     }
+
+    private void ifFullyVaccinated() {
+        Calendar now = Calendar.getInstance();
+        ZonedDateTime secondDate = user.getSecondDoseDate();
+
+        if(secondDate.getYear() == now.get(Calendar.YEAR)){
+            if(now.get(Calendar.DAY_OF_YEAR) >= (secondDate.getDayOfYear() + 14)){
+                makeQRCode();
+            } else{
+                message.setVisibility(View.VISIBLE);
+            }
+        } else if(secondDate.getYear() < now.get(Calendar.YEAR)){
+            makeQRCode();
+        } else{
+            message.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     public void setupScanner(){
         scanner = (Button) view.findViewById(R.id.scanner);
@@ -83,7 +107,7 @@ public class CovidPassportFragment extends Fragment {
                 BitMatrix matrix = writer.encode(id, BarcodeFormat.QR_CODE, 350, 350);
                 BarcodeEncoder encoder = new BarcodeEncoder();
                 Bitmap bitmap = encoder.createBitmap(matrix);
-                ImageView qr = view.findViewById(R.id.qr_output);
+                qr.setVisibility(View.VISIBLE);
                 qr.setImageBitmap(bitmap);
             } catch (WriterException e) {
                 e.printStackTrace();

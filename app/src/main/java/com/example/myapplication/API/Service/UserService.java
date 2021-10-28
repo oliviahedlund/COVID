@@ -14,6 +14,7 @@ import com.example.myapplication.API.Model.Login.LoginRequest;
 import com.example.myapplication.API.Model.Login.LoginResponse;
 import com.example.myapplication.API.Model.Register.RegisterRequest;
 import com.example.myapplication.API.Model.Register.RegisterResponse;
+import com.example.myapplication.API.Model.User.FullUserResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
 import com.example.myapplication.API.Model.Appointment_admin.PostRangeRequest;
 
@@ -113,6 +114,14 @@ public interface UserService {
         @POST("/api/Vaccine")
         Call<String> postVaccine(@Header("Authorization") String authHeader, @Query("vaccineName") String vaccineName);
 
+        @GET("/api/User/Manage/Questionare/")
+        Call<List<FullUserResponse>>getIncorrectQuest(@Header("Authorization")String authHeader);
+
+        @GET("/api/User/Manage/GetUserByEmail/")
+        Call<FullUserResponse> getUserFromEmailAPI(@Header("Authorization") String authHeader, @Query("userEmail") String userEmail);
+
+        @PUT("/api/Questionare/Manage/")
+        Call<Void> updateQuest(@Header("Authorization") String authHeader, @Query("UserId") String userId, @Body QuestionnaireRequest questionnaireRequest);
         // STATISTICS //
         @GET("/api/Statistics/Case")
         Call<Cases> getCases(@Header("Authorization") String authHeader);
