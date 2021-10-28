@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,12 +56,27 @@ public class CovidPassportFragment extends Fragment {
         GeneralActivity activity = (GeneralActivity) getActivity();
         user = activity.getUserData();
         view = inflater.inflate(R.layout.fragment_covid_passport, container, false);
-        qr = (ImageView) view.findViewById(R.id.qr_output);
-        message = (LinearLayout) view.findViewById(R.id.qr_output_none);
+
+        setupWidgets();
+        makeTextInfo();
         ifFullyVaccinated();
         setupScanner();
 
         return view;
+    }
+
+    private void setupWidgets(){
+        qr = (ImageView) view.findViewById(R.id.qr_output);
+        message = (LinearLayout) view.findViewById(R.id.qr_output_none);
+        userName = (TextView) view.findViewById(R.id.name);
+        userBirthDate = (TextView) view.findViewById(R.id.birth_date);
+    }
+
+    private void makeTextInfo(){
+        birthDate = user.getBirthDate();
+        fullName = user.getFirstName() +" "+ user.getLastName();
+        userName.setText(fullName);
+        userBirthDate.setText(StringFormatHelper.yearMonthDay(birthDate));
     }
 
     private void ifFullyVaccinated() {
@@ -73,7 +89,7 @@ public class CovidPassportFragment extends Fragment {
             } else{
                 message.setVisibility(View.VISIBLE);
             }
-        } else if(secondDate.getYear() < now.get(Calendar.YEAR)){
+        } else if(secondDate.getYear() < now.get(Calendar.YEAR) && secondDate.getYear() != 1){
             makeQRCode();
         } else{
             message.setVisibility(View.VISIBLE);
@@ -94,12 +110,6 @@ public class CovidPassportFragment extends Fragment {
 
     public void makeQRCode(){
         id = user.getId();
-        birthDate = user.getBirthDate();
-        fullName = user.getFirstName() +" "+ user.getLastName();
-        userName = (TextView) view.findViewById(R.id.name);
-        userName.setText(fullName);
-        userBirthDate = (TextView) view.findViewById(R.id.birth_date);
-        userBirthDate.setText(StringFormatHelper.yearMonthDay(birthDate));
 
         if(!id.isEmpty()){
             MultiFormatWriter writer = new MultiFormatWriter();
