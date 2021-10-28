@@ -502,6 +502,8 @@
     <string name="Lastname_userinfo">Lastname </string>
     <string name="Bdate_userinfo">Birthdate </string>
     <string name="Dose_userinfo">Upcoming dose date </string>
+    <string name="Doses_userinfo">Dose number:  </string>
+
 
 
 

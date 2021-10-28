@@ -29,6 +29,7 @@ public class DashboardGeneric_UserInfo extends Fragment {
     private TextView lastName;
     private TextView birthdate;
     private TextView dose;
+    private TextView NrOfDoses;
     private Button backButton;
 
     View view;
@@ -56,6 +57,8 @@ public class DashboardGeneric_UserInfo extends Fragment {
         lastName = (TextView) view.findViewById(R.id.Lastname);
         birthdate = (TextView) view.findViewById(R.id.Birthdate);
         dose = (TextView) view.findViewById(R.id.NrOfDoses1);
+        NrOfDoses = (TextView) view.findViewById(R.id.NrOfDoses2);
+
         //set text
         firstName.setText(firstName.getText()+": " + user.getFirstName());
         lastName.setText(lastName.getText()+": " + user.getLastName());
@@ -63,6 +66,12 @@ public class DashboardGeneric_UserInfo extends Fragment {
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         dose.setText(dose.getText()+": " + user.getAppointment().getTime().format(formatter1));
         birthdate.setText(birthdate.getText()+": " + user.getBirthDate().format(formatter2));
+        if(user.isGotFirstDose()){
+            NrOfDoses.setText(NrOfDoses.getText() + "1");
+        }
+        else{
+            NrOfDoses.setText(NrOfDoses.getText() + "2");
+        }
 
         //button on click listener
         backButton.setOnClickListener(new View.OnClickListener(){

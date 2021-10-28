@@ -463,5 +463,7 @@
     <string name="Lastname_userinfo">Efternamn </string>
     <string name="Bdate_userinfo">Födelsedag </string>
     <string name="Dose_userinfo">Datum för nästa dos </string>
+    <string name="Doses_userinfo">Dos nummer:  </string>
+
 </resources>
 
