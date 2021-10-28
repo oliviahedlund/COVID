@@ -1,22 +1,12 @@
 package com.example.myapplication.UI.ViewCells;
 
 public class Covid_Tracking_ListViewCell {
-    private String id;
     private String label;
     private String data;
 
-
-    public Covid_Tracking_ListViewCell(String id, String label) {
-        this.id = id;
+    public Covid_Tracking_ListViewCell(String label, String data) {
         this.label = label;
-        this.data = null;
-    }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.data = data;
     }
 
     public String getLabel() {
