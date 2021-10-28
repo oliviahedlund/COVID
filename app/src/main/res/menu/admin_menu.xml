@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_dashboard"
-            android:title="@string/dashboard" />
+            android:title="@string/genericPlus" />
         <item
             android:id="@+id/nav_validate"
             android:icon="@drawable/ic_validate_appointment"
