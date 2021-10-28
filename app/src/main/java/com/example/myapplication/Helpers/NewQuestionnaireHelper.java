@@ -111,7 +111,7 @@ public class NewQuestionnaireHelper {
             @Override
             public void onFailure(Call<List<FullUserResponse>> call, Throwable t) {
                 Log.d("haha fail", "" + t);
-                //LoadingAnimation.dismissLoadingAnimation();
+                LoadingAnimation.dismissLoadingAnimation();
                 //new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
@@ -142,7 +142,7 @@ public class NewQuestionnaireHelper {
             @Override
             public void onFailure(Call<FullUserResponse> call, Throwable t) {
                 Log.d("haha fail", "" + t);
-                //LoadingAnimation.dismissLoadingAnimation();
+                LoadingAnimation.dismissLoadingAnimation();
                 //new AlertWindow(fragment).createAlertWindow(fragment.getResources().getString(R.string.connectionFailureAlert));
             }
         });
