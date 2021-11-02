@@ -7,8 +7,6 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.API.Model.Appointment_user.AppointmentRespFull;
-import com.example.myapplication.API.Model.Appointment_user.Center;
 import com.example.myapplication.API.Model.Appointment_user.QuestionnaireRequest;
 import com.example.myapplication.API.Model.User.FullUserResponse;
 import com.example.myapplication.API.Model.User.UserResponse;
@@ -16,7 +14,6 @@ import com.example.myapplication.ApiClient;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
-import com.example.myapplication.UI.UserAppointment.Appointment_Info;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,7 +75,7 @@ public class NewQuestionnaireHelper {
     public FullUserResponse [] getListResp(List<FullUserResponse> response){
         ArrayList<FullUserResponse> respBuffer = new ArrayList<FullUserResponse>();
         for(FullUserResponse person: response){
-            if(person != null) respBuffer.add(person);
+            if(person != null && !person.isCanBook()) respBuffer.add(person);
         }
 
         FullUserResponse [] respArray = new FullUserResponse[respBuffer.size()];
@@ -149,8 +146,8 @@ public class NewQuestionnaireHelper {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void API_updateQuest(String token,String id, QuestionnaireRequest quest ,Runnable runnable){
-        Call<Void> call = ApiClient.getUserService().updateQuest(token, id, quest);
+    public void API_updateQuest(String token,String id ,Runnable runnable){
+        Call<Void> call = ApiClient.getUserService().updateCanBook(token, id, true);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response <Void> response) {

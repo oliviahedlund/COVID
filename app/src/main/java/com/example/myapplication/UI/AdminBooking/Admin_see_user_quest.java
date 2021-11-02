@@ -20,6 +20,7 @@ import com.example.myapplication.Helpers.NewQuestionnaireHelper;
 import com.example.myapplication.UI.Adapter.AppointmentInfoListViewAdapter;
 import com.example.myapplication.UI.Adapter.QuestionnaireAdapter;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.AlertWindow;
 import com.example.myapplication.UI.LoadingAnimation;
 import com.example.myapplication.UI.ViewCells.AppointmentInfo_ListViewCell;
 
@@ -28,7 +29,6 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class Admin_see_user_quest extends Fragment {
-
     private View view;
     private AdminQuestionnaireFragment adminQuestionnaireFragment;
     private FullUserResponse user;
@@ -91,18 +91,13 @@ public class Admin_see_user_quest extends Fragment {
             public void onClick(View view) {
                 //Update user Questionnaire
                 newQuestionnaireHelper = new NewQuestionnaireHelper(getFragment(), null);
-                QuestionnaireRequest quest = new QuestionnaireRequest();
-                quest.setHasBloodProblems(false);
-                quest.setIsAllergicToVax(false);
-                quest.setIsPregnant(false);
-                quest.setNeededHelpDuetoVax(false);
-                quest.setTraveledInLast14Days(false);
                 LoadingAnimation.startLoadingAnimation(getActivity());
-                newQuestionnaireHelper.API_updateQuest(admin, user.getId(),quest ,new Runnable() {
+                newQuestionnaireHelper.API_updateQuest(admin, user.getId() ,new Runnable() {
                     @Override
                     public void run() {
                         LoadingAnimation.dismissLoadingAnimation();
-                        getUpdatedUser();
+                        Fragment newFragment = new AdminQuestionnaireFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, newFragment).commit();
                     }
                 });
             }
@@ -110,17 +105,6 @@ public class Admin_see_user_quest extends Fragment {
 
     }
 
-    private void getUpdatedUser(){
-        LoadingAnimation.startLoadingAnimation(getActivity());
-        newQuestionnaireHelper.API_getUserFromEmail(admin, user.getEmail(), new Runnable() {
-            @Override
-            public void run() {
-                user = newQuestionnaireHelper.getRetrievedUser();
-                setupFilledQuestionnaire();
-                LoadingAnimation.dismissLoadingAnimation();
-            }
-        });
-    }
 
     public Fragment getFragment(){return this;}
 

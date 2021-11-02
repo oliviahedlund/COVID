@@ -120,8 +120,8 @@ public interface UserService {
         @GET("/api/User/Manage/GetUserByEmail/")
         Call<FullUserResponse> getUserFromEmailAPI(@Header("Authorization") String authHeader, @Query("userEmail") String userEmail);
 
-        @PUT("/api/Questionare/Manage/")
-        Call<Void> updateQuest(@Header("Authorization") String authHeader, @Query("UserId") String userId, @Body QuestionnaireRequest questionnaireRequest);
+        @PUT("/api/User/Manage/")
+        Call<Void> updateCanBook(@Header("Authorization") String authHeader, @Query("UserId") String userId, @Body Boolean flag);
         // STATISTICS //
         @GET("/api/Statistics/Case")
         Call<Cases> getCases(@Header("Authorization") String authHeader);
