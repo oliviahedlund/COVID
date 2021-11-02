@@ -33,10 +33,10 @@ public class Covid_Tracking_tabs_fragment extends Fragment {
         viewPager2.setOffscreenPageLimit(1);
         viewPager2.setAdapter(fragmentAdapter);
 
-        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats1)));
-        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats2)));
-        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats3)));
-        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.stats4)));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_covid_tracking_tab1));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_vaccine));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_covid_tracking_tab_vaccinated));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_dashboard));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
