@@ -4,9 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13958333333333334" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable-anydpi/ic_language.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/button_background.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/custom_boarder.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_background.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_center.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_clock.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_covid_passport.xml" value="0.2703125" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_dashboard.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_faq.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_logout.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_messages.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_questionnaire.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_refresh.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_settings.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_vaccine.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/drawable/ic_virus.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/Covid_Tracking_dropdown_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_dashboard.xml" value="0.4" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -40,8 +55,6 @@
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_cell_user.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_fragment.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/layout/questionnaire_popup.xml" value="0.253125" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/admin_menu.xml" value="0.4" />
-        <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/main_menu.xml" value="0.4" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/admin_menu.xml" value="0.4" />
         <entry key="..\:/Users/Baiwei/AndroidStudioProjects/COVID/app/src/main/res/menu/main_menu.xml" value="0.25" />
         <entry key="..\:/Users/Jesper/AndroidStudioProjects/Project COVID/app/src/main/res/layout/faq.xml" value="0.1703125" />
